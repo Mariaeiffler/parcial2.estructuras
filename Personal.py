@@ -1,4 +1,4 @@
-from personas import Persona
+from Persona import Persona
 class Personal(Persona):
     def __init__(self,nombre,dni,direccion,contacto,fecha_nac):
         super().__init__(nombre,dni,direccion,contacto,fecha_nac)
