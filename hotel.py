@@ -25,7 +25,7 @@ class Hotel():
                 mail=input('Ingrese su mail:')
                 usuario=input('Escriba el nombre de usuario:')
                 contrasena=input('Escriba la contrasena:')
-                validacioncontraseña2(contrasena) #verificar el nombre de la funcion
+                validacioncontrasena(contrasena) #verificar el nombre de la funcion
                 soy_empleado=input('Sos empleado? (responder si o no en minuscula)')
                 validacionempleado(soy_empleado)
                 
