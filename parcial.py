@@ -6,6 +6,7 @@ from Abrir_archivo import *
 
 def entrar():
     pregunta=input('Elija una de las siguientes opciones: 1. Sign up \n 2.Sign in')
+    validacionpregunta(pregunta)
     #validacion 
     match pregunta:
         case 1:
@@ -13,19 +14,22 @@ def entrar():
             #validar todos los atributos
             nombre=input('Introduzca su nombre:')
             dni=input('Ingrese su DNI:')
+            validaciondni(dni)
             direccion=input('Ingrese su direccion:')
             contacto=input('Ingrese su numero de contacto:')
             fecha_nac=input('Ingrese su fecha de nacimiento:')
             mail=input('Ingrese su mail:')
             usuario=input('Escriba el nombre de usuario:')
             contrasena=input('Escriba la contrasena:')
+            validacioncontraseña2(contrasena)
             soy_empleado=input('Sos empleado? (responder si o no en minuscula)')
+            validacionempleado(soy_empleado)
             
             if soy_empleado:
                 contrasena_personal=input('Ingrese la contrasena del personal:')
                 #validar contrasena personal (definida por nosotras)
                 personal=Personal.Personal(nombre,dni,direccion,contacto,fecha_nac,mail,soy_empleado)
-                #mandar info a archivo. mandamos solo usuario y contrasena o todo?
+                #mandar info a archivo. 
             else:
                 cliente=cliente.Cliente(nombre,dni,direccion,contacto,fecha_nac,mail,soy_empleado)
                 #mandar info al archivo 
