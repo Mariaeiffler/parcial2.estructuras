@@ -47,7 +47,6 @@ class Hotel():
     def save(self): #CHEQUEAR!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         with open('hotel.pickle','wb') as f:
             pickle.dump(self,f)
-        with open('hotel.pickle', "rb") as f: #chequear
-            objeto_cargado = pickle.load(f)
+
         
     #hacer una funcion para mostrar que el hotel esta guardando informacion
