@@ -1,3 +1,8 @@
+from Personal import Personal
+from cliente import Cliente
+from Persona import Persona
+from validaciones import *
+
 def entrar():
     pregunta=input('Elija una de las siguientes opciones: 1. Sign up \n 2.Sign in')
     #validacion 
@@ -15,6 +20,14 @@ def entrar():
             contrasena=input('Escriba la contrasena:')
             soy_empleado=input('Sos empleado?')
             
+            if soy_empleado:
+                contrasena_personal=input('Ingrese la contrasena del personal:')
+                #validar contrasena personal (definida por nosotras)
+                personal=Personal.Personal(nombre,dni,direccion,contacto,fecha_nac,mail,soy_empleado)
+                #mandar info a archivo. mandamos solo usuario y contrasena o todo?
+            else:
+                cliente=cliente.Cliente(nombre,dni,direccion,contacto,fecha_nac,mail,soy_empleado)
+                #mandar info al archivo 
             
         case 2:
             #validar que exista el usuario y que la contrasena sea correcta
