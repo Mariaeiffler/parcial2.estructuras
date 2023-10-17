@@ -1,3 +1,5 @@
+from datetime import *
+
 def validacionpregunta(pregunta):
     if pregunta != 1 or pregunta != 2:
         pregunta = input('Elija una de las siguientes opciones: 1. Sign up \n 2. Sign in  ')
@@ -34,7 +36,6 @@ def validacioncontrasena(contrasena):
             contrasena = input ('Ingrese una contraseña valida ')
     return contrasena
 
-
 def validacionempleado(soy_empleado):
     if soy_empleado != 'si' and soy_empleado != 'no':
         soy_empleado = input('Ingrese si, si es empleado y no si no lo es (en minuscula) ')
@@ -62,7 +63,50 @@ def validacionnombre2(nombre):
             validacion = validacionnombre1(nombre)
     return nombre
             
+def validacioncontacto(contacto):
+    if cantidad_numero(contacto) != len(str(contacto)) or cantidad_numero(contacto) != 8:
+        contacto = input('Ingrese su numero de telefono con el formato 911... ')
+        while cantidad_numero(contacto) != len(str(contacto)) or cantidad_numero(contacto) != 8:
+            contacto = input('Ingrese su numero de telefono con el formato 911... ')
+    return contacto
+
+def validacionusuario(usuario):
+    if len(str(usuario)) < 5:
+        usuario = input('Ingrese un nombre de usuario válido (con minimo 5 dígitos) ')
+        while len(str(usuario)) < 5:
+            usuario = input('Ingrese un nombre de usuario válido (con minimo 5 dígitos) ')  
+    return usuario
+
+def convertirfecha_datetime(fecha):
+    while True:
+        try:
+            fecha_datetime = datetime.strptime(fecha, '%d/%m/%Y')
+            return fecha_datetime
+        except Exception:
+            fecha = input('Ingrese la fecha en el formato dd/mm/yyy ')
             
+def mayoredad (fecha):
+    fecha_datetime = convertirfecha_datetime(fecha)
+    diferencia = date.today() - fecha_datetime.date()
+    anio = diferencia.years
+    if anio >= 16:
+        return True
+    else:
+        return False
+    
+def validacionfechanac (fecha):
+    fecha_datetime = convertirfecha_datetime(fecha)
+    if mayoredad(fecha_datetime) == False:
+        fecha = input('Ingrese la fecha en el formato dd/mm/yyy ')
+        fecha_datetime = convertirfecha_datetime(fecha)
+        while mayoredad(fecha_datetime) == False:
+            fecha = input('Ingrese la fecha en el formato dd/mm/yyy ')
+            fecha_datetime = convertirfecha_datetime(fecha)
+    return fecha_datetime
+    
+            
+        
+        
 
 soy_empleado = 'xdertyjgfr5678'
 validacion = validacioncontrasena(soy_empleado)
