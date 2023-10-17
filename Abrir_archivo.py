@@ -32,8 +32,8 @@ def leer_archivo( fn ):
     fd.close()
     return cont
 
-def escribir_archivo( fname , contenido ):
-    fd = open( fname , 'w' )
+def escribir_archivo( fname , contenido ): #appendea cosas al final
+    fd = open( fname , 'a' )
     for linea in contenido:
         fd.write(' '.join(linea)+'\n')
     fd.close()
