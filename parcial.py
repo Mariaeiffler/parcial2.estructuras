@@ -2,7 +2,7 @@ from Personal import Personal
 from cliente import Cliente
 from Persona import Persona
 from validaciones import *
-#from Abrir_archivo import *
+from Abrir_archivo import *
 
 def entrar():
     pregunta=input('Elija una de las siguientes opciones: 1. Sign up \n 2.Sign in')
