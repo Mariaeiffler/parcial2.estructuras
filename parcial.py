@@ -2,6 +2,7 @@ from Personal import Personal
 from cliente import Cliente
 from Persona import Persona
 from validaciones import *
+#from Abrir_archivo import *
 
 def entrar():
     pregunta=input('Elija una de las siguientes opciones: 1. Sign up \n 2.Sign in')
@@ -18,7 +19,7 @@ def entrar():
             mail=input('Ingrese su mail:')
             usuario=input('Escriba el nombre de usuario:')
             contrasena=input('Escriba la contrasena:')
-            soy_empleado=input('Sos empleado?')
+            soy_empleado=input('Sos empleado? (responder si o no en minuscula)')
             
             if soy_empleado:
                 contrasena_personal=input('Ingrese la contrasena del personal:')
