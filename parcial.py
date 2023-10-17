@@ -3,6 +3,7 @@ from cliente import Cliente
 from Persona import Persona
 from validaciones import *
 from Abrir_archivo import *
+import pickle
 
 def entrar():
     pregunta=input('Elija una de las siguientes opciones: 1. Sign up \n 2.Sign in')
@@ -21,7 +22,7 @@ def entrar():
             mail=input('Ingrese su mail:')
             usuario=input('Escriba el nombre de usuario:')
             contrasena=input('Escriba la contrasena:')
-            validacioncontraseña2(contrasena)
+            validacioncontraseña2(contrasena) #verificar el nombre de la funcion
             soy_empleado=input('Sos empleado? (responder si o no en minuscula)')
             validacionempleado(soy_empleado)
             
