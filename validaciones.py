@@ -83,12 +83,16 @@ def convertirfecha_datetime(fecha):
             fecha_datetime = datetime.strptime(fecha, '%d/%m/%Y')
             return fecha_datetime
         except Exception:
-            fecha = input('Ingrese la fecha en el formato dd/mm/yyy ')
+            fecha = input('Ingrese la fecha en el formato dd/mm/yyyy ')
             
 def mayoredad (fecha):
-    fecha_datetime = convertirfecha_datetime(fecha)
-    diferencia = date.today() - fecha_datetime.date()
-    anio = diferencia.years
+    if type(fecha) == datetime:
+        fecha_datetime = fecha
+    else:
+        fecha_datetime = convertirfecha_datetime(fecha)
+    diferencia:datetime = date.today() - fecha_datetime.date()
+    dias = abs(diferencia.days)
+    anio = dias / 365
     if anio >= 16:
         return True
     else:
@@ -97,10 +101,10 @@ def mayoredad (fecha):
 def validacionfechanac (fecha):
     fecha_datetime = convertirfecha_datetime(fecha)
     if mayoredad(fecha_datetime) == False:
-        fecha = input('Ingrese la fecha en el formato dd/mm/yyy ')
+        fecha = input('Ingrese la fecha en el formato dd/mm/yyyy ')
         fecha_datetime = convertirfecha_datetime(fecha)
         while mayoredad(fecha_datetime) == False:
-            fecha = input('Ingrese la fecha en el formato dd/mm/yyy ')
+            fecha = input('Ingrese la fecha en el formato dd/mm/yyyy ')
             fecha_datetime = convertirfecha_datetime(fecha)
     return fecha_datetime
     
@@ -108,8 +112,8 @@ def validacionfechanac (fecha):
         
         
 
-soy_empleado = 'xdertyjgfr5678'
-validacion = validacioncontrasena(soy_empleado)
+fecha = '12/11/2009'
+validacion = validacionfechanac (fecha)
 print(validacion)
 
 
