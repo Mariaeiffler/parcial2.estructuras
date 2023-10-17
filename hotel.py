@@ -44,4 +44,7 @@ class Hotel():
                 #validar que exista el usuario y que la contrasena sea correcta
                 usuario=input('Escriba el nombre de usuario:')
                 contrasena=input('Escriba la contrasena:')
-                
+    def save(self):
+        with open('hotel.pickle','wb') as f:
+            pickle.dump(self,f)
+    #hacer una funcion para mostrar que el hotel esta guardando informacion
