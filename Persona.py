@@ -1,11 +1,12 @@
 class Persona():
-    def _init_(self,nombre,dni,direccion,contacto,fecha_nac,mail):
+    def _init_(self,nombre,dni,direccion,contacto,fecha_nac,mail,soy:False): #el true es de personal
         self.nombre=nombre
         self.dni=dni
         self.direccion=direccion
         self.contacto=contacto
         self.fecha_nac=fecha_nac
         self.mail=mail
+        self.soy=soy
         
     def _str_(self):
         cadena=''
