@@ -11,7 +11,7 @@ class Hotel():
         self.clientes=dict()
         self.contrasena_ing_personal=contrasena_ing_personal
     def entrar(self):
-        pregunta=input('Elija una de las siguientes opciones: 1. Sign up \n 2.Sign in')
+        pregunta=input(('Elija una de las siguientes opciones: 1. Sign up \n 2.Sign in'))
         pregunta=validacionpregunta(pregunta)
         #validacion 
         match pregunta:
@@ -41,11 +41,11 @@ class Hotel():
                     while contrasena_personal != self.contrasena_ing_personal:
                         contrasena_personal=input('Ingrese la contrasena del personal:')
                     #validar contrasena personal (definida por nosotras)
-                    personal=Personal.Personal(nombre,dni,direccion,contacto,fecha_nac,mail,soy_empleado)
+                    personal=Personal(nombre,dni,direccion,contacto,fecha_nac,mail,soy_empleado)
                     #mandar info a archivo. 
                     self.empleados[usuario]=personal
                 else:
-                    cliente=cliente.Cliente(nombre,dni,direccion,contacto,fecha_nac,mail,soy_empleado)
+                    cliente=Cliente(nombre,dni,direccion,contacto,fecha_nac,mail,soy_empleado)
                     #mandar info al archivo 
                     self.clientes[usuario]=cliente
                 
