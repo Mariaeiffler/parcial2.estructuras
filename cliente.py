@@ -9,3 +9,5 @@ class Cliente(Persona):
     #def realizar_pedido_buffet():
     
     #def __str__(self):
+    
+    #def tipocliente(self):

@@ -117,11 +117,6 @@ def validacionfechanac (fecha):
             fecha = input('Ingrese la fecha en el formato dd/mm/yyyy ')
             fecha_datetime = convertirfecha_datetime(fecha)
     return fecha_datetime
-
-def validacioncontrapersonal(contrasena_personal):
-    contrasena = 'personal23'
-    
-
         
         
 if __name__=="__main__":
