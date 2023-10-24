@@ -1,9 +1,9 @@
 from datetime import *
 
 def validacionpregunta(pregunta):
-    if pregunta != 1 or pregunta != 2:
+    if pregunta != 1 and pregunta != 2:
         pregunta = input('Elija una de las siguientes opciones: 1. Sign up \n 2. Sign in  ')
-        while pregunta != 1 or pregunta != 2:
+        while pregunta != 1 and pregunta != 2:
             pregunta = input('Elija una de las siguientes opciones: 1. Sign up \n 2. Sign in  ')
     return pregunta
         
@@ -114,9 +114,9 @@ def validacionfechanac (fecha):
         
         
 
-fecha = '12/11/2009'
-validacion = validacionfechanac (fecha)
-print(validacion)
+pregunta = 1
+validacion = validacionpregunta(pregunta)
+
 
 
 

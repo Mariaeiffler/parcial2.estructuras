@@ -5,4 +5,7 @@ class Cliente(Persona):
     #def tipo(self):
         #verificar que tipo de cliente es en base a sus gastos
     #def historial_reservas(self):
+    
+    #def realizar_pedido_buffet():
+    
     #def __str__(self):
