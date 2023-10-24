@@ -1,6 +1,14 @@
-from datetime import *
+from datetime import *    
 
 def validacionpregunta(pregunta):
+    validacion = False
+    while validacion == False:
+        try:
+            int(pregunta)
+            pregunta = int(pregunta)
+            validacion = True
+        except Exception:
+            pregunta = input('Elija una de las siguientes opciones: 1. Sign up \n 2. Sign in  ')
     if pregunta != 1 and pregunta != 2:
         pregunta = input('Elija una de las siguientes opciones: 1. Sign up \n 2. Sign in  ')
         while pregunta != 1 and pregunta != 2:
