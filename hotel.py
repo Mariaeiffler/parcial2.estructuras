@@ -18,14 +18,19 @@ class Hotel():
                 #validar que no exista el usuario
                 #validar todos los atributos
                 nombre=input('Introduzca su nombre:')
+                nombre=validacionnombre2(nombre)
                 dni=input('Ingrese su DNI:')
-                validaciondni(dni)
+                dni=validaciondni(dni)
                 direccion=input('Ingrese su direccion:')
                 contacto=input('Ingrese su numero de contacto:')
+                contacto=validacioncontacto(contacto)
                 fecha_nac=input('Ingrese su fecha de nacimiento:')
+                fecha_nac=validacionfechanac (fecha_nac)
                 mail=input('Ingrese su mail:')
                 usuario=input('Escriba el nombre de usuario:')
+                usuario=validacionusuario(usuario)
                 contrasena=input('Escriba la contrasena:')
+                contrasena = validacioncontrasena(contrasena)
                 validacioncontrasena(contrasena) #verificar el nombre de la funcion
                 soy_empleado=input('Sos empleado? (responder si o no en minuscula)')
                 soy_empleado=validacionempleado(soy_empleado)
