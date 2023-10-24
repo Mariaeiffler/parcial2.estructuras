@@ -64,7 +64,7 @@ class Hotel():
             print(key, empleado.tipo)
     def nomina_clientes(self):
         cliente: Cliente
-        for key, cliete in self.clientes.item():
+        for key, cliente in self.clientes.item():
             print(key, cliente.tipo)
         
 
