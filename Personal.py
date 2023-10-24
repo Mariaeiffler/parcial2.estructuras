@@ -1,9 +1,10 @@
 from datetime import datetime
 from Persona import Persona
 class Personal(Persona):
-    def __init__(self,nombre,dni,direccion,contacto,fecha_nac,mail,soy_empleado,fecalta,fecbaja: None):
+    def __init__(self,nombre,dni,direccion,contacto,fecha_nac,mail,soy_empleado,fecalta,tipo,fecbaja: None):
         super().__init__(nombre,dni,direccion,contacto,fecha_nac,mail,soy_empleado)
         self.fecalta = datetime.now()
+        self.tipo=tipo
         
     def bajas(self):
         self.fechabaja = datetime.now()
