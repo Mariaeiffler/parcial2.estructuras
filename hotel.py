@@ -5,7 +5,8 @@ from validaciones import *
 from Abrir_archivo import *
 import pickle
 class Hotel():
-    def __init__(self):
+    def __init__(self,nombre):
+        self.nombre=nombre
         self.empleados=dict()
         self.clientes=dict()
     def entrar(self):
@@ -44,6 +45,8 @@ class Hotel():
                 #validar que exista el usuario y que la contrasena sea correcta
                 usuario=input('Escriba el nombre de usuario:')
                 contrasena=input('Escriba la contrasena:')
+    def menu (self):
+        print ('hola')
     def save(self): #CHEQUEAR!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         with open('hotel.pickle','wb') as f:
             pickle.dump(self,f)
