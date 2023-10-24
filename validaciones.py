@@ -78,9 +78,11 @@ def validacionusuario(usuario):
     return usuario
 
 def convertirfecha_datetime(fecha):
-    while True:
+    validacion = False
+    while validacion == False:
         try:
             fecha_datetime = datetime.strptime(fecha, '%d/%m/%Y')
+            validacion = True
             return fecha_datetime
         except Exception:
             fecha = input('Ingrese la fecha en el formato dd/mm/yyyy ')
@@ -108,7 +110,7 @@ def validacionfechanac (fecha):
             fecha_datetime = convertirfecha_datetime(fecha)
     return fecha_datetime
     
-            
+
         
         
 
