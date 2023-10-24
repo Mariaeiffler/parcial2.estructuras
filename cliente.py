@@ -1,7 +1,8 @@
 from Persona import Persona
 class Cliente(Persona):
-    def __init__(self,nombre,dni,direccion,contacto,fecha_nac,mail,soy_empleado):
+    def __init__(self,nombre,dni,direccion,contacto,fecha_nac,mail,soy_empleado,tipo='nivel 1'):
         super().__init__(nombre,dni,direccion,contacto,fecha_nac,mail,soy_empleado)
+        self.tipo=tipo
     #def tipo(self):
         #verificar que tipo de cliente es en base a sus gastos
     #def historial_reservas(self):
