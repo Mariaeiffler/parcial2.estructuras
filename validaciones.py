@@ -113,10 +113,10 @@ def validacionfechanac (fecha):
 
         
         
-
-pregunta = 1
-validacion = validacionpregunta(pregunta)
-
+if __name__=="__main__":
+    fecha = '12/11/2009'
+    validacion = validacionfechanac (fecha)
+    print(validacion)
 
 
 
