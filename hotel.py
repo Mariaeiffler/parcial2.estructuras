@@ -11,7 +11,7 @@ class Hotel():
         self.clientes=dict()
     def entrar(self):
         pregunta=input('Elija una de las siguientes opciones: 1. Sign up \n 2.Sign in')
-        validacionpregunta(pregunta)
+        pregunta=validacionpregunta(pregunta)
         #validacion 
         match pregunta:
             case 1:

@@ -1,7 +1,7 @@
 from datetime import *
 
 def validacionpregunta(pregunta):
-    if pregunta != 1 and pregunta != 2:
+    if pregunta != '1' and pregunta != '2':
         pregunta = input('Elija una de las siguientes opciones: 1. Sign up \n 2. Sign in  ')
         while pregunta != 1 and pregunta != 2:
             pregunta = input('Elija una de las siguientes opciones: 1. Sign up \n 2. Sign in  ')
