@@ -10,7 +10,7 @@ class Hotel():
         self.empleados=dict()
         self.clientes=dict()
     def entrar(self):
-        pregunta=input('Elija una de las siguientes opciones: 1. Sign up \n 2.Sign in')
+        pregunta=input(('Elija una de las siguientes opciones: 1. Sign up \n 2.Sign in'))
         pregunta=validacionpregunta(pregunta)
         #validacion 
         match pregunta:
@@ -18,26 +18,31 @@ class Hotel():
                 #validar que no exista el usuario
                 #validar todos los atributos
                 nombre=input('Introduzca su nombre:')
+                nombre=validacionnombre2(nombre)
                 dni=input('Ingrese su DNI:')
-                validaciondni(dni)
+                dni=validaciondni(dni)
                 direccion=input('Ingrese su direccion:')
                 contacto=input('Ingrese su numero de contacto:')
+                contacto=validacioncontacto(contacto)
                 fecha_nac=input('Ingrese su fecha de nacimiento:')
+                fecha_nac=validacionfechanac (fecha_nac)
                 mail=input('Ingrese su mail:')
                 usuario=input('Escriba el nombre de usuario:')
+                usuario=validacionusuario(usuario)
                 contrasena=input('Escriba la contrasena:')
+                contrasena = validacioncontrasena(contrasena)
                 validacioncontrasena(contrasena) #verificar el nombre de la funcion
                 soy_empleado=input('Sos empleado? (responder si o no en minuscula)')
-                validacionempleado(soy_empleado)
+                soy_empleado=validacionempleado(soy_empleado)
                 
                 if soy_empleado:
                     contrasena_personal=input('Ingrese la contrasena del personal:')
                     #validar contrasena personal (definida por nosotras)
-                    personal=Personal.Personal(nombre,dni,direccion,contacto,fecha_nac,mail,soy_empleado)
+                    personal=Personal(nombre,dni,direccion,contacto,fecha_nac,mail,soy_empleado)
                     #mandar info a archivo. 
                     self.empleados[usuario]=personal
                 else:
-                    cliente=cliente.Cliente(nombre,dni,direccion,contacto,fecha_nac,mail,soy_empleado)
+                    cliente=Cliente(nombre,dni,direccion,contacto,fecha_nac,mail,soy_empleado)
                     #mandar info al archivo 
                     self.clientes[usuario]=cliente
                 
