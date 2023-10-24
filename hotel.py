@@ -5,10 +5,11 @@ from validaciones import *
 from Abrir_archivo import *
 import pickle
 class Hotel():
-    def __init__(self,nombre):
+    def __init__(self,nombre,contrasena_ing_personal='personal123'):
         self.nombre=nombre
         self.empleados=dict()
         self.clientes=dict()
+        self.contrasena_ing_personal=contrasena_ing_personal
     def entrar(self):
         pregunta=input('Elija una de las siguientes opciones: 1. Sign up \n 2.Sign in')
         pregunta=validacionpregunta(pregunta)
@@ -37,6 +38,8 @@ class Hotel():
                 
                 if soy_empleado:
                     contrasena_personal=input('Ingrese la contrasena del personal:')
+                    while contrasena_personal != self.contrasena_ing_personal:
+                        contrasena_personal=input('Ingrese la contrasena del personal:')
                     #validar contrasena personal (definida por nosotras)
                     personal=Personal.Personal(nombre,dni,direccion,contacto,fecha_nac,mail,soy_empleado)
                     #mandar info a archivo. 
