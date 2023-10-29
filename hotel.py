@@ -3,6 +3,9 @@ from cliente import Cliente
 from Persona import Persona
 from validaciones import *
 from Abrir_archivo import *
+from Habitacion_Doble import *
+from Habitacion_Simple import *
+from Habitacion_Suite import *
 import pickle
 class Hotel():
     def __init__(self,nombre,contrasena_ing_personal='personal123'):

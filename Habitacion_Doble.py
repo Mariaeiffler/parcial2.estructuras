@@ -10,7 +10,7 @@ class Habitacion_Doble (Habitacion):
         
         
 #creo habitaciones
-if __name__=="__main__":
+def crear_habitaciones_dobles():
     h51 = Habitacion_Doble(51,2,1,25000,10000,4,True,True)
     h52 = Habitacion_Doble(52,2,1,25000,10000,4,True,True)
     h53 = Habitacion_Doble(53,2,1,25000,10000,4,True,True)

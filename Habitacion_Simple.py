@@ -10,7 +10,7 @@ class Habitacion_Simple (Habitacion):
         
         
 #creo habitaciones
-if __name__=="__main__":
+def crear_habitaciones_simples():
     h1 = Habitacion_Simple(1,1,1,10000,10000,2,False,False)
     h2 = Habitacion_Simple(2,1,1,10000,10000,2,False,False)
     h3 = Habitacion_Simple(3,1,1,10000,10000,2,False,False)
