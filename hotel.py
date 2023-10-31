@@ -19,23 +19,23 @@ class Hotel():
         self.tareas=tareas_empleados #fijarse si esta bien llamado
         self.habitaciones = []
         
-    def obtener_habitaciones(self):
-        try:
-            with open('Habitaciones.csv', 'r', encoding='utf-8') as archivo:
-                lector = csv.reader(archivo)                       
-                for fila in lector:
-                    for i in fila:
-                        lista = []
-                        lista.append(i)
-                        self.habitaciones.append(lista)
-        except FileNotFoundError:
-            with open('Habitaciones.csv', 'w', encoding='utf-8') as archivo_csv:
-                escritor_csv = csv.writer(archivo_csv)
-                escritor_csv.writerow(crear_habitaciones_simples())
-                escritor_csv.writerow(crear_habitaciones_dobles())
-                escritor_csv.writerow(crear_habitaciones_suite())
-            #preguntar como hacemos para que se pase bien a la lista
-        return (self.habitaciones)
+    # def obtener_habitaciones(self):
+    #     try:
+    #         with open('Habitaciones.csv', 'r', encoding='utf-8') as archivo:
+    #             lector = csv.reader(archivo)                       
+    #             for fila in lector:
+    #                 for i in fila:
+    #                     lista = []
+    #                     lista.append(i)
+    #                     self.habitaciones.append(lista)
+    #     except FileNotFoundError:
+    #         with open('Habitaciones.csv', 'w', encoding='utf-8') as archivo_csv:
+    #             escritor_csv = csv.writer(archivo_csv)
+    #             escritor_csv.writerow(crear_habitaciones_simples())
+    #             escritor_csv.writerow(crear_habitaciones_dobles())
+    #             escritor_csv.writerow(crear_habitaciones_suite())
+    #         #preguntar como hacemos para que se pase bien a la lista
+    #     return (self.habitaciones)
 
         
     def entrar(self):
@@ -102,17 +102,22 @@ class Hotel():
             print(key, cliente.tipo)
             
     def realizar_reserva(self):
-        usuario = self.entrar()
-        #no se si ponerlo asi esta bien
-        habitaciones = Hotel.obtener_habitaciones(self)
+        # usuario = self.entrar()
+        # habitaciones = Hotel.obtener_habitaciones(self)
         habitacion = validacion_preg_hab()
         fecha_inicio = input('Ingrese la fecha de inicio de su estadía en el formato dd/mm/aaaa ')
         fecha_inicio = convertirfecha_datetime(fecha_inicio)
-        fecha_finalizacion = input('Ingrese la fecha de finaliación de su estadia en el formato dd/mm/aaaa')
+        fecha_finalizacion = input('Ingrese la fecha de finaliación de su estadia en el formato dd/mm/aaaa ')
         fecha_finalizacion = convertirfecha_datetime(fecha_finalizacion)
-        #habría que fijarnos de ver si hay habitaciones d ese tipo libres en esas fechas
-        self.clientes[usuario].reservas.append(fecha_inicio)
-        self.clientes[usuario].reservas.append(fecha_finalizacion)
+        fecha_inicio, fecha_finalizacion = comparacion_fechas(fecha_inicio, fecha_finalizacion)
+        for i in self.habitaciones:
+            if i[0]==habitacion:
+                print(i[0])
+            else:
+                print(i[0])
+
+        # self.clientes[usuario].reservas.append(fecha_inicio)
+        # self.clientes[usuario].reservas.append(fecha_finalizacion)
         # match pregunta:
         #     case 1:
         return
@@ -122,6 +127,6 @@ class Hotel():
         
 if __name__ == "__main__":
     hotel = Hotel('POO')
-    entrar = Hotel.obtener_habitaciones(hotel)
-    print(entrar)
+    entrar = Hotel.realizar_reserva(hotel)
+
     #hacer una funcion para mostrar que el hotel esta guardando informacion

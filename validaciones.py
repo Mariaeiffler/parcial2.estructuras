@@ -130,8 +130,7 @@ def validacion_h(pregunta1, valor1, valor2):
         numero = int(numero)
     except Exception:
         validacion = False
-    if numero not in range (valor1,valor2+1):
-    #esta bien este range????????
+    if numero > valor1 and numero < valor2:
         validacion = False
     return validacion
 
@@ -189,19 +188,48 @@ def validacion_preg_hab():
                 validacion = validacion_h(pregunta1,9,12)
             return pregunta1
             
-            
-        
+# if __name__=="__main__":
+#      validacion = validacion_preg_hab()
+#      print(validacion)
+    
+def comparacion_fechas(fecha_inicio, fecha_finalizacion):
+    if fecha_inicio < datetime.now():
+        print('Su fecha de inicio de la estadía no es valida ')
+        fecha_inicio = input('Ingrese la fecha de inicio de su estadía en el formato dd/mm/aaaa ')
+        fecha_inicio = convertirfecha_datetime(fecha_inicio)
+        while fecha_inicio < datetime.now():
+            fecha_inicio = input('Ingrese la fecha de inicio de su estadía en el formato dd/mm/aaaa ')
+            fecha_inicio = convertirfecha_datetime(fecha_inicio)
+        fecha_finalizacion = input('Ingrese la fecha de finaliación de su estadia en el formato dd/mm/aaaa ')
+    if fecha_inicio > fecha_finalizacion:
+        print('Su fecha de finalización es antes que su fecha de inicio de la estadía')
+        fecha_inicio = input('Ingrese la fecha de inicio de su estadía en el formato dd/mm/aaaa ')
+        fecha_inicio = convertirfecha_datetime(fecha_inicio)
+        fecha_finalizacion = input('Ingrese la fecha de finaliación de su estadia en el formato dd/mm/aaaa ')
+        fecha_finalizacion = convertirfecha_datetime(fecha_finalizacion)
+        while fecha_inicio > fecha_finalizacion:
+            print('Su fecha de finalización es antes que su fecha de inicio de la estadía')
+            fecha_inicio = input('Ingrese la fecha de inicio de su estadía en el formato dd/mm/aaaa ')
+            fecha_inicio = convertirfecha_datetime(fecha_inicio)
+            fecha_finalizacion = input('Ingrese la fecha de finaliación de su estadia en el formato dd/mm/aaaa ')
+            fecha_finalizacion = convertirfecha_datetime(fecha_finalizacion)
+    return fecha_inicio, fecha_finalizacion
+
+
 if __name__=="__main__":
-    validacion = validacion_preg_hab()
-
-
+    fecha_inicio = input('Ingrese la fecha de inicio de su estadía en el formato dd/mm/aaaa ')
+    fecha_inicio = convertirfecha_datetime(fecha_inicio)
+    fecha_finalizacion = input('Ingrese la fecha de finaliación de su estadia en el formato dd/mm/aaaa ')
+    fecha_finalizacion = convertirfecha_datetime(fecha_finalizacion)
+    comp = comparacion_fechas(fecha_inicio, fecha_finalizacion)
+    print(comp)
 
     
-def mostrar_menu():
-    print("Menú buffet:")
-    print("1. Desayuno")
-    print("2. Almuerzo")
-    print("3. Cena")
+# def mostrar_menu():
+#     print("Menú buffet:")
+#     print("1. Desayuno")
+#     print("2. Almuerzo")
+#     print("3. Cena")
 
 # def menu_desayuno():
 #     print("\nDesayuno:")

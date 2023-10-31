@@ -1,7 +1,7 @@
 from datetime import datetime
 from Persona import Persona
-from nodo import Nodo
-from list_enlazada import Lista_Enlazada
+# from nodo import Nodo
+# from list_enlazada import Lista_Enlazada
 from Tareas_Emplados import tareas_empleados
 
 class Personal(Persona):
