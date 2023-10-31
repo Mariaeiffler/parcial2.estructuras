@@ -21,6 +21,7 @@ class Personal(Persona):
         prioridad= input ('Ingrese la prioridad (1,2 o 3): ') #chequear que sea 1,2 o 3
         
     #FALTA VERIFICAR QUE ANDEN BIEN INGRESOS Y EGRESOS Y LOS DOS METODOS DE REGISTROS
+    #Falta ver si se appendean a regiastros registro.
     def ingreso(self,nom): #ver si esta bien lo de la list de registros (preguntarle a ian!!!!)
         self.nom=nom
         ahora= datetime.now()
