@@ -201,6 +201,7 @@ def comparacion_fechas(fecha_inicio, fecha_finalizacion):
             fecha_inicio = input('Ingrese la fecha de inicio de su estadía en el formato dd/mm/aaaa ')
             fecha_inicio = convertirfecha_datetime(fecha_inicio)
         fecha_finalizacion = input('Ingrese la fecha de finaliación de su estadia en el formato dd/mm/aaaa ')
+        fecha_finalizacion = convertirfecha_datetime(fecha_finalizacion)
     if fecha_inicio > fecha_finalizacion:
         print('Su fecha de finalización es antes que su fecha de inicio de la estadía')
         fecha_inicio = input('Ingrese la fecha de inicio de su estadía en el formato dd/mm/aaaa ')
@@ -215,21 +216,12 @@ def comparacion_fechas(fecha_inicio, fecha_finalizacion):
             fecha_finalizacion = convertirfecha_datetime(fecha_finalizacion)
     return fecha_inicio, fecha_finalizacion
 
-
-if __name__=="__main__":
-    fecha_inicio = input('Ingrese la fecha de inicio de su estadía en el formato dd/mm/aaaa ')
-    fecha_inicio = convertirfecha_datetime(fecha_inicio)
-    fecha_finalizacion = input('Ingrese la fecha de finaliación de su estadia en el formato dd/mm/aaaa ')
-    fecha_finalizacion = convertirfecha_datetime(fecha_finalizacion)
-    comp = comparacion_fechas(fecha_inicio, fecha_finalizacion)
-    print(comp)
-
     
-# def mostrar_menu():
-#     print("Menú buffet:")
-#     print("1. Desayuno")
-#     print("2. Almuerzo")
-#     print("3. Cena")
+def mostrar_menu():
+    print("Menú buffet:")
+    print("1. Desayuno")
+    print("2. Almuerzo")
+    print("3. Cena")
 
 def menu_desayuno():
     print("\nDesayuno:")
@@ -319,5 +311,11 @@ if __name__ == "__main__":
     main()
     
     
-
+if __name__=="__main__":
+    fecha_inicio = input('Ingrese la fecha de inicio de su estadía en el formato dd/mm/aaaa ')
+    fecha_inicio = convertirfecha_datetime(fecha_inicio)
+    fecha_finalizacion = input('Ingrese la fecha de finaliación de su estadia en el formato dd/mm/aaaa ')
+    fecha_finalizacion = convertirfecha_datetime(fecha_finalizacion)
+    comp = comparacion_fechas(fecha_inicio, fecha_finalizacion)
+    print(comp)
 

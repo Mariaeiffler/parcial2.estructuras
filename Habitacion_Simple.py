@@ -7,6 +7,7 @@ class Habitacion_Simple (Habitacion):
         self.capacidad = capacidad
         self.banio_priv = banio_priv
         self.balcon = balcon
+        self.reservas = []
         
         
 #creo habitaciones

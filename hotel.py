@@ -9,6 +9,7 @@ from Habitacion_Suite import *
 import pickle
 from Tareas_Empleados import tareas_empleados 
 import csv
+from Reserva import Reserva
 
 class Hotel():
     def __init__(self,nombre,contrasena_ing_personal='personal123'):
@@ -17,7 +18,7 @@ class Hotel():
         self.clientes=dict()
         self.contrasena_ing_personal=contrasena_ing_personal
         self.tareas=tareas_empleados #fijarse si esta bien llamado
-        self.habitaciones = []
+        self.habitaciones = [habitacion for habitacion in crear_habitaciones_simples()]
         
     # def obtener_habitaciones(self):
     #     try:
@@ -110,11 +111,7 @@ class Hotel():
         fecha_finalizacion = input('Ingrese la fecha de finaliación de su estadia en el formato dd/mm/aaaa ')
         fecha_finalizacion = convertirfecha_datetime(fecha_finalizacion)
         fecha_inicio, fecha_finalizacion = comparacion_fechas(fecha_inicio, fecha_finalizacion)
-        for i in self.habitaciones:
-            if i[0]==habitacion:
-                print(i[0])
-            else:
-                print(i[0])
+        reserva = Reserva()
 
         # self.clientes[usuario].reservas.append(fecha_inicio)
         # self.clientes[usuario].reservas.append(fecha_finalizacion)
