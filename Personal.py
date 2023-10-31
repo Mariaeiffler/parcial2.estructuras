@@ -20,17 +20,16 @@ class Personal(Persona):
         opcion=input('Ingrese el número de tarea que quiere asignar: ') #chequear que la opcion sea la correcta
         prioridad= input ('Ingrese la prioridad (1,2 o 3): ') #chequear que sea 1,2 o 3
         
-  
+
     
-    # def egreso (self):
-    
-    
+
     
     def ingreso(self,nombre): #ver si esta bien lo de la list de registros (preguntarle a ian!!!!)
         ahora= datetime.now()
         registro= {'tipo de registro':'ingreso', 'fecha_hora': ahora, 'nombre': self.nombre} #noc lo del nombre si esta bien
         registros.append(registro)
         print('Se registró el ingreso de {} a las {}'.format(self.nombre,ahora))
+        
     def egreso(self, nombre):
         ahora= datetime.now()
         registro= {'tipo de registro': 'egreso', 'fecha_hora': ahora, 'nombre':self.nombre}
