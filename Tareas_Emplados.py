@@ -14,7 +14,14 @@ def agregarTareas (diccionario): #comprobar que sea administrador quien agregue 
     print ('La nueva tarea se ha  agregado con exito.')
     
 def agregarTipoEmpleado (diccionario):
+    tipo = input ('ingrese el nuevo tipo de empleado: ')
+    while tipo in diccionario:
+        tipo = input ('Error, ese tipo de empleado ya existe. Ingrese otro tipo de empleado: ')
+    tarea = input ('Ingrese una tarea que realizaría este tipo de empleado: ')
+    diccionario[tipo]= tarea
+    print ('El tipo de empleado fue agregado con exito.')
     
+agregarTipoEmpleado(tareas_empleados)
     
 
 

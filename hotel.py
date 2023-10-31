@@ -121,13 +121,21 @@ class Hotel():
         # match pregunta:
         #     case 1:
         return
-    def agregarTareas (self): #comprobar que sea administrador quien agregue la tarea
+    def agregarTareasDicc (self): #comprobar que sea administrador quien agregue la tarea
         tipo = input('Ingrese a que tipo de empleado desea agregarle la tarea: ')
         while tipo not in tareas_empleados:
             tipo = input ('No existe este tipo de empleados, ingrese el tipo de vuelta: ')
         tarea= input('Ingrese la tarea que desea agregar: ')
         self.tarea_empleado[tipo].append(tarea)
         print ('La nueva tarea se ha  agregado con exito.')
+    
+    def agregarTipoEmpleado (self):
+        tipo = input ('ingrese el nuevo tipo de empleado: ')
+        while tipo in self.tareas_empleado:
+            tipo = input ('Error, ese tipo de empleado ya existe. Ingrese otro tipo de empleado: ')
+        tarea = input ('Ingrese una tarea que realizaría este tipo de empleado: ')
+        self.tareas_empleado[tipo]= tarea
+        print ('El tipo de empleado fue agregado con exito.')
                 
 
             
