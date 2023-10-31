@@ -135,7 +135,7 @@ def mostrar_menu():
 def menu_desayuno():
     print("\nDesayuno:")
     opcion = input("Selecciona una opción de desayuno (1-6): ")
-    plato = match opcion:
+    match opcion:
         case "1":
             "Infusión (Café con leche/Té/Jugo de Naranja) - $500"
         case "2":
@@ -151,12 +151,12 @@ def menu_desayuno():
         case _:
             "Opción no válida"
 
-    print(plato)
+    print(opcion)
 
 def menu_almuerzo():
     print("\nAlmuerzo:")
     opcion = input("Selecciona una opción de almuerzo (1-7): ")
-    plato = match opcion:
+    match opcion:
         case "1":
             "Pollo/Carne con guarnición - $2000"
         case "2":
@@ -174,12 +174,12 @@ def menu_almuerzo():
         case _:
             "Opción no válida"
 
-    print(plato)
+    print(opcion)
 
 def menu_cena():
     print("\nCena:")
     opcion = input("Selecciona una opción de cena (1-7): ")
-    plato = match opcion:
+    match opcion:
         case "1":
             "Salmón a la parrilla con puré de papas - $4000"
         case "2":
@@ -197,14 +197,14 @@ def menu_cena():
         case _:
             "Opción no válida"
 
-    print(plato)
+    print(opcion)
 
 def main():
     while True:
         mostrar_menu()
         opcion_comida = input("Selecciona una comida del día (1 para desayuno/merienda, 2 para almuerzo, 3 para cena, listo para salir): ")
 
-        plato = match opcion_comida:
+        match opcion_comida:
             case "1":
                 menu_desayuno()
             case "2":
