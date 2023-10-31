@@ -21,5 +21,8 @@ tareas_empleados = {
     'Coordinar servicios de transporte para los huespedes': 'administrativo'
 }
 
+def vali_tipo_empleado (tipo):
+    if 
+
 #agregar para que asignen valor de importancia 
 # generar metodo en hotel donde el servidor ppl pueda agregar mas tareas al diccionario de tareas

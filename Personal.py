@@ -2,7 +2,7 @@ from datetime import datetime
 from Persona import Persona
 from nodo import Nodo
 from list_enlazada import Lista_Enlazada
-from Tareas_Emplados import tareas_empleados
+from Tareas_Empleados import tareas_empleados
 
 class Personal(Persona):
     def __init__(self,nombre,dni,direccion,contacto,fecha_nac,mail,soy_empleado,fecalta,tipo,fecbaja: None):
