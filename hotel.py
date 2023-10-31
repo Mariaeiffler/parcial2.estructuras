@@ -8,7 +8,6 @@ from Habitacion_Simple import *
 from Habitacion_Suite import *
 import pickle
 from Tareas_Empleados import tareas_empleados 
-
 import csv
 
 class Hotel():
