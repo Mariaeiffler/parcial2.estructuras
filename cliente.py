@@ -4,6 +4,7 @@ class Cliente(Persona):
         super().__init__(nombre,dni,direccion,contacto,fecha_nac,mail,soy_empleado)
         self.usuario = usuario
         self.tipo=tipo
+        self.reservas= reservas
         
     #def tipo(self):
         #verificar que tipo de cliente es en base a sus gastos
