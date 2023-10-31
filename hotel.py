@@ -19,25 +19,6 @@ class Hotel():
         self.tareas=tareas_empleados #fijarse si esta bien llamado
         self.habitaciones = [habitacion for habitacion in crear_habitaciones_simples()]
         
-    # def obtener_habitaciones(self):
-    #     try:
-    #         with open('Habitaciones.csv', 'r', encoding='utf-8') as archivo:
-    #             lector = csv.reader(archivo)                       
-    #             for fila in lector:
-    #                 for i in fila:
-    #                     lista = []
-    #                     lista.append(i)
-    #                     self.habitaciones.append(lista)
-    #     except FileNotFoundError:
-    #         with open('Habitaciones.csv', 'w', encoding='utf-8') as archivo_csv:
-    #             escritor_csv = csv.writer(archivo_csv)
-    #             escritor_csv.writerow(crear_habitaciones_simples())
-    #             escritor_csv.writerow(crear_habitaciones_dobles())
-    #             escritor_csv.writerow(crear_habitaciones_suite())
-    #         #preguntar como hacemos para que se pase bien a la lista
-    #     return (self.habitaciones)
-
-        
     def entrar(self):
         pregunta=input(('Elija una de las siguientes opciones: 1. Sign up \n 2.Sign in'))
         pregunta=validacionpregunta(pregunta)
@@ -105,12 +86,7 @@ class Hotel():
                         if cliente is not None:
                             validacion = (contrasena == cliente.contrasena)
                         else:
-                            validacion == False
-                
-                    
-                
-                
-                        
+                            validacion == False                   
         
     def save(self): #CHEQUEAR!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         with open('hotel.pickle','wb') as f:
@@ -125,23 +101,6 @@ class Hotel():
         cliente: Cliente
         for key, cliente in self.clientes.item():
             print(key, cliente.tipo)
-            
-    def realizar_reserva(self):
-        # usuario = self.entrar()
-        # habitaciones = Hotel.obtener_habitaciones(self)
-        habitacion = validacion_preg_hab()
-        fecha_inicio = input('Ingrese la fecha de inicio de su estadía en el formato dd/mm/aaaa ')
-        fecha_inicio = convertirfecha_datetime(fecha_inicio)
-        fecha_finalizacion = input('Ingrese la fecha de finaliación de su estadia en el formato dd/mm/aaaa ')
-        fecha_finalizacion = convertirfecha_datetime(fecha_finalizacion)
-        fecha_inicio, fecha_finalizacion = comparacion_fechas(fecha_inicio, fecha_finalizacion)
-        reserva = Reserva()
-
-        # self.clientes[usuario].reservas.append(fecha_inicio)
-        # self.clientes[usuario].reservas.append(fecha_finalizacion)
-        # match pregunta:
-        #     case 1:
-        return
     
     def agregarTareasDicc (self): #comprobar que sea administrador quien agregue la tarea
         tipo = input('Ingrese a que tipo de empleado desea agregarle la tarea: ')

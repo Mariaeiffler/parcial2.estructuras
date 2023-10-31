@@ -1,5 +1,7 @@
 from datetime import *  
 from hotel import *  
+from Reserva import Reserva
+from cliente import Cliente
 
 def validacionpregunta(pregunta):
     validacion = False
@@ -308,12 +310,20 @@ def main():
                 print("Opción no válida. Por favor, selecciona una comida válida.")
 
 
-# def validacion_usuario():
-#     print('El usuario ingresado es incorrecto ')
-#     usuario=input('Escriba el nombre de usuario: ')
-#     contrasena=input('Escriba la contrasena: ')
-#     cliente = Hotel.self.clientes.get(usuario)
-    
+def realizar_reserva(usuario):
+        habitacion = validacion_preg_hab()
+        fecha_inicio = input('Ingrese la fecha de inicio de su estadía en el formato dd/mm/aaaa ')
+        fecha_inicio = convertirfecha_datetime(fecha_inicio)
+        fecha_finalizacion = input('Ingrese la fecha de finaliación de su estadia en el formato dd/mm/aaaa ')
+        fecha_finalizacion = convertirfecha_datetime(fecha_finalizacion)
+        fecha_inicio, fecha_finalizacion = comparacion_fechas(fecha_inicio, fecha_finalizacion)
+        reserva = Reserva(usuario, fecha_inicio, fecha_finalizacion)
+        return reserva
+        
+    # self.clientes[usuario].reservas.append(fecha_inicio)
+        # self.clientes[usuario].reservas.append(fecha_finalizacion)
+        # match pregunta:
+        #     case 1:
     
 
 
