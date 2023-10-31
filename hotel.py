@@ -17,7 +17,22 @@ class Hotel():
         self.clientes=dict()
         self.contrasena_ing_personal=contrasena_ing_personal
         self.tareas=tareas_empleados #fijarse si esta bien llamado
+        self.habitaciones = []
         
+    def obtener_habitaciones():
+        with open('Habitaciones.csv', 'w', encoding='utf-8') as archivo_csv:
+            escritor_csv = csv.writer(archivo_csv)
+            escritor_csv.writerow(crear_habitaciones_simples())
+            escritor_csv.writerow(crear_habitaciones_dobles())
+            escritor_csv.writerow(crear_habitaciones_suite())
+        # try:
+        #     with open(archivo, 'r', encoding='utf-8') as archivo:
+        #         lector = csv.reader(archivo)                       
+        #         for fila in lector:                        
+        #             lista.append(fila)
+        return
+            
+        # except FileNotFoundError:
         
     def entrar(self):
         pregunta=input(('Elija una de las siguientes opciones: 1. Sign up \n 2.Sign in'))
@@ -94,11 +109,13 @@ class Hotel():
         #habría que fijarnos de ver si hay habitaciones d ese tipo libres en esas fechas
         self.clientes[usuario].reservas.append(fecha_inicio)
         self.clientes[usuario].reservas.append(fecha_finalizacion)
-        match pregunta:
-            case 1:
+        # match pregunta:
+        #     case 1:
+        return
+                
 
             
         
-
-        
+if __name__ == "__main__":
+    entrar = Hotel.obtener_habitaciones()
     #hacer una funcion para mostrar que el hotel esta guardando informacion
