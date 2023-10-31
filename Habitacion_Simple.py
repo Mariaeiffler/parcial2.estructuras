@@ -11,10 +11,10 @@ class Habitacion_Simple (Habitacion):
         
 #creo habitaciones
 def crear_habitaciones_simples():
-    h1 = Habitacion_Simple(1,1,1,15000,10000,2,True,False)
-    h2 = Habitacion_Simple(2,1,1,15000,10000,2,True,False)
-    h3 = Habitacion_Simple(3,1,1,15000,10000,2,True,False)
-    h4 = Habitacion_Simple(4,1,1,15000,10000,2,True,False)
+    h1 = Habitacion_Simple(1,1,1,5000,10000,2,False,False)
+    h2 = Habitacion_Simple(2,1,1,10000,10000,2,True,False)
+    h3 = Habitacion_Simple(3,1,1,10000,10000,2,False,True)
+    h4 = Habitacion_Simple(4,1,1,15000,10000,2,True,True)
     # h5 = Habitacion_Simple(5,1,1,10000,10000,2,False,False)
     # h6 = Habitacion_Simple(6,1,1,10000,10000,2,False,False)
     # h7 = Habitacion_Simple(7,1,1,10000,10000,2,False,False)

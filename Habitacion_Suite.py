@@ -11,10 +11,10 @@ class Habitacion_Suite (Habitacion):
     
     #creo habitaciones
 def crear_habitaciones_suite():
-    h9 = Habitacion_Suite(9,2,1,35000,10000,4,True,True)
-    h10 = Habitacion_Suite(10,2,1,35000,10000,4,True,True)
-    h11 = Habitacion_Suite(11,2,1,35000,10000,4,True,True)
-    h12 = Habitacion_Suite(12,2,1,35000,10000,4,True,True)
+    h9 = Habitacion_Suite(9,2,1,35000,10000,4,False,False)
+    h10 = Habitacion_Suite(10,2,1,40000,10000,4,True,False)
+    h11 = Habitacion_Suite(11,2,1,40000,10000,4,False,True)
+    h12 = Habitacion_Suite(12,2,1,45000,10000,4,True,True)
     # h105 = Habitacion_Suite(105,2,1,35000,10000,4,True,True)
     # h106 = Habitacion_Suite(106,2,1,35000,10000,4,True,True)
     # h107 = Habitacion_Suite(107,2,1,35000,10000,4,True,True)

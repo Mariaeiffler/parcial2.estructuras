@@ -19,20 +19,24 @@ class Hotel():
         self.tareas=tareas_empleados #fijarse si esta bien llamado
         self.habitaciones = []
         
-    def obtener_habitaciones():
-        with open('Habitaciones.csv', 'w', encoding='utf-8') as archivo_csv:
-            escritor_csv = csv.writer(archivo_csv)
-            escritor_csv.writerow(crear_habitaciones_simples())
-            escritor_csv.writerow(crear_habitaciones_dobles())
-            escritor_csv.writerow(crear_habitaciones_suite())
-        # try:
-        #     with open(archivo, 'r', encoding='utf-8') as archivo:
-        #         lector = csv.reader(archivo)                       
-        #         for fila in lector:                        
-        #             lista.append(fila)
-        return
-            
-        # except FileNotFoundError:
+    def obtener_habitaciones(self):
+        try:
+            with open('Habitaciones.csv', 'r', encoding='utf-8') as archivo:
+                lector = csv.reader(archivo)                       
+                for fila in lector:
+                    for i in fila:
+                        lista = []
+                        lista.append(i)
+                        self.habitaciones.append(lista)
+        except FileNotFoundError:
+            with open('Habitaciones.csv', 'w', encoding='utf-8') as archivo_csv:
+                escritor_csv = csv.writer(archivo_csv)
+                escritor_csv.writerow(crear_habitaciones_simples())
+                escritor_csv.writerow(crear_habitaciones_dobles())
+                escritor_csv.writerow(crear_habitaciones_suite())
+            #preguntar como hacemos para que se pase bien a la lista
+        return (self.habitaciones)
+
         
     def entrar(self):
         pregunta=input(('Elija una de las siguientes opciones: 1. Sign up \n 2.Sign in'))
@@ -100,8 +104,8 @@ class Hotel():
     def realizar_reserva(self):
         usuario = self.entrar()
         #no se si ponerlo asi esta bien
-        pregunta=input(('Elija una de las siguientes opciones: 1. Habitación simple \n 2. Habitación doble \n 3. Habitación suite '))
-        pregunta=validacionpregunta2(pregunta)
+        habitaciones = Hotel.obtener_habitaciones(self)
+        habitacion = validacion_preg_hab()
         fecha_inicio = input('Ingrese la fecha de inicio de su estadía en el formato dd/mm/aaaa ')
         fecha_inicio = convertirfecha_datetime(fecha_inicio)
         fecha_finalizacion = input('Ingrese la fecha de finaliación de su estadia en el formato dd/mm/aaaa')
@@ -117,5 +121,7 @@ class Hotel():
             
         
 if __name__ == "__main__":
-    entrar = Hotel.obtener_habitaciones()
+    hotel = Hotel('POO')
+    entrar = Hotel.obtener_habitaciones(hotel)
+    print(entrar)
     #hacer una funcion para mostrar que el hotel esta guardando informacion

@@ -11,10 +11,10 @@ class Habitacion_Doble (Habitacion):
         
 #creo habitaciones
 def crear_habitaciones_dobles():
-    h5 = Habitacion_Doble(5,2,1,25000,10000,4,True,True)
-    h6 = Habitacion_Doble(6,2,1,25000,10000,4,True,True)
-    h7 = Habitacion_Doble(7,2,1,25000,10000,4,True,True)
-    h8 = Habitacion_Doble(8,2,1,25000,10000,4,True,True)
+    h5 = Habitacion_Doble(5,2,1,20000,10000,4,False,False)
+    h6 = Habitacion_Doble(6,2,1,25000,10000,4,True,False)
+    h7 = Habitacion_Doble(7,2,1,25000,10000,4,False,True)
+    h8 = Habitacion_Doble(8,2,1,30000,10000,4,True,True)
     # h55 = Habitacion_Doble(55,2,1,25000,10000,4,True,True)
     # h56 = Habitacion_Doble(56,2,1,25000,10000,4,True,True)
     # h57 = Habitacion_Doble(57,2,1,25000,10000,4,True,True)
