@@ -7,12 +7,15 @@ from Habitacion_Doble import *
 from Habitacion_Simple import *
 from Habitacion_Suite import *
 import pickle
+from Tareas_Empleados import tareas_empleados 
+
 class Hotel():
     def __init__(self,nombre,contrasena_ing_personal='personal123'):
         self.nombre=nombre
         self.empleados=dict()
         self.clientes=dict()
         self.contrasena_ing_personal=contrasena_ing_personal
+        self.tareas=tareas_empleados #fijarse si esta bien llamado
         
     def entrar(self):
         pregunta=input(('Elija una de las siguientes opciones: 1. Sign up \n 2.Sign in'))
