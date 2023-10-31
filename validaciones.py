@@ -218,11 +218,6 @@ def comparacion_fechas(fecha_inicio, fecha_finalizacion):
             fecha_finalizacion = convertirfecha_datetime(fecha_finalizacion)
     return fecha_inicio, fecha_finalizacion
 
-    
-    
-
-
-
 def realizar_reserva(usuario):
         habitacion = validacion_preg_hab()
         fecha_inicio = input('Ingrese la fecha de inicio de su estadía en el formato dd/mm/aaaa ')
@@ -230,13 +225,8 @@ def realizar_reserva(usuario):
         fecha_finalizacion = input('Ingrese la fecha de finaliación de su estadia en el formato dd/mm/aaaa ')
         fecha_finalizacion = convertirfecha_datetime(fecha_finalizacion)
         fecha_inicio, fecha_finalizacion = comparacion_fechas(fecha_inicio, fecha_finalizacion)
-        reserva = Reserva(usuario, fecha_inicio, fecha_finalizacion)
+        reserva = Reserva(usuario, fecha_inicio, fecha_finalizacion, habitacion)
         return reserva
-        
-    # self.clientes[usuario].reservas.append(fecha_inicio)
-        # self.clientes[usuario].reservas.append(fecha_finalizacion)
-        # match pregunta:
-        #     case 1:
     
 
 
