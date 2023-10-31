@@ -20,12 +20,14 @@ class Personal(Persona):
         opcion=input('Ingrese el número de tarea que quiere asignar: ') #chequear que la opcion sea la correcta
         prioridad= input ('Ingrese la prioridad (1,2 o 3): ') #chequear que sea 1,2 o 3
         
+    #FALTA VERIFICAR QUE ANDEN BIEN INGRESOS Y EGRESOS Y LOS DOS METODOS DE REGISTROS
     def ingreso(self,nom): #ver si esta bien lo de la list de registros (preguntarle a ian!!!!)
         self.nom=nom
         ahora= datetime.now()
         registro= {'tipo de registro':'ingreso', 'fecha_hora': ahora, 'nombre': self.nom} #noc lo del nombre si esta bien
         self.registros.append(registro)
         print('Se registró el ingreso de {} a las {}'.format(self.nombre,ahora))
+        
     def egreso(self, nom):
         self.nom=nom
         ahora= datetime.now()
@@ -34,7 +36,6 @@ class Personal(Persona):
         print('Se registró el egreso de {} a las {}'.format(ahora,self.nombre))
 
    
-
     def mostrar_registros(self):
         for registro in self.registros:
             tipo = registro["tipo de registro"]
@@ -64,6 +65,9 @@ class Personal(Persona):
                 break
             else:
                 print("Opción no válida. Por favor, selecciona una opción válida.")
+
+
+
 
 
         
