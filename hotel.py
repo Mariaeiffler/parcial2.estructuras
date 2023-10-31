@@ -58,6 +58,15 @@ class Hotel():
     def save(self): #CHEQUEAR!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         with open('hotel.pickle','wb') as f:
             pickle.dump(self,f)
+    def obtener_inventario_empleados(self):
+        empleado:Personal
+        for key, empleado in self.empleados.item():
+            print(key, empleado.tipo)
+    def nomina_clientes(self):
+        cliente: Cliente
+        for key, cliente in self.clientes.item():
+            print(key, cliente.tipo)
+        
 
         
     #hacer una funcion para mostrar que el hotel esta guardando informacion
