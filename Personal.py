@@ -1,7 +1,7 @@
 from datetime import datetime
 from Persona import Persona
-from nodo import Nodo
-from list_enlazada import Lista_Enlazada
+#from nodo import Nodo
+#from list_enlazada import Lista_Enlazada
 from Tareas_Empleados import tareas_empleados
 
 class Personal(Persona):
@@ -10,7 +10,7 @@ class Personal(Persona):
         super().__init__(nombre,dni,direccion,contacto,fecha_nac,mail,soy_empleado)
         self.fecalta = datetime.now()
         self.tipo=tipo
-        self.Tareas=Lista_Enlazada()
+        #self.Tareas=Lista_Enlazada()
         
     def bajas(self):
         self.fechabaja = datetime.now()
