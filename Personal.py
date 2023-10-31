@@ -66,6 +66,9 @@ class Personal(Persona):
                 break
             else:
                 print("Opción no válida. Por favor, selecciona una opción válida.")
+                
+    def agregarTarea (self):
+        
 
 
 

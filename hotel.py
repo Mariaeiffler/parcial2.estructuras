@@ -9,7 +9,6 @@ from Habitacion_Suite import *
 import pickle
 from Tareas_Empleados import tareas_empleados 
 import csv
-from Reserva import Reserva
 
 class Hotel():
     def __init__(self,nombre,contrasena_ing_personal='personal123'):
@@ -72,7 +71,9 @@ class Hotel():
                     #validar contrasena personal (definida por nosotras)
                     personal=Personal(nombre,dni,direccion,contacto,fecha_nac,mail,soy_empleado)
                     #mandar info a archivo. 
+                    #TODO:asignar el tipo de empleado
                     self.empleados[usuario]=personal
+                    self.tareas[personal.tipo]['personal'].append(personal)
                 else:
                     cliente=Cliente(nombre,usuario,dni,direccion,contacto,fecha_nac,mail,soy_empleado)
                     #mandar info al archivo 
