@@ -14,6 +14,21 @@ def validacionpregunta(pregunta):
         while pregunta != 1 and pregunta != 2:
             pregunta = input('Elija una de las siguientes opciones: 1. Sign up \n 2. Sign in  ')
     return pregunta
+
+def validacionpregunta2(pregunta):
+    validacion = False
+    while validacion == False:
+        try:
+            int(pregunta)
+            pregunta = int(pregunta)
+            validacion = True
+        except Exception:
+            pregunta = input('Elija una de las siguientes opciones: 1. Habitación simple \n 2. Habitación doble \n 3. Habitación suite ')
+    if pregunta != 1 and pregunta != 2 and pregunta != 3:
+        pregunta = input('Elija una de las siguientes opciones: 1. Habitación simple \n 2. Habitación doble \n 3. Habitación suite ')
+        while pregunta != 1 and pregunta != 2 and pregunta != 3:
+            pregunta = input('Elija una de las siguientes opciones: 1. Habitación simple \n 2. Habitación doble \n 3. Habitación suite ')
+    return pregunta
         
 def validaciondni(dni):
     if str(dni).isdigit() == False or len(str(dni)) != 8:
