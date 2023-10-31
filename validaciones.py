@@ -307,6 +307,16 @@ def main():
             case _:
                 print("Opción no válida. Por favor, selecciona una comida válida.")
 
+
+# def validacion_usuario():
+#     print('El usuario ingresado es incorrecto ')
+#     usuario=input('Escriba el nombre de usuario: ')
+#     contrasena=input('Escriba la contrasena: ')
+#     cliente = Hotel.self.clientes.get(usuario)
+    
+    
+
+
 if __name__ == "__main__":
     main()
     

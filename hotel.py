@@ -74,7 +74,7 @@ class Hotel():
                     #mandar info a archivo. 
                     self.empleados[usuario]=personal
                 else:
-                    cliente=Cliente(nombre,usuario,dni,direccion,contacto,fecha_nac,mail,soy_empleado)
+                    cliente=Cliente(nombre,usuario,dni,direccion,contacto,fecha_nac,mail,soy_empleado,contrasena)
                     #mandar info al archivo 
                     self.clientes[usuario]=cliente
                     return usuario
@@ -82,11 +82,34 @@ class Hotel():
                 
             case 2:
                 #validar que exista el usuario y que la contrasena sea correcta
-                usuario=input('Escriba el nombre de usuario:')
-                contrasena=input('Escriba la contrasena:')
+                usuario=input('Escriba el nombre de usuario: ')
+                contrasena=input('Escriba la contrasena: ')
+                cliente = self.clientes.get(usuario)
+                if cliente is not None:
+                    validacion = (contrasena == cliente.contrasena)
+                else:
+                    validacion == False
+                if validacion == False:
+                    print('El usuario ingresado es incorrecto ')
+                    usuario=input('Escriba el nombre de usuario: ')
+                    contrasena=input('Escriba la contrasena: ')
+                    if cliente is not None:
+                        validacion = (contrasena == cliente.contrasena)
+                    else:
+                        validacion == False
+                    while(validacion == False):
+                        print('El usuario ingresado es incorrecto ')
+                        usuario=input('Escriba el nombre de usuario: ')
+                        contrasena=input('Escriba la contrasena: ')
+                        if cliente is not None:
+                            validacion = (contrasena == cliente.contrasena)
+                        else:
+                            validacion == False
                 
-    def menu (self):
-        print ('hola')
+                    
+                
+                
+                        
         
     def save(self): #CHEQUEAR!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         with open('hotel.pickle','wb') as f:
@@ -118,6 +141,7 @@ class Hotel():
         # match pregunta:
         #     case 1:
         return
+    
     def agregarTareasDicc (self): #comprobar que sea administrador quien agregue la tarea
         tipo = input('Ingrese a que tipo de empleado desea agregarle la tarea: ')
         while tipo not in tareas_empleados:
