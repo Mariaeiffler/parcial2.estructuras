@@ -1,4 +1,5 @@
-from datetime import *    
+from datetime import *  
+from hotel import *  
 
 def validacionpregunta(pregunta):
     validacion = False
@@ -235,4 +236,5 @@ if __name__ == "__main__":
     main()
     
     
+
 
