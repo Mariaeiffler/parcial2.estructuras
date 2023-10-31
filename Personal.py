@@ -20,33 +20,29 @@ class Personal(Persona):
         opcion=input('Ingrese el número de tarea que quiere asignar: ') #chequear que la opcion sea la correcta
         prioridad= input ('Ingrese la prioridad (1,2 o 3): ') #chequear que sea 1,2 o 3
         
-  
-    
-    # def egreso (self):
-    
-    
-    
-    def ingreso(self,nombre): #ver si esta bien lo de la list de registros (preguntarle a ian!!!!)
+    def ingreso(self,nom): #ver si esta bien lo de la list de registros (preguntarle a ian!!!!)
+        self.nom=nom
         ahora= datetime.now()
-        registro= {'tipo de registro':'ingreso', 'fecha_hora': ahora, 'nombre': self.nombre} #noc lo del nombre si esta bien
-        registros.append(registro)
+        registro= {'tipo de registro':'ingreso', 'fecha_hora': ahora, 'nombre': self.nom} #noc lo del nombre si esta bien
+        self.registros.append(registro)
         print('Se registró el ingreso de {} a las {}'.format(self.nombre,ahora))
-    def egreso(self, nombre):
+    def egreso(self, nom):
+        self.nom=nom
         ahora= datetime.now()
-        registro= {'tipo de registro': 'egreso', 'fecha_hora': ahora, 'nombre':self.nombre}
-        registros.append(registro)
+        registro= {'tipo de registro': 'egreso', 'fecha_hora': ahora, 'nombre':self.nom}
+        self.registros.append(registro)
         print('Se registró el egreso de {} a las {}'.format(ahora,self.nombre))
 
    
 
-    def mostrar_registros():
-        for registro in registros:
+    def mostrar_registros(self):
+        for registro in self.registros:
             tipo = registro["tipo de registro"]
             fecha_hora = registro["fecha_hora"]
             nombre = registro["nombre"]
             print('Se registró el {} de {} a las {}'.format(tipo,nombre,fecha_hora))
 
-    def menu_registros():
+    def menu_registros(self):
         while True:
             print('Control de Ingreso y Egreso de Personal de Hotel')
             print("1. Registrar Ingreso")
@@ -58,12 +54,12 @@ class Personal(Persona):
             
             if opcion == "1":
                 nombre_personal = input("Ingresa el nombre del personal que ingresa: ")
-                ingreso(nombre_personal)
+                self.ingreso(nombre_personal)
             elif opcion == "2":
                 nombre_personal = input("Ingresa el nombre del personal que egresa: ")
-                egreso(nombre_personal)
+                self.egreso(nombre_personal)
             elif opcion == "3":
-                mostrar_registros()
+                self.mostrar_registros()
             elif opcion == "4":
                 break
             else:
