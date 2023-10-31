@@ -22,6 +22,7 @@ class Persona():
                 return True
         else:  return False
         
-    
+
+persona=Persona('Carlos',12345678,'vakjijw',12345432,12/34/12,'oreifoie',True)
 
         
