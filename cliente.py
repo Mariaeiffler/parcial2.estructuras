@@ -16,4 +16,5 @@ class Cliente(Persona):
     
     #def __str__(self):
     
-    #def tipocliente(self):
+    #def tipocliente(self)
+    
