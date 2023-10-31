@@ -130,8 +130,7 @@ def validacion_h(pregunta1, valor1, valor2):
         numero = int(numero)
     except Exception:
         validacion = False
-    if numero not in range (valor1,valor2+1):
-    #esta bien este range????????
+    if numero > valor1 and numero < valor2:
         validacion = False
     return validacion
 
@@ -189,8 +188,134 @@ def validacion_preg_hab():
                 validacion = validacion_h(pregunta1,9,12)
             return pregunta1
             
-            
-        
-if __name__=="__main__":
-    validacion = validacion_preg_hab()
+# if __name__=="__main__":
+#      validacion = validacion_preg_hab()
+#      print(validacion)
     
+def comparacion_fechas(fecha_inicio, fecha_finalizacion):
+    if fecha_inicio < datetime.now():
+        print('Su fecha de inicio de la estadía no es valida ')
+        fecha_inicio = input('Ingrese la fecha de inicio de su estadía en el formato dd/mm/aaaa ')
+        fecha_inicio = convertirfecha_datetime(fecha_inicio)
+        while fecha_inicio < datetime.now():
+            fecha_inicio = input('Ingrese la fecha de inicio de su estadía en el formato dd/mm/aaaa ')
+            fecha_inicio = convertirfecha_datetime(fecha_inicio)
+        fecha_finalizacion = input('Ingrese la fecha de finaliación de su estadia en el formato dd/mm/aaaa ')
+        fecha_finalizacion = convertirfecha_datetime(fecha_finalizacion)
+    if fecha_inicio > fecha_finalizacion:
+        print('Su fecha de finalización es antes que su fecha de inicio de la estadía')
+        fecha_inicio = input('Ingrese la fecha de inicio de su estadía en el formato dd/mm/aaaa ')
+        fecha_inicio = convertirfecha_datetime(fecha_inicio)
+        fecha_finalizacion = input('Ingrese la fecha de finaliación de su estadia en el formato dd/mm/aaaa ')
+        fecha_finalizacion = convertirfecha_datetime(fecha_finalizacion)
+        while fecha_inicio > fecha_finalizacion:
+            print('Su fecha de finalización es antes que su fecha de inicio de la estadía')
+            fecha_inicio = input('Ingrese la fecha de inicio de su estadía en el formato dd/mm/aaaa ')
+            fecha_inicio = convertirfecha_datetime(fecha_inicio)
+            fecha_finalizacion = input('Ingrese la fecha de finaliación de su estadia en el formato dd/mm/aaaa ')
+            fecha_finalizacion = convertirfecha_datetime(fecha_finalizacion)
+    return fecha_inicio, fecha_finalizacion
+
+    
+def mostrar_menu():
+    print("Menú buffet:")
+    print("1. Desayuno")
+    print("2. Almuerzo")
+    print("3. Cena")
+
+def menu_desayuno():
+    print("\nDesayuno:")
+    opcion = input("Selecciona una opción de desayuno (1-6): ")
+    match opcion:
+        case "1":
+            "Infusión (Café con leche/Té/Jugo de Naranja) - $500"
+        case "2":
+            "Tostadas con queso y mermelada - $700"
+        case "3":
+            "Yogur con cereales - $600"
+        case '4':
+            'Huevos revueltos - $800'
+        case '5':
+            'Facturas - $600'
+        case '6':
+            'Ensalada de frutas - $750'
+        case _:
+            "Opción no válida"
+
+    print(opcion)
+
+def menu_almuerzo():
+    print("\nAlmuerzo:")
+    opcion = input("Selecciona una opción de almuerzo (1-7): ")
+    match opcion:
+        case "1":
+            "Pollo/Carne con guarnición - $2000"
+        case "2":
+            "Sopa del día - $1500"
+        case "3":
+            "Ensalada 4 toppings - $1000"
+        case '4':
+            'Pesca del día- $3000'
+        case '5':
+            'Opción vegetariana (hamburguesa de lentejas con papas fritas)- $1500'
+        case '6':
+            'Pastas (ravioles, ñoquis, sorrentinos)- $1500'
+        case '7':
+            'Postres (flan con dulce de leche, bocha de helado, tiramisú)- $500 (c/u)'
+        case _:
+            "Opción no válida"
+
+    print(opcion)
+
+def menu_cena():
+    print("\nCena:")
+    opcion = input("Selecciona una opción de cena (1-7): ")
+    match opcion:
+        case "1":
+            "Salmón a la parrilla con puré de papas - $4000"
+        case "2":
+            "Pastas (ravioles, ñoquis, sorrentinos)- $1500"
+        case "3":
+            'Opción vegetariana (falafel) - $1500'
+        case '4':
+            'Pizza (muzzarella, napolitana, fugazzeta, calabresa) - $2000)'
+        case '5':
+            'Empanadas (carne, pollo, jamón y queso, verdura) - $600 (c/u))'
+        case '6':
+            'Asado con papas fritas - $3000 (para 2 personas) (se puede pedir para 1 persona por $2000)'
+        case '7':
+            'Postres (flan con dulce de leche, bocha de helado, tiramisú)- $500 (c/u)'
+        case _:
+            "Opción no válida"
+
+    print(opcion)
+
+def main():
+    while True:
+        mostrar_menu()
+        opcion_comida = input("Selecciona una comida del día (1 para desayuno/merienda, 2 para almuerzo, 3 para cena, listo para salir): ")
+
+        match opcion_comida:
+            case "1":
+                menu_desayuno()
+            case "2":
+                menu_almuerzo()
+            case "3":
+                menu_cena()
+            case "listo":
+                break
+            case _:
+                print("Opción no válida. Por favor, selecciona una comida válida.")
+
+if __name__ == "__main__":
+    main()
+    
+    
+if __name__=="__main__":
+    fecha_inicio = input('Ingrese la fecha de inicio de su estadía en el formato dd/mm/aaaa ')
+    fecha_inicio = convertirfecha_datetime(fecha_inicio)
+    fecha_finalizacion = input('Ingrese la fecha de finaliación de su estadia en el formato dd/mm/aaaa ')
+    fecha_finalizacion = convertirfecha_datetime(fecha_finalizacion)
+    comp = comparacion_fechas(fecha_inicio, fecha_finalizacion)
+    print(comp)
+

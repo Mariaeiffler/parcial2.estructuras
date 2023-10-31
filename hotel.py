@@ -9,6 +9,7 @@ from Habitacion_Suite import *
 import pickle
 from Tareas_Empleados import tareas_empleados 
 import csv
+from Reserva import Reserva
 
 class Hotel():
     def __init__(self,nombre,contrasena_ing_personal='personal123'):
@@ -17,25 +18,25 @@ class Hotel():
         self.clientes=dict()
         self.contrasena_ing_personal=contrasena_ing_personal
         self.tareas=tareas_empleados #fijarse si esta bien llamado
-        self.habitaciones = []
+        self.habitaciones = [habitacion for habitacion in crear_habitaciones_simples()]
         
-    def obtener_habitaciones(self):
-        try:
-            with open('Habitaciones.csv', 'r', encoding='utf-8') as archivo:
-                lector = csv.reader(archivo)                       
-                for fila in lector:
-                    for i in fila:
-                        lista = []
-                        lista.append(i)
-                        self.habitaciones.append(lista)
-        except FileNotFoundError:
-            with open('Habitaciones.csv', 'w', encoding='utf-8') as archivo_csv:
-                escritor_csv = csv.writer(archivo_csv)
-                escritor_csv.writerow(crear_habitaciones_simples())
-                escritor_csv.writerow(crear_habitaciones_dobles())
-                escritor_csv.writerow(crear_habitaciones_suite())
-            #preguntar como hacemos para que se pase bien a la lista
-        return (self.habitaciones)
+    # def obtener_habitaciones(self):
+    #     try:
+    #         with open('Habitaciones.csv', 'r', encoding='utf-8') as archivo:
+    #             lector = csv.reader(archivo)                       
+    #             for fila in lector:
+    #                 for i in fila:
+    #                     lista = []
+    #                     lista.append(i)
+    #                     self.habitaciones.append(lista)
+    #     except FileNotFoundError:
+    #         with open('Habitaciones.csv', 'w', encoding='utf-8') as archivo_csv:
+    #             escritor_csv = csv.writer(archivo_csv)
+    #             escritor_csv.writerow(crear_habitaciones_simples())
+    #             escritor_csv.writerow(crear_habitaciones_dobles())
+    #             escritor_csv.writerow(crear_habitaciones_suite())
+    #         #preguntar como hacemos para que se pase bien a la lista
+    #     return (self.habitaciones)
 
         
     def entrar(self):
@@ -102,152 +103,42 @@ class Hotel():
             print(key, cliente.tipo)
             
     def realizar_reserva(self):
-        usuario = self.entrar()
-        #no se si ponerlo asi esta bien
-        habitaciones = Hotel.obtener_habitaciones(self)
+        # usuario = self.entrar()
+        # habitaciones = Hotel.obtener_habitaciones(self)
         habitacion = validacion_preg_hab()
         fecha_inicio = input('Ingrese la fecha de inicio de su estadía en el formato dd/mm/aaaa ')
         fecha_inicio = convertirfecha_datetime(fecha_inicio)
-        fecha_finalizacion = input('Ingrese la fecha de finaliación de su estadia en el formato dd/mm/aaaa')
+        fecha_finalizacion = input('Ingrese la fecha de finaliación de su estadia en el formato dd/mm/aaaa ')
         fecha_finalizacion = convertirfecha_datetime(fecha_finalizacion)
-        #habría que fijarnos de ver si hay habitaciones d ese tipo libres en esas fechas
-        self.clientes[usuario].reservas.append(fecha_inicio)
-        self.clientes[usuario].reservas.append(fecha_finalizacion)
+        fecha_inicio, fecha_finalizacion = comparacion_fechas(fecha_inicio, fecha_finalizacion)
+        reserva = Reserva()
+
+        # self.clientes[usuario].reservas.append(fecha_inicio)
+        # self.clientes[usuario].reservas.append(fecha_finalizacion)
         # match pregunta:
         #     case 1:
         return
-     
+    def agregarTareasDicc (self): #comprobar que sea administrador quien agregue la tarea
+        tipo = input('Ingrese a que tipo de empleado desea agregarle la tarea: ')
+        while tipo not in tareas_empleados:
+            tipo = input ('No existe este tipo de empleados, ingrese el tipo de vuelta: ')
+        tarea= input('Ingrese la tarea que desea agregar: ')
+        self.tarea_empleado[tipo].append(tarea)
+        print ('La nueva tarea se ha  agregado con exito.')
+    
+    def agregarTipoEmpleado (self):
+        tipo = input ('ingrese el nuevo tipo de empleado: ')
+        while tipo in self.tareas_empleado:
+            tipo = input ('Error, ese tipo de empleado ya existe. Ingrese otro tipo de empleado: ')
+        tarea = input ('Ingrese una tarea que realizaría este tipo de empleado: ')
+        self.tareas_empleado[tipo]= tarea
+        print ('El tipo de empleado fue agregado con exito.')
+                
+
+            
+        
 if __name__ == "__main__":
     hotel = Hotel('POO')
-    entrar = Hotel.obtener_habitaciones(hotel)
-    print(entrar)
+    entrar = Hotel.realizar_reserva(hotel)
+
     #hacer una funcion para mostrar que el hotel esta guardando informacion
- 
- 
-   
-## MENU BUFFET 
-  
-def mostrar_menu():
-    print("Menú buffet:")
-    print("1. Desayuno")
-    print("2. Almuerzo")
-    print("3. Cena")
-
-def menu_desayuno():
-    print("\nDesayuno:")
-    opcion = input("Selecciona una opción de desayuno (1-6): ")
-    match opcion:
-        case "1":
-            "Infusión (Café con leche/Té/Jugo de Naranja) - $500"
-            pedido= pedido_buffet('Infusion')
-        case "2":
-            "Tostadas con queso y mermelada - $700"
-            pedido= pedido_buffet('Tostadas')
-        case "3":
-            "Yogur con cereales - $600"
-            pedido= pedido_buffet('Yogur')
-        case '4':
-            'Huevos revueltos - $800'
-            pedido= pedido_buffet('Huevos')
-        case '5':
-            'Facturas - $600'
-            pedido= pedido_buffet('Facturas')
-        case '6':
-            'Ensalada de frutas - $750'
-            pedido= pedido_buffet('Ensalada')
-        case _:
-            "Opción no válida"
-
-    print(opcion)
-
-def menu_almuerzo():
-    print("\nAlmuerzo:")
-    opcion = input("Selecciona una opción de almuerzo (1-7): ")
-    match opcion:
-        case "1":
-            "Pollo/Carne con guarnición - $2000"
-            pedido= pedido_buffet('Pollo/Carne')
-        case "2":
-            "Sopa del día - $1500"
-            pedido= pedido_buffet('Sopa')
-        case "3":
-            "Ensalada 4 toppings - $1000"
-            pedido= pedido_buffet('Ensalada')
-        case '4':
-            'Pesca del día- $3000'
-            pedido= pedido_buffet('Pesca')
-        case '5':
-            'Opción vegetariana (hamburguesa de lentejas con papas fritas)- $1500'
-            pedido= pedido_buffet('Vegetariano')
-        case '6':
-            'Pastas (ravioles, ñoquis, sorrentinos)- $1500'
-            pedido= pedido_buffet('Pastas')
-        case '7':
-            'Postres (flan con dulce de leche, bocha de helado, tiramisú)- $500 (c/u)'
-            pedido= pedido_buffet('Postres')
-        case _:
-            "Opción no válida"
-
-    print(opcion)
-
-def menu_cena():
-    print("\nCena:")
-    opcion = input("Selecciona una opción de cena (1-7): ")
-    match opcion:
-        case "1":
-            "Salmón a la parrilla con puré de papas - $4000"
-            pedido= pedido_buffet('Salmón')
-        case "2":
-            "Pastas (ravioles, ñoquis, sorrentinos)- $1500"
-            pedido= pedido_buffet('Pastas')
-        case "3":
-            'Opción vegetariana (falafel) - $1500'
-            pedido= pedido_buffet('Vegetariana')
-        case '4':
-            'Pizza (muzzarella, napolitana, fugazzeta, calabresa) - $2000)'
-            pedido= pedido_buffet('Pizza')
-        case '5':
-            'Empanadas (carne, pollo, jamón y queso, verdura) - $600 (c/u))'
-            pedido= pedido_buffet('Empanadas')
-        case '6':
-            'Asado con papas fritas - $3000 (para 2 personas) (se puede pedir para 1 persona por $2000)'
-            pedido= pedido_buffet('Asado')
-        case '7':
-            'Postres (flan con dulce de leche, bocha de helado, tiramisú)- $500 (c/u)'
-            pedido= pedido_buffet('Postres')
-        case _:
-            "Opción no válida"
-
-    print(opcion)
-
-def main():
-    while True:
-        mostrar_menu()
-        opcion_comida = input("Selecciona una comida del día (1 para desayuno/merienda, 2 para almuerzo, 3 para cena, listo para salir): ")
-
-        match opcion_comida:
-            case "1":
-                menu_desayuno()
-            case "2":
-                menu_almuerzo()
-            case "3":
-                menu_cena()
-            case "listo":
-                break
-            case _:
-                print("Opción no válida. Por favor, selecciona una comida válida.")
-
-def pedidos_buffet(pedido):
-    cola= []
-    cola.insert(0,pedido)
-    return cola 
-    
-def realizar_pedido():
-    self.cola.pop()
-
-if __name__ == "__main__":
-    main()
-    
-    
-
-
