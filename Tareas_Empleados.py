@@ -1,4 +1,4 @@
-diccionario = {
+tareas_empleados = {
     "Lavar los platos": 'personal de cocina',
     'Cocinar desayuno': 'personal de cocina',
     "Cocinar almuerzo": 'personal de cocina',
