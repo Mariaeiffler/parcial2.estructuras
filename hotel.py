@@ -7,6 +7,8 @@ from Habitacion_Doble import *
 from Habitacion_Simple import *
 from Habitacion_Suite import *
 import pickle
+from Tareas_Empleados import tareas_empleados 
+
 import csv
 
 class Hotel():
@@ -15,6 +17,7 @@ class Hotel():
         self.empleados=dict()
         self.clientes=dict()
         self.contrasena_ing_personal=contrasena_ing_personal
+        self.tareas=tareas_empleados #fijarse si esta bien llamado
         
         
     def entrar(self):
