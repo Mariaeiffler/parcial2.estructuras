@@ -2,8 +2,8 @@ from Persona import Persona
 from prueba_menu import *
 
 class Cliente(Persona):
-    def __init__(self,nombre,usuario,dni,direccion,contacto,fecha_nac,mail,soy_empleado,contrasena,tipo='nivel 1', reservas = []):
-        super().__init__(nombre,dni,direccion,contacto,fecha_nac,mail,soy_empleado)
+    def __init__(self,nombre,usuario,dni,direccion,contacto,fecha_nac,mail,contrasena,tipo='nivel 1', reservas = []):
+        super().__init__(nombre,dni,direccion,contacto,fecha_nac,mail)
         self.usuario = usuario
         self.contrasena = contrasena
         self.tipo=tipo

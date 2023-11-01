@@ -28,9 +28,8 @@ class Hotel():
                 #validar que no exista el usuario
                 nombre,usuario,dni,direccion,contacto,fecha_nac,mail,contrasena = infoPersonas ()
                 existe=valiExiUsu(self.clientes, usuario)
-                if existe == False:
+                if existe == False: 
                     cliente=Cliente(nombre,usuario,dni,direccion,contacto,fecha_nac,mail,False,contrasena)
-                    #mandar info al archivo 
                     self.clientes[usuario]=cliente
                     print('Su usuario se ha creado con exito')
                 else:
