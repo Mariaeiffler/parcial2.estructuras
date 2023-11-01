@@ -19,9 +19,23 @@ class Cliente(Persona):
         fecha_inicio, fecha_fin = comparacion_fechas(fecha_inicio, fecha_fin)
         for habitacion in lista:
             if habitacion.numero == habitacion:
-                # hay q hacer que vaya comparando las fechas que estan en reservas d las habitaciones
-
-        return (self.usuario, fecha_inicio, fecha_fin, habitacion)
+                if len(habitacion.reservas) == 0:
+                    fechas = [fecha_inicio,fecha_fin]
+                    habitacion.reservas.append(fechas)
+                else:
+                    validacion = True
+                    for estadia in habitacion.reservas:
+                        if (estadia[0]<fecha_inicio and estadia[1]<fecha_fin) or (estadia[0]>fecha_inicio and estadia[1]>fecha_fin):
+                            pass
+                        else:
+                            validacion = False
+                        #hay q ver q pasa el dia d check out d alguien es el dia d check in d otro
+                    if validacion == True:
+                        fechas = [fecha_inicio,fecha_fin]
+                        habitacion.reservas.append(fechas)
+                        self.reservas.append(fechas)
+                        #hay q ver el tema d los gastos xq aca tambien habria que agregar ese costo
+        return (fecha_inicio, fecha_fin, habitacion)
     
 
     

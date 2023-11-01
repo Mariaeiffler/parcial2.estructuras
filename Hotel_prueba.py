@@ -9,6 +9,7 @@ from Habitacion_Suite import *
 import pickle
 from Tareas_Empleados import tareas_empleados 
 from prueba_menu import *
+from Reserva import Reserva
 
 class Hotel():
     def __init__(self,nombre,contrasena_ing_personal='personal123'):
@@ -34,13 +35,15 @@ class Hotel():
                     print('Su usuario se ha creado con exito')
                 else:
                     print('Este usuario ya existe, vuelva a registarse o inicie sesión')
-                pregcliente=input('Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n')
+                    #falta terminar
+                pregcliente=input('Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Cerrar Sesión \n')
                 pregcliente=valiPregCliente(pregcliente)
-                match pregcliente:
-                    case 1:
-                        habitacion=validacion_preg_hab()
-                        print('La habitación que usted ha seleccionado es {}'.format())#hacer q se printee el str d la habitacion
-                        #esto lo estoy haciendo en cliente (como metodo)
+                while pregcliente != 5:
+                    if pregcliente == 1:
+                        fecha_inicio,fecha_fin,habitacion=Cliente.realizar_reserva(cliente, self.habitaciones)
+                        reserva=Reserva(cliente.usuario, fecha_inicio, fecha_fin, habitacion, datetime().now)
+                        pregcliente=input('Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Cerrar Sesión \n')
+                        pregcliente=valiPregCliente(pregcliente)
                 
     #         case 2:
     #             #validar que exista el usuario y que la contrasena sea correcta
@@ -106,6 +109,12 @@ class Hotel():
 if __name__ == "__main__":
     hotel=Hotel('POO')
     habitacion1 = 1
-    for i in hotel.habitaciones:
-        if i.numero == habitacion1:
-            print(i.reservas)
+    fecha1 = 1234
+    fecha2= 1234567
+    for habitacion in hotel.habitaciones:
+        if habitacion.numero == habitacion1:
+            print(habitacion.numero)
+            if len(habitacion.reservas) == 0:
+                fechas = [fecha1,fecha2]
+                habitacion.reservas.append(fechas)
+        print(habitacion.reservas)

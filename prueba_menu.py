@@ -173,12 +173,12 @@ def valiPregCliente(pregcliente):
     while validacion == False:
         if val_int(opcion):
             x=int(opcion)
-            if x==1 or x==2 or x==3 or x==4:
+            if x==1 or x==2 or x==3 or x==4 or x==5:
                 validacion=True
             else:
-                opcion = input('Error. Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n')
+                opcion = input('Error. Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Cerrar sesión \n')
         else: 
-            opcion = input('Error. Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n')
+            opcion = input('Error. Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Cerrar sesión \n')
     return x
 
 def crearHab():
