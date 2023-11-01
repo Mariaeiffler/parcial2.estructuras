@@ -6,8 +6,8 @@ from Tareas_Empleados import tareas_empleados
 
 class Personal(Persona):
     registros= []
-    def __init__(self,nombre,dni,direccion,contacto,fecha_nac,mail,soy_empleado,fecalta,tipo,fecbaja: None):
-        super().__init__(nombre,dni,direccion,contacto,fecha_nac,mail,soy_empleado)
+    def __init__(self,nombre,dni,direccion,contacto,fecha_nac,mail,fecalta,tipo,fecbaja: None):
+        super().__init__(nombre,dni,direccion,contacto,fecha_nac,mail)
         self.fecalta = datetime.now()
         self.tipo=tipo
         #self.Tareas=Lista_Enlazada()
@@ -67,11 +67,9 @@ class Personal(Persona):
             else:
                 print("Opción no válida. Por favor, selecciona una opción válida.")
                 
-    def agregarTarea (self):
+        # def agregarTarea (self):
         
 
 
 
 
-
-        

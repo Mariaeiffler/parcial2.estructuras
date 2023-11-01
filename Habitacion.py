@@ -5,7 +5,7 @@ class Habitacion ():
         self.edificio = edificio
         self.reservas = []
         
-    # def __str__ (self):
+    #def __str__ (self):
     #     return ('Habitación: {}, piso: {}, edificio {}', format (self.numero, self.piso, self.edificio))
     
     def ocupar (self):
