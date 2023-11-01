@@ -8,6 +8,7 @@ from Habitacion_Simple import *
 from Habitacion_Suite import *
 import pickle
 from Tareas_Empleados import tareas_empleados 
+from prueba_menu import *
 
 class Hotel():
     def __init__(self,nombre,contrasena_ing_personal='personal123'):
@@ -19,15 +20,16 @@ class Hotel():
         self.habitaciones = [habitacion for habitacion in crear_habitaciones_simples()]
         
     def entrar(self):
-        pregunta=input(('Elija una de las siguientes opciones: 1. Sign up \n 2.Sign in'))
-        pregunta=validacionpregunta(pregunta)
+        pregunta=input(('Elija una de las siguientes opciones: 1. Sign up \n 2.Sign in \n'))
+        pregunta=val_opc(pregunta)
         #validacion 
         match pregunta:
             case 1:
                 #validar que no exista el usuario
                 #validar todos los atributos
-                nombre=input('Introduzca su nombre:')
-                nombre=validacionnombre2(nombre)
+                nombre=input('Introduzca su nombre y apellido: ')
+                nombre=valNombre2(nombre)
+                # en esta validacion no se fija q no tenga espacios? si tiene q poner su nombre y apellido tiene q tener un espacio
                 dni=input('Ingrese su DNI:')
                 dni=validaciondni(dni)
                 direccion=input('Ingrese su direccion:')
@@ -36,11 +38,12 @@ class Hotel():
                 fecha_nac=input('Ingrese su fecha de nacimiento:')
                 fecha_nac=validacionfechanac (fecha_nac)
                 mail=input('Ingrese su mail:')
+                mail=valMail(mail)
                 usuario=input('Escriba el nombre de usuario:')
                 usuario=validacionusuario(usuario)
                 contrasena=input('Escriba la contrasena:')
                 contrasena = validacioncontrasena(contrasena)
-                validacioncontrasena(contrasena) #verificar el nombre de la funcion
+                # validacioncontrasena(contrasena) #verificar el nombre de la funcion
                 soy_empleado=input('Sos empleado? (responder si o no en minuscula)')
                 soy_empleado=validacionempleado(soy_empleado)
                 

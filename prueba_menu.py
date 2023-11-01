@@ -1,5 +1,8 @@
 from datetime import *
 from cliente import Cliente
+from Habitacion_Doble import *
+from Habitacion_Simple import *
+from Habitacion_Suite import *
 
 def val_int(x): #valida que sea un entero
         try:
@@ -63,7 +66,7 @@ def convertirfecha_datetime(fecha): # --> no la toque
             validacion = True
             return fecha_datetime
         except Exception:
-            fecha = input('Ingrese la fecha en el formato dd/mm/yyyy ')
+            fecha = input('Ingrese la fecha en el formato dd/mm/aaaa ')
             
 def mayoredad (fecha): # --> no la toque
     if type(fecha) == datetime:
@@ -91,10 +94,12 @@ def validacionfechanac (fecha): # --> no la toque
 def valMail (mail): #validar algo más?
     while mail.count('@')!=1:
         mail=input('Ingrese su mail:')
+    return mail
         
 def validacionusuario(usuario): #TODO:chequear que no este repetido
     while len(str(usuario)) < 5:
         usuario = input('Ingrese un nombre de usuario válido (con minimo 5 dígitos) ')  
+    #habría q ver tambien que no tenga espacios
     return usuario
 
 def cantidad_mayusculas(contrasena): # --> no la toque
@@ -112,6 +117,7 @@ def validacioncontrasena(contrasena):
 def infoPersonas ():
     nombre=input('Introduzca su nombre y apellido: ')
     nombre=valNombre2(nombre)
+    # en esta validacion no se fija q no tenga espacios? si tiene q poner su nombre y apellido tiene q tener un espacio
     dni=input('Ingrese su DNI: ')
     dni=validaciondni(dni)
     direccion=input('Ingrese su direccion: ') #es necesario validar la dirección?
@@ -125,7 +131,7 @@ def infoPersonas ():
     usuario=validacionusuario(usuario)
     contrasena=input('Escriba una contrasena que contenga por lo menos una mayuscula y un numero: ')
     contrasena=validacioncontrasena(contrasena)
-    return nombre,dni,direccion,contacto,fecha_nac,mail,usuario,contrasena
+    return nombre,usuario,dni,direccion,contacto,fecha_nac,mail,contrasena
 
 def valiExiUsu (diccionario:dict, usuario:str):
     if usuario not in diccionario:
@@ -155,7 +161,124 @@ def menuPPL():
             # usuario,contrasena=valiSignIn(usuario,contrasena,clientesDict,empleadosDict)
             
             
-if __name__=='__main__':
-   dni='mili'
-   dni=validacioncontrasena(dni)
-   print (dni)
+#if __name__=='__main__':
+#    dni='mili'
+#    dni=validacioncontrasena(dni)
+#    print (dni)           
+            
+            
+##################################################################################################################################################
+def valiPregCliente(pregcliente):
+    validacion=False
+    while validacion == False:
+        if val_int(opcion):
+            x=int(opcion)
+            if x==1 or x==2 or x==3 or x==4:
+                validacion=True
+            else:
+                opcion = input('Error. Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n')
+        else: 
+            opcion = input('Error. Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n')
+    return x
+
+def crearHab():
+    h1 = Habitacion_Simple(1,1,1,[],5000,10000,2,False,False)
+    h2 = Habitacion_Simple(2,1,1,[],10000,10000,2,True,False)
+    h3 = Habitacion_Simple(3,1,1,[],10000,10000,2,False,True)
+    h4 = Habitacion_Simple(4,1,1,[],15000,10000,2,True,True)
+    h5 = Habitacion_Doble(5,2,1,[],20000,10000,4,False,False)
+    h6 = Habitacion_Doble(6,2,1,[],25000,10000,4,True,False)
+    h7 = Habitacion_Doble(7,2,1,[],25000,10000,4,False,True)
+    h8 = Habitacion_Doble(8,2,1,[],30000,10000,4,True,True)
+    h9 = Habitacion_Suite(9,2,1,[],35000,10000,4,False,False)
+    h10 = Habitacion_Suite(10,2,1,[],40000,10000,4,True,False)
+    h11 = Habitacion_Suite(11,2,1,[],40000,10000,4,False,True)
+    h12 = Habitacion_Suite(12,2,1,[],45000,10000,4,True,True)
+    return (h1,h2,h3,h4,h5,h6,h7,h8,h9,h10,h11,h12)
+
+def validacion_h(pregunta1, valor1, valor2):
+    validacion = val_int(pregunta1)
+    if validacion == True:
+        if int(pregunta1) > valor1 and int(pregunta1) < valor2:
+            habitacion = int(pregunta1)
+        else:
+            validacion = False
+    return validacion
+
+def validacionpregunta2(pregunta):
+    validacion = False
+    while validacion == False:
+        try:
+            int(pregunta)
+            pregunta = int(pregunta)
+            validacion = True
+        except Exception:
+            pregunta = input('Elija una de las siguientes habitaciones: \n 1. Simple ($5000 - $15000) \n 2. Doble ($20000 - $30000) \n 3. Suite ($35000 - $45000) ')
+    pregunta = str(pregunta)
+    if pregunta != '1' and pregunta != '2' and pregunta != '3':
+         pregunta = input('Elija una de las siguientes habitaciones: \n 1. Simple ($5000 - $15000) \n 2. Doble ($20000 - $30000) \n 3. Suite ($35000 - $45000) ')
+    while pregunta != '1' and pregunta != '2' and pregunta != '3':
+        pregunta = input('Elija una de las siguientes habitaciones: \n 1. Simple ($5000 - $15000) \n 2. Doble ($20000 - $30000) \n 3. Suite ($35000 - $45000) ')
+    return int(pregunta)
+        
+def validacion_preg_hab():
+    pregunta = input('Elija una de las siguientes habitaciones: \n 1. Simple ($5000 - $15000) \n 2. Doble ($20000 - $30000) \n 3. Suite ($35000 - $45000) ')
+    pregunta = validacionpregunta2(pregunta)
+    match pregunta:
+        case 1:
+            pregunta1 = input('Elija una de las siguientes opciones: \n 1: Sin baño privado y sin balcón ($5000) \n 2: Con baño y sin balcón ($10000) \n 3: Con baño privado y sin balcón ($10000) \n 4: Con baño privado y con balcón ($15000) ')
+            if len(pregunta1) != 2:
+                pregunta1 = input('Elija una de las siguientes opciones: \n 1: Sin baño privado y sin balcón ($5000) \n 2: Con baño y sin balcón ($10000) \n 3: Con baño privado y sin balcón ($10000) \n 4: Con baño privado y con balcón ($15000) ')
+                while len(pregunta1) != 2:
+                    pregunta1 = input('Elija una de las siguientes opciones: \n 1: Sin baño privado y sin balcón ($5000) \n 2: Con baño y sin balcón ($10000) \n 3: Con baño privado y sin balcón ($10000) \n 4: Con baño privado y con balcón ($15000) ')
+            validacion = validacion_h(pregunta1,1, 4)
+            while(validacion == False):
+                pregunta1 = input('Elija una de las siguientes opciones: \n 1: Sin baño privado y sin balcón ($5000) \n 2: Con baño y sin balcón ($10000) \n 3: Con baño privado y sin balcón ($10000) \n 4: Con baño privado y con balcón ($15000)  ')
+                validacion = validacion_h(pregunta1,1,4)
+            return pregunta1
+        case 2:
+            pregunta1 = input('Elija una de las siguientes opciones: \n 5: Sin baño privado y sin balcón ($20000) \n 6: Con baño y sin balcón ($25000) \n 7: Con baño privado y sin balcón ($25000) \n 8: Con baño privado y con balcón ($30000) ')
+            if len(pregunta1) != 2:
+                pregunta1 = input('Elija una de las siguientes opciones: \n 5: Sin baño privado y sin balcón ($20000) \n 6: Con baño y sin balcón ($25000) \n 7: Con baño privado y sin balcón ($25000) \n 8: Con baño privado y con balcón ($30000) ')
+                while len(pregunta1) != 2:
+                    pregunta1 = input('Elija una de las siguientes opciones: \n 5: Sin baño privado y sin balcón ($20000) \n 6: Con baño y sin balcón ($25000) \n 7: Con baño privado y sin balcón ($25000) \n 8: Con baño privado y con balcón ($30000) ')
+            validacion = validacion_h(pregunta1,5,8)
+            while(validacion == False):
+                pregunta1 = input('Elija una de las siguientes opciones: \n 5: Sin baño privado y sin balcón ($20000) \n 6: Con baño y sin balcón ($25000) \n 7: Con baño privado y sin balcón ($25000) \n 8: Con baño privado y con balcón ($30000) ')
+                validacion = validacion_h(pregunta1,5,8)
+            return pregunta1
+        case 3:
+            pregunta1 = input('Elija una de las siguientes opciones: \n 9: Sin baño privado y sin balcón ($35000) \n 10: Con baño y sin balcón ($40000) \n 11: Con baño privado y sin balcón ($40000) \n 12: Con baño privado y con balcón ($45000) ')
+            if len(pregunta1) != 2:
+                pregunta1 = input('Elija una de las siguientes opciones: \n 9: Sin baño privado y sin balcón ($35000) \n 10: Con baño y sin balcón ($40000) \n 11: Con baño privado y sin balcón ($40000) \n 12: Con baño privado y con balcón ($45000) ')
+                while len(pregunta1) != 2:
+                    pregunta1 = input('Elija una de las siguientes opciones: \n 9: Sin baño privado y sin balcón ($35000) \n 10: Con baño y sin balcón ($40000) \n 11: Con baño privado y sin balcón ($40000) \n 12: Con baño privado y con balcón ($45000) ')
+            validacion = validacion_h(pregunta1,9,12)
+            while(validacion == False):
+                pregunta1 = input('Elija una de las siguientes opciones: \n 9: Sin baño privado y sin balcón ($35000) \n 10: Con baño y sin balcón ($40000) \n 11: Con baño privado y sin balcón ($40000) \n 12: Con baño privado y con balcón ($45000) ')
+                validacion = validacion_h(pregunta1,9,12)
+            return pregunta1
+        
+def comparacion_fechas(fecha_inicio, fecha_finalizacion):
+    if fecha_inicio < datetime.now():
+        print('Su fecha de inicio de la estadía no es valida ')
+        fecha_inicio = input('Ingrese la fecha de inicio de su estadía en el formato dd/mm/aaaa ')
+        fecha_inicio = convertirfecha_datetime(fecha_inicio)
+        while fecha_inicio < datetime.now():
+            fecha_inicio = input('Ingrese la fecha de inicio de su estadía en el formato dd/mm/aaaa ')
+            fecha_inicio = convertirfecha_datetime(fecha_inicio)
+        fecha_finalizacion = input('Ingrese la fecha de finaliación de su estadia en el formato dd/mm/aaaa ')
+        fecha_finalizacion = convertirfecha_datetime(fecha_finalizacion)
+    if fecha_inicio > fecha_finalizacion:
+        print('Su fecha de finalización es antes que su fecha de inicio de la estadía')
+        fecha_inicio = input('Ingrese la fecha de inicio de su estadía en el formato dd/mm/aaaa ')
+        fecha_inicio = convertirfecha_datetime(fecha_inicio)
+        fecha_finalizacion = input('Ingrese la fecha de finaliación de su estadia en el formato dd/mm/aaaa ')
+        fecha_finalizacion = convertirfecha_datetime(fecha_finalizacion)
+        while fecha_inicio > fecha_finalizacion:
+            print('Su fecha de finalización es antes que su fecha de inicio de la estadía')
+            fecha_inicio = input('Ingrese la fecha de inicio de su estadía en el formato dd/mm/aaaa ')
+            fecha_inicio = convertirfecha_datetime(fecha_inicio)
+            fecha_finalizacion = input('Ingrese la fecha de finaliación de su estadia en el formato dd/mm/aaaa ')
+            fecha_finalizacion = convertirfecha_datetime(fecha_finalizacion)
+    return fecha_inicio, fecha_finalizacion
