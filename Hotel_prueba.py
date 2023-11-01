@@ -37,7 +37,7 @@ class Hotel():
                     #falta terminar
                 pregcliente=input('Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Cerrar Sesión \n')
                 pregcliente=valiPregCliente(pregcliente)
-                while pregcliente != 5:
+                while pregcliente != 5: #en realidad hay q moverlo a case 2 pero no se bien como seria
                     if pregcliente == 1:
                         fecha_inicio,fecha_fin,habitacion=Cliente.realizar_reserva(cliente, self.habitaciones)
                         reserva=Reserva(cliente.usuario, fecha_inicio, fecha_fin, habitacion, datetime().now)
