@@ -1,5 +1,5 @@
 class Persona():
-    def _init_(self,nombre,dni,direccion,contacto,fecha_nac,mail,usuario,contrasena): #el true es de personal
+    def _init_(self,nombre,usuario,dni,direccion,contacto,fecha_nac,mail,contrasena): #el true es de personal
         self.nombre=nombre
         self.dni=dni
         self.direccion=direccion

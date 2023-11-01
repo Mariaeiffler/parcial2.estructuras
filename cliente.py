@@ -1,22 +1,15 @@
 from Persona import Persona
-from prueba_menu import *
+from prueba_menu import reserva
+
 
 class Cliente(Persona):
     def __init__(self,nombre,usuario,dni,direccion,contacto,fecha_nac,mail,contrasena,tipo='nivel 1', reservas = []):
-        super().__init__(nombre,dni,direccion,contacto,fecha_nac,mail)
-        self.usuario = usuario
-        self.contrasena = contrasena
+        super().__init__(nombre,usuario,dni,direccion,contacto,fecha_nac,mail,contrasena)
         self.tipo=tipo
         self.reservas= reservas
     
-    def realizar_reserva(self, lista):
-        habitacion=validacion_preg_hab()
-        print('La habitación que usted ha seleccionado es {}'.format())#hacer q se printee el str d la habitacion
-        fecha_inicio = input('Ingrese la fecha de inicio de su estadía en el formato dd/mm/aaaa ')
-        fecha_inicio = convertirfecha_datetime(fecha_inicio)
-        fecha_fin = input('Ingrese la fecha de finalización de su estadía de su estadía en el formato dd/mm/aaaa ')
-        fecha_fin = convertirfecha_datetime(fecha_fin)
-        fecha_inicio, fecha_fin = comparacion_fechas(fecha_inicio, fecha_fin)
+    def realizar_reserva(self, lista, diccionario:dict):
+        fecha_inicio, fecha_fin, habitacion = reserva()
         for habitacion in lista:
             if habitacion.numero == habitacion:
                 if len(habitacion.reservas) == 0:
@@ -34,9 +27,21 @@ class Cliente(Persona):
                         fechas = [fecha_inicio,fecha_fin]
                         habitacion.reservas.append(fechas)
                         self.reservas.append(fechas)
+                        num_reserva = len(diccionario)+1
+                        print('Su reserva se realizó con exito en las fechas {} - {} y su numero de reserva es '.format(fecha_inicio,fecha_fin,num_reserva))
                         #hay q ver el tema d los gastos xq aca tambien habria que agregar ese costo
-        return (fecha_inicio, fecha_fin, habitacion)
+                    else:
+                        preg = input('En las fechas ingresadas la habitación seleccionada ya esta ocupada \n Elija una opción: \n 1. Elegir otras fechas \n 2. Elegir otra habitación \n')
+                        # preg = val_res(preg)
+                        # if preg == 1:
+                            
+        return (num_reserva, fecha_inicio, fecha_fin, habitacion)
     
+    # def modificar_reserva(self, lista):
+    #     fecha = input('Introduzca el día que realizó la reserva en el formato dd/mm/aaaa')
+    #     fecha = convertirfecha_datetime(fecha)
+        
+        
 
     
     # def realizar_pedido():

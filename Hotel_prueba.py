@@ -1,5 +1,6 @@
-# from Personal import Personal
-# # from cliente import Cliente
+from Personal import Personal
+from cliente import Cliente
+from Persona import Persona
 # from Persona import Persona
 # from validaciones import *
 from Abrir_archivo import *
@@ -19,6 +20,7 @@ class Hotel():
         self.contrasena_ing_personal=contrasena_ing_personal
         self.tareas=tareas_empleados #fijarse si esta bien llamado
         self.habitaciones = [habitacion for habitacion in crearHab()]
+        self.reservas=dict()
         
     def entrar(self):
         pregunta=input(('Elija una de las siguientes opciones: \n 1. Sign up (si es un cliente) \n 2.Sign in \n'))
@@ -29,7 +31,7 @@ class Hotel():
                 nombre,usuario,dni,direccion,contacto,fecha_nac,mail,contrasena = infoPersonas ()
                 existe=valiExiUsu(self.clientes, usuario)
                 if existe == False: 
-                    cliente=Cliente(nombre,usuario,dni,direccion,contacto,fecha_nac,mail,False,contrasena)
+                    cliente=Cliente(nombre,usuario,dni,direccion,contacto,fecha_nac,mail,contrasena)
                     self.clientes[usuario]=cliente
                     print('Su usuario se ha creado con exito')
                 else:
@@ -39,8 +41,9 @@ class Hotel():
                 pregcliente=valiPregCliente(pregcliente)
                 while pregcliente != 5: #en realidad hay q moverlo a case 2 pero no se bien como seria
                     if pregcliente == 1:
-                        fecha_inicio,fecha_fin,habitacion=Cliente.realizar_reserva(cliente, self.habitaciones)
-                        reserva=Reserva(cliente.usuario, fecha_inicio, fecha_fin, habitacion, datetime().now)
+                        num_reserva,fecha_inicio,fecha_fin,habitacion=Cliente.realizar_reserva(cliente, self.habitaciones, self.reservas)
+                        reserva=Reserva(num_reserva,cliente.usuario, fecha_inicio, fecha_fin, habitacion, datetime.date.today())
+                        self.reservas[num_reserva]=reserva
                         pregcliente=input('Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Cerrar Sesión \n')
                         pregcliente=valiPregCliente(pregcliente)
                 
@@ -107,13 +110,14 @@ class Hotel():
         
 if __name__ == "__main__":
     hotel=Hotel('POO')
-    habitacion1 = 1
-    fecha1 = 1234
-    fecha2= 1234567
-    for habitacion in hotel.habitaciones:
-        if habitacion.numero == habitacion1:
-            print(habitacion.numero)
-            if len(habitacion.reservas) == 0:
-                fechas = [fecha1,fecha2]
-                habitacion.reservas.append(fechas)
-        print(habitacion.reservas)
+    hotel.entrar()
+    # habitacion1 = 1
+    # fecha1 = 1234
+    # fecha2= 1234567
+    # for habitacion in hotel.habitaciones:
+    #     if habitacion.numero == habitacion1:
+    #         print(habitacion.numero)
+    #         if len(habitacion.reservas) == 0:
+    #             fechas = [fecha1,fecha2]
+    #             habitacion.reservas.append(fechas)
+    #     print(habitacion.reservas)

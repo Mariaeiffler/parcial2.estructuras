@@ -1,5 +1,5 @@
 from datetime import *
-from cliente import Cliente
+# from cliente import Cliente
 from Habitacion_Doble import *
 from Habitacion_Simple import *
 from Habitacion_Suite import *
@@ -146,18 +146,18 @@ def valiExiUsu (diccionario:dict, usuario:str):
 clientesDict=dict()  # --> cree este diccionario de clientes para mostrar como habría que agregarlo mas o menos 
 empleadosDict=dict() # --> mismo que arriba
 
-def menuPPL(): 
-    opcion =input(('Elija una de las siguientes opciones: \n 1. Sign up \n 2.Sign in \n'))
-    opcion=val_opc (opcion)
-    match opcion:
-        case 1:
-            nombre,dni,direccion,contacto,fecha_nac,mail,usuario,contrasena=infoPersonas()
-            empleado=False
-            cliente=Cliente(nombre,usuario,dni,direccion,contacto,fecha_nac,mail,empleado,contrasena) #creo que el soyEmpleado en cliente esta de mas
-            clientesDict[cliente.dni]= cliente # --> chequear que funcione bien lo de agregarse al diccionario y fijarse si queremos que la llave sea el dni o el nombre de usuario, tal vez no hace falta el cliente antes del dni pero si hay que agregar el self adelante del diccionario 
-        case 2:
-            usuario=input('Escriba el nombre de usuario: ')
-            contrasena=input('Escriba una contrasena que contenga por lo menos una mayuscula y un numero: ')
+# def menuPPL(): 
+#     opcion =input(('Elija una de las siguientes opciones: \n 1. Sign up \n 2.Sign in \n'))
+#     opcion=val_opc (opcion)
+#     match opcion:
+#         case 1:
+#             nombre,dni,direccion,contacto,fecha_nac,mail,usuario,contrasena=infoPersonas()
+#             empleado=False
+#             cliente=Cliente(nombre,usuario,dni,direccion,contacto,fecha_nac,mail,empleado,contrasena) #creo que el soyEmpleado en cliente esta de mas
+#             clientesDict[cliente.dni]= cliente # --> chequear que funcione bien lo de agregarse al diccionario y fijarse si queremos que la llave sea el dni o el nombre de usuario, tal vez no hace falta el cliente antes del dni pero si hay que agregar el self adelante del diccionario 
+#         case 2:
+#             usuario=input('Escriba el nombre de usuario: ')
+#             contrasena=input('Escriba una contrasena que contenga por lo menos una mayuscula y un numero: ')
             # usuario,contrasena=valiSignIn(usuario,contrasena,clientesDict,empleadosDict)
             
             
@@ -282,3 +282,26 @@ def comparacion_fechas(fecha_inicio, fecha_finalizacion):
             fecha_finalizacion = input('Ingrese la fecha de finaliación de su estadia en el formato dd/mm/aaaa ')
             fecha_finalizacion = convertirfecha_datetime(fecha_finalizacion)
     return fecha_inicio, fecha_finalizacion
+
+def reserva():
+    habitacion=validacion_preg_hab()
+    print('La habitación que usted ha seleccionado es {}'.format())#hacer q se printee el str d la habitacion
+    fecha_inicio = input('Ingrese la fecha de inicio de su estadía en el formato dd/mm/aaaa ')
+    fecha_inicio = convertirfecha_datetime(fecha_inicio)
+    fecha_fin = input('Ingrese la fecha de finalización de su estadía de su estadía en el formato dd/mm/aaaa ')
+    fecha_fin = convertirfecha_datetime(fecha_fin)
+    fecha_inicio, fecha_fin = comparacion_fechas(fecha_inicio, fecha_fin)
+    return fecha_inicio, fecha_fin, habitacion
+
+def val_res(opcion):
+    validacion=False
+    while validacion == False:
+        if val_int(opcion):
+            x=int(opcion)
+            if x==1 or x==2:
+                validacion=True
+            else:
+                opcion = input('Error. Elija una opción: \n 1. Elegir otras fechas \n 2. Elegir otra habitación \n')
+        else: 
+            opcion = input('Error. Elija una opción: \n 1. Elegir otras fechas \n 2. Elegir otra habitación \n')
+    return x
