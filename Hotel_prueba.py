@@ -27,16 +27,15 @@ class Hotel():
                 #validar que no exista el usuario
                 nombre,usuario,dni,direccion,contacto,fecha_nac,mail,contrasena = infoPersonas ()
                 existe=valiExiUsu(self.clientes, usuario)
-                if existe == False:
+                if existe == False: 
                     cliente=Cliente(nombre,usuario,dni,direccion,contacto,fecha_nac,mail,False,contrasena)
-                    #mandar info al archivo 
                     self.clientes[usuario]=cliente
                     print('Su usuario se ha creado con exito')
                 else:
-                    print('Este usuario ya existe, vuelva a registarse o inicie sesión')
+                    print('Este usuario ya existe, vuelva a registarse o inicie sesión') #hacer que vaya de vuelta al menu
                 pregcliente=input('Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n')
                 pregcliente=valiPregCliente(pregcliente)
-                match pregcliente:
+                match pregcliente: #moverlo a case 2
                     case 1:
                         habitacion=validacion_preg_hab()
                         print('La habitación que usted ha seleccionado es {}'.format())#hacer q se printee el str d la habitacion
