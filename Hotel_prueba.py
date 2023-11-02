@@ -11,6 +11,7 @@ import pickle
 from Tareas_Empleados import tareas_empleados 
 from prueba_menu import *
 from Reserva import Reserva
+from datetime import *
 
 class Hotel():
     def __init__(self,nombre,contrasena_ing_personal='personal123'):
@@ -31,7 +32,7 @@ class Hotel():
                 nombre,usuario,dni,direccion,contacto,fecha_nac,mail,contrasena = infoPersonas ()
                 existe=valiExiUsu(self.clientes, usuario)
                 if existe == False: 
-                    cliente=Cliente(nombre,usuario,dni,direccion,contacto,fecha_nac,mail,contrasena)
+                    cliente=Cliente(nombre,usuario,dni,direccion,contacto,fecha_nac,mail,contrasena,'nivel 1',[])
                     self.clientes[usuario]=cliente
                     print('Su usuario se ha creado con exito')
                 else:
@@ -110,6 +111,11 @@ class Hotel():
         
 if __name__ == "__main__":
     hotel=Hotel('POO')
+    print(datetime.today())
+    fecha = '30/09/2023'
+    fecha = convertirfecha_datetime(fecha)
+    print(fecha < datetime.today())
+
     hotel.entrar()
     # habitacion1 = 1
     # fecha1 = 1234
@@ -121,3 +127,7 @@ if __name__ == "__main__":
     #             fechas = [fecha1,fecha2]
     #             habitacion.reservas.append(fechas)
     #     print(habitacion.reservas)
+    
+    # fecha = '30/12/2023'
+    # fecha = convertirfecha_datetime(fecha)
+    # print(fecha < datetime.today())

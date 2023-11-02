@@ -1,5 +1,5 @@
 class Persona():
-    def _init_(self,nombre,usuario,dni,direccion,contacto,fecha_nac,mail,contrasena): #el true es de personal
+    def __init__(self,nombre,usuario,dni,direccion,contacto,fecha_nac,mail,contrasena):
         self.nombre=nombre
         self.dni=dni
         self.direccion=direccion
@@ -21,7 +21,6 @@ class Persona():
                 return True
         else:  return False
         
-if __name__ == "__main__":
-    persona=Persona('Carlos',12345678,'vakjijw',12345432,12/34/12,'oreifoie',True)
+
 
         
