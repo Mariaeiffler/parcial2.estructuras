@@ -1,5 +1,5 @@
 from datetime import *
-# from cliente import Cliente
+from cliente import Cliente
 from Habitacion_Doble import *
 from Habitacion_Simple import *
 from Habitacion_Suite import *
@@ -146,18 +146,18 @@ def valiExiUsu (diccionario:dict, usuario:str):
 clientesDict=dict()  # --> cree este diccionario de clientes para mostrar como habría que agregarlo mas o menos 
 empleadosDict=dict() # --> mismo que arriba
 
-# def menuPPL(): 
-#     opcion =input(('Elija una de las siguientes opciones: \n 1. Sign up \n 2.Sign in \n'))
-#     opcion=val_opc (opcion)
-#     match opcion:
-#         case 1:
-#             nombre,dni,direccion,contacto,fecha_nac,mail,usuario,contrasena=infoPersonas()
-#             empleado=False
-#             cliente=Cliente(nombre,usuario,dni,direccion,contacto,fecha_nac,mail,empleado,contrasena) #creo que el soyEmpleado en cliente esta de mas
-#             clientesDict[cliente.dni]= cliente # --> chequear que funcione bien lo de agregarse al diccionario y fijarse si queremos que la llave sea el dni o el nombre de usuario, tal vez no hace falta el cliente antes del dni pero si hay que agregar el self adelante del diccionario 
-#         case 2:
-#             usuario=input('Escriba el nombre de usuario: ')
-#             contrasena=input('Escriba una contrasena que contenga por lo menos una mayuscula y un numero: ')
+def menuPPL(): 
+    opcion =input(('Elija una de las siguientes opciones: \n 1. Sign up \n 2.Sign in \n'))
+    opcion=val_opc (opcion)
+    match opcion:
+        case 1:
+            nombre,dni,direccion,contacto,fecha_nac,mail,usuario,contrasena=infoPersonas()
+            empleado=False
+            cliente=Cliente(nombre,usuario,dni,direccion,contacto,fecha_nac,mail,empleado,contrasena) #creo que el soyEmpleado en cliente esta de mas
+            clientesDict[cliente.dni]= cliente # --> chequear que funcione bien lo de agregarse al diccionario y fijarse si queremos que la llave sea el dni o el nombre de usuario, tal vez no hace falta el cliente antes del dni pero si hay que agregar el self adelante del diccionario 
+        case 2:
+            usuario=input('Escriba el nombre de usuario: ')
+            contrasena=input('Escriba una contrasena que contenga por lo menos una mayuscula y un numero: ')
             # usuario,contrasena=valiSignIn(usuario,contrasena,clientesDict,empleadosDict)
             
             
@@ -168,17 +168,17 @@ empleadosDict=dict() # --> mismo que arriba
             
             
 ##################################################################################################################################################
-def valiPregCliente(opcion):
+def valiPregCliente(pregcliente):
     validacion=False
     while validacion == False:
         if val_int(opcion):
             x=int(opcion)
-            if x==1 or x==2 or x==3 or x==4 or x==5:
+            if x==1 or x==2 or x==3 or x==4:
                 validacion=True
             else:
-                opcion = input('Error. Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Cerrar sesión \n')
+                opcion = input('Error. Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n')
         else: 
-            opcion = input('Error. Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Cerrar sesión \n')
+            opcion = input('Error. Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n')
     return x
 
 def crearHab():
@@ -199,31 +199,38 @@ def crearHab():
 def validacion_h(pregunta1, valor1, valor2):
     validacion = val_int(pregunta1)
     if validacion == True:
-        if int(pregunta1) >= valor1 and int(pregunta1) <= valor2:
-            pass
+        if int(pregunta1) > valor1 and int(pregunta1) < valor2:
+            habitacion = int(pregunta1)
         else:
             validacion = False
     return validacion
 
 def validacionpregunta2(pregunta):
-    validacion=False
+    validacion = False
     while validacion == False:
-        if val_int(pregunta):
-            x=int(pregunta)
-            if x==1 or x==2 or x==3:
-                validacion=True
-            else:
-                pregunta = input('Error. Elija una de las siguientes habitaciones: \n 1. Simple ($5000 - $15000) \n 2. Doble ($20000 - $30000) \n 3. Suite ($35000 - $45000) ')
-        else: 
-            pregunta = input('Error. Elija una de las siguientes habitaciones: \n 1. Simple ($5000 - $15000) \n 2. Doble ($20000 - $30000) \n 3. Suite ($35000 - $45000) ')
-    return x
-    
+        try:
+            int(pregunta)
+            pregunta = int(pregunta)
+            validacion = True
+        except Exception:
+            pregunta = input('Elija una de las siguientes habitaciones: \n 1. Simple ($5000 - $15000) \n 2. Doble ($20000 - $30000) \n 3. Suite ($35000 - $45000) ')
+    pregunta = str(pregunta)
+    if pregunta != '1' and pregunta != '2' and pregunta != '3':
+         pregunta = input('Elija una de las siguientes habitaciones: \n 1. Simple ($5000 - $15000) \n 2. Doble ($20000 - $30000) \n 3. Suite ($35000 - $45000) ')
+    while pregunta != '1' and pregunta != '2' and pregunta != '3':
+        pregunta = input('Elija una de las siguientes habitaciones: \n 1. Simple ($5000 - $15000) \n 2. Doble ($20000 - $30000) \n 3. Suite ($35000 - $45000) ')
+    return int(pregunta)
+        
 def validacion_preg_hab():
     pregunta = input('Elija una de las siguientes habitaciones: \n 1. Simple ($5000 - $15000) \n 2. Doble ($20000 - $30000) \n 3. Suite ($35000 - $45000) ')
     pregunta = validacionpregunta2(pregunta)
     match pregunta:
         case 1:
             pregunta1 = input('Elija una de las siguientes opciones: \n 1: Sin baño privado y sin balcón ($5000) \n 2: Con baño y sin balcón ($10000) \n 3: Con baño privado y sin balcón ($10000) \n 4: Con baño privado y con balcón ($15000) ')
+            if len(pregunta1) != 2:
+                pregunta1 = input('Elija una de las siguientes opciones: \n 1: Sin baño privado y sin balcón ($5000) \n 2: Con baño y sin balcón ($10000) \n 3: Con baño privado y sin balcón ($10000) \n 4: Con baño privado y con balcón ($15000) ')
+                while len(pregunta1) != 2:
+                    pregunta1 = input('Elija una de las siguientes opciones: \n 1: Sin baño privado y sin balcón ($5000) \n 2: Con baño y sin balcón ($10000) \n 3: Con baño privado y sin balcón ($10000) \n 4: Con baño privado y con balcón ($15000) ')
             validacion = validacion_h(pregunta1,1, 4)
             while(validacion == False):
                 pregunta1 = input('Elija una de las siguientes opciones: \n 1: Sin baño privado y sin balcón ($5000) \n 2: Con baño y sin balcón ($10000) \n 3: Con baño privado y sin balcón ($10000) \n 4: Con baño privado y con balcón ($15000)  ')
@@ -252,53 +259,26 @@ def validacion_preg_hab():
                 validacion = validacion_h(pregunta1,9,12)
             return pregunta1
         
-def comp_fecha_hoy(fecha_inicio):
-    if (fecha_inicio > datetime.today())==False:
+def comparacion_fechas(fecha_inicio, fecha_finalizacion):
+    if fecha_inicio < datetime.now():
         print('Su fecha de inicio de la estadía no es valida ')
         fecha_inicio = input('Ingrese la fecha de inicio de su estadía en el formato dd/mm/aaaa ')
         fecha_inicio = convertirfecha_datetime(fecha_inicio)
-        while (fecha_inicio > datetime.today())==False:
+        while fecha_inicio < datetime.now():
             fecha_inicio = input('Ingrese la fecha de inicio de su estadía en el formato dd/mm/aaaa ')
             fecha_inicio = convertirfecha_datetime(fecha_inicio)
-    return fecha_inicio
-        
-def comparacion_fechas(fecha_inicio, fecha_finalizacion):
-    fecha_inicio = comp_fecha_hoy(fecha_inicio)
-    fecha_finalizacion = input('Ingrese la fecha de finaliación de su estadia en el formato dd/mm/aaaa ')
-    fecha_finalizacion = convertirfecha_datetime(fecha_finalizacion)
-    if (fecha_inicio < fecha_finalizacion)==False:
+        fecha_finalizacion = input('Ingrese la fecha de finaliación de su estadia en el formato dd/mm/aaaa ')
+        fecha_finalizacion = convertirfecha_datetime(fecha_finalizacion)
+    if fecha_inicio > fecha_finalizacion:
         print('Su fecha de finalización es antes que su fecha de inicio de la estadía')
         fecha_inicio = input('Ingrese la fecha de inicio de su estadía en el formato dd/mm/aaaa ')
         fecha_inicio = convertirfecha_datetime(fecha_inicio)
         fecha_finalizacion = input('Ingrese la fecha de finaliación de su estadia en el formato dd/mm/aaaa ')
         fecha_finalizacion = convertirfecha_datetime(fecha_finalizacion)
-        while (fecha_inicio > fecha_finalizacion)==False:
+        while fecha_inicio > fecha_finalizacion:
             print('Su fecha de finalización es antes que su fecha de inicio de la estadía')
             fecha_inicio = input('Ingrese la fecha de inicio de su estadía en el formato dd/mm/aaaa ')
             fecha_inicio = convertirfecha_datetime(fecha_inicio)
             fecha_finalizacion = input('Ingrese la fecha de finaliación de su estadia en el formato dd/mm/aaaa ')
             fecha_finalizacion = convertirfecha_datetime(fecha_finalizacion)
     return fecha_inicio, fecha_finalizacion
-
-def reserva():
-    habitacion=validacion_preg_hab()
-    # print('La habitación que usted ha seleccionado es {}'.format())#hacer q se printee el str d la habitacion
-    fecha_inicio = input('Ingrese la fecha de inicio de su estadía en el formato dd/mm/aaaa ')
-    fecha_inicio = convertirfecha_datetime(fecha_inicio)
-    fecha_fin = input('Ingrese la fecha de finalización de su estadía de su estadía en el formato dd/mm/aaaa ')
-    fecha_fin = convertirfecha_datetime(fecha_fin)
-    fecha_inicio, fecha_fin = comparacion_fechas(fecha_inicio, fecha_fin)
-    return fecha_inicio, fecha_fin, habitacion
-
-def val_res(opcion):
-    validacion=False
-    while validacion == False:
-        if val_int(opcion):
-            x=int(opcion)
-            if x==1 or x==2:
-                validacion=True
-            else:
-                opcion = input('Error. Elija una opción: \n 1. Elegir otras fechas \n 2. Elegir otra habitación \n')
-        else: 
-            opcion = input('Error. Elija una opción: \n 1. Elegir otras fechas \n 2. Elegir otra habitación \n')
-    return x
