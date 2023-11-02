@@ -213,71 +213,63 @@ def validacionpregunta2(pregunta):
             if x==1 or x==2 or x==3:
                 validacion=True
             else:
-                pregunta = input('Error. Elija una de las siguientes habitaciones: \n 1. Simple ($5000 - $15000) \n 2. Doble ($20000 - $30000) \n 3. Suite ($35000 - $45000) ')
+                pregunta = input('Error. Elija una de las siguientes habitaciones: \n 1. Simple ($5000 - $15000) \n 2. Doble ($20000 - $30000) \n 3. Suite ($35000 - $45000) \n')
         else: 
-            pregunta = input('Error. Elija una de las siguientes habitaciones: \n 1. Simple ($5000 - $15000) \n 2. Doble ($20000 - $30000) \n 3. Suite ($35000 - $45000) ')
+            pregunta = input('Error. Elija una de las siguientes habitaciones: \n 1. Simple ($5000 - $15000) \n 2. Doble ($20000 - $30000) \n 3. Suite ($35000 - $45000) \n')
     return x
     
 def validacion_preg_hab():
-    pregunta = input('Elija una de las siguientes habitaciones: \n 1. Simple ($5000 - $15000) \n 2. Doble ($20000 - $30000) \n 3. Suite ($35000 - $45000) ')
+    pregunta = input('Elija una de las siguientes habitaciones: \n 1. Simple ($5000 - $15000) \n 2. Doble ($20000 - $30000) \n 3. Suite ($35000 - $45000) \n')
     pregunta = validacionpregunta2(pregunta)
     match pregunta:
         case 1:
-            pregunta1 = input('Elija una de las siguientes opciones: \n 1: Sin baño privado y sin balcón ($5000) \n 2: Con baño y sin balcón ($10000) \n 3: Con baño privado y sin balcón ($10000) \n 4: Con baño privado y con balcón ($15000) ')
+            pregunta1 = input('Elija una de las siguientes opciones: \n 1: Sin baño privado y sin balcón ($5000) \n 2: Con baño y sin balcón ($10000) \n 3: Con baño privado y sin balcón ($10000) \n 4: Con baño privado y con balcón ($15000) \n')
             validacion = validacion_h(pregunta1,1, 4)
             while(validacion == False):
-                pregunta1 = input('Elija una de las siguientes opciones: \n 1: Sin baño privado y sin balcón ($5000) \n 2: Con baño y sin balcón ($10000) \n 3: Con baño privado y sin balcón ($10000) \n 4: Con baño privado y con balcón ($15000)  ')
+                pregunta1 = input('Elija una de las siguientes opciones: \n 1: Sin baño privado y sin balcón ($5000) \n 2: Con baño y sin balcón ($10000) \n 3: Con baño privado y sin balcón ($10000) \n 4: Con baño privado y con balcón ($15000)  \n')
                 validacion = validacion_h(pregunta1,1,4)
             return pregunta1
         case 2:
-            pregunta1 = input('Elija una de las siguientes opciones: \n 5: Sin baño privado y sin balcón ($20000) \n 6: Con baño y sin balcón ($25000) \n 7: Con baño privado y sin balcón ($25000) \n 8: Con baño privado y con balcón ($30000) ')
-            if len(pregunta1) != 2:
-                pregunta1 = input('Elija una de las siguientes opciones: \n 5: Sin baño privado y sin balcón ($20000) \n 6: Con baño y sin balcón ($25000) \n 7: Con baño privado y sin balcón ($25000) \n 8: Con baño privado y con balcón ($30000) ')
-                while len(pregunta1) != 2:
-                    pregunta1 = input('Elija una de las siguientes opciones: \n 5: Sin baño privado y sin balcón ($20000) \n 6: Con baño y sin balcón ($25000) \n 7: Con baño privado y sin balcón ($25000) \n 8: Con baño privado y con balcón ($30000) ')
+            pregunta1 = input('Elija una de las siguientes opciones: \n 5: Sin baño privado y sin balcón ($20000) \n 6: Con baño y sin balcón ($25000) \n 7: Con baño privado y sin balcón ($25000) \n 8: Con baño privado y con balcón ($30000) \n')
             validacion = validacion_h(pregunta1,5,8)
             while(validacion == False):
-                pregunta1 = input('Elija una de las siguientes opciones: \n 5: Sin baño privado y sin balcón ($20000) \n 6: Con baño y sin balcón ($25000) \n 7: Con baño privado y sin balcón ($25000) \n 8: Con baño privado y con balcón ($30000) ')
+                pregunta1 = input('Elija una de las siguientes opciones: \n 5: Sin baño privado y sin balcón ($20000) \n 6: Con baño y sin balcón ($25000) \n 7: Con baño privado y sin balcón ($25000) \n 8: Con baño privado y con balcón ($30000) \n')
                 validacion = validacion_h(pregunta1,5,8)
             return pregunta1
         case 3:
-            pregunta1 = input('Elija una de las siguientes opciones: \n 9: Sin baño privado y sin balcón ($35000) \n 10: Con baño y sin balcón ($40000) \n 11: Con baño privado y sin balcón ($40000) \n 12: Con baño privado y con balcón ($45000) ')
-            if len(pregunta1) != 2:
-                pregunta1 = input('Elija una de las siguientes opciones: \n 9: Sin baño privado y sin balcón ($35000) \n 10: Con baño y sin balcón ($40000) \n 11: Con baño privado y sin balcón ($40000) \n 12: Con baño privado y con balcón ($45000) ')
-                while len(pregunta1) != 2:
-                    pregunta1 = input('Elija una de las siguientes opciones: \n 9: Sin baño privado y sin balcón ($35000) \n 10: Con baño y sin balcón ($40000) \n 11: Con baño privado y sin balcón ($40000) \n 12: Con baño privado y con balcón ($45000) ')
+            pregunta1 = input('Elija una de las siguientes opciones: \n 9: Sin baño privado y sin balcón ($35000) \n 10: Con baño y sin balcón ($40000) \n 11: Con baño privado y sin balcón ($40000) \n 12: Con baño privado y con balcón ($45000) \n')
             validacion = validacion_h(pregunta1,9,12)
             while(validacion == False):
-                pregunta1 = input('Elija una de las siguientes opciones: \n 9: Sin baño privado y sin balcón ($35000) \n 10: Con baño y sin balcón ($40000) \n 11: Con baño privado y sin balcón ($40000) \n 12: Con baño privado y con balcón ($45000) ')
+                pregunta1 = input('Elija una de las siguientes opciones: \n 9: Sin baño privado y sin balcón ($35000) \n 10: Con baño y sin balcón ($40000) \n 11: Con baño privado y sin balcón ($40000) \n 12: Con baño privado y con balcón ($45000) \n')
                 validacion = validacion_h(pregunta1,9,12)
             return pregunta1
         
 def comp_fecha_hoy(fecha_inicio):
-    if (fecha_inicio > datetime.today())==False:
-        print('Su fecha de inicio de la estadía no es valida ')
-        fecha_inicio = input('Ingrese la fecha de inicio de su estadía en el formato dd/mm/aaaa ')
-        fecha_inicio = convertirfecha_datetime(fecha_inicio)
-        while (fecha_inicio > datetime.today())==False:
+    validacion = False
+    while validacion == False:
+        if (fecha_inicio > datetime.today())==False:
+            print('Su fecha de inicio de la estadía no es valida ')
             fecha_inicio = input('Ingrese la fecha de inicio de su estadía en el formato dd/mm/aaaa ')
             fecha_inicio = convertirfecha_datetime(fecha_inicio)
+        else:
+            validacion = True
     return fecha_inicio
         
-def comparacion_fechas(fecha_inicio, fecha_finalizacion):
+def comparacion_fechas(fecha_inicio):
     fecha_inicio = comp_fecha_hoy(fecha_inicio)
     fecha_finalizacion = input('Ingrese la fecha de finaliación de su estadia en el formato dd/mm/aaaa ')
     fecha_finalizacion = convertirfecha_datetime(fecha_finalizacion)
-    if (fecha_inicio < fecha_finalizacion)==False:
-        print('Su fecha de finalización es antes que su fecha de inicio de la estadía')
-        fecha_inicio = input('Ingrese la fecha de inicio de su estadía en el formato dd/mm/aaaa ')
-        fecha_inicio = convertirfecha_datetime(fecha_inicio)
-        fecha_finalizacion = input('Ingrese la fecha de finaliación de su estadia en el formato dd/mm/aaaa ')
-        fecha_finalizacion = convertirfecha_datetime(fecha_finalizacion)
-        while (fecha_inicio > fecha_finalizacion)==False:
+    validacion = False
+    while validacion == False:
+        if (fecha_inicio < fecha_finalizacion)==False:
             print('Su fecha de finalización es antes que su fecha de inicio de la estadía')
             fecha_inicio = input('Ingrese la fecha de inicio de su estadía en el formato dd/mm/aaaa ')
             fecha_inicio = convertirfecha_datetime(fecha_inicio)
+            fecha_inicio = comp_fecha_hoy(fecha_inicio)
             fecha_finalizacion = input('Ingrese la fecha de finaliación de su estadia en el formato dd/mm/aaaa ')
             fecha_finalizacion = convertirfecha_datetime(fecha_finalizacion)
+        else:
+            validacion = True
     return fecha_inicio, fecha_finalizacion
 
 def reserva():
@@ -285,9 +277,7 @@ def reserva():
     # print('La habitación que usted ha seleccionado es {}'.format())#hacer q se printee el str d la habitacion
     fecha_inicio = input('Ingrese la fecha de inicio de su estadía en el formato dd/mm/aaaa ')
     fecha_inicio = convertirfecha_datetime(fecha_inicio)
-    fecha_fin = input('Ingrese la fecha de finalización de su estadía de su estadía en el formato dd/mm/aaaa ')
-    fecha_fin = convertirfecha_datetime(fecha_fin)
-    fecha_inicio, fecha_fin = comparacion_fechas(fecha_inicio, fecha_fin)
+    fecha_inicio, fecha_fin = comparacion_fechas(fecha_inicio)
     return fecha_inicio, fecha_fin, habitacion
 
 def val_res(opcion):

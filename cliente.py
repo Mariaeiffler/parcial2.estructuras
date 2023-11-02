@@ -9,15 +9,19 @@ class Cliente(Persona):
         self.reservas= reservas
     
     def realizar_reserva(self, lista, diccionario:dict):
-        fecha_inicio, fecha_fin, habitacion = reserva()
+        fecha_inicio, fecha_fin, hab = reserva()
         for habitacion in lista:
-            if habitacion.numero == habitacion:
+            print(habitacion.numero)
+            if habitacion.numero == int(hab):
                 if len(habitacion.reservas) == 0:
                     fechas = [fecha_inicio,fecha_fin]
                     habitacion.reservas.append(fechas)
+                    num_reserva = len(diccionario)+1
+                    print('Su reserva se realizó con exito en las fechas {} - {} y su numero de reserva es '.format(fecha_inicio,fecha_fin,num_reserva))
                 else:
                     validacion = True
                     for estadia in habitacion.reservas:
+                        print(estadia)
                         if (estadia[0]<fecha_inicio and estadia[1]<fecha_fin) or (estadia[0]>fecha_inicio and estadia[1]>fecha_fin):
                             pass
                         else:
@@ -27,6 +31,9 @@ class Cliente(Persona):
                         fechas = [fecha_inicio,fecha_fin]
                         habitacion.reservas.append(fechas)
                         self.reservas.append(fechas)
+                        print(fechas)
+                        print(self.reservas)
+                        print(diccionario)
                         num_reserva = len(diccionario)+1
                         print('Su reserva se realizó con exito en las fechas {} - {} y su numero de reserva es '.format(fecha_inicio,fecha_fin,num_reserva))
                         #hay q ver el tema d los gastos xq aca tambien habria que agregar ese costo
