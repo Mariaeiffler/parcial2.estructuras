@@ -138,9 +138,16 @@ def valPalabraDic (palabra,dicc:dict):
         return True
     else:
         return False
-
-# def valiSignIn (usuario,contrasena,dic1:dict,dic2:dict):
-#     while usuario not in (dic1 or dic2) or : --> chequear que pertenezca al diccionario de empleadps o de clientes y verificar que la contraseña sea la que corresponde al usuario 
+    
+def valSignIn (dicc1:dict,dicc2:dict):
+    validacion=True
+    while validacion:
+        usuario=input('Ingrese su nombre de usuario: ')
+        contrasena=input('Ingrese su contrasena: ')
+        if valPalabraDic(usuario,dicc1):
+            if dicc1[usuario]==contrasena: #buscar como hacer esto
+                validacion=False
+                
         
 
 def menuPPL(): 

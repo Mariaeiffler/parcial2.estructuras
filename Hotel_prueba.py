@@ -9,7 +9,7 @@ from Habitacion_Simple import *
 from Habitacion_Suite import *
 import pickle
 from Tareas_Empleados import tareas_empleados 
-from prueba_menu import *
+from prueba_menu import * #despues si lo seguimos usando cambiarle el nombre
 from Reserva import Reserva
 from datetime import *
 
@@ -35,6 +35,7 @@ class Hotel():
                     self.clientes[usuario]=cliente
                     print('Su usuario se ha creado con exito')
                 case 2:
+
                     
                     while pregcliente != 5: #en realidad hay q moverlo a case 2 pero no se bien como seria
                         if pregcliente == 1:
