@@ -1,5 +1,6 @@
 from Persona import Persona
 from prueba_menu import reserva
+from prueba_menu import val_numres
 
 
 class Cliente(Persona):
@@ -11,17 +12,16 @@ class Cliente(Persona):
     def realizar_reserva(self, lista, diccionario:dict):
         fecha_inicio, fecha_fin, hab = reserva()
         for habitacion in lista:
-            print(habitacion.numero)
             if habitacion.numero == int(hab):
                 if len(habitacion.reservas) == 0:
                     fechas = [fecha_inicio,fecha_fin]
                     habitacion.reservas.append(fechas)
                     num_reserva = len(diccionario)+1
-                    print('Su reserva se realizó con exito en las fechas {} - {} y su numero de reserva es '.format(fecha_inicio,fecha_fin,num_reserva))
+                    print('Su reserva se realizó con exito en las fechas {} - {} y su numero de reserva es {}'.format(fecha_inicio,fecha_fin,num_reserva))
+                    #quiero q se imprima sin la hora como hago?
                 else:
                     validacion = True
                     for estadia in habitacion.reservas:
-                        print(estadia)
                         if (estadia[0]<fecha_inicio and estadia[1]<fecha_fin) or (estadia[0]>fecha_inicio and estadia[1]>fecha_fin):
                             pass
                         else:
@@ -31,18 +31,24 @@ class Cliente(Persona):
                         fechas = [fecha_inicio,fecha_fin]
                         habitacion.reservas.append(fechas)
                         self.reservas.append(fechas)
-                        print(fechas)
-                        print(self.reservas)
-                        print(diccionario)
                         num_reserva = len(diccionario)+1
-                        print('Su reserva se realizó con exito en las fechas {} - {} y su numero de reserva es '.format(fecha_inicio,fecha_fin,num_reserva))
+                        print(num_reserva)
+                        print('Su reserva se realizó con exito en las fechas {} - {} y su numero de reserva es {}'.format(fecha_inicio,fecha_fin,num_reserva))
                         #hay q ver el tema d los gastos xq aca tambien habria que agregar ese costo
                     else:
                         preg = input('En las fechas ingresadas la habitación seleccionada ya esta ocupada \n Elija una opción: \n 1. Elegir otras fechas \n 2. Elegir otra habitación \n')
                         # preg = val_res(preg)
                         # if preg == 1:
-                            
         return (num_reserva, fecha_inicio, fecha_fin, habitacion)
+    
+    def modificar_reserva(self, reshotel:dict):
+        numres = input('Ingrese su numero de reserva  ')
+        numres = val_numres(numres, reshotel)
+        for keys in reshotel:
+            if keys == numres:
+                #que printee las fechas y le pregunte que fecha quiere modificiar
+                #tambien tiene q poder modificar la habitacion que reservo
+                pass
     
     # def modificar_reserva(self, lista):
     #     fecha = input('Introduzca el día que realizó la reserva en el formato dd/mm/aaaa')

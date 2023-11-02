@@ -35,8 +35,9 @@ class Hotel():
                     self.clientes[usuario]=cliente
                     print('Su usuario se ha creado con exito')
                 case 2:
-
-                    
+                    #hay q hacer que inicio sesion
+                    pregcliente=input('Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Cerrar Sesión \n')
+                    pregcliente=valiPregCliente(pregcliente)
                     while pregcliente != 5: #en realidad hay q moverlo a case 2 pero no se bien como seria
                         if pregcliente == 1:
                             num_reserva,fecha_inicio,fecha_fin,habitacion=Cliente.realizar_reserva(cliente, self.habitaciones, self.reservas)
@@ -44,6 +45,17 @@ class Hotel():
                             self.reservas[num_reserva]=reserva
                             pregcliente=input('Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Cerrar Sesión \n')
                             pregcliente=valiPregCliente(pregcliente)
+                        if pregcliente == 2:
+                            # buffet
+                            pass
+                        if pregcliente == 3:
+                            # modificar reserva
+                            pass
+                        if pregcliente == 4:
+                            # cancelar reserva
+                            pass
+                        if pregcliente == 5:
+                            seguir = False
                 
     #         case 2:
     #             #validar que exista el usuario y que la contrasena sea correcta

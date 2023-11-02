@@ -188,14 +188,14 @@ if __name__=='__main__':
 def valiPregCliente(pregcliente):
     validacion=False
     while validacion == False:
-        if val_int(opcion):
-            x=int(opcion)
+        if val_int(pregcliente):
+            x=int(pregcliente)
             if x==1 or x==2 or x==3 or x==4:
                 validacion=True
             else:
-                opcion = input('Error. Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n')
+                pregcliente = input('Error. Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n')
         else: 
-            opcion = input('Error. Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n')
+            pregcliente = input('Error. Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n')
     return x
 
 def crearHab():
@@ -216,7 +216,7 @@ def crearHab():
 def validacion_h(pregunta1, valor1, valor2):
     validacion = val_int(pregunta1)
     if validacion == True:
-        if int(pregunta1) > valor1 and int(pregunta1) < valor2:
+        if int(pregunta1) >= valor1 and int(pregunta1) <= valor2:
             habitacion = int(pregunta1)
         else:
             validacion = False
@@ -309,3 +309,21 @@ def val_res(opcion):
         else: 
             opcion = input('Error. Elija una opción: \n 1. Elegir otras fechas \n 2. Elegir otra habitación \n')
     return x
+
+def val_numres(numero, diccionario:dict()):
+    validacion1=False
+    validacion2=False
+    while validacion1 == False and validacion2 == False:
+        if val_int(numero):
+            numero=int(numero)
+            validacion1=True
+        else: 
+            numero = input('Error. Ingrese su numero de reserva  ')
+        if numero in diccionario:        
+            validacion2=True
+        else:
+            print('Su numero de reserva es incorrecto')
+            numero = input('Ingrese su numero de reserva  ')
+    return numero
+        
+        
