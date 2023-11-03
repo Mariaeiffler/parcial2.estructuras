@@ -176,7 +176,9 @@ def valTipoUsuario (usuario,dicc1:dict,dicc2:dict):
         empleado=dicc2.get(usuario)
         tipo=cliente.tipo
     return cliente,empleado,tipo
-                
+
+
+    
 if __name__=='__main__':
     dni='Milia4'
     dni=validacionusuario(dni)
