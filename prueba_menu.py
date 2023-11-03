@@ -331,9 +331,8 @@ def val_numres(numero, diccionario:dict(), nombre):
             numero = input('Error. Ingrese su numero de reserva  ')
         if numero in diccionario: 
             reserva = diccionario.get(numero) 
-            usuario = reserva.usuario.usuario
+            usuario = reserva.usuario
             if nombre == usuario:
-                print(diccionario.get(numero))    
                 validacion2=True
         else:
             print('Su numero de reserva es incorrecto')
@@ -363,10 +362,24 @@ def hab_ocupada(fecha_inicio, fecha_fin, hab, lista):
             else:
                 i = 0
                 for estadia in habitacion.reservas:
-                    if (estadia[0]<fecha_inicio and estadia[1]<fecha_fin) or (estadia[0]>fecha_inicio and estadia[1]>fecha_fin):
+                    if (estadia[0]>=fecha_fin) or (estadia[1]<=fecha_inicio):
                         i+=1
                         print('hola')
                 if i == len(habitacion.reservas):
                     val = True
     return val
 
+def modi_hab(val, preg, fecha_inicio, fecha_fin, hab, lista):
+    while val == False:
+        if preg == 1:
+            fecha_inicio = input('Ingrese la fecha de inicio de su estadía en el formato dd/mm/aaaa ')
+            fecha_inicio = convertirfecha_datetime(fecha_inicio)
+            fecha_inicio, fecha_fin = comparacion_fechas(fecha_inicio)
+            val = hab_ocupada(fecha_inicio, fecha_fin, hab, lista)
+        if preg == 2:
+            hab = validacion_preg_hab()
+            val = hab_ocupada(fecha_inicio, fecha_fin, hab, lista)
+        if preg == 3:
+            fecha_inicio, fecha_fin, hab = reserva()
+            val = hab_ocupada(fecha_inicio, fecha_fin, hab, lista)
+    return val, fecha_inicio, fecha_fin, hab
