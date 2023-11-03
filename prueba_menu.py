@@ -138,7 +138,7 @@ def valPalabraDic (palabra,dicc:dict):
     else:
         return False
     
-def valSignIn (dicc1:dict):
+def valSignIn (dicc1:dict, dicc2:dict):
     validacion=True
     usuario=input('Ingrese su nombre de usuario: ')
     contrasena=input('Ingrese su contrasena: ')
@@ -151,12 +151,19 @@ def valSignIn (dicc1:dict):
                 print('El nombre de usuario o su contraseña son incorrectos')
                 usuario=input('Ingrese su nombre de usuario: ')
                 contrasena=input('Ingrese su contrasena: ')
+        elif valPalabraDic(usuario,dicc2):
+            cliente=dicc2.get(usuario)
+            if cliente.contrasena==contrasena:
+                validacion=False
+            else:
+                print('El nombre de usuario o su contraseña son incorrectos')
+                usuario=input('Ingrese su nombre de usuario: ')
+                contrasena=input('Ingrese su contrasena: ')
         else:
             print('El nombre de usuario o su contraseña son incorrectos')
             usuario=input('Ingrese su nombre de usuario: ')
             contrasena=input('Ingrese su contrasena: ')
-            # if dicc1[usuario]==contrasena: #buscar como hacer esto
-            #     validacion=False
+            
     return usuario, contrasena
                 
 if __name__=='__main__':
