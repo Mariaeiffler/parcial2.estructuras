@@ -47,7 +47,7 @@ class Hotel():
                     self.clientes[usuario]=cliente
                     print('Su usuario se ha creado con exito')
                 case 2:
-                    usuario, contrasena = valSignIn (self.clientes)
+                    usuario, contrasena = valSignIn (self.clientes, self.empleados)
                     cliente,empleado,tipo = valTipoUsuario(usuario,self.clientes,self.empleados) #para hacer el match case y probar (NO OLVIDARSE)
                     if cliente:
                         pregcliente=input('Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Cerrar Sesión \n')
@@ -76,7 +76,7 @@ class Hotel():
                                 seguir = False
                     else:
                         if tipo=='gerente':
-                            
+                            pregGerente=input('Elija una de las siguientes opciones: \n 1. Crear un cliente \n 2. Dar de baja un cliente \n 3. Inventario del personal \n 4. Ver estadísticas \n 5. Nomina de Clientes \n 6. Asignar Tarea \n 7. Historial de baja de empleados \n 8. Historial de Reservas ')
                         else:
                             
                 
