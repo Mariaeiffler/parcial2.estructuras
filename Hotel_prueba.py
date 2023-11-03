@@ -47,32 +47,39 @@ class Hotel():
                     self.clientes[usuario]=cliente
                     print('Su usuario se ha creado con exito')
                 case 2:
-                    usuario, contrasena = valSignIn (self.clientes, self.empleados)
-                    pregcliente=input('Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Cerrar Sesión \n')
-                    imprimir='Error. Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Cerrar Sesión \n'
-                    pregcliente=val_opc(pregcliente,1,5,imprimir)
-                    while pregcliente != 5:
-                        if pregcliente == 1:
-                            num_reserva,fecha_inicio,fecha_fin,habitacion=Cliente.realizar_reserva(self.clientes.get(usuario), self.habitaciones, self.reservas)
-                            reserva=Reserva(num_reserva,self.clientes.get(usuario), fecha_inicio, fecha_fin, habitacion, datetime.today())
-                            self.reservas[num_reserva]=reserva
-                            pregcliente=input('Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Cerrar Sesión \n')
-                            imprimir='Error. Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Cerrar Sesión \n'
-                            pregunta=val_opc(pregcliente,1,5,imprimir)
-                        if pregcliente == 2:
-                            # buffet
-                            pass
-                        if pregcliente == 3:
-                            Cliente.modificar_reserva(self.clientes.get(usuario), self.reservas, self.habitaciones)
-                            pass
-                        if pregcliente == 4:
-                            # cancelar reserva
-                            pass
-                        if pregcliente == 5:
-                            with open ('hotel.pickle','wb') as hpickle:
-                                pickle.dump(self,hpickle)
-                            seguir = False
-            
+                    usuario, contrasena = valSignIn (self.clientes)
+                    cliente,empleado,tipo = valTipoUsuario(usuario,self.clientes,self.empleados) #para hacer el match case y probar (NO OLVIDARSE)
+                    if cliente:
+                        pregcliente=input('Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Cerrar Sesión \n')
+                        imprimir='Error. Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Cerrar Sesión \n'
+                        pregcliente=val_opc(pregcliente,1,5,imprimir)
+                        while pregcliente != 5:
+                            if pregcliente == 1:
+                                num_reserva,fecha_inicio,fecha_fin,habitacion=Cliente.realizar_reserva(self.clientes.get(usuario), self.habitaciones, self.reservas)
+                                reserva=Reserva(num_reserva,self.clientes.get(usuario), fecha_inicio, fecha_fin, habitacion, datetime.today())
+                                self.reservas[num_reserva]=reserva
+                                pregcliente=input('Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Cerrar Sesión \n')
+                                imprimir='Error. Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Cerrar Sesión \n'
+                                pregunta=val_opc(pregcliente,1,5,imprimir)
+                            if pregcliente == 2:
+                                # buffet
+                                pass
+                            if pregcliente == 3:
+                                Cliente.modificar_reserva(self.clientes.get(usuario), self.reservas, self.habitaciones)
+                                pass
+                            if pregcliente == 4:
+                                # cancelar reserva
+                                pass
+                            if pregcliente == 5:
+                                with open ('hotel.pickle','wb') as hpickle:
+                                    pickle.dump(self,hpickle)
+                                seguir = False
+                    else:
+                        if tipo=='gerente':
+                            
+                        else:
+                            
+                
     # def obtener_inventario_empleados(self):
     #     empleado:Personal
     #     for key, empleado in self.empleados.item():
@@ -87,6 +94,7 @@ class Hotel():
         
 if __name__ == "__main__":
     hotel=Hotel('POO')
+    print(hotel.habitaciones)
     hotel.entrar()
     
     # habitacion1 = 1
