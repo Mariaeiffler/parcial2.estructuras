@@ -203,18 +203,18 @@ def validacion_h(pregunta1, valor1, valor2):
             validacion = False
     return validacion
 
-def validacionpregunta2(pregunta):
-    validacion = False
-    while validacion == False:
-        if val_int(pregunta):
-            x=int(pregunta)
-            if x==1 or x==2 or x==3:
-                validacion=True
-            else:
-                pregunta = input('Error. Elija una de las siguientes habitaciones: \n 1. Simple ($5000 - $15000) \n 2. Doble ($20000 - $30000) \n 3. Suite ($35000 - $45000) \n')
-        else: 
-            pregunta = input('Error. Elija una de las siguientes habitaciones: \n 1. Simple ($5000 - $15000) \n 2. Doble ($20000 - $30000) \n 3. Suite ($35000 - $45000) \n')
-    return x
+# def validacionpregunta2(pregunta):
+#     validacion = False
+#     while validacion == False:
+#         if val_int(pregunta):
+#             x=int(pregunta)
+#             if x==1 or x==2 or x==3:
+#                 validacion=True
+#             else:
+#                 pregunta = input('Error. Elija una de las siguientes habitaciones: \n 1. Simple ($5000 - $15000) \n 2. Doble ($20000 - $30000) \n 3. Suite ($35000 - $45000) \n')
+#         else: 
+#             pregunta = input('Error. Elija una de las siguientes habitaciones: \n 1. Simple ($5000 - $15000) \n 2. Doble ($20000 - $30000) \n 3. Suite ($35000 - $45000) \n')
+#     return x
     
 def validacion_preg_hab():
     pregunta = input('Elija una de las siguientes habitaciones: \n 1. Simple ($5000 - $15000) \n 2. Doble ($20000 - $30000) \n 3. Suite ($35000 - $45000) \n')
@@ -310,18 +310,18 @@ def val_numres(numero, diccionario:dict(), nombre):
             numero = input('Ingrese su numero de reserva  ')
     return numero
         
-def val_preg_mod(opcion):
-    validacion=False
-    while validacion == False:
-        if val_int(opcion):
-            x=int(opcion)
-            if x==1 or x==2 or x==3:
-                validacion=True
-            else:
-                opcion = input('Error. Elija una opcion: \n 1. Elegir otras fechas \n 2. Elegir otra habitación \n 3. Elegir una nueva habitación y otras fechas \n')
-        else: 
-            opcion = input('Error. Elija una opcion: \n 1. Elegir otras fechas \n 2. Elegir otra habitación \n 3. Elegir una nueva habitación y otras fechas \n')
-    return x
+# def val_preg_mod(opcion):
+#     validacion=False
+#     while validacion == False:
+#         if val_int(opcion):
+#             x=int(opcion)
+#             if x==1 or x==2 or x==3:
+#                 validacion=True
+#             else:
+#                 opcion = input('Error. Elija una opcion: \n 1. Elegir otras fechas \n 2. Elegir otra habitación \n 3. Elegir una nueva habitación y otras fechas \n')
+#         else: 
+#             opcion = input('Error. Elija una opcion: \n 1. Elegir otras fechas \n 2. Elegir otra habitación \n 3. Elegir una nueva habitación y otras fechas \n')
+#     return x
 
 
 def hab_ocupada(fecha_inicio, fecha_fin, hab, lista):
