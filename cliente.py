@@ -30,19 +30,19 @@ class Cliente(Persona):
                 num_reserva = len(diccionario)+1
                 # falta lo d cobros
                 print('Su reserva se realizó con exito en las fechas {} - {} y su numero de reserva es {}. \n Recuerde que el horario de check in es desde las 15:00 hs y el check out hasta las 12:00 hs'.format(fecha_inicio.strftime('%d/%m/%Y'),fecha_fin.strftime('%d/%m/%Y'),num_reserva))     
-        return (num_reserva, fecha_inicio, fecha_fin, habitacion)
+        return num_reserva, fecha_inicio, fecha_fin, int(hab)
     
     def modificar_reserva(self, reservas:dict, lista):
         numres = input('Ingrese su numero de reserva  ')
         numres = val_numres(numres, reservas, self.usuario)
         reserva = reservas.get(numres)
         print(reserva)
-        val = True
+        val = False
         while val == False:
             preg = input('Elija una opción: \n 1. Elegir otras fechas \n 2. Elegir otra habitación \n 3. Elegir una nueva habitación y otras fechas \n')
             imprimir = 'Error. Elija una opcion: \n 1. Elegir otras fechas \n 2. Elegir otra habitación \n 3. Elegir una nueva habitación y otras fechas \n'
             preg = val_opc(preg, 1, 3, imprimir)
-            val, fecha_inicio, fecha_fin, hab = modi_hab(val, preg, reserva.fecha_inicio, reserva.fecha_fin, reserva.hab, lista)
+            val, fecha_inicio, fecha_fin, hab = modi_hab(val, preg, reserva.fecha_inicio, reserva.fecha_finalizacion, reserva.hab, lista)
         for hab in lista:
             print(hab.numero)
             if hab.numero == hab:

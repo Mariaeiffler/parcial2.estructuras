@@ -35,6 +35,10 @@ class Hotel():
             with open ('hotel.pickle','wb') as hpickle:
                 pickle.dump(self,hpickle)
         #podriamos ponerlo en una funcion (no estoy segura)
+        print(self.reservas.get(1))
+        for i in self.habitaciones:
+            print(i)
+            print(i.reservas)
         seguir = True 
         while seguir==True: #Fijarnos si queremos poner el while aca o en alguna otra parte del programa
             pregunta=input(('Elija una de las siguientes opciones: \n 1. Sign up (si es un cliente) \n 2. Sign in \n')) #crear una opcion para cerrar programa o que lo pueda hacer solo el gerente (tipo metodo cerrar pagina del hotel y ahi se cierre el programa y se guarde el hotel?
@@ -94,7 +98,7 @@ class Hotel():
         
 if __name__ == "__main__":
     hotel=Hotel('POO')
-    print(hotel.habitaciones)
+
     hotel.entrar()
     
     # habitacion1 = 1
