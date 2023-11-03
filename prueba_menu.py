@@ -113,7 +113,7 @@ def validacioncontrasena(contrasena):
         contrasena = input ('Ingrese una contraseña valida, que contenga una mayuscula y un numero: ')
     return contrasena
 
-def infoPersonas (dicc1:dict,dicc2:dict):
+def infoPersonas (dicc1:dict,dicc2:dict):   
     nombre=input('Introduzca su nombre y apellido: ')
     nombre=valNombre2(nombre)
     # en esta validacion no se fija q no tenga espacios? si tiene q poner su nombre y apellido tiene q tener un espacio
