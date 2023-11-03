@@ -113,6 +113,6 @@ def pedido_buffet(pedido):
     cola.insert(0,pedido)
     return cola
 
-def terminar_pedido():
-    self.cola.pop()
+# def terminar_pedido():
+#     self.cola.pop()
 

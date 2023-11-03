@@ -1,5 +1,4 @@
 from datetime import *
-#from cliente import Cliente
 from Habitacion_Doble import *
 from Habitacion_Simple import *
 from Habitacion_Suite import *
@@ -160,34 +159,6 @@ def valSignIn (dicc1:dict):
             #     validacion=False
     return usuario, contrasena
                 
-def menuPPL(): 
-    opcion =input(('Elija una de las siguientes opciones: \n 1. Sign up \n 2.Sign in \n'))
-    opcion=val_opc (opcion)
-    match opcion:
-        case 1:
-            nombre,dni,direccion,contacto,fecha_nac,mail,usuario,contrasena=infoPersonas()
-            empleado=False
-            #cliente=Cliente(nombre,usuario,dni,direccion,contacto,fecha_nac,mail,empleado,contrasena) #creo que el soyEmpleado en cliente esta de mas
-            #clientesDict[cliente.dni]= cliente # --> chequear que funcione bien lo de agregarse al diccionario y fijarse si queremos que la llave sea el dni o el nombre de usuario, tal vez no hace falta el cliente antes del dni pero si hay que agregar el self adelante del diccionario 
-        case 2:
-            usuario=input('Escriba el nombre de usuario: ')
-            contrasena=input('Escriba una contrasena que contenga por lo menos una mayuscula y un numero: ')
-            # usuario,contrasena=valiSignIn(usuario,contrasena,clientesDict,empleadosDict)
-            
-hola={
-    'Milia6':'h',
-    'Milia7':'o',
-    'Milia8':'l',
-    'Milia9':'a'
-}
-chau={
-    'Milia1':'c',
-    'Milia3':'h',
-    'Milia4':"a",
-    'Milia5':'u'
-}
-
-      
 if __name__=='__main__':
     dni='Milia4'
     dni=validacionusuario(dni)
