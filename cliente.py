@@ -18,7 +18,6 @@ class Cliente(Persona):
         fecha_inicio, fecha_fin, hab = reserva()
         val = hab_ocupada(fecha_inicio, fecha_fin, hab, lista)
     #hay q ver q pasa el dia d check out d alguien es el dia d check in d otro
-        
         while (val==False):
             print('En las fechas ingresadas la habitación seleccionada ya está ocupada. Acá puede ser la ocupación de la misma:')
             for habitacion in lista:
@@ -42,19 +41,19 @@ class Cliente(Persona):
                 fechas = [fecha_inicio,fecha_fin]
                 habitacion.reservas.append(fechas)
                 num_reserva = len(diccionario)+1
-                print('Su reserva se realizó con exito en las fechas {} - {} y su numero de reserva es {}'.format(fecha_inicio.strftime('%d/%m/%Y'),fecha_fin.strftime('%d/%m/%Y'),num_reserva))
-                
+                print('Su reserva se realizó con exito en las fechas {} - {} y su numero de reserva es {}'.format(fecha_inicio.strftime('%d/%m/%Y'),fecha_fin.strftime('%d/%m/%Y'),num_reserva))     
         return (num_reserva, fecha_inicio, fecha_fin, habitacion)
     
     def modificar_reserva(self, reservas:dict, habitaciones):
         numres = input('Ingrese su numero de reserva  ')
         numres = val_numres(numres, reservas, self.usuario)
-        preg=input('Elija una opcion: \n 1. Modificar las fechas \n 2. Mofificar la habitación \n')
-        preg=val_preg_mod(preg)
-        seguir = True
         reserva = reservas.get(numres)
         numhab = reserva.habitacion
         print(numhab)
+        preg = input('Elija una opción: \n 1. Elegir otras fechas \n 2. Elegir otra habitación \n 3. Elegir una nueva habitación y otras fechas \n')
+        preg = val_preg_mod(preg)
+        seguir = True
+
         for hab in habitaciones:
             print(hab.numero)
             if hab.numero == numhab:
