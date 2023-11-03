@@ -3,6 +3,7 @@ from prueba_menu import reserva
 from prueba_menu import val_numres
 from prueba_menu import val_preg_mod
 from prueba_menu import val_res
+from prueba_menu import hab_ocupada
 
 
 class Cliente(Persona):
@@ -13,35 +14,20 @@ class Cliente(Persona):
     
     def realizar_reserva(self, lista, diccionario:dict):
         fecha_inicio, fecha_fin, hab = reserva()
-        print(fecha_inicio)
-        for habitacion in lista:
-            if habitacion.numero == int(hab):
-                if len(habitacion.reservas) == 0:
+        val = hab_ocupada(fecha_inicio, fecha_fin, hab, lista)
+        if val:
+            for habitacion in lista:
+                if habitacion.numero == int(hab):
                     fechas = [fecha_inicio,fecha_fin]
                     habitacion.reservas.append(fechas)
                     num_reserva = len(diccionario)+1
-                    print('Su reserva se realizó con exito en las fechas {} - {} y su numero de reserva es {}'.format(fecha_inicio,fecha_fin,num_reserva))
-                    #quiero q se imprima sin la hora como hago?
-                else:
-                    validacion = True
-                    while validacion:
-                        for estadia in habitacion.reservas:
-                            if (estadia[0]<fecha_inicio and estadia[1]<fecha_fin) or (estadia[0]>fecha_inicio and estadia[1]>fecha_fin):
-                                pass
-                            else:
-                                fechas = [fecha_inicio,fecha_fin]
-                                habitacion.reservas.append(fechas)
-                                print(habitacion.reservas)
-                                self.reservas.append(fechas)
-                                num_reserva = len(diccionario)+1
-                                print('Su reserva se realizó con exito en las fechas {} - {} y su numero de reserva es {}'.format(fecha_inicio,fecha_fin,num_reserva))
-                                validacion = False
-                            #hay q ver q pasa el dia d check out d alguien es el dia d check in d otro
-                        preg = input('En las fechas ingresadas la habitación seleccionada ya esta ocupada \n Elija una opción: \n 1. Elegir otras fechas \n 2. Elegir otra habitación \n 3. Elegir una nueva habitación y otras fechas')
-                        preg = val_res(preg)
-                        # HAY QUE VER COMO LO QUEREMOS HACER, SI QUEREMOS QUE TENGA QUE PONER TODO DEVUELTA O PUEDA ELEGIR COMO EN EL INPUT
-                        # TAMBIEN LE PODRÍAMOS IMPRIMIR EN QUE FECHAS ESTÁ OCUPADA LA HABITACION QUE SELECCIÓ COMO PARA QUE PUEDA ELEGIR otra
-            
+                    print('Su reserva se realizó con exito en las fechas {} - {} y su numero de reserva es {}'.format(fecha_inicio.strftime('%d/%m/%Y'),fecha_fin.strftime('%d/%m/%Y'),num_reserva))
+        else: #hay q ver q pasa el dia d check out d alguien es el dia d check in d otro 
+            preg = input('En las fechas ingresadas la habitación seleccionada ya esta ocupada \n Elija una opción: \n 1. Elegir otras fechas \n 2. Elegir otra habitación \n 3. Elegir una nueva habitación y otras fechas')
+            preg = val_res(preg)
+        # HAY QUE VER COMO LO QUEREMOS HACER, SI QUEREMOS QUE TENGA QUE PONER TODO DEVUELTA O PUEDA ELEGIR COMO EN EL INPUT
+        # TAMBIEN LE PODRÍAMOS IMPRIMIR EN QUE FECHAS ESTÁ OCUPADA LA HABITACION QUE SELECCIÓ COMO PARA QUE PUEDA ELEGIR otra
+                
         return (num_reserva, fecha_inicio, fecha_fin, habitacion)
     
     def modificar_reserva(self, reservas:dict, habitaciones):

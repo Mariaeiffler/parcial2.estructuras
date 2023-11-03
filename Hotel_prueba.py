@@ -34,6 +34,7 @@ class Hotel():
         except FileNotFoundError:
             with open ('hotel.pickle','wb') as hpickle:
                 pickle.dump(self,hpickle)
+        #podriamos ponerlo en una funcion (no estoy segura)
         seguir = True 
         while seguir==True: #Fijarnos si queremos poner el while aca o en alguna otra parte del programa
             pregunta=input(('Elija una de las siguientes opciones: \n 1. Sign up (si es un cliente) \n 2.Sign in \n')) #crear una opcion para cerrar programa o que lo pueda hacer solo el gerente (tipo metodo cerrar pagina del hotel y ahi se cierre el programa y se guarde el hotel?
@@ -48,7 +49,7 @@ class Hotel():
                     usuario, contrasena = valSignIn (self.clientes)
                     pregcliente=input('Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Cerrar Sesión \n')
                     pregcliente=valiPregCliente(pregcliente)
-                    while pregcliente != 5: #en realidad hay q moverlo a case 2 pero no se bien como seria
+                    while pregcliente != 5:
                         if pregcliente == 1:
                             num_reserva,fecha_inicio,fecha_fin,habitacion=Cliente.realizar_reserva(self.clientes.get(usuario), self.habitaciones, self.reservas)
                             reserva=Reserva(num_reserva,self.clientes.get(usuario), fecha_inicio, fecha_fin, habitacion, datetime.today())
@@ -132,7 +133,7 @@ class Hotel():
         
 if __name__ == "__main__":
     hotel=Hotel('POO')
-    
+    print(hotel.habitaciones)
     hotel.entrar()
     
     # habitacion1 = 1

@@ -354,7 +354,21 @@ def val_preg_mod(opcion):
     return x
 
 
-def convertirfecha_str(fecha):
-    fecha_str = fecha.strftime('%Y-%m-%d')
-    return fecha_str
+def hab_ocupada(fecha_inicio, fecha_fin, hab, lista):
+    val = False
+    for habitacion in lista:
+        if habitacion.numero == int(hab):
+            if len(habitacion.reservas) == 0:
+                val = True
+            else:
+                validacion = True
+                while validacion:
+                    i = 0
+                    for estadia in habitacion.reservas:
+                        if (estadia[0]<fecha_inicio and estadia[1]<fecha_fin) or (estadia[0]>fecha_inicio and estadia[1]>fecha_fin):
+                            i+=1
+                    if i == len(lista):
+                        validacion = False
+                        val = True
+    return val
 
