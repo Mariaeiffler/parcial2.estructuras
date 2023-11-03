@@ -18,7 +18,7 @@ class Cliente(Persona):
     def realizar_reserva(self, lista, diccionario:dict):
         fecha_inicio, fecha_fin, hab = reserva()
         val = hab_ocupada(fecha_inicio, fecha_fin, hab, lista)
-        while (val==False):
+        while val==False:
             preg = input('Elija una opción: \n 1. Elegir otras fechas \n 2. Elegir otra habitación \n 3. Elegir una nueva habitación y otras fechas \n')
             imprimir = 'Error. Elija una opcion: \n 1. Elegir otras fechas \n 2. Elegir otra habitación \n 3. Elegir una nueva habitación y otras fechas \n'
             preg = val_opc(preg, 1, 3, imprimir)
@@ -28,6 +28,7 @@ class Cliente(Persona):
                 fechas = [fecha_inicio,fecha_fin]
                 habitacion.reservas.append(fechas)
                 num_reserva = len(diccionario)+1
+                # falta lo d cobros
                 print('Su reserva se realizó con exito en las fechas {} - {} y su numero de reserva es {}. \n Recuerde que el horario de check in es desde las 15:00 hs y el check out hasta las 12:00 hs'.format(fecha_inicio.strftime('%d/%m/%Y'),fecha_fin.strftime('%d/%m/%Y'),num_reserva))     
         return (num_reserva, fecha_inicio, fecha_fin, habitacion)
     
@@ -37,6 +38,7 @@ class Cliente(Persona):
         reserva = reservas.get(numres)
         hab = reserva.habitacion
         print(reserva)
+        
         preg = input('Elija una opción: \n 1. Elegir otras fechas \n 2. Elegir otra habitación \n 3. Elegir una nueva habitación y otras fechas \n')
         imprimir = 'Error. Elija una opcion: \n 1. Elegir otras fechas \n 2. Elegir otra habitación \n 3. Elegir una nueva habitación y otras fechas \n'
         preg = val_opc(preg, 1, 3, imprimir)
