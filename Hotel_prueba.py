@@ -62,9 +62,6 @@ class Hotel():
                                 num_reserva,fecha_inicio,fecha_fin,habitacion=Cliente.realizar_reserva(self.clientes.get(usuario), self.habitaciones, self.reservas)
                                 reserva=Reserva(num_reserva,self.clientes.get(usuario), fecha_inicio, fecha_fin, habitacion, datetime.today())
                                 self.reservas[num_reserva]=reserva
-                                pregcliente=input('Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Cerrar Sesión \n')
-                                imprimir='Error. Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Cerrar Sesión \n'
-                                pregunta=val_opc(pregcliente,1,5,imprimir)
                             if pregcliente == 2:
                                 # buffet
                                 pass
@@ -77,10 +74,23 @@ class Hotel():
                             if pregcliente == 5:
                                 with open ('hotel.pickle','wb') as hpickle:
                                     pickle.dump(self,hpickle)
-                                seguir = False
+                                seguir = False #ponerlo afuera del while asi tmb se hace para el gerente, pero ver como funciona
+                                print('Se ha cerrado la sesión con éxito')
+                            pregcliente=input('Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Cerrar Sesión \n')
+                            imprimir='Error. Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Cerrar Sesión \n'
+                            pregunta=val_opc(pregcliente,1,5,imprimir)
                     else:
-                        if tipo=='gerente':
-                            pregGerente=input('Elija una de las siguientes opciones: \n 1. Crear un cliente \n 2. Dar de baja un cliente \n 3. Inventario del personal \n 4. Ver estadísticas \n 5. Nomina de Clientes \n 6. Asignar Tarea \n 7. Historial de baja de empleados \n 8. Historial de Reservas ')
+                        if tipo=='gerente': #si cambiamos algo del menu del gerente cambiar el rango de las validaciones y los dos str.
+                            pregGerente=input('Elija una de las siguientes opciones: \n 1. Crear un cliente \n 2. Dar de baja un cliente \n 3. Inventario del personal \n 4. Ver estadísticas \n 5. Nomina de Clientes \n 6. Asignar Tarea \n 7. Historial de baja de empleados \n 8. Historial de Reservas \n 9. Cerrar Sesión \n')
+                            imprimir='Error. Elija una de las siguientes opciones: \n 1. Crear un cliente \n 2. Dar de baja un cliente \n 3. Inventario del personal \n 4. Ver estadísticas \n 5. Nomina de Clientes \n 6. Asignar Tarea \n 7. Historial de baja de empleados \n 8. Historial de Reservas \n 9. Cerrar Sesión \n '
+                            pregGerente=val_opc(pregGerente,1,9,imprimir)
+                            while pregGerente!=6:
+                                match pregGerente:
+                                    case 1:
+                                        #Crear empleado
+                                        nombre,usuario,dni,direccion,contacto,fecha_nac,mail,contrasena = infoPersonas (self.clientes,self.empleados)
+                                        
+                            
                         else:
                             pass
                 
