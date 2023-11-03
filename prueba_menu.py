@@ -65,7 +65,7 @@ def convertirfecha_datetime(fecha): # --> no la toque
             validacion = True
             return fecha_datetime
         except Exception:
-            fecha = input('Ingrese la fecha en el formato dd/mm/aaaa ')
+            fecha = input('Ingrese la fecha en el formato dd/mm/aaaa: ')
             
 def mayoredad (fecha): # --> no la toque
     if type(fecha) == datetime:
@@ -173,18 +173,6 @@ if __name__=='__main__':
             
             
 ##################################################################################################################################################
-# def valiPregCliente(pregcliente):
-#     validacion=False
-#     while validacion == False:
-#         if val_int(pregcliente):
-#             x=int(pregcliente)
-#             if x==1 or x==2 or x==3 or x==4 or x==5:
-#                 validacion=True
-#             else:
-#                 pregcliente = input('Error. Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Cerrar Sesión \n')
-#         else: 
-#             pregcliente = input('Error. Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Cerrar Sesión \n')
-#     return x
 
 def crearHab():
     h1 = Habitacion_Simple(1,1,1,[],5000,10000,2,False,False)
@@ -209,23 +197,11 @@ def validacion_h(pregunta1, valor1, valor2):
         else:
             validacion = False
     return validacion
-
-# def validacionpregunta2(pregunta):
-#     validacion = False
-#     while validacion == False:
-#         if val_int(pregunta):
-#             x=int(pregunta)
-#             if x==1 or x==2 or x==3:
-#                 validacion=True
-#             else:
-#                 pregunta = input('Error. Elija una de las siguientes habitaciones: \n 1. Simple ($5000 - $15000) \n 2. Doble ($20000 - $30000) \n 3. Suite ($35000 - $45000) \n')
-#         else: 
-#             pregunta = input('Error. Elija una de las siguientes habitaciones: \n 1. Simple ($5000 - $15000) \n 2. Doble ($20000 - $30000) \n 3. Suite ($35000 - $45000) \n')
-#     return x
     
 def validacion_preg_hab():
     pregunta = input('Elija una de las siguientes habitaciones: \n 1. Simple ($5000 - $15000) \n 2. Doble ($20000 - $30000) \n 3. Suite ($35000 - $45000) \n')
-    pregunta = validacionpregunta2(pregunta)
+    imprimir = 'Error. Elija una de las siguientes habitaciones: \n 1. Simple ($5000 - $15000) \n 2. Doble ($20000 - $30000) \n 3. Suite ($35000 - $45000) \n'
+    pregunta = val_opc(pregunta, 1, 3, imprimir)
     match pregunta:
         case 1:
             pregunta1 = input('Elija una de las siguientes opciones: \n 1: Sin baño privado y sin balcón ($5000) \n 2: Con baño y sin balcón ($10000) \n 3: Con baño privado y sin balcón ($10000) \n 4: Con baño privado y con balcón ($15000) \n')
@@ -279,24 +255,10 @@ def comparacion_fechas(fecha_inicio):
 
 def reserva():
     habitacion=validacion_preg_hab()
-    # print('La habitación que usted ha seleccionado es {}'.format())#hacer q se printee el str d la habitacion
     fecha_inicio = input('Ingrese la fecha de inicio de su estadía en el formato dd/mm/aaaa ')
     fecha_inicio = convertirfecha_datetime(fecha_inicio)
     fecha_inicio, fecha_fin = comparacion_fechas(fecha_inicio)
     return fecha_inicio, fecha_fin, habitacion
-
-# def val_res(opcion):
-#     validacion=False
-#     while validacion == False:
-#         if val_int(opcion):
-#             x=int(opcion)
-#             if x==1 or x==2:
-#                 validacion=True
-#             else:
-#                 opcion = input('Error. Elija una opción: \n 1. Elegir otras fechas \n 2. Elegir otra habitación \n')
-#         else: 
-#             opcion = input('Error. Elija una opción: \n 1. Elegir otras fechas \n 2. Elegir otra habitación \n')
-#     return x
 
 def val_numres(numero, diccionario:dict(), nombre):
     validacion1=False
@@ -316,20 +278,6 @@ def val_numres(numero, diccionario:dict(), nombre):
             print('Su numero de reserva es incorrecto')
             numero = input('Ingrese su numero de reserva  ')
     return numero
-        
-# def val_preg_mod(opcion):
-#     validacion=False
-#     while validacion == False:
-#         if val_int(opcion):
-#             x=int(opcion)
-#             if x==1 or x==2 or x==3:
-#                 validacion=True
-#             else:
-#                 opcion = input('Error. Elija una opcion: \n 1. Elegir otras fechas \n 2. Elegir otra habitación \n 3. Elegir una nueva habitación y otras fechas \n')
-#         else: 
-#             opcion = input('Error. Elija una opcion: \n 1. Elegir otras fechas \n 2. Elegir otra habitación \n 3. Elegir una nueva habitación y otras fechas \n')
-#     return x
-
 
 def hab_ocupada(fecha_inicio, fecha_fin, hab, lista):
     val = False
@@ -350,8 +298,6 @@ def hab_ocupada(fecha_inicio, fecha_fin, hab, lista):
         for habitacion in lista:
             for res in habitacion.reservas:
                 print(res[0].strftime('%d/%m/%Y'), '-', res[1].strftime('%d/%m/%Y')) 
-        # preg = input('Elija una opción: \n 1. Elegir otras fechas \n 2. Elegir otra habitación \n 3. Elegir una nueva habitación y otras fechas \n')
-        # preg = val_preg_mod(preg)
     return val
 
 def modi_hab(val, preg, fecha_inicio, fecha_fin, hab, lista):

@@ -1,7 +1,7 @@
 from Persona import Persona
 from prueba_menu import reserva
 from prueba_menu import val_numres
-from prueba_menu import val_preg_mod
+from prueba_menu import val_opc
 from prueba_menu import convertirfecha_datetime
 from prueba_menu import hab_ocupada
 from prueba_menu import comparacion_fechas
@@ -20,7 +20,8 @@ class Cliente(Persona):
         val = hab_ocupada(fecha_inicio, fecha_fin, hab, lista)
         while (val==False):
             preg = input('Elija una opción: \n 1. Elegir otras fechas \n 2. Elegir otra habitación \n 3. Elegir una nueva habitación y otras fechas \n')
-            preg = val_preg_mod(preg)
+            imprimir = 'Error. Elija una opcion: \n 1. Elegir otras fechas \n 2. Elegir otra habitación \n 3. Elegir una nueva habitación y otras fechas \n'
+            preg = val_opc(preg, 1, 3, imprimir)
             val, fecha_inicio, fecha_fin, hab = modi_hab(val, preg, fecha_inicio, fecha_fin, hab, lista)  
         for habitacion in lista:
             if habitacion.numero == int(hab):
@@ -37,7 +38,8 @@ class Cliente(Persona):
         hab = reserva.habitacion
         print(reserva)
         preg = input('Elija una opción: \n 1. Elegir otras fechas \n 2. Elegir otra habitación \n 3. Elegir una nueva habitación y otras fechas \n')
-        preg = val_preg_mod(preg)
+        imprimir = 'Error. Elija una opcion: \n 1. Elegir otras fechas \n 2. Elegir otra habitación \n 3. Elegir una nueva habitación y otras fechas \n'
+        preg = val_opc(preg, 1, 3, imprimir)
         val = True
         while val == False:
             if preg == 1:

@@ -35,12 +35,9 @@ class Hotel():
             with open ('hotel.pickle','wb') as hpickle:
                 pickle.dump(self,hpickle)
         #podriamos ponerlo en una funcion (no estoy segura)
-        for i in self.habitaciones:
-            for j in i.reservas:
-                print(j[0].strftime('%d/%m/%Y'), '-', j[1].strftime('%d/%m/%Y'))
         seguir = True 
         while seguir==True: #Fijarnos si queremos poner el while aca o en alguna otra parte del programa
-            pregunta=input(('Elija una de las siguientes opciones: \n 1. Sign up (si es un cliente) \n 2.Sign in \n')) #crear una opcion para cerrar programa o que lo pueda hacer solo el gerente (tipo metodo cerrar pagina del hotel y ahi se cierre el programa y se guarde el hotel?
+            pregunta=input(('Elija una de las siguientes opciones: \n 1. Sign up (si es un cliente) \n 2. Sign in \n')) #crear una opcion para cerrar programa o que lo pueda hacer solo el gerente (tipo metodo cerrar pagina del hotel y ahi se cierre el programa y se guarde el hotel?
             imprimir = 'Error. Elija una de las siguientes opciones: \n 1. Sign up \n 2. Sign in \n'
             pregunta=val_opc(pregunta,1,2,imprimir)
             match pregunta:
@@ -50,7 +47,7 @@ class Hotel():
                     self.clientes[usuario]=cliente
                     print('Su usuario se ha creado con exito')
                 case 2:
-                    usuario, contrasena = valSignIn (self.clientes)
+                    usuario, contrasena = valSignIn (self.clientes, self.empleados)
                     pregcliente=input('Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Cerrar Sesión \n')
                     imprimir='Error. Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Cerrar Sesión \n'
                     pregcliente=val_opc(pregcliente,1,5,imprimir)
@@ -90,7 +87,6 @@ class Hotel():
         
 if __name__ == "__main__":
     hotel=Hotel('POO')
-    print(hotel.habitaciones)
     hotel.entrar()
     
     # habitacion1 = 1
