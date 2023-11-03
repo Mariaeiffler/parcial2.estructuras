@@ -7,3 +7,9 @@ class Reserva():
         self.fecha_finalizacion = fecha_finalizacion
         self.habitacion = habitacion
         self.fecha = fecha
+        
+    def __str__(self):
+        return('Su numero de reserva es {}, ha reservado la habitación numero {} en las fechas {} - {} '.format(self.numero, self.habitacion.numero, self.fecha_inicio, self.fecha_finalizacion))
+    
+if __name__ == '__main__':
+    reserva1 = Reserva(1,'maria','21/12/2023','fin',3,'fecha')

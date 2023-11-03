@@ -24,6 +24,16 @@ class Hotel():
         self.reservas=dict()
         
     def entrar(self):
+        try:
+            with open ('hotel.pickle','rb') as hpickle:
+                info = pickle.load(hpickle)
+            self.empledos = info.empleados
+            self.clientes = info.clientes
+            self.habitaciones = info.habitaciones
+            self.reservas = info.reservas
+        except FileNotFoundError:
+            with open ('hotel.pickle','wb') as hpickle:
+                pickle.dump(self,hpickle)
         seguir = True 
         while seguir==True: #Fijarnos si queremos poner el while aca o en alguna otra parte del programa
             pregunta=input(('Elija una de las siguientes opciones: \n 1. Sign up (si es un cliente) \n 2.Sign in \n')) #crear una opcion para cerrar programa o que lo pueda hacer solo el gerente (tipo metodo cerrar pagina del hotel y ahi se cierre el programa y se guarde el hotel?
@@ -35,13 +45,13 @@ class Hotel():
                     self.clientes[usuario]=cliente
                     print('Su usuario se ha creado con exito')
                 case 2:
-                    #hay q hacer que inicio sesion
+                    usuario, contrasena = valSignIn (self.clientes)
                     pregcliente=input('Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Cerrar Sesión \n')
                     pregcliente=valiPregCliente(pregcliente)
                     while pregcliente != 5: #en realidad hay q moverlo a case 2 pero no se bien como seria
                         if pregcliente == 1:
-                            num_reserva,fecha_inicio,fecha_fin,habitacion=Cliente.realizar_reserva(cliente, self.habitaciones, self.reservas)
-                            reserva=Reserva(num_reserva,cliente.usuario, fecha_inicio, fecha_fin, habitacion, datetime.today())
+                            num_reserva,fecha_inicio,fecha_fin,habitacion=Cliente.realizar_reserva(self.clientes.get(usuario), self.habitaciones, self.reservas)
+                            reserva=Reserva(num_reserva,self.clientes.get(usuario), fecha_inicio, fecha_fin, habitacion, datetime.today())
                             self.reservas[num_reserva]=reserva
                             pregcliente=input('Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Cerrar Sesión \n')
                             pregcliente=valiPregCliente(pregcliente)
@@ -49,12 +59,14 @@ class Hotel():
                             # buffet
                             pass
                         if pregcliente == 3:
-                            # modificar reserva
+                            Cliente.modificar_reserva(self.clientes.get(usuario), self.reservas, self.habitaciones)
                             pass
                         if pregcliente == 4:
                             # cancelar reserva
                             pass
                         if pregcliente == 5:
+                            with open ('hotel.pickle','wb') as hpickle:
+                                pickle.dump(self,hpickle)
                             seguir = False
                 
     #         case 2:
@@ -120,12 +132,9 @@ class Hotel():
         
 if __name__ == "__main__":
     hotel=Hotel('POO')
-    print(datetime.today())
-    fecha = '30/09/2023'
-    fecha = convertirfecha_datetime(fecha)
-    print(fecha < datetime.today())
-
+    
     hotel.entrar()
+    
     # habitacion1 = 1
     # fecha1 = 1234
     # fecha2= 1234567

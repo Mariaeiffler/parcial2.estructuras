@@ -1,5 +1,5 @@
 from datetime import *
-from cliente import Cliente
+#from cliente import Cliente
 from Habitacion_Doble import *
 from Habitacion_Simple import *
 from Habitacion_Suite import *
@@ -123,7 +123,7 @@ def infoPersonas (dicc1:dict,dicc2:dict):
     direccion=input('Ingrese su direccion: ') #es necesario validar la dirección?
     contacto=input('Ingrese su numero de contacto: ')
     contacto=validacioncontacto(contacto)
-    fecha_nac=input('Ingrese su fecha de nacimiento: ')
+    fecha_nac=input('Ingrese su fecha de nacimiento: (Debe ser mayor de edad para crearse un usuario) ')
     fecha_nac=validacionfechanac (fecha_nac)
     mail=input('Ingrese su mail: ')
     mail=valMail(mail)
@@ -139,17 +139,27 @@ def valPalabraDic (palabra,dicc:dict):
     else:
         return False
     
-def valSignIn (dicc1:dict,dicc2:dict):
+def valSignIn (dicc1:dict):
     validacion=True
+    usuario=input('Ingrese su nombre de usuario: ')
+    contrasena=input('Ingrese su contrasena: ')
     while validacion:
-        usuario=input('Ingrese su nombre de usuario: ')
-        contrasena=input('Ingrese su contrasena: ')
         if valPalabraDic(usuario,dicc1):
-            if dicc1[usuario]==contrasena: #buscar como hacer esto
-                validacion=False
+            cliente = dicc1.get(usuario)
+            if cliente.contrasena == contrasena:
+                validacion = False
+            else:
+                print('El nombre de usuario o su contraseña son incorrectos')
+                usuario=input('Ingrese su nombre de usuario: ')
+                contrasena=input('Ingrese su contrasena: ')
+        else:
+            print('El nombre de usuario o su contraseña son incorrectos')
+            usuario=input('Ingrese su nombre de usuario: ')
+            contrasena=input('Ingrese su contrasena: ')
+            # if dicc1[usuario]==contrasena: #buscar como hacer esto
+            #     validacion=False
+    return usuario, contrasena
                 
-        
-
 def menuPPL(): 
     opcion =input(('Elija una de las siguientes opciones: \n 1. Sign up \n 2.Sign in \n'))
     opcion=val_opc (opcion)
@@ -157,8 +167,8 @@ def menuPPL():
         case 1:
             nombre,dni,direccion,contacto,fecha_nac,mail,usuario,contrasena=infoPersonas()
             empleado=False
-            cliente=Cliente(nombre,usuario,dni,direccion,contacto,fecha_nac,mail,empleado,contrasena) #creo que el soyEmpleado en cliente esta de mas
-            clientesDict[cliente.dni]= cliente # --> chequear que funcione bien lo de agregarse al diccionario y fijarse si queremos que la llave sea el dni o el nombre de usuario, tal vez no hace falta el cliente antes del dni pero si hay que agregar el self adelante del diccionario 
+            #cliente=Cliente(nombre,usuario,dni,direccion,contacto,fecha_nac,mail,empleado,contrasena) #creo que el soyEmpleado en cliente esta de mas
+            #clientesDict[cliente.dni]= cliente # --> chequear que funcione bien lo de agregarse al diccionario y fijarse si queremos que la llave sea el dni o el nombre de usuario, tal vez no hace falta el cliente antes del dni pero si hay que agregar el self adelante del diccionario 
         case 2:
             usuario=input('Escriba el nombre de usuario: ')
             contrasena=input('Escriba una contrasena que contenga por lo menos una mayuscula y un numero: ')
@@ -190,7 +200,7 @@ def valiPregCliente(pregcliente):
     while validacion == False:
         if val_int(pregcliente):
             x=int(pregcliente)
-            if x==1 or x==2 or x==3 or x==4:
+            if x==1 or x==2 or x==3 or x==4 or x==5:
                 validacion=True
             else:
                 pregcliente = input('Error. Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n')
@@ -310,7 +320,7 @@ def val_res(opcion):
             opcion = input('Error. Elija una opción: \n 1. Elegir otras fechas \n 2. Elegir otra habitación \n')
     return x
 
-def val_numres(numero, diccionario:dict()):
+def val_numres(numero, diccionario:dict(), nombre):
     validacion1=False
     validacion2=False
     while validacion1 == False and validacion2 == False:
@@ -319,11 +329,32 @@ def val_numres(numero, diccionario:dict()):
             validacion1=True
         else: 
             numero = input('Error. Ingrese su numero de reserva  ')
-        if numero in diccionario:        
-            validacion2=True
+        if numero in diccionario: 
+            reserva = diccionario.get(numero) 
+            usuario = reserva.usuario.usuario
+            if nombre == usuario:
+                print(diccionario.get(numero))    
+                validacion2=True
         else:
             print('Su numero de reserva es incorrecto')
             numero = input('Ingrese su numero de reserva  ')
     return numero
         
-        
+def val_preg_mod(opcion):
+    validacion=False
+    while validacion == False:
+        if val_int(opcion):
+            x=int(opcion)
+            if x==1 or x==2:
+                validacion=True
+            else:
+                opcion = input('Error. Elija una opcion: \n 1. Modificar las fechas \n 2. Mofificar la habitación \n')
+        else: 
+            opcion = input('Error. Elija una opcion: \n 1. Modificar las fechas \n 2. Mofificar la habitación \n')
+    return x
+
+
+def convertirfecha_str(fecha):
+    fecha_str = fecha.strftime('%Y-%m-%d')
+    return fecha_str
+

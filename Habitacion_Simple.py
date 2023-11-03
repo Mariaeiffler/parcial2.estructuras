@@ -8,7 +8,7 @@ class Habitacion_Simple (Habitacion):
         self.banio_priv = banio_priv
         self.balcon = balcon
     def __str__ (self):
-        return ('Habitación: {}, precio:{}, baño privado: {}, balcón: {}', format (self.numero, self.precio, self.banio_priv, self.balcon))
+        return ('Habitación: {}, precio:{}, baño privado: {}, balcón: {}'. format (self.numero, self.precio, self.banio_priv, self.balcon))
         
         
 #creo habitaciones
