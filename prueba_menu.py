@@ -165,6 +165,17 @@ def valSignIn (dicc1:dict, dicc2:dict):
             contrasena=input('Ingrese su contrasena: ')
             
     return usuario, contrasena
+
+def valTipoUsuario (usuario,dicc1:dict,dicc2:dict):
+    if valPalabraDic (usuario,dicc1):
+        cliente=True
+        empleado=False
+        tipo=None
+    else:
+        cliente=False
+        empleado=dicc2.get(usuario)
+        tipo=cliente.tipo
+    return cliente,empleado,tipo
                 
 if __name__=='__main__':
     dni='Milia4'
