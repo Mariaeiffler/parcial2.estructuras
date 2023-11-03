@@ -203,9 +203,9 @@ def valiPregCliente(pregcliente):
             if x==1 or x==2 or x==3 or x==4 or x==5:
                 validacion=True
             else:
-                pregcliente = input('Error. Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n')
+                pregcliente = input('Error. Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Cerrar Sesión \n')
         else: 
-            pregcliente = input('Error. Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n')
+            pregcliente = input('Error. Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Cerrar Sesión \n')
     return x
 
 def crearHab():
@@ -307,18 +307,18 @@ def reserva():
     fecha_inicio, fecha_fin = comparacion_fechas(fecha_inicio)
     return fecha_inicio, fecha_fin, habitacion
 
-def val_res(opcion):
-    validacion=False
-    while validacion == False:
-        if val_int(opcion):
-            x=int(opcion)
-            if x==1 or x==2:
-                validacion=True
-            else:
-                opcion = input('Error. Elija una opción: \n 1. Elegir otras fechas \n 2. Elegir otra habitación \n')
-        else: 
-            opcion = input('Error. Elija una opción: \n 1. Elegir otras fechas \n 2. Elegir otra habitación \n')
-    return x
+# def val_res(opcion):
+#     validacion=False
+#     while validacion == False:
+#         if val_int(opcion):
+#             x=int(opcion)
+#             if x==1 or x==2:
+#                 validacion=True
+#             else:
+#                 opcion = input('Error. Elija una opción: \n 1. Elegir otras fechas \n 2. Elegir otra habitación \n')
+#         else: 
+#             opcion = input('Error. Elija una opción: \n 1. Elegir otras fechas \n 2. Elegir otra habitación \n')
+#     return x
 
 def val_numres(numero, diccionario:dict(), nombre):
     validacion1=False
@@ -345,12 +345,12 @@ def val_preg_mod(opcion):
     while validacion == False:
         if val_int(opcion):
             x=int(opcion)
-            if x==1 or x==2:
+            if x==1 or x==2 or x==3:
                 validacion=True
             else:
-                opcion = input('Error. Elija una opcion: \n 1. Modificar las fechas \n 2. Mofificar la habitación \n')
+                opcion = input('Error. Elija una opcion: \n 1. Elegir otras fechas \n 2. Elegir otra habitación \n 3. Elegir una nueva habitación y otras fechas \n')
         else: 
-            opcion = input('Error. Elija una opcion: \n 1. Modificar las fechas \n 2. Mofificar la habitación \n')
+            opcion = input('Error. Elija una opcion: \n 1. Elegir otras fechas \n 2. Elegir otra habitación \n 3. Elegir una nueva habitación y otras fechas \n')
     return x
 
 
@@ -361,14 +361,12 @@ def hab_ocupada(fecha_inicio, fecha_fin, hab, lista):
             if len(habitacion.reservas) == 0:
                 val = True
             else:
-                validacion = True
-                while validacion:
-                    i = 0
-                    for estadia in habitacion.reservas:
-                        if (estadia[0]<fecha_inicio and estadia[1]<fecha_fin) or (estadia[0]>fecha_inicio and estadia[1]>fecha_fin):
-                            i+=1
-                    if i == len(lista):
-                        validacion = False
-                        val = True
+                i = 0
+                for estadia in habitacion.reservas:
+                    if (estadia[0]<fecha_inicio and estadia[1]<fecha_fin) or (estadia[0]>fecha_inicio and estadia[1]>fecha_fin):
+                        i+=1
+                        print('hola')
+                if i == len(habitacion.reservas):
+                    val = True
     return val
 

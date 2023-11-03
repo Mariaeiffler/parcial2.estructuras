@@ -2,8 +2,10 @@ from Persona import Persona
 from prueba_menu import reserva
 from prueba_menu import val_numres
 from prueba_menu import val_preg_mod
-from prueba_menu import val_res
+from prueba_menu import convertirfecha_datetime
 from prueba_menu import hab_ocupada
+from prueba_menu import comparacion_fechas
+from prueba_menu import validacion_preg_hab
 
 
 class Cliente(Persona):
@@ -15,18 +17,32 @@ class Cliente(Persona):
     def realizar_reserva(self, lista, diccionario:dict):
         fecha_inicio, fecha_fin, hab = reserva()
         val = hab_ocupada(fecha_inicio, fecha_fin, hab, lista)
-        if val:
+    #hay q ver q pasa el dia d check out d alguien es el dia d check in d otro
+        
+        while (val==False):
+            print('En las fechas ingresadas la habitación seleccionada ya está ocupada. Acá puede ser la ocupación de la misma:')
             for habitacion in lista:
-                if habitacion.numero == int(hab):
-                    fechas = [fecha_inicio,fecha_fin]
-                    habitacion.reservas.append(fechas)
-                    num_reserva = len(diccionario)+1
-                    print('Su reserva se realizó con exito en las fechas {} - {} y su numero de reserva es {}'.format(fecha_inicio.strftime('%d/%m/%Y'),fecha_fin.strftime('%d/%m/%Y'),num_reserva))
-        else: #hay q ver q pasa el dia d check out d alguien es el dia d check in d otro 
-            preg = input('En las fechas ingresadas la habitación seleccionada ya esta ocupada \n Elija una opción: \n 1. Elegir otras fechas \n 2. Elegir otra habitación \n 3. Elegir una nueva habitación y otras fechas')
-            preg = val_res(preg)
-        # HAY QUE VER COMO LO QUEREMOS HACER, SI QUEREMOS QUE TENGA QUE PONER TODO DEVUELTA O PUEDA ELEGIR COMO EN EL INPUT
-        # TAMBIEN LE PODRÍAMOS IMPRIMIR EN QUE FECHAS ESTÁ OCUPADA LA HABITACION QUE SELECCIÓ COMO PARA QUE PUEDA ELEGIR otra
+                for res in habitacion.reservas:
+                    print(res[0].strftime('%d/%m/%Y'), '-', res[1].strftime('%d/%m/%Y')) 
+            preg = input('Elija una opción: \n 1. Elegir otras fechas \n 2. Elegir otra habitación \n 3. Elegir una nueva habitación y otras fechas \n')
+            preg = val_preg_mod(preg)
+            if preg == 1:
+                fecha_inicio = input('Ingrese la fecha de inicio de su estadía en el formato dd/mm/aaaa ')
+                fecha_inicio = convertirfecha_datetime(fecha_inicio)
+                fecha_inicio, fecha_fin = comparacion_fechas(fecha_inicio)
+                val = hab_ocupada(fecha_inicio, fecha_fin, hab, lista)
+            if preg == 2:
+                hab=validacion_preg_hab()
+                val = hab_ocupada(fecha_inicio, fecha_fin, hab, lista)
+            if preg == 3:
+                fecha_inicio, fecha_fin, hab = reserva()
+                val = hab_ocupada(fecha_inicio, fecha_fin, hab, lista)                
+        for habitacion in lista:
+            if habitacion.numero == int(hab):
+                fechas = [fecha_inicio,fecha_fin]
+                habitacion.reservas.append(fechas)
+                num_reserva = len(diccionario)+1
+                print('Su reserva se realizó con exito en las fechas {} - {} y su numero de reserva es {}'.format(fecha_inicio.strftime('%d/%m/%Y'),fecha_fin.strftime('%d/%m/%Y'),num_reserva))
                 
         return (num_reserva, fecha_inicio, fecha_fin, habitacion)
     
