@@ -36,25 +36,13 @@ class Cliente(Persona):
         numres = input('Ingrese su numero de reserva  ')
         numres = val_numres(numres, reservas, self.usuario)
         reserva = reservas.get(numres)
-        hab = reserva.habitacion
         print(reserva)
-        
-        preg = input('Elija una opción: \n 1. Elegir otras fechas \n 2. Elegir otra habitación \n 3. Elegir una nueva habitación y otras fechas \n')
-        imprimir = 'Error. Elija una opcion: \n 1. Elegir otras fechas \n 2. Elegir otra habitación \n 3. Elegir una nueva habitación y otras fechas \n'
-        preg = val_opc(preg, 1, 3, imprimir)
         val = True
         while val == False:
-            if preg == 1:
-                fecha_inicio = input('Ingrese la fecha de inicio de su estadía en el formato dd/mm/aaaa ')
-                fecha_inicio = convertirfecha_datetime(fecha_inicio)
-                fecha_inicio, fecha_fin = comparacion_fechas(fecha_inicio)
-                val = hab_ocupada(fecha_inicio, fecha_fin, hab, lista)
-            if preg == 2:
-                hab=validacion_preg_hab()
-                val = hab_ocupada(fecha_inicio, fecha_fin, hab, lista)
-            if preg == 3:
-                fecha_inicio, fecha_fin, hab = reserva()
-                val = hab_ocupada(fecha_inicio, fecha_fin, hab, lista)       
+            preg = input('Elija una opción: \n 1. Elegir otras fechas \n 2. Elegir otra habitación \n 3. Elegir una nueva habitación y otras fechas \n')
+            imprimir = 'Error. Elija una opcion: \n 1. Elegir otras fechas \n 2. Elegir otra habitación \n 3. Elegir una nueva habitación y otras fechas \n'
+            preg = val_opc(preg, 1, 3, imprimir)
+            val, fecha_inicio, fecha_fin, hab = modi_hab(val, preg, reserva.fecha_inicio, reserva.fecha_fin, reserva.hab, lista)
         for hab in lista:
             print(hab.numero)
             if hab.numero == hab:

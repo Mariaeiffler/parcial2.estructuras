@@ -76,9 +76,10 @@ class Hotel():
                                 seguir = False
                     else:
                         if tipo=='gerente':
+                            pass
                             
                         else:
-                            
+                            pass
                 
     # def obtener_inventario_empleados(self):
     #     empleado:Personal
