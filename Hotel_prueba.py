@@ -67,7 +67,6 @@ class Hotel():
                                 pass
                             if pregcliente == 3:
                                 Cliente.modificar_reserva(self.clientes.get(usuario), self.reservas, self.habitaciones)
-                                pass
                             if pregcliente == 4:
                                 # cancelar reserva
                                 pass
@@ -77,6 +76,7 @@ class Hotel():
                                 seguir = False #ponerlo afuera del while asi tmb se hace para el gerente, pero ver como funciona
                                 print('Se ha cerrado la sesión con éxito')
                             pregcliente=input('Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Cerrar Sesión \n')
+                            print('hola')
                             imprimir='Error. Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Cerrar Sesión \n'
                             pregunta=val_opc(pregcliente,1,5,imprimir)
                     else:
