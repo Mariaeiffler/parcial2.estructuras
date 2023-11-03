@@ -41,7 +41,8 @@ class Hotel():
         seguir = True 
         while seguir==True: #Fijarnos si queremos poner el while aca o en alguna otra parte del programa
             pregunta=input(('Elija una de las siguientes opciones: \n 1. Sign up (si es un cliente) \n 2.Sign in \n')) #crear una opcion para cerrar programa o que lo pueda hacer solo el gerente (tipo metodo cerrar pagina del hotel y ahi se cierre el programa y se guarde el hotel?
-            pregunta=val_opc(pregunta)
+            imprimir = 'Error. Elija una de las siguientes opciones: \n 1. Sign up \n 2. Sign in \n'
+            pregunta=val_opc(pregunta,1,2,imprimir)
             match pregunta:
                 case 1:
                     nombre,usuario,dni,direccion,contacto,fecha_nac,mail,contrasena = infoPersonas (self.clientes,self.empleados)
@@ -51,14 +52,16 @@ class Hotel():
                 case 2:
                     usuario, contrasena = valSignIn (self.clientes)
                     pregcliente=input('Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Cerrar Sesión \n')
-                    pregcliente=valiPregCliente(pregcliente)
+                    imprimir='Error. Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Cerrar Sesión \n'
+                    pregcliente=val_opc(pregcliente,1,5,imprimir)
                     while pregcliente != 5:
                         if pregcliente == 1:
                             num_reserva,fecha_inicio,fecha_fin,habitacion=Cliente.realizar_reserva(self.clientes.get(usuario), self.habitaciones, self.reservas)
                             reserva=Reserva(num_reserva,self.clientes.get(usuario), fecha_inicio, fecha_fin, habitacion, datetime.today())
                             self.reservas[num_reserva]=reserva
                             pregcliente=input('Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Cerrar Sesión \n')
-                            pregcliente=valiPregCliente(pregcliente)
+                            imprimir='Error. Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Cerrar Sesión \n'
+                            pregunta=val_opc(pregcliente,1,5,imprimir)
                         if pregcliente == 2:
                             # buffet
                             pass
@@ -72,40 +75,6 @@ class Hotel():
                             with open ('hotel.pickle','wb') as hpickle:
                                 pickle.dump(self,hpickle)
                             seguir = False
-                
-    #         case 2:
-    #             #validar que exista el usuario y que la contrasena sea correcta
-    #             usuario=input('Escriba el nombre de usuario: ')
-    #             contrasena=input('Escriba la contrasena: ')
-    #             cliente = self.clientes.get(usuario)
-    #             if cliente is not None:
-    #                 validacion = (contrasena == cliente.contrasena)
-    #             else:
-    #                 validacion == False
-    #             if validacion == False:
-    #                 print('El usuario ingresado es incorrecto ')
-    #                 usuario=input('Escriba el nombre de usuario: ')
-    #                 contrasena=input('Escriba la contrasena: ')
-    #                 if cliente is not None:
-    #                     validacion = (contrasena == cliente.contrasena)
-    #                 else:
-    #                     validacion == False
-    #                 while(validacion == False):
-    #                     print('El usuario ingresado es incorrecto ')
-    #                     usuario=input('Escriba el nombre de usuario: ')
-    #                     contrasena=input('Escriba la contrasena: ')
-    #                     if cliente is not None:
-    #                         validacion = (contrasena == cliente.contrasena)
-    #                     else:
-    #                         validacion == False
-
-                
-                
-                        
-        
-    # def save(self): #CHEQUEAR!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    #     with open('hotel.pickle','wb') as f:
-    #         pickle.dump(self,f)
             
     # def obtener_inventario_empleados(self):
     #     empleado:Personal
@@ -116,22 +85,7 @@ class Hotel():
     #     cliente: Cliente
     #     for key, cliente in self.clientes.item():
     #         print(key, cliente.tipo)
-    
-    # def agregarTareasDicc (self): #comprobar que sea administrador quien agregue la tarea
-    #     tipo = input('Ingrese a que tipo de empleado desea agregarle la tarea: ')
-    #     while tipo not in tareas_empleados:
-    #         tipo = input ('No existe este tipo de empleados, ingrese el tipo de vuelta: ')
-    #     tarea= input('Ingrese la tarea que desea agregar: ')
-    #     self.tarea_empleado[tipo].append(tarea)
-    #     print ('La nueva tarea se ha  agregado con exito.')
-    
-    # def agregarTipoEmpleado (self):
-    #     tipo = input ('ingrese el nuevo tipo de empleado: ')
-    #     while tipo in self.tareas_empleado:
-    #         tipo = input ('Error, ese tipo de empleado ya existe. Ingrese otro tipo de empleado: ')
-    #     tarea = input ('Ingrese una tarea que realizaría este tipo de empleado: ')
-    #     self.tareas_empleado[tipo]= tarea
-    #     print ('El tipo de empleado fue agregado con exito.')
+
         
         
 if __name__ == "__main__":

@@ -19,24 +19,9 @@ class Cliente(Persona):
         fecha_inicio, fecha_fin, hab = reserva()
         val = hab_ocupada(fecha_inicio, fecha_fin, hab, lista)
         while (val==False):
-            # print('En las fechas ingresadas la habitación seleccionada ya está ocupada. Acá puede ver la ocupación de la misma:')
-            # for habitacion in lista:
-            #     for res in habitacion.reservas:
-            #         print(res[0].strftime('%d/%m/%Y'), '-', res[1].strftime('%d/%m/%Y')) 
             preg = input('Elija una opción: \n 1. Elegir otras fechas \n 2. Elegir otra habitación \n 3. Elegir una nueva habitación y otras fechas \n')
             preg = val_preg_mod(preg)
-            val, fecha_inicio, fecha_fin, hab = modi_hab(val, preg, fecha_inicio, fecha_fin, hab, lista)
-            # if preg == 1:
-            #     fecha_inicio = input('Ingrese la fecha de inicio de su estadía en el formato dd/mm/aaaa ')
-            #     fecha_inicio = convertirfecha_datetime(fecha_inicio)
-            #     fecha_inicio, fecha_fin = comparacion_fechas(fecha_inicio)
-            #     val = hab_ocupada(fecha_inicio, fecha_fin, hab, lista)
-            # if preg == 2:
-            #     hab=validacion_preg_hab()
-            #     val = hab_ocupada(fecha_inicio, fecha_fin, hab, lista)
-            # if preg == 3:
-            #     fecha_inicio, fecha_fin, hab = reserva()
-            #     val = hab_ocupada(fecha_inicio, fecha_fin, hab, lista)                
+            val, fecha_inicio, fecha_fin, hab = modi_hab(val, preg, fecha_inicio, fecha_fin, hab, lista)  
         for habitacion in lista:
             if habitacion.numero == int(hab):
                 fechas = [fecha_inicio,fecha_fin]

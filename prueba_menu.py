@@ -11,17 +11,17 @@ def val_int(x): #valida que sea un entero
         except Exception:
             return False
         
-def val_opc(opcion): #valida las opciones del menu ppl
+def val_opc(opcion, valor1, valor2, imprimir): #valida las opciones del menu ppl
     validacion=False
     while validacion == False:
         if val_int(opcion):
             x=int(opcion)
-            if x==1 or x==2:
+            if x in range(valor1, valor2+1):
                 validacion=True
             else:
-                opcion = input('Error. Elija una de las siguientes opciones: \n 1. Sign up \n 2. Sign in \n')
+                opcion = input(imprimir)
         else: 
-            opcion = input('Error. Elija una de las siguientes opciones: \n 1. Sign up \n 2. Sign in \n')
+            opcion = input(imprimir)
     return x
 
 def valNombre1(nombre):
@@ -195,18 +195,18 @@ if __name__=='__main__':
             
             
 ##################################################################################################################################################
-def valiPregCliente(pregcliente):
-    validacion=False
-    while validacion == False:
-        if val_int(pregcliente):
-            x=int(pregcliente)
-            if x==1 or x==2 or x==3 or x==4 or x==5:
-                validacion=True
-            else:
-                pregcliente = input('Error. Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Cerrar Sesión \n')
-        else: 
-            pregcliente = input('Error. Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Cerrar Sesión \n')
-    return x
+# def valiPregCliente(pregcliente):
+#     validacion=False
+#     while validacion == False:
+#         if val_int(pregcliente):
+#             x=int(pregcliente)
+#             if x==1 or x==2 or x==3 or x==4 or x==5:
+#                 validacion=True
+#             else:
+#                 pregcliente = input('Error. Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Cerrar Sesión \n')
+#         else: 
+#             pregcliente = input('Error. Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Cerrar Sesión \n')
+#     return x
 
 def crearHab():
     h1 = Habitacion_Simple(1,1,1,[],5000,10000,2,False,False)
