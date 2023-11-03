@@ -76,9 +76,8 @@ class Hotel():
                                 seguir = False #ponerlo afuera del while asi tmb se hace para el gerente, pero ver como funciona
                                 print('Se ha cerrado la sesión con éxito')
                             pregcliente=input('Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Cerrar Sesión \n')
-                            print('hola')
                             imprimir='Error. Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Cerrar Sesión \n'
-                            pregunta=val_opc(pregcliente,1,5,imprimir)
+                            pregcliente=val_opc(pregcliente,1,5,imprimir)
                     else:
                         if tipo=='gerente': #si cambiamos algo del menu del gerente cambiar el rango de las validaciones y los dos str.
                             pregGerente=input('Elija una de las siguientes opciones: \n 1. Crear un empleado \n 2. Dar de baja un empleado \n 3. Inventario del personal \n 4. Ver estadísticas \n 5. Nomina de Clientes \n 6. Asignar Tarea \n 7. Historial de baja de empleados \n 8. Historial de Reservas \n 9. Cerrar Sesión \n')
