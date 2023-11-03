@@ -49,7 +49,7 @@ class Hotel():
                     nombre,usuario,dni,direccion,contacto,fecha_nac,mail,contrasena = infoPersonas (self.clientes,self.empleados)
                     cliente=Cliente(nombre,usuario,dni,direccion,contacto,fecha_nac,mail,contrasena,'nivel 1',[])
                     self.clientes[usuario]=cliente
-                    print('Su usuario se ha creado con exito')
+                    print('Su usuario se ha creado con exito. Si desea seguir en el programa ingrese sesión. ')
                 case 2:
                     usuario, contrasena = valSignIn (self.clientes, self.empleados)
                     cliente,empleado,tipo = valTipoUsuario(usuario,self.clientes,self.empleados) #para hacer el match case y probar (NO OLVIDARSE)
@@ -81,14 +81,15 @@ class Hotel():
                             pregunta=val_opc(pregcliente,1,5,imprimir)
                     else:
                         if tipo=='gerente': #si cambiamos algo del menu del gerente cambiar el rango de las validaciones y los dos str.
-                            pregGerente=input('Elija una de las siguientes opciones: \n 1. Crear un cliente \n 2. Dar de baja un cliente \n 3. Inventario del personal \n 4. Ver estadísticas \n 5. Nomina de Clientes \n 6. Asignar Tarea \n 7. Historial de baja de empleados \n 8. Historial de Reservas \n 9. Cerrar Sesión \n')
-                            imprimir='Error. Elija una de las siguientes opciones: \n 1. Crear un cliente \n 2. Dar de baja un cliente \n 3. Inventario del personal \n 4. Ver estadísticas \n 5. Nomina de Clientes \n 6. Asignar Tarea \n 7. Historial de baja de empleados \n 8. Historial de Reservas \n 9. Cerrar Sesión \n '
+                            pregGerente=input('Elija una de las siguientes opciones: \n 1. Crear un empleado \n 2. Dar de baja un empleado \n 3. Inventario del personal \n 4. Ver estadísticas \n 5. Nomina de Clientes \n 6. Asignar Tarea \n 7. Historial de baja de empleados \n 8. Historial de Reservas \n 9. Cerrar Sesión \n')
+                            imprimir='Error. Elija una de las siguientes opciones: \n 1. Crear un empleado \n 2. Dar de baja un empleado \n 3. Inventario del personal \n 4. Ver estadísticas \n 5. Nomina de Clientes \n 6. Asignar Tarea \n 7. Historial de baja de empleados \n 8. Historial de Reservas \n 9. Cerrar Sesión \n '
                             pregGerente=val_opc(pregGerente,1,9,imprimir)
-                            while pregGerente!=6:
+                            while pregGerente!=9:
                                 match pregGerente:
                                     case 1:
                                         #Crear empleado
                                         nombre,usuario,dni,direccion,contacto,fecha_nac,mail,contrasena = infoPersonas (self.clientes,self.empleados)
+                                        tipo=input('Ingrese el tipo al que pertenecera el empleado: ')
                                         
                             
                         else:
