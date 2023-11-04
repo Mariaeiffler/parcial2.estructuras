@@ -11,13 +11,8 @@ class Comida():
         else:
             return('{}, que vale $ {}'.format(self.descripcion, self.precio))
         
-    def armar_buffet(self,diccionario:dict):
-        print(diccionario)
-        diccionario['codigo']=self.codigo
-        diccionario['descripcion']=self.descripcion
-        diccionario['precio']=self.precio
-        diccionario['tipo']=self.tipo
-        print(diccionario)
+    def armar_buffet(self,diccionario:dict): #hay que crear este metodo, no nos sale
+        diccionario['desayuno']=self.descripcion
         
         
     
@@ -62,4 +57,4 @@ b=buffet_dicc.get('bebida')
 print(bebida.codigo,bebida.descripcion,bebida.precio)
 
 #pedido=input('Introduzca el codigo de lo que desea pedir:
-infusion.armar_buffet(infusion)
+infusion.armar_buffet()
