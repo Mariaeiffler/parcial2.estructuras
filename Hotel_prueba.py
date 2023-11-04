@@ -46,6 +46,9 @@ class Hotel():
         
         for cliente in self.clientes:
             print(self.clientes.get(cliente))
+        print(self.cobros)
+        for i in self.cobros:
+            print(i)
         
         seguir = True 
         gerente=Personal('milagros Argibay','miliargibay',"45074984",'obelisco','5491123484825','06/11/2003','mili@','Milia123','gerente')
@@ -86,6 +89,8 @@ class Hotel():
                                 monto,objhab=obtener_precio(self.habitaciones, habitacion)
                                 cobro = Cobro(monto,self.clientes.get(usuario),objhab)
                                 self.cobros = agregar_cobro(self.cobros, cobro)
+                                Cliente.asignar_nivel(self.clientes.get(usuario), self.cobros)
+                                print(self.clientes.get(usuario))
                             # hay que ver si queremos crear un diccionario o algo asi con todos los cobros
                                 print('Su reserva se realizó con exito en las fechas {} - {} y su numero de reserva es {}. \n Recuerde que el horario de check in es desde las 15:00 hs y el check out hasta las 12:00 hs'.format(fecha_inicio.strftime('%d/%m/%Y'),fecha_fin.strftime('%d/%m/%Y'),num_reserva))
                                 
