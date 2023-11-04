@@ -45,7 +45,32 @@ buffet_dicc={'desayuno':[infusion,tostadas]}
 
     
 
-
+for i in enumerate (buffet_dicc['desayuno']):
+    print(i)
+    
+    
+    
+#def valOpcAsignacion(opcion,dicc1:dict,tipo,llave,imprimir):
+#     validar=False
+#     while validar==False: 
+#         val_int(opcion)==False or opcion>len(dicc1[tipo][opcion][llave])-1:
+#         for i, tareas in enumerate (dicc1[tipo][llave]):
+#             print (F"{i} - {tareas}")
+#         opcion=input(imprimir)
+#         opcion=int(opcion)
+#     return opcion 
+    
+# if __name__=='__main__':
+#     llaves=list(tareas_empleados.keys())
+#     tipo=input('{} \n Ingrese el tipo de personal al que le quiere asignar una tarea: '.format(llaves))
+#     tipo=valTipoEmpleado(tipo,tareas_empleados)
+#     for i, tareas in enumerate (tareas_empleados[tipo]['tareas']):
+#         print (F"{i} - {tareas}")
+#     imprimir1='Ingrese la tarea que desea asignar: '
+#     opcion=input(imprimir1)
+#     opcion=valOpcAsignacion(opcion,tareas_empleados,tipo,'tareas',imprimir1)    
+            
+            
 
 
 i=input('introduzca el codigo')
