@@ -187,7 +187,7 @@ class Hotel():
                                         imprimir3='Error. Ingrese como nivel de importancia 1, 2 o 3 (siendo 1 el más urgente): '
                                         pregImportancia=input('Niveles de importancia: 1,2,3 (siendo 1 el más urgente). \n Ingrese la importancia de la tarea a realizar: ')
                                         pregImportancia=val_opc(pregImportancia,1,3,imprimir3)
-                                        print(pregImportancia)
+                                        
                                         
                                         pass
                                     
