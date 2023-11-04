@@ -10,7 +10,8 @@ class Comida():
             return('{}, que vale $ {} para {}'.format(self.descripcion, self.precio, self.tipo))
         else:
             return('{}, que vale $ {}'.format(self.descripcion, self.precio))
-     
+
+
     
 infusion= Comida('Infusión (Café con leche/Té/Jugo de Naranja)', 500, 'desayuno','d1')
 tostadas=Comida('Tostadas con queso y mermelada', 700, 'desayuno','d2')
@@ -40,7 +41,16 @@ diccionario_almuerzo= [pollo_carne,sopa,ensalada,pez,opcion_vegetariana,pastas,p
 diccionario_cena=[salmon,pastas_cena,opcion_vegetariana_cena,pizza,empanadas,asado_para_2,asado_para_1,postre_cena]
 buffet_dicc={'desayuno':diccionario_desayuno, 'almuerzo': diccionario_almuerzo, 'cena': diccionario_cena,'bebida':bebida}
 
-    
+d=buffet_dicc.get('desayuno')
+for objeto in d:
+    print(objeto.codigo,objeto.descripcion,objeto.precio)
+a=buffet_dicc.get('almuerzo')
+for objeto in a:
+    print(objeto.codigo,objeto.descripcion,objeto.precio)
+c=buffet_dicc.get('cena')
+for objeto in c:
+    print(objeto.codigo,objeto.descripcion,objeto.precio)
+b=buffet_dicc.get('bebida')
+print(bebida.codigo,bebida.descripcion,bebida.precio)
 
-
-
+pedido=input('Introduzca el codigo de lo que desea pedir:')
