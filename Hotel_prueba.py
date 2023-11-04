@@ -26,6 +26,7 @@ class Hotel():
         self.reservas=dict()
         self.bajasEmpleados=set()
         self.cobros = np.array([])
+        self.buffet=dict()
         
     def entrar(self):
         try:
@@ -36,6 +37,7 @@ class Hotel():
             self.habitaciones = info.habitaciones
             self.reservas = info.reservas
             self.cobros = info.cobros
+            self.buffet=info.buffet
         except FileNotFoundError:
             with open ('hotel.pickle','wb') as hpickle:
                 pickle.dump(self,hpickle)
