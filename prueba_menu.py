@@ -3,6 +3,7 @@ from Habitacion_Doble import *
 from Habitacion_Simple import *
 from Habitacion_Suite import *
 import numpy as np
+from Tareas_Empleados import *
 
 def val_int(x): #valida que sea un entero
         try:
@@ -92,7 +93,7 @@ def validacionfechanac (fecha): # --> no la toque
     return fecha_datetime
 
 def valMail (mail): #validar algo más?
-    while mail.count('@')!=1 and mail.count('.')<1:
+    while mail.count('@')!=1 or mail.count('.')<1:
         mail=input('Error. Ingrese su mail (tiene que contener por lo menos un . y un @):')
     return mail
         
@@ -188,12 +189,24 @@ def valExiUsu (usuario,dicc1:dict):
     while valPalabraDic(usuario,dicc1)==False:
         usuario=input('Error. El nombre de usuario es inexistente. \n Ingrese el nombre de usuario: ')
     return usuario
-        
+
+def valOpcAsignacion(opcion,dicc1:dict,tipo,llave,imprimir):
+    while val_int(opcion)==False or opcion>len(dicc1[tipo][opcion][llave])-1:
+        for i, tareas in enumerate (dicc1[tipo][llave]):
+            print (F"{i} - {tareas}")
+        opcion=input(imprimir)
+        opcion=int(opcion)
+    return opcion 
     
 if __name__=='__main__':
-    dni='Milia4'
-    dni=validacionusuario(dni)
-    print (dni)           
+    llaves=list(tareas_empleados.keys())
+    tipo=input('{} \n Ingrese el tipo de personal al que le quiere asignar una tarea: '.format(llaves))
+    tipo=valTipoEmpleado(tipo,tareas_empleados)
+    for i, tareas in enumerate (tareas_empleados[tipo]['tareas']):
+        print (F"{i} - {tareas}")
+    imprimir1='Ingrese la tarea que desea asignar: '
+    opcion=input(imprimir1)
+    opcion=valOpcAsignacion(opcion,tareas_empleados,tipo,'tareas',imprimir1)    
             
             
 ##################################################################################################################################################

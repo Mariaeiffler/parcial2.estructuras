@@ -135,7 +135,7 @@ class Hotel():
                                         usuarioBaja=input('Ingrese el usuario del empleado que desea dar de baja: ')
                                         usuarioBaja=valExiUsu(usuarioBaja,self.empleados)
                                         empleado=self.empleados.get(usuarioBaja)
-                                        empleado.fecbaja=datetime.now()
+                                        empleado.bajas()
                                         self.tareas[empleado.tipo]['empleados'].remove(empleado.usuario)
                                         self.empleados.pop(empleado.usuario)
                                         self.bajasEmpleados.add(empleado) #chequear que se haya guardado correctamente
@@ -162,7 +162,23 @@ class Hotel():
                                             print(self.clientes.get(cliente))
                                     
                                     case 6:
-                                        #Asignar una Tarea 
+                                        #Asignar una Tarea
+                                        llaves=list(self.tareas.keys())
+                                        tipo=input('{} \n Ingrese el tipo de personal al que le quiere asignar una tarea: '.format(llaves))
+                                        tipo=valTipoEmpleado(tipo,self.tareas)
+                                        for i, tareas in enumerate (tareas_empleados[tipo]['tareas']):
+                                            print (F"{i} - {tareas}")
+                                        imprimir1='Ingrese la tarea que desea asignar: '
+                                        opcion=input(imprimir1)
+                                        opcion=valOpcAsignacion(opcion,self.tareas,tipo,'tareas',imprimir1)
+                                        for i, empleados in enumerate (tareas_empleados[tipo]['empleados']):
+                                            print (F"{i} - {empleados}")
+                                        imprimir2= 'Ingrese el número del usuario del empleados al que le desea asignar la tarea: '
+                                        empleadoAsignar=input(imprimir2)
+                                        empleadoAsignar=valOpcAsignacion(empleadoAsignar,self.tareas,tipo,'empleados',imprimir2)
+                                        
+                                        
+                                        
                                         pass
                                     
                                     case 7:
