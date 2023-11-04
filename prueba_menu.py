@@ -310,7 +310,6 @@ def hab_ocupada(fecha_inicio, fecha_fin, hab, lista):
     for habitacion in lista:
         if habitacion.numero == int(hab):
             if len(habitacion.reservas) == 0:
-        # TENGO QUE VER Q LA LLAVE NO EXISTA
                 val = True
             else:
                 i = 0
@@ -340,3 +339,11 @@ def modi_hab(val, preg, fecha_inicio, fecha_fin, hab, lista):
             fecha_inicio, fecha_fin, hab = reserva()
             val = hab_ocupada(fecha_inicio, fecha_fin, hab, lista)
     return val, fecha_inicio, fecha_fin, hab
+
+def obtener_precio(lista, habitacion):
+    for hab in lista:
+        if int(hab.numero) == int(habitacion):
+            monto=hab.precio
+            objeto = hab
+    return monto, objeto
+    
