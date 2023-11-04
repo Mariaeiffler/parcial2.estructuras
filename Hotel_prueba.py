@@ -58,6 +58,7 @@ class Hotel():
                                 num_reserva,fecha_inicio,fecha_fin,habitacion=Cliente.realizar_reserva(self.clientes.get(usuario), self.habitaciones, self.reservas)
                                 reserva=Reserva(num_reserva,self.clientes.get(usuario), fecha_inicio, fecha_fin, habitacion, datetime.today())
                                 self.reservas[num_reserva]=reserva
+                                self.clientes[usuario].reservas.append(reserva)
                             if pregcliente == 2:
                                 # buffet
                                 pass

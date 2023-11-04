@@ -42,14 +42,17 @@ class Cliente(Persona):
             preg = input('Elija una opción: \n 1. Elegir otras fechas \n 2. Elegir otra habitación \n 3. Elegir una nueva habitación y otras fechas \n')
             imprimir = 'Error. Elija una opcion: \n 1. Elegir otras fechas \n 2. Elegir otra habitación \n 3. Elegir una nueva habitación y otras fechas \n'
             preg = val_opc(preg, 1, 3, imprimir)
-            val, fecha_inicio, fecha_fin, hab = modi_hab(val, preg, reserva.fecha_inicio, reserva.fecha_finalizacion, reserva.hab, lista)
-        for hab in lista:
-            print(hab.numero)
-            if hab.numero == hab:
-                res = hab.reservas
-                #no entiendo porque no funciona
-                print(res)
-
+            for habitacion in lista:
+                if habitacion.numero == reserva.habitacion:
+                    habitacion.reservas.remove([reserva.fecha_inicio, reserva.fecha_finalizacion])
+                    val, fecha_inicio, fecha_fin, hab = modi_hab(val, preg, reserva.fecha_inicio, reserva.fecha_finalizacion, reserva.habitacion, lista)
+                    reserva.fecha_inicio = fecha_inicio
+                    reserva.fecha_finalizacion = fecha_fin
+                    reserva.habitacion = hab
+            for habitacion in lista:
+                if habitacion.numero == hab:    
+                    habitacion.reservas.append([fecha_inicio, fecha_fin])
+        print('Su reserva se modificó con exito. {}'.format(reserva))
         return
                 #que printee las fechas y le pregunte que fecha quiere modificiar
                 #tambien tiene q poder modificar la habitacion que reservo
