@@ -155,7 +155,11 @@ class Hotel():
                                         pass
                                     
                                     case 6:
-                                        #Asignar una Tarea 
+                                        #Asignar una Tarea
+                                        llaves=list(self.tareas.keys())
+                                        tipo=input('{} \n Ingrese el tipo de personal al que le quiere asignar una tarea: '.format(llaves))
+                                        tipo=valTipoEmpleado(tipo,self.tareas)
+                                        tareas=list(self.tareas) 
                                         pass
                                     case 7:
                                         #Historial de baja de un empleados
