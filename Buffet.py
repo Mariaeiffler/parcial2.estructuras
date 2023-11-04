@@ -13,6 +13,13 @@ class Comida():
         
     def armar_buffet(self,diccionario:dict):
         print(diccionario)
+        diccionario['codigo']=self.codigo
+        diccionario['descripcion']=self.descripcion
+        diccionario['precio']=self.precio
+        diccionario['tipo']=self.tipo
+        print(diccionario)
+        
+        
     
 infusion= Comida('Infusión (Café con leche/Té/Jugo de Naranja)', 500, 'desayuno','1')
 tostadas=Comida('Tostadas con queso y mermelada', 700, 'desayuno','2')
