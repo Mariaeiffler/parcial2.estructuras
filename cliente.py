@@ -40,7 +40,6 @@ class Cliente(Persona):
         reserva = reservas.get(numres)
         print(reserva)
         val = False
-        print(self.reservas)
         while val == False:
             preg = input('Elija una opción: \n 1. Elegir otras fechas \n 2. Elegir otra habitación \n 3. Elegir una nueva habitación y otras fechas \n')
             imprimir = 'Error. Elija una opcion: \n 1. Elegir otras fechas \n 2. Elegir otra habitación \n 3. Elegir una nueva habitación y otras fechas \n'
@@ -75,7 +74,9 @@ class Cliente(Persona):
             for habitacion in lista:
                 if int(reserva.habitacion) == int(habitacion.numero):
                     habitacion.reservas.remove([reserva.fecha_inicio, reserva.fecha_finalizacion])
-        print('Su reserva se ha cancelado con exito ')
+                    print('Su reserva se ha cancelado con exito ')
+        else:
+            print('Se ha cancelado la cancelación de su reserva')
         # hace falta borrar el objeto?
         return
                     
