@@ -32,4 +32,5 @@ if __name__ == '__main__':
     print(cocina)
     lista = cocina.get('empleados')
     lista.append('hola')
+    lista.remove('hola')
     print(cocina)
