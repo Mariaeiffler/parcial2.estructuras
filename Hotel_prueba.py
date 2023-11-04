@@ -12,6 +12,7 @@ from Tareas_Empleados import tareas_empleados
 from prueba_menu import * #despues si lo seguimos usando cambiarle el nombre
 from Reserva import Reserva
 from datetime import *
+from Cobros import Cobro
 
 class Hotel():
     def __init__(self,nombre,contrasena_ing_personal='personal123'):
@@ -36,10 +37,6 @@ class Hotel():
             with open ('hotel.pickle','wb') as hpickle:
                 pickle.dump(self,hpickle)
         #podriamos ponerlo en una funcion (no estoy segura)
-        print(self.reservas)
-        for hab in self.habitaciones:
-            print(hab.reservas)
-        print(self.habitaciones)
         seguir = True 
         gerente=Personal('milagros Argibay','miliargibay',"45074984",'obelisco','5491123484825','06/11/2003','mili@','Milia123','gerente')
         self.empleados[gerente.usuario]=gerente
@@ -58,7 +55,6 @@ class Hotel():
                 case 2:
                     usuario, contrasena = valSignIn (self.clientes, self.empleados)
                     cliente,empleado,tipo = valTipoUsuario(usuario,self.clientes,self.empleados) #para hacer el match case y probar (NO OLVIDARSE)
-                    print(self.clientes.get(usuario).reservas)
                     if cliente:
                         pregcliente=input('Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Cerrar Sesión \n')
                         imprimir='Error. Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Cerrar Sesión \n'
@@ -68,6 +64,10 @@ class Hotel():
                                 num_reserva,fecha_inicio,fecha_fin,habitacion=Cliente.realizar_reserva(self.clientes.get(usuario), self.habitaciones, self.reservas)
                                 reserva=Reserva(num_reserva,self.clientes.get(usuario), fecha_inicio, fecha_fin, habitacion, datetime.today())
                                 self.reservas[num_reserva]=reserva
+                                monto,objhab=obtener_precio(self.habitaciones, habitacion)
+                                cobro = Cobro(monto,self.clientes.get(usuario),objhab)
+                            # hay que ver si queremos crear un diccionario o algo asi con todos los cobros
+                                print('Su reserva se realizó con exito en las fechas {} - {} y su numero de reserva es {}. \n Recuerde que el horario de check in es desde las 15:00 hs y el check out hasta las 12:00 hs'.format(fecha_inicio.strftime('%d/%m/%Y'),fecha_fin.strftime('%d/%m/%Y'),num_reserva))
                                 
                             if pregcliente == 2:
                                 # buffet
@@ -125,17 +125,18 @@ class Hotel():
                                         pass
                                     case 6:
                                         #Asignar una Tarea 
+                                        pass
                                         
                                         
                                         
                                         
                                         
-                                pregGerente=input('Elija una de las siguientes opciones: \n 1. Crear un empleado \n 2. Dar de baja un empleado \n 3. Inventario del personal \n 4. Ver estadísticas \n 5. Nomina de Clientes \n 6. Asignar Tarea \n 7. Historial de baja de empleados \n 8. Historial de Reservas \n 9. Cerrar Sesión \n')
-                                pregGerente=val_opc(pregGerente,1,9,imprimir)    
+                                # pregGerente=input('Elija una de las siguientes opciones: \n 1. Crear un empleado \n 2. Dar de baja un empleado \n 3. Inventario del personal \n 4. Ver estadísticas \n 5. Nomina de Clientes \n 6. Asignar Tarea \n 7. Historial de baja de empleados \n 8. Historial de Reservas \n 9. Cerrar Sesión \n')
+                                # pregGerente=val_opc(pregGerente,1,9,imprimir)    
                                         
                             
-                        else:
-                            pass
+                        # else:
+                        #     pass
                 
     # def obtener_inventario_empleados(self):
     #     empleado:Personal

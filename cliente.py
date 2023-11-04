@@ -7,6 +7,7 @@ from prueba_menu import hab_ocupada
 from prueba_menu import comparacion_fechas
 from prueba_menu import validacion_preg_hab
 from prueba_menu import modi_hab
+from prueba_menu import valPalabraDic
 
 
 class Cliente(Persona):
@@ -26,12 +27,12 @@ class Cliente(Persona):
         for habitacion in lista:
             if habitacion.numero == int(hab):
                 habitacion.reservas.append([fecha_inicio,fecha_fin])
-                num_reserva = len(diccionario)+1
+                numres = len(diccionario)+1
+                while(valPalabraDic (numres,diccionario)):
+                    numres = numres+1
                 # falta lo d cobros
                 self.reservas.append([fecha_inicio,fecha_fin])
-                print(self.reservas)
-                print('Su reserva se realizó con exito en las fechas {} - {} y su numero de reserva es {}. \n Recuerde que el horario de check in es desde las 15:00 hs y el check out hasta las 12:00 hs'.format(fecha_inicio.strftime('%d/%m/%Y'),fecha_fin.strftime('%d/%m/%Y'),num_reserva))     
-        return num_reserva, fecha_inicio, fecha_fin, int(hab)
+        return numres, fecha_inicio, fecha_fin, int(hab)
     
     def modificar_reserva(self, reservas:dict, lista):
         numres = input('Ingrese su numero de reserva  ')
@@ -74,6 +75,7 @@ class Cliente(Persona):
             for habitacion in lista:
                 if int(reserva.habitacion) == int(habitacion.numero):
                     habitacion.reservas.remove([reserva.fecha_inicio, reserva.fecha_finalizacion])
+        print('Su reserva se ha cancelado con exito ')
         # hace falta borrar el objeto?
         return
                     
