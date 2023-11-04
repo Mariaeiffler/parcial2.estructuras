@@ -158,16 +158,22 @@ class Hotel():
                                     case 6:
                                         #Asignar una Tarea 
                                         pass
-                                        
-                                        
-                                        
-                                        
+                                    case 7:
+                                        #Historial de baja de un empleados
+                                        pass
+                                    case 8:
+                                        #Historial de reservas
+                                        pass
+                                    case 9:
+                                        #cerrar sesión
+                                        pass
                                         
                                 pregGerente=input('Elija una de las siguientes opciones: \n 1. Crear un empleado \n 2. Dar de baja un empleado \n 3. Inventario del personal \n 4. Ver estadísticas \n 5. Nomina de Clientes \n 6. Asignar Tarea \n 7. Historial de baja de empleados \n 8. Historial de Reservas \n 9. Cerrar Sesión \n')
                                 pregGerente=val_opc(pregGerente,1,9,imprimir)    
                                         
                         # menu empleado
                         else:
+                            #cliente
                             pass
                 
     # def obtener_inventario_empleados(self):
