@@ -6,10 +6,11 @@ from Tareas_Empleados import tareas_empleados
 
 class Personal(Persona):
     registros= []
-    def __init__(self,nombre,dni,direccion,contacto,fecha_nac,mail,fecalta,tipo,fecbaja: None):
-        super().__init__(nombre,dni,direccion,contacto,fecha_nac,mail)
-        self.fecalta = datetime.now()
+    def __init__(self,nombre,usuario,dni,direccion,contacto,fecha_nac,mail,contrasena,tipo,fecalta=datetime.now(),fecbaja=None):
+        super().__init__(nombre,usuario,dni,direccion,contacto,fecha_nac,mail,contrasena)
+        self.fecalta = fecalta
         self.tipo=tipo
+        self.fecbaja=fecbaja
         #self.Tareas=Lista_Enlazada()
         
     def bajas(self):

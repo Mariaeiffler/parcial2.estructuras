@@ -174,10 +174,15 @@ def valTipoUsuario (usuario,dicc1:dict,dicc2:dict):
     else:
         cliente=False
         empleado=dicc2.get(usuario)
-        tipo=cliente.tipo
+        tipo=empleado.tipo
     return cliente,empleado,tipo
 
-
+def valTipoEmpleado(tipo,dicc1:dict):
+    while valPalabraDic(tipo,dicc1)==False:
+        llaves=list(dicc1.keys())
+        tipo=input('Error. Ese tipo de empleado no existe. \n Las opciones disponibles son: {} \n Ingrese una de las opciones existentes:'.format (llaves))
+    return tipo
+        
     
 if __name__=='__main__':
     dni='Milia4'
