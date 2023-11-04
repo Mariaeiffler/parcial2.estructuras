@@ -28,6 +28,7 @@ def menu_desayuno():
             pedido= pedido_buffet('Ensalada de frutas')
         case _:
             "Opción no válida"
+            
 
     print(opcion)
 

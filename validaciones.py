@@ -319,9 +319,9 @@
 #     comp = comparacion_fechas(fecha_inicio, fecha_finalizacion)
 #     print(comp)
 
+import numpy as np
 
-
-
-lista = [['mili'],['maria']]
-lista.remove(['maria'])
-print(lista)
+if __name__ == '__main__':
+    vector = np.array([1,2,3,4])
+    for i in vector:
+        print (i)
