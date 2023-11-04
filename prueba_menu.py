@@ -310,6 +310,7 @@ def hab_ocupada(fecha_inicio, fecha_fin, hab, lista):
     for habitacion in lista:
         if habitacion.numero == int(hab):
             if len(habitacion.reservas) == 0:
+        # TENGO QUE VER Q LA LLAVE NO EXISTA
                 val = True
             else:
                 i = 0
