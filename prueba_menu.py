@@ -91,7 +91,7 @@ def validacionfechanac (fecha): # --> no la toque
     return fecha_datetime
 
 def valMail (mail): #validar algo más?
-    while mail.count('@')!=1 and mail.count('.')!=1:
+    while mail.count('@')!=1 and mail.count('.')<1:
         mail=input('Error. Ingrese su mail (tiene que contener por lo menos un . y un @):')
     return mail
         
