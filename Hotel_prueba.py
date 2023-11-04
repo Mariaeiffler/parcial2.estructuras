@@ -13,6 +13,7 @@ from prueba_menu import * #despues si lo seguimos usando cambiarle el nombre
 from Reserva import Reserva
 from datetime import *
 from Cobros import Cobro
+from Buffet import Comida
 import numpy as np
 
 class Hotel():

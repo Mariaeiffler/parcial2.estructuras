@@ -12,7 +12,7 @@ class Comida():
             return('{}, que vale $ {}'.format(self.descripcion, self.precio))
         
     def armar_buffet(self,diccionario:dict):
-        print('fheufye')
+        print(diccionario)
     
 infusion= Comida('Infusión (Café con leche/Té/Jugo de Naranja)', 500, 'desayuno','1')
 tostadas=Comida('Tostadas con queso y mermelada', 700, 'desayuno','2')
@@ -54,5 +54,5 @@ for objeto in c:
 b=buffet_dicc.get('bebida')
 print(bebida.codigo,bebida.descripcion,bebida.precio)
 
-pedido=input('Introduzca el codigo de lo que desea pedir:')
-
+#pedido=input('Introduzca el codigo de lo que desea pedir:
+infusion.armar_buffet(infusion)
