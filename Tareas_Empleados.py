@@ -27,3 +27,9 @@ def agregarTipoEmpleado (diccionario):
 #agregar para que asignen valor de importancia 
 # generar metodo en hotel donde el servidor ppl pueda agregar mas tareas al diccionario de tareas
 
+if __name__ == '__main__':
+    cocina = tareas_empleados.get('cocina')
+    print(cocina)
+    lista = cocina.get('empleados')
+    lista.append('hola')
+    print(cocina)
