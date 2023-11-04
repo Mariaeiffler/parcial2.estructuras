@@ -41,8 +41,8 @@ class Hotel():
                 pickle.dump(self,hpickle)
         #podriamos ponerlo en una funcion (no estoy segura)
         
-        print(self.cobros)
-        print(len(self.cobros))
+        for cliente in self.clientes:
+            print(self.clientes.get(cliente))
         
         seguir = True 
         gerente=Personal('milagros Argibay','miliargibay',"45074984",'obelisco','5491123484825','06/11/2003','mili@','Milia123','gerente')
@@ -82,7 +82,7 @@ class Hotel():
                                 self.reservas[num_reserva]=reserva
                                 monto,objhab=obtener_precio(self.habitaciones, habitacion)
                                 cobro = Cobro(monto,self.clientes.get(usuario),objhab)
-                                self.cobros = agregar_cobro(self.cobros, cobro, self.clientes.get(usuario).usuario)
+                                self.cobros = agregar_cobro(self.cobros, cobro)
                             # hay que ver si queremos crear un diccionario o algo asi con todos los cobros
                                 print('Su reserva se realizó con exito en las fechas {} - {} y su numero de reserva es {}. \n Recuerde que el horario de check in es desde las 15:00 hs y el check out hasta las 12:00 hs'.format(fecha_inicio.strftime('%d/%m/%Y'),fecha_fin.strftime('%d/%m/%Y'),num_reserva))
                                 
@@ -143,17 +143,23 @@ class Hotel():
                                         
                                     case 3:
                                         #Inventario de personal
-                                        print('Los usuarios de los empleados activos son: ')
-                                        for clave in self.empleados.keys():
-                                            print(clave + "\n")
+                                        print('Los empleados activos son: ')
+                                        for clave in self.empleados:
+                                            if self.empleados.get(clave).fecbaja == None:
+                                                print(self.empleados.get(clave))
+                                        print('Los empleados dados de baja son: ')
+                                        for clave in self.empleados:
+                                            if self.empleados.get(clave).fecbaja != None:
+                                                print(self.empleados.get(clave))
                                             
                                     case 4:
                                         #Estadisticas 
                                         pass
                                     
                                     case 5:
-                                        #Nomina de un cliente
-                                        pass
+                                        print('Los clientes del hotel son: ')
+                                        for cliente in self.clientes:
+                                            print(self.clientes.get(cliente))
                                     
                                     case 6:
                                         #Asignar una Tarea
@@ -174,12 +180,15 @@ class Hotel():
                                         
                                         
                                         pass
+                                    
                                     case 7:
                                         #Historial de baja de un empleados
                                         pass
+                                    
                                     case 8:
                                         #Historial de reservas
                                         pass
+                                    
                                     case 9:
                                         #cerrar sesión
                                         pass

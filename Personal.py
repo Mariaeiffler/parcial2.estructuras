@@ -5,13 +5,18 @@ from Persona import Persona
 from Tareas_Empleados import tareas_empleados
 
 class Personal(Persona):
-    registros= []
     def __init__(self,nombre,usuario,dni,direccion,contacto,fecha_nac,mail,contrasena,tipo,fecalta=datetime.now(),fecbaja=None):
         super().__init__(nombre,usuario,dni,direccion,contacto,fecha_nac,mail,contrasena)
         self.fecalta = fecalta
         self.tipo=tipo
         self.fecbaja=fecbaja
         #self.Tareas=Lista_Enlazada()
+        
+    def __str__(self):
+        if self.fecbaja == None:
+            return ('El empleado de nombre {} y dni, de tipo {}, se dió de alta el dia {} y sigue vigente'.format(self.nombre, self.dni, self.fecalta))
+        else:
+            return('El empleado de nombre {} y dni, de tipo {}, se dió de alta el dia {} y de baja el dia {}'.format(self.nombre, self.dni, self.fecalta, self.fecbaja))
         
     def bajas(self):
         self.fechabaja = datetime.now()

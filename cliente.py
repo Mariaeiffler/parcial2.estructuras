@@ -15,6 +15,12 @@ class Cliente(Persona):
         super().__init__(nombre,usuario,dni,direccion,contacto,fecha_nac,mail,contrasena)
         self.tipo=tipo
         self.reservas= reservas
+        
+    def __str__(self):
+        res_imp = ''
+        for res in self.reservas:
+            res_imp += res[0].strftime('%d/%m/%Y') + ' - ' + res[1].strftime('%d/%m/%Y') + '   '
+        return('El cliente de nombre de nombre {} y dni {} es de nivel {} y sus reservas son: {}'.format(self.nombre, self.dni, self.tipo, res_imp))
     
     def realizar_reserva(self, lista, diccionario:dict):
         fecha_inicio, fecha_fin, hab = reserva()
@@ -46,6 +52,7 @@ class Cliente(Persona):
             preg = val_opc(preg, 1, 3, imprimir)
             for habitacion in lista:
                 if int(reserva.habitacion) == int(habitacion.numero):
+                    hab_ant = habitacion
                     self.reservas.remove([reserva.fecha_inicio, reserva.fecha_finalizacion])
                     habitacion.reservas.remove([reserva.fecha_inicio, reserva.fecha_finalizacion])
                     val, fecha_inicio, fecha_fin, hab = modi_hab(val, preg, reserva.fecha_inicio, reserva.fecha_finalizacion, reserva.habitacion, lista)
@@ -57,6 +64,8 @@ class Cliente(Persona):
             for habitacion in lista:
                 if int(habitacion.numero) == int(hab):    
                     habitacion.reservas.append([fecha_inicio, fecha_fin])
+                    dif_precio = habitacion.precio - hab_ant.precio
+                # ver como hacemos esto
                     print('Su reserva se modificó con exito. {}'.format(reserva))
         return
     
@@ -79,7 +88,7 @@ class Cliente(Persona):
             print('Se ha cancelado la cancelación de su reserva')
         # hace falta borrar el objeto?
         return
-                    
+    
                     
             
         
