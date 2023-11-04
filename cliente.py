@@ -66,7 +66,7 @@ class Cliente(Persona):
         reserva = reservas.get(numres)
         print(reserva)
         preg = input('¿Desea cancelar su reserva definitivamente? \n 1. Si \2. No \n')
-        imprimir = 'Error. ¿Desea cancelar su reserva definitivamente? \n 1. Si \2. No \n'
+        imprimir = 'Error. ¿Desea cancelar su reserva definitivamente? \n 1. Si \n 2. No \n'
         preg = val_opc(preg, 1, 2, imprimir)
         if preg == 1:
             reservas.pop(numres)
