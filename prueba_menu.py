@@ -191,7 +191,9 @@ def valExiUsu (usuario,dicc1:dict):
     return usuario
 
 def valOpcAsignacion(opcion,dicc1:dict,tipo,llave,imprimir):
-    while val_int(opcion)==False or opcion>len(dicc1[tipo][opcion][llave])-1:
+    validar=False
+    while validar==False: 
+        val_int(opcion)==False or opcion>len(dicc1[tipo][opcion][llave])-1:
         for i, tareas in enumerate (dicc1[tipo][llave]):
             print (F"{i} - {tareas}")
         opcion=input(imprimir)
