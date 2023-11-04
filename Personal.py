@@ -1,7 +1,7 @@
 from datetime import datetime
 from Persona import Persona
-#from nodo import Nodo
-#from list_enlazada import Lista_Enlazada
+from nodo import NodoTarea
+from list_enlazada import *
 from Tareas_Empleados import tareas_empleados
 
 class Personal(Persona):
@@ -10,7 +10,7 @@ class Personal(Persona):
         self.fecalta = fecalta
         self.tipo=tipo
         self.fecbaja=fecbaja
-        #self.Tareas=Lista_Enlazada()
+        self.tareasPendientes=Lista_Enlazada()
         
     def __str__(self):
         if self.fecbaja == None:

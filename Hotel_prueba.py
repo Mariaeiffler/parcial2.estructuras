@@ -22,7 +22,7 @@ class Hotel():
         self.empleados=dict()
         self.clientes=dict()
         self.contrasena_ing_personal=contrasena_ing_personal
-        self.tareas=tareas_empleados #fijarse si esta bien llamado
+        self.tareas=tareas_empleados 
         self.habitaciones = [habitacion for habitacion in crearHab()]
         self.reservas=dict()
         self.bajasEmpleados=set()
@@ -177,17 +177,19 @@ class Hotel():
                                         llaves=list(self.tareas.keys())
                                         tipo=input('{} \n Ingrese el tipo de personal al que le quiere asignar una tarea: '.format(llaves))
                                         tipo=valTipoEmpleado(tipo,self.tareas)
-                                        for i, tareas in enumerate (tareas_empleados[tipo]['tareas']):
-                                            print (F"{i} - {tareas}")
+                                        for i, tarea in enumerate (self.tareas[tipo]['tareas']):
+                                            print (F"{i} - {tarea}")
                                         imprimir1='Ingrese la tarea que desea asignar: '
-                                        opcion=input(imprimir1)
-                                        opcion=valOpcAsignacion(opcion,self.tareas,tipo,'tareas',imprimir1)
-                                        for i, empleados in enumerate (tareas_empleados[tipo]['empleados']):
+                                        opcionAsignar=input(imprimir1)
+                                        opcionAsignar=valOpcAsignacion(opcionAsignar,self.tareas,tipo,'tareas',imprimir1)
+                                        for i, empleados in enumerate (self.tareas[tipo]['empleados']):
                                             print (F"{i} - {empleados}")
                                         imprimir2= 'Ingrese el número del usuario del empleados al que le desea asignar la tarea: '
                                         empleadoAsignar=input(imprimir2)
                                         empleadoAsignar=valOpcAsignacion(empleadoAsignar,self.tareas,tipo,'empleados',imprimir2)
-                                        
+                                        imprimir3='Error. Ingrese como nivel de importancia 1, 2 o 3 (siendo 1 el más urgente): '
+                                        pregImportancia=input('Niveles de importancia: 1,2,3 (siendo 1 el más urgente). \n Ingrese la importancia de la tarea a realizar: ')
+                                        pregImportancia=val_opc(pregImportancia,1,3,imprimir3)
                                         
                                         
                                         pass
