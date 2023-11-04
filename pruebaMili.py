@@ -14,5 +14,7 @@ def valTipoEmpleado(tipo,dicc1:dict):
     return tipo
 
 if __name__ == "__main__":
-    tipo='perro'
-    valTipoEmpleado (tipo,mi_diccionario)
+    mi_set = {1, 2, 3, 4, 5}
+    for i in mi_set:
+        print (i)
+

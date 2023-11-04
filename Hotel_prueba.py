@@ -22,6 +22,7 @@ class Hotel():
         self.tareas=tareas_empleados #fijarse si esta bien llamado
         self.habitaciones = [habitacion for habitacion in crearHab()]
         self.reservas=dict()
+        self.bajasEmpleados=set()
         
     def entrar(self):
         try:
@@ -39,8 +40,6 @@ class Hotel():
         gerente=Personal('milagros Argibay','miliargibay',"45074984",'obelisco','5491123484825','06/11/2003','mili@','Milia123','gerente')
         self.empleados[gerente.usuario]=gerente
         self.tareas['gerente']['empleados'].append(gerente.usuario)
-
-        
         while seguir==True: #Fijarnos si queremos poner el while aca o en alguna otra parte del programa
             pregunta=input(('Elija una de las siguientes opciones: \n 1. Sign up (si es un cliente) \n 2. Sign in \n')) #crear una opcion para cerrar programa o que lo pueda hacer solo el gerente (tipo metodo cerrar pagina del hotel y ahi se cierre el programa y se guarde el hotel?
             imprimir = 'Error. Elija una de las siguientes opciones: \n 1. Sign up \n 2. Sign in \n'
@@ -98,7 +97,21 @@ class Hotel():
                                         print ('El empleado se a creado con éxito.')
                                     case 2:
                                         #Dar de baja un empleado
-                                        usuarioBaja=input('Ingrese el nombre del empleado que desea dar de baja: ')
+                                        usuarioBaja=input('Ingrese el usuario del empleado que desea dar de baja: ')
+                                        usuarioBaja=valExiUsu(usuarioBaja,self.empleados)
+                                        empleado=self.empleados.get(usuarioBaja)
+                                        empleado.fecbaja=datetime.now()
+                                        self.tareas[empleado.tipo]['empleados'].remove(empleado.usuario)
+                                        self.empleados.pop(empleado.usuario)
+                                        self.bajasEmpleados.add(empleado) #chequear que se haya guardado correctamente
+                                        print('El empleado ha sido eliminado con éxito')
+                                    case 3:
+                                        #Inventario de personal
+                                        
+                                        
+                                        
+                                        
+                                        
                                 pregGerente=input('Elija una de las siguientes opciones: \n 1. Crear un empleado \n 2. Dar de baja un empleado \n 3. Inventario del personal \n 4. Ver estadísticas \n 5. Nomina de Clientes \n 6. Asignar Tarea \n 7. Historial de baja de empleados \n 8. Historial de Reservas \n 9. Cerrar Sesión \n')
                                 pregGerente=val_opc(pregGerente,1,9,imprimir)    
                                         

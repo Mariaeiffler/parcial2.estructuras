@@ -91,8 +91,8 @@ def validacionfechanac (fecha): # --> no la toque
     return fecha_datetime
 
 def valMail (mail): #validar algo más?
-    while mail.count('@')!=1:
-        mail=input('Ingrese su mail:')
+    while mail.count('@')!=1 and mail.count('.')!=1:
+        mail=input('Error. Ingrese su mail (tiene que contener por lo menos un . y un @):')
     return mail
         
 def validacionusuario(usuario,dic1,dic2): #TODO:chequear que no este repetido
@@ -182,6 +182,11 @@ def valTipoEmpleado(tipo,dicc1:dict):
         llaves=list(dicc1.keys())
         tipo=input('Error. Ese tipo de empleado no existe. \n Las opciones disponibles son: {} \n Ingrese una de las opciones existentes:'.format (llaves))
     return tipo
+
+def valExiUsu (usuario,dicc1:dict):
+    while valPalabraDic(usuario,dicc1)==False:
+        usuario=input('Error. El nombre de usuario es inexistente. \n Ingrese el nombre de usuario: ')
+    return usuario
         
     
 if __name__=='__main__':

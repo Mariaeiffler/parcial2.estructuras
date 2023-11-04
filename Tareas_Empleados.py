@@ -32,6 +32,8 @@ if __name__ == '__main__':
     print(cocina)
     tareas_empleados['cocina']['empleados'].append('hola')
     print(tareas_empleados['cocina'])
+    tareas_empleados['cocina']['empleados'].remove('hola')
+    print(tareas_empleados['cocina'])
     # lista = cocina.get('empleados')
     # lista.append('hola')
     # lista.remove('hola')
