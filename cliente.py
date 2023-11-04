@@ -25,10 +25,11 @@ class Cliente(Persona):
             val, fecha_inicio, fecha_fin, hab = modi_hab(val, preg, fecha_inicio, fecha_fin, hab, lista)  
         for habitacion in lista:
             if habitacion.numero == int(hab):
-                fechas = [fecha_inicio,fecha_fin]
-                habitacion.reservas.append(fechas)
+                habitacion.reservas.append([fecha_inicio,fecha_fin])
                 num_reserva = len(diccionario)+1
                 # falta lo d cobros
+                self.reservas.append([fecha_inicio,fecha_fin])
+                print(self.reservas)
                 print('Su reserva se realizó con exito en las fechas {} - {} y su numero de reserva es {}. \n Recuerde que el horario de check in es desde las 15:00 hs y el check out hasta las 12:00 hs'.format(fecha_inicio.strftime('%d/%m/%Y'),fecha_fin.strftime('%d/%m/%Y'),num_reserva))     
         return num_reserva, fecha_inicio, fecha_fin, int(hab)
     
@@ -38,28 +39,46 @@ class Cliente(Persona):
         reserva = reservas.get(numres)
         print(reserva)
         val = False
+        print(self.reservas)
         while val == False:
             preg = input('Elija una opción: \n 1. Elegir otras fechas \n 2. Elegir otra habitación \n 3. Elegir una nueva habitación y otras fechas \n')
             imprimir = 'Error. Elija una opcion: \n 1. Elegir otras fechas \n 2. Elegir otra habitación \n 3. Elegir una nueva habitación y otras fechas \n'
             preg = val_opc(preg, 1, 3, imprimir)
             for habitacion in lista:
-                if habitacion.numero == reserva.habitacion:
+                if int(reserva.habitacion) == int(habitacion.numero):
+                    self.reservas.remove([reserva.fecha_inicio, reserva.fecha_finalizacion])
                     habitacion.reservas.remove([reserva.fecha_inicio, reserva.fecha_finalizacion])
                     val, fecha_inicio, fecha_fin, hab = modi_hab(val, preg, reserva.fecha_inicio, reserva.fecha_finalizacion, reserva.habitacion, lista)
                     reserva.fecha_inicio = fecha_inicio
                     reserva.fecha_finalizacion = fecha_fin
                     reserva.habitacion = hab
+                    self.reservas.append([reserva.fecha_inicio, reserva.fecha_finalizacion])
+                    break
             for habitacion in lista:
-                if habitacion.numero == hab:    
+                if int(habitacion.numero) == int(hab):    
                     habitacion.reservas.append([fecha_inicio, fecha_fin])
-        print('Su reserva se modificó con exito. {}'.format(reserva))
+                    print('Su reserva se modificó con exito. {}'.format(reserva))
         return
-                #que printee las fechas y le pregunte que fecha quiere modificiar
-                #tambien tiene q poder modificar la habitacion que reservo
     
-    # def modificar_reserva(self, lista):
-    #     fecha = input('Introduzca el día que realizó la reserva en el formato dd/mm/aaaa')
-    #     fecha = convertirfecha_datetime(fecha)
+    def cancelar_reserva(self,reservas:dict, lista):
+        numres = input('Ingrese su numero de reserva  ')
+        numres = val_numres(numres, reservas, self.usuario)
+        reserva = reservas.get(numres)
+        print(reserva)
+        preg = input('¿Desea cancelar su reserva definitivamente? \n 1. Si \2. No \n')
+        imprimir = 'Error. ¿Desea cancelar su reserva definitivamente? \n 1. Si \n 2. No \n'
+        preg = val_opc(preg, 1, 2, imprimir)
+        if preg == 1:
+            reservas.pop(numres)
+            self.reservas.remove([reserva.fecha_inicio, reserva.fecha_finalizacion])
+            for habitacion in lista:
+                if int(reserva.habitacion) == int(habitacion.numero):
+                    habitacion.reservas.remove([reserva.fecha_inicio, reserva.fecha_finalizacion])
+        # hace falta borrar el objeto?
+        return
+                    
+                    
+            
         
         
 

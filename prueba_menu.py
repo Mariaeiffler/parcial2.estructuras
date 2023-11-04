@@ -286,20 +286,23 @@ def reserva():
 def val_numres(numero, diccionario:dict(), nombre):
     validacion1=False
     validacion2=False
-    while validacion1 == False and validacion2 == False:
+    while validacion1 == False or validacion2 == False:
         if val_int(numero):
             numero=int(numero)
             validacion1=True
+            if valPalabraDic(numero, diccionario): 
+                reserva = diccionario.get(numero) 
+                persona = reserva.usuario
+                if nombre == persona.usuario:
+                    validacion2=True
+                else:
+                    print('Su numero de reserva es incorrecto')
+                    numero = input('Ingrese su numero de reserva  ')
+            else:
+                    print('Su numero de reserva es incorrecto')
+                    numero = input('Ingrese su numero de reserva  ')
         else: 
             numero = input('Error. Ingrese su numero de reserva  ')
-        if numero in diccionario: 
-            reserva = diccionario.get(numero) 
-            usuario = reserva.usuario
-            if nombre == usuario:
-                validacion2=True
-        else:
-            print('Su numero de reserva es incorrecto')
-            numero = input('Ingrese su numero de reserva  ')
     return numero
 
 def hab_ocupada(fecha_inicio, fecha_fin, hab, lista):
@@ -307,13 +310,13 @@ def hab_ocupada(fecha_inicio, fecha_fin, hab, lista):
     for habitacion in lista:
         if habitacion.numero == int(hab):
             if len(habitacion.reservas) == 0:
+        # TENGO QUE VER Q LA LLAVE NO EXISTA
                 val = True
             else:
                 i = 0
                 for estadia in habitacion.reservas:
                     if (estadia[0]>=fecha_fin) or (estadia[1]<=fecha_inicio):
                         i+=1
-                        print('hola')
                 if i == len(habitacion.reservas):
                     val = True
     if val == False:
