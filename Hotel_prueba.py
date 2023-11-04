@@ -13,6 +13,7 @@ from prueba_menu import * #despues si lo seguimos usando cambiarle el nombre
 from Reserva import Reserva
 from datetime import *
 from Cobros import Cobro
+import numpy as np
 
 class Hotel():
     def __init__(self,nombre,contrasena_ing_personal='personal123'):
@@ -24,6 +25,7 @@ class Hotel():
         self.habitaciones = [habitacion for habitacion in crearHab()]
         self.reservas=dict()
         self.bajasEmpleados=set()
+        self.cobros = np.array([])
         
     def entrar(self):
         try:
@@ -33,33 +35,47 @@ class Hotel():
             self.clientes = info.clientes
             self.habitaciones = info.habitaciones
             self.reservas = info.reservas
+            self.cobros = info.cobros
         except FileNotFoundError:
             with open ('hotel.pickle','wb') as hpickle:
                 pickle.dump(self,hpickle)
         #podriamos ponerlo en una funcion (no estoy segura)
+        
+        print(self.cobros)
+        print(len(self.cobros))
+        
         seguir = True 
         gerente=Personal('milagros Argibay','miliargibay',"45074984",'obelisco','5491123484825','06/11/2003','mili@','Milia123','gerente')
         self.empleados[gerente.usuario]=gerente
         self.tareas['gerente']['empleados'].append(gerente.usuario)
+        
         while seguir==True: #Fijarnos si queremos poner el while aca o en alguna otra parte del programa
             pregunta=input(('Elija una de las siguientes opciones: \n 1. Sign up (si es un cliente) \n 2. Sign in \n')) #crear una opcion para cerrar programa o que lo pueda hacer solo el gerente (tipo metodo cerrar pagina del hotel y ahi se cierre el programa y se guarde el hotel?
             imprimir = 'Error. Elija una de las siguientes opciones: \n 1. Sign up \n 2. Sign in \n'
             pregunta=val_opc(pregunta,1,2,imprimir)
+            
             match pregunta:
+                # registro del cliente:
                 case 1:
                     nombre,usuario,dni,direccion,contacto,fecha_nac,mail,contrasena = infoPersonas (self.clientes,self.empleados)
                     cliente=Cliente(nombre,usuario,dni,direccion,contacto,fecha_nac,mail,contrasena,'nivel 1',[])
                     self.clientes[usuario]=cliente
                     print('Su usuario se ha creado con exito. Si desea seguir en el programa ingrese sesión. ')
                     #agregar q tambien pueda salir
+                
+                # inicio de sesion
                 case 2:
                     usuario, contrasena = valSignIn (self.clientes, self.empleados)
                     cliente,empleado,tipo = valTipoUsuario(usuario,self.clientes,self.empleados) #para hacer el match case y probar (NO OLVIDARSE)
+                    
+                    # menu cliente
                     if cliente:
                         pregcliente=input('Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Cerrar Sesión \n')
                         imprimir='Error. Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Cerrar Sesión \n'
                         pregcliente=val_opc(pregcliente,1,5,imprimir)
                         while pregcliente != 5:
+                            
+                            # hacer una reserva
                             if pregcliente == 1:
                                 num_reserva,fecha_inicio,fecha_fin,habitacion=Cliente.realizar_reserva(self.clientes.get(usuario), self.habitaciones, self.reservas)
                                 reserva=Reserva(num_reserva,self.clientes.get(usuario), fecha_inicio, fecha_fin, habitacion, datetime.today())
@@ -69,29 +85,39 @@ class Hotel():
                             # hay que ver si queremos crear un diccionario o algo asi con todos los cobros
                                 print('Su reserva se realizó con exito en las fechas {} - {} y su numero de reserva es {}. \n Recuerde que el horario de check in es desde las 15:00 hs y el check out hasta las 12:00 hs'.format(fecha_inicio.strftime('%d/%m/%Y'),fecha_fin.strftime('%d/%m/%Y'),num_reserva))
                                 
+                            # pedir algo en el buffet
                             if pregcliente == 2:
                                 # buffet
                                 pass
+                            
+                            # modificar una reserva
                             if pregcliente == 3:
                                 Cliente.modificar_reserva(self.clientes.get(usuario), self.reservas, self.habitaciones)
                                 
+                            #cancelar una reserva
                             if pregcliente == 4:
                                 Cliente.cancelar_reserva(self.clientes.get(usuario),self.reservas, self.habitaciones)
                                 
                             pregcliente=input('Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Cerrar Sesión \n')
                             imprimir='Error. Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Cerrar Sesión \n'
                             pregcliente=val_opc(pregcliente,1,5,imprimir)
+                            
+                        # se cierra el programa y se carga todo a pickle
                         with open ('hotel.pickle','wb') as hpickle:
                             pickle.dump(self,hpickle)
                         seguir = False #ponerlo afuera del while asi tmb se hace para el gerente, pero ver como funciona
                         print('Se ha cerrado la sesión con éxito')
+                        
                     else:
+                        
+                        # menu gerente
                         if tipo=='gerente': #si cambiamos algo del menu del gerente cambiar el rango de las validaciones y los dos str.
                             pregGerente=input('Elija una de las siguientes opciones: \n 1. Crear un empleado \n 2. Dar de baja un empleado \n 3. Inventario del personal \n 4. Ver estadísticas \n 5. Nomina de Clientes \n 6. Asignación de Tareas \n 7. Historial de baja de empleados \n 8. Historial de Reservas \n 9. Cerrar Sesión \n')
                             imprimir='Error. Elija una de las siguientes opciones: \n 1. Crear un empleado \n 2. Dar de baja un empleado \n 3. Inventario del personal \n 4. Ver estadísticas \n 5. Nomina de Clientes \n 6. Asignación de Tareas \n 7. Historial de baja de empleados \n 8. Historial de Reservas \n 9. Cerrar Sesión \n '
                             pregGerente=val_opc(pregGerente,1,9,imprimir)
                             while pregGerente!=9:
                                 match pregGerente:
+                                    
                                     case 1:
                                         #Crear empleado
                                         nombre,usuario,dni,direccion,contacto,fecha_nac,mail,contrasena = infoPersonas (self.clientes,self.empleados)
@@ -102,6 +128,7 @@ class Hotel():
                                         self.empleados[empleado.usuario]=empleado
                                         self.tareas[tipo]['empleados'].append(empleado.usuario)
                                         print ('El empleado se a creado con éxito.')
+                                        
                                     case 2:
                                         #Dar de baja un empleado
                                         usuarioBaja=input('Ingrese el usuario del empleado que desea dar de baja: ')
@@ -112,17 +139,21 @@ class Hotel():
                                         self.empleados.pop(empleado.usuario)
                                         self.bajasEmpleados.add(empleado) #chequear que se haya guardado correctamente
                                         print('El empleado ha sido eliminado con éxito')
+                                        
                                     case 3:
                                         #Inventario de personal
                                         print('Los usuarios de los empleados activos son: ')
                                         for clave in self.empleados.keys():
                                             print(clave + "\n")
+                                            
                                     case 4:
                                         #Estadisticas 
                                         pass
+                                    
                                     case 5:
                                         #Nomina de un cliente
                                         pass
+                                    
                                     case 6:
                                         #Asignar una Tarea 
                                         pass
@@ -134,7 +165,7 @@ class Hotel():
                                 pregGerente=input('Elija una de las siguientes opciones: \n 1. Crear un empleado \n 2. Dar de baja un empleado \n 3. Inventario del personal \n 4. Ver estadísticas \n 5. Nomina de Clientes \n 6. Asignar Tarea \n 7. Historial de baja de empleados \n 8. Historial de Reservas \n 9. Cerrar Sesión \n')
                                 pregGerente=val_opc(pregGerente,1,9,imprimir)    
                                         
-                            
+                        # menu empleado
                         else:
                             pass
                 
@@ -153,18 +184,3 @@ class Hotel():
 if __name__ == "__main__":
     hotel=Hotel('POO')
     hotel.entrar()
-    
-    # habitacion1 = 1
-    # fecha1 = 1234
-    # fecha2= 1234567
-    # for habitacion in hotel.habitaciones:
-    #     if habitacion.numero == habitacion1:
-    #         print(habitacion.numero)
-    #         if len(habitacion.reservas) == 0:
-    #             fechas = [fecha1,fecha2]
-    #             habitacion.reservas.append(fechas)
-    #     print(habitacion.reservas)
-    
-    # fecha = '30/12/2023'
-    # fecha = convertirfecha_datetime(fecha)
-    # print(fecha < datetime.today())

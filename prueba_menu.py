@@ -346,4 +346,8 @@ def obtener_precio(lista, habitacion):
             monto=hab.precio
             objeto = hab
     return monto, objeto
+
+def agregar_cobro(matriz, cobro):
+    if len(matriz)== 0:
+         
     
