@@ -107,6 +107,17 @@ class Hotel():
                                         print('El empleado ha sido eliminado con éxito')
                                     case 3:
                                         #Inventario de personal
+                                        print('Los usuarios de los empleados activos son: ')
+                                        for clave in self.empleados.keys():
+                                            print(clave + "\n")
+                                    case 4:
+                                        #Estadisticas 
+                                        pass
+                                    case 5:
+                                        #Nomina de un cliente
+                                        pass
+                                    case 6:
+                                        #Asignar una Tarea 
                                         
                                         
                                         
