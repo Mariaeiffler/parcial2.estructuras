@@ -30,3 +30,38 @@ asado_para_1=Comida('Asado con papas fritas (para 1)', 2000, 'cena')
 postre_cena=Comida('Postres (flan con dulce de leche, bocha de helado, tiramisú)',500, 'cena')
 
 print(infusion)
+
+
+
+# un diccionario que se llame buffet en el que las claves sean los tipos y los valores sean los diccionarios de cada comida (desayuno, almuerzo, cena) 
+# buffet= {'desayuno': diccionario_desayuno, 'almuerzo': diccionario_almuerzo, 'cena': diccionario_cena} 
+# desayuno= {'1': infusion, '2': tostadas, '3': yogur, '4': huevos_revueltos, '5': facturas, '6': ensalada_frutas}
+# almuerzo= {'1': pollo_carne, '2': sopa, '3': ensalada, '4': pez, '5': opcion_vegetariana, '6': pastas, '7': postres}
+# cena= {'1': salmon, '2': pastas_cena, '3': opcion_vegetariana_cena, '4': pizza, '5': empanadas, '6': asado_para_2, '7': asado_para_1, '8': postre_cena}
+
+
+
+for i in enumerate (buffet_dicc['desayuno']):
+    print (i)
+    
+
+
+# def valOpcAsignacion(opcion,dicc1:dict,tipo,llave,imprimir):
+#     validar=False
+#     while validar==False: 
+#         val_int(opcion)==False or opcion>len(dicc1[tipo][opcion][llave])-1
+#         for i, tareas in enumerate (dicc1[tipo][llave]):
+#             print (F"{i} - {tareas}")
+#         opcion=input(imprimir)
+#         opcion=int(opcion)
+#     return opcion 
+    
+# if __name__=='__main__':
+#     llaves=list(tareas_empleados.keys())
+#     tipo=input('{} \n Ingrese el tipo de personal al que le quiere asignar una tarea: '.format(llaves))
+#     tipo=valTipoEmpleado(tipo,tareas_empleados)
+#     for i, tareas in enumerate (tareas_empleados[tipo]['tareas']):
+#         print (F"{i} - {tareas}")
+#     imprimir1='Ingrese la tarea que desea asignar: '
+#     opcion=input(imprimir1)
+#     opcion=valOpcAsignacion(opcion,tareas_empleados,tipo,'tareas',imprimir1)   
