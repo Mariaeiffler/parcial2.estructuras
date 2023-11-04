@@ -13,5 +13,6 @@ tareas_empleados = {
 
 if __name__ == '__main__':
     tipo='cocina'
-    for i, tareas in enumerate (tareas_empleados[tipo]['tareas']):
-        print (F"{i} - {tareas}")
+    tipo=tareas_empleados.keys()
+    print (tipo)
+    

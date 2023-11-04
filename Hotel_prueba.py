@@ -82,6 +82,7 @@ class Hotel():
                                 self.reservas[num_reserva]=reserva
                                 monto,objhab=obtener_precio(self.habitaciones, habitacion)
                                 cobro = Cobro(monto,self.clientes.get(usuario),objhab)
+                                self.cobros = agregar_cobro(self.cobros, cobro, self.clientes.get(usuario).usuario)
                             # hay que ver si queremos crear un diccionario o algo asi con todos los cobros
                                 print('Su reserva se realizó con exito en las fechas {} - {} y su numero de reserva es {}. \n Recuerde que el horario de check in es desde las 15:00 hs y el check out hasta las 12:00 hs'.format(fecha_inicio.strftime('%d/%m/%Y'),fecha_fin.strftime('%d/%m/%Y'),num_reserva))
                                 
@@ -134,7 +135,7 @@ class Hotel():
                                         usuarioBaja=input('Ingrese el usuario del empleado que desea dar de baja: ')
                                         usuarioBaja=valExiUsu(usuarioBaja,self.empleados)
                                         empleado=self.empleados.get(usuarioBaja)
-                                        empleado.fecbaja=datetime.now()
+                                        empleado.bajas()
                                         self.tareas[empleado.tipo]['empleados'].remove(empleado.usuario)
                                         self.empleados.pop(empleado.usuario)
                                         self.bajasEmpleados.add(empleado) #chequear que se haya guardado correctamente
@@ -159,7 +160,19 @@ class Hotel():
                                         llaves=list(self.tareas.keys())
                                         tipo=input('{} \n Ingrese el tipo de personal al que le quiere asignar una tarea: '.format(llaves))
                                         tipo=valTipoEmpleado(tipo,self.tareas)
-                                        tareas=list(self.tareas) 
+                                        for i, tareas in enumerate (tareas_empleados[tipo]['tareas']):
+                                            print (F"{i} - {tareas}")
+                                        imprimir1='Ingrese la tarea que desea asignar: '
+                                        opcion=input(imprimir1)
+                                        opcion=valOpcAsignacion(opcion,self.tareas,tipo,'tareas',imprimir1)
+                                        for i, empleados in enumerate (tareas_empleados[tipo]['empleados']):
+                                            print (F"{i} - {empleados}")
+                                        imprimir2= 'Ingrese el número del usuario del empleados al que le desea asignar la tarea: '
+                                        empleadoAsignar=input(imprimir2)
+                                        empleadoAsignar=valOpcAsignacion(empleadoAsignar,self.tareas,tipo,'empleados',imprimir2)
+                                        
+                                        
+                                        
                                         pass
                                     case 7:
                                         #Historial de baja de un empleados
