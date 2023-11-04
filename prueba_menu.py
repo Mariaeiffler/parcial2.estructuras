@@ -190,15 +190,15 @@ def valExiUsu (usuario,dicc1:dict):
         usuario=input('Error. El nombre de usuario es inexistente. \n Ingrese el nombre de usuario: ')
     return usuario
 
-def valOpcAsignacion(opcion,dicc1:dict,tipo,llave,imprimir):
-    validar=False
-    while validar==False: 
-        val_int(opcion)==False or opcion>len(dicc1[tipo][opcion][llave])-1:
-        for i, tareas in enumerate (dicc1[tipo][llave]):
-            print (F"{i} - {tareas}")
-        opcion=input(imprimir)
-        opcion=int(opcion)
-    return opcion 
+# def valOpcAsignacion(opcion,dicc1:dict,tipo,llave,imprimir):
+#     validar=False
+#     while validar==False: 
+#         val_int(opcion)==False or opcion>len(dicc1[tipo][opcion][llave])-1:
+#         for i, tareas in enumerate (dicc1[tipo][llave]):
+#             print (F"{i} - {tareas}")
+#         opcion=input(imprimir)
+#         opcion=int(opcion)
+#     return opcion 
     
 if __name__=='__main__':
     llaves=list(tareas_empleados.keys())

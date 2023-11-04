@@ -20,7 +20,7 @@ class Cliente(Persona):
         res_imp = ''
         for res in self.reservas:
             res_imp += res[0].strftime('%d/%m/%Y') + ' - ' + res[1].strftime('%d/%m/%Y') + '   '
-        return('El cliente de nombre de nombre {} y dni {} es de nivel {} y sus reservas son: {}'.format(self.nombre, self.dni, self.tipo, res_imp))
+        return('El cliente de nombre de nombre {} y dni {} es de {} y sus reservas son: {}'.format(self.nombre, self.dni, self.tipo, res_imp))
     
     def realizar_reserva(self, lista, diccionario:dict):
         fecha_inicio, fecha_fin, hab = reserva()
@@ -89,6 +89,19 @@ class Cliente(Persona):
         # hace falta borrar el objeto?
         return
     
+    def asignar_nivel(self, vector):
+        gastos = 0
+        for cobro in vector:
+            if cobro.usuario.usuario == self.usuario:
+                gastos += cobro.monto
+        if gastos <= 50000:
+            self.tipo = 'nivel 1'
+        elif gastos >= 100000:
+            self.tipo = 'nivel 3'
+        else:
+            self.tipo = 'nivel 2'
+        return
+                
                     
             
         
