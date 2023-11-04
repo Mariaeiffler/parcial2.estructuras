@@ -1,4 +1,4 @@
-from prueba_menu import *
+# from prueba_menu import *
 from Hotel_prueba import *
 import numpy as np
 
@@ -14,10 +14,14 @@ def valTipoEmpleado(tipo,dicc1:dict):
         tipo=input('Error. Ese tipo de empleado no existe. \n Las opciones disponibles son: {} \n Ingrese una de las opciones existentes:'.format (llaves))
     return tipo
 
-mili=
+mili=np.array([[1,2,3],[4,5,6]])
 
 if __name__ == "__main__":
     mi_set = {1, 2, 3, 4, 5}
     for i in mi_set:
         print (i)
+    print(mili)
+    mili = np.vstack([mili,[7,8,9]])
+    print(mili)
+    print(len(mili))
 

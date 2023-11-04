@@ -2,6 +2,7 @@ from datetime import *
 from Habitacion_Doble import *
 from Habitacion_Simple import *
 from Habitacion_Suite import *
+import numpy as np
 
 def val_int(x): #valida que sea un entero
         try:
@@ -347,7 +348,19 @@ def obtener_precio(lista, habitacion):
             objeto = hab
     return monto, objeto
 
-def agregar_cobro(matriz, cobro):
+def agregar_cobro(matriz, cobro, nombre):
     if len(matriz)== 0:
-         
+        matriz = np.vstack([matriz,[cobro]])
+    else:
+        i = 0
+        for lista in matriz:
+            for cob in lista:
+                if cob.usuario.usuario == nombre:
+                    matriz = np.vstack([matriz,[cobro]])
+                else:
+                    i+=1
+        if i == len(matriz):
+            matriz = np.vstack([matriz,[cobro]])
+    return matriz
+                    
     
