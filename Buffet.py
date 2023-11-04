@@ -5,7 +5,11 @@ class Comida():
         self.tipo = tipo
         
     def __str__(self):
-        return('Se pidio {}, que vale $ {} para {}'.format(self.descripcion, self.precio, self.tipo))
+        if self.tipo!=None: 
+            return('Se pidió {}, que vale $ {} para {}'.format(self.descripcion, self.precio, self.tipo))
+        else:
+            return('Se pidió {}, que vale $ {}'.format(self.descripcion, self.precio))
+            
     
 infusion= Comida('Infusión (Café con leche/Té/Jugo de Naranja)', 500, 'desayuno')
 tostadas=Comida('Tostadas con queso y mermelada', 700, 'desayuno')
@@ -28,5 +32,4 @@ empanadas=Comida('Empanadas (carne, pollo, jamón y queso, verdura)',600,'cena')
 asado_para_2=Comida('Asado con papas fritas (para 2)', 3000, 'cena')
 asado_para_1=Comida('Asado con papas fritas (para 1)', 2000, 'cena')
 postre_cena=Comida('Postres (flan con dulce de leche, bocha de helado, tiramisú)',500, 'cena')
-
-print(infusion)
+bebida=Comida('Bebida a elección',500,None)
