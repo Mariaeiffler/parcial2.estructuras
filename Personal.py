@@ -3,7 +3,8 @@ from Persona import Persona
 from nodo import NodoTarea
 from list_enlazada import *
 from Tareas_Empleados import tareas_empleados
-from prueba_menu import *
+from Validaciones import *
+from Funciones import *
 
 class Personal(Persona):
     def __init__(self,nombre,usuario,dni,direccion,contacto,fecha_nac,mail,contrasena,tipo,fecalta=datetime.now(),fecbaja=None):

@@ -1,3 +1,4 @@
+
 class Persona():
     def __init__(self,nombre,usuario,dni,direccion,contacto,fecha_nac,mail,contrasena):
         self.nombre=nombre
@@ -8,6 +9,8 @@ class Persona():
         self.mail=mail
         self.usuario=usuario
         self.contrasena=contrasena
+        
+# creo q se podria borrar:
         
     def _str_(self):
         cadena=''

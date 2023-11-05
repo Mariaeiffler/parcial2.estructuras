@@ -1,4 +1,5 @@
-from prueba_menu import *
+from Funciones import *
+from Validaciones import *
 from datetime import *
 import numpy as np
 

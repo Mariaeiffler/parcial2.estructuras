@@ -1,13 +1,6 @@
 from Persona import Persona
-from prueba_menu import reserva
-from prueba_menu import val_numres
-from prueba_menu import val_opc
-from prueba_menu import convertirfecha_datetime
-from prueba_menu import hab_ocupada
-from prueba_menu import comparacion_fechas
-from prueba_menu import validacion_preg_hab
-from prueba_menu import modi_hab
-from prueba_menu import valPalabraDic
+from Validaciones import *
+from Funciones import *
 
 
 class Cliente(Persona):

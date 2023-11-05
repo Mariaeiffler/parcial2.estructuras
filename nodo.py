@@ -1,3 +1,4 @@
+
 class NodoTarea:
     def __init__(self, valor, importancia):
         self.valor = valor

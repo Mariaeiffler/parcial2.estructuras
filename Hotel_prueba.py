@@ -1,14 +1,13 @@
 import pickle
 from Personal import Personal
 from cliente import Cliente
-from Persona import Persona
-# from validaciones import *
-from Abrir_archivo import *
+from Persona import Persona # creo q no hace falta
+from Validaciones import *
 from Habitacion_Doble import *
 from Habitacion_Simple import *
 from Habitacion_Suite import *
 from Tareas_Empleados import tareas_empleados 
-from prueba_menu import * #despues si lo seguimos usando cambiarle el nombre
+from Funciones import *
 from Reserva import Reserva
 from datetime import *
 from Cobros import Cobro

@@ -1,4 +1,5 @@
 from nodo import NodoTarea
+
 class Lista_Enlazada():
     def __init__(self):  
         self.head= None
