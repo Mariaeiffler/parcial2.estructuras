@@ -28,7 +28,8 @@ class Hotel():
         self.reservas=dict()
         self.bajasEmpleados=set()
         self.cobros = np.array([])
-        self.buffet=dict()
+        self.buffet=dict() #
+        self.ingresos_egresos=list() #
         
     def entrar(self):
         try:
@@ -39,7 +40,8 @@ class Hotel():
             self.habitaciones = info.habitaciones
             self.reservas = info.reservas
             self.cobros = info.cobros
-            #self.buffet=info.buffet
+            self.buffet=info.buffet 
+            self.ingresos_egresos=info.ingresos_egresos 
         except FileNotFoundError:
             with open ('hotel.pickle','wb') as hpickle:
                 pickle.dump(self,hpickle)
@@ -138,6 +140,7 @@ class Hotel():
                                         self.empleados[empleado.usuario]=empleado
                                         self.tareas[tipo]['empleados'].append(empleado.usuario)
                                         print ('El empleado se a creado con éxito.')
+                                        self.ingresos_egresos.append([]) #
                                         
                                     case 2:
                                         #Dar de baja un empleado
