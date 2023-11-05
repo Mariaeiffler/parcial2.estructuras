@@ -41,7 +41,7 @@ class Hotel():
             self.reservas = info.reservas
             self.cobros = info.cobros
             self.buffet=info.buffet 
-            self.ingresos_egresos=info.ingresos_egresos 
+            #self.ingresos_egresos=info.ingresos_egresos 
         except FileNotFoundError:
             with open ('hotel.pickle','wb') as hpickle:
                 pickle.dump(self,hpickle)
@@ -181,7 +181,7 @@ class Hotel():
                                         for i, tarea in enumerate (self.tareas[tipo]['tareas']):
                                             print (F"{i} - {tarea}")
                                         imprimir1='Ingrese la tarea que desea asignar: '
-                                        opcionAsignar=input(imprimir1)
+                                        opcionAsignar=input(imprimir1) #Chequear lo de la validacion de valopcasignacion que rompe con el rango
                                         opcionAsignar=valOpcAsignacion(opcionAsignar,self.tareas,tipo,'tareas',imprimir1)
                                         for i, empleados in enumerate (self.tareas[tipo]['empleados']):
                                             print (F"{i} - {empleados}")
@@ -194,8 +194,7 @@ class Hotel():
                                         nodoNuevo=NodoTarea(opcionAsignar,importancia)
                                         persona=self.empleados.get(empleadoAsignar)
                                         persona.tareasPendientes.agregarNodoTarea(nodoNuevo)
-                                        print('La nueva tarea se ha asignado con éxito.')
-                                        print(persona.tareasPendientes.__str__())
+                                        print('La nueva tarea se ha asignado con éxito.') #ver el str de listas enlazadas porque está feo
                                         pass
                                     
                                     case 7:
@@ -212,7 +211,17 @@ class Hotel():
                                         
                                 pregGerente=input('Elija una de las siguientes opciones: \n 1. Crear un empleado \n 2. Dar de baja un empleado \n 3. Inventario del personal \n 4. Ver estadísticas \n 5. Nomina de Clientes \n 6. Asignar Tarea \n 7. Historial de baja de empleados \n 8. Historial de Reservas \n 9. Cerrar Sesión \n')
                                 pregGerente=val_opc(pregGerente,1,9,imprimir)    
-                                        
+                        else:
+                            pregEmpleado=input('Ingrese una de las siguientes opciones: \n 1. Realizar una Tarea \n') #Agregar el resto de las cosas que debería hacer un empleado
+                            imprimir1='Error. Elija una de las siguientes opciones: \n 1. Realizar una Tarea \n'
+                            pregEmpleado=val_opc(pregEmpleado,1,4,imprimir1) #Hay que cambiar el rango a medida que agregamos las cosas que hace el empleado
+                            while pregEmpleado!=4: #tmb cambiar acá el máximo
+                                match pregEmpleado:
+                                    case 1:
+                                        #Realizar una tarea
+                                        personal=empleados.get(usuario)
+                                        personal.tareasPendientes.realizarTareas() #ver como meter las cosas viejas a una pila 
+                                        pass               
                         # menu empleado
                         # else:
                         #     #cliente

@@ -208,6 +208,14 @@ def valOpcAsignacion(opcion,dicc1:dict,tipo,llave,imprimir):
             validar=True
             tarea=dicc1[tipo][llave][opcion]
     return tarea 
+
+def valSiNo(eleccion,imprimir):
+    while eleccion!='si' or eleccion!='no':
+        eleccion=input(imprimir)
+    if eleccion =='si':
+        return True
+    else:
+        return False
     
 if __name__=='__main__':
     llaves=list(tareas_empleados.keys())

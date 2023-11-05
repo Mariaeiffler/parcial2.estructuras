@@ -3,6 +3,7 @@ from Persona import Persona
 from nodo import NodoTarea
 from list_enlazada import *
 from Tareas_Empleados import tareas_empleados
+from prueba_menu import *
 
 class Personal(Persona):
     def __init__(self,nombre,usuario,dni,direccion,contacto,fecha_nac,mail,contrasena,tipo,fecalta=datetime.now(),fecbaja=None):
@@ -21,11 +22,18 @@ class Personal(Persona):
     def bajas(self):
         self.fechabaja = datetime.now()
 
-    def tareas(self): 
-        print(tareas_empleados)
-        opcion=input('Ingrese el número de tarea que quiere asignar: ') #chequear que la opcion sea la correcta
-        prioridad= input ('Ingrese la prioridad (1,2 o 3): ') #chequear que sea 1,2 o 3
-        
+    def realizarTareas(self):
+        if self.tareasPendientes.head:
+            print('La Tarea a realizar es: {}'.format(self.tareasPendientes.head))
+            imprimir='Desea realizar la tarea ahora? (ingrese "si" o "no"): '
+            elije=input(imprimir)
+            elije=valSiNo(elije,imprimir)
+            if elije==False:
+                print('La tarea no se ha realizado')
+            else:
+                self.tareasPendientes.eliminarPrimero() #PODEMOS GUARDAR ANTES LA CABEZA Y GUARDAR EN UNA PILA EL NODO O LA INFORMACION DEL NODO PARA QUE EL CLIENTE PUEDA VER CUAL FUE SU ULTIMA TAREA REALIZADA
+                print('La tarea ha sido realizada.')
+
     def posicion_registro(self,u,ingresos_egresos:list()):
         u=self.usuario
         cont=0

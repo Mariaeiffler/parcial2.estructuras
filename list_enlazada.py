@@ -47,32 +47,12 @@ class Lista_Enlazada():
             nodoMov.prox = nuevoNodo
         self.len += 1
         
-    def pop(self,posicion=None): 
-        nodo=NodoTarea()
-        nodo=self.head
-        if posicion == None: 
-            final=self.len-2
-            for i in range (final): 
-                nodo=nodo.prox
-            nodo.prox=None 
-        else: 
-            for i in range (posicion-1):
-                nodo=nodo.prox
-            nodo.prox=nodo.prox.prox 
-        self.len=-1
-        
-    def eliminarPorValor (self,valor): 
-        if self.is_empty():
-            return
-        if self.head.dato == valor:
+    def eliminarPrimero(self):
+        if self.head:
             self.head = self.head.prox
-            return
-        current = self.head
-        while current.prox:
-            if current.prox.dato == valor:
-                current.prox = current.prox.prox
-                return
-            current = current.prox
+        else:
+            print("La lista está vacía. No hay elementos para eliminar.")
+
             
             
 if __name__ == '__main__':
@@ -81,6 +61,8 @@ if __name__ == '__main__':
     lista.append(nodo1)
     nodo2=NodoTarea('Las m',2)
     lista.append(nodo2)
-    lista.agregar_nodo_tarea('hola',1)
+    nodo3=NodoTarea('hola',1)
+    lista.agregarNodoTarea(nodo3)
+    lista.eliminarPrimero()
     print(lista.__str__())
     
