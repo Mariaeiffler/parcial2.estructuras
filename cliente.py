@@ -95,24 +95,4 @@ class Cliente(Persona):
             self.tipo = 'nivel 2'
         return
                 
-                    
-            
-        
-        
-
-    
-    # def realizar_pedido():
-        
-        
-        
-    #def tipo(self):
-        #verificar que tipo de cliente es en base a sus gastos
-        
-    #def historial_reservas(self):
-    
-    #def realizar_pedido_buffet():
-    
-    #def __str__(self):
-    
-    #def tipocliente(self)
     
