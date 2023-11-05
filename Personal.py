@@ -1,8 +1,9 @@
 from datetime import datetime
 from Persona import Persona
-#from nodo import Nodo
-#from list_enlazada import Lista_Enlazada
+from nodo import NodoTarea
+from list_enlazada import *
 from Tareas_Empleados import tareas_empleados
+from prueba_menu import *
 
 class Personal(Persona):
     def __init__(self,nombre,usuario,dni,direccion,contacto,fecha_nac,mail,contrasena,tipo,fecalta=datetime.now(),fecbaja=None):
@@ -10,7 +11,7 @@ class Personal(Persona):
         self.fecalta = fecalta
         self.tipo=tipo
         self.fecbaja=fecbaja
-        #self.Tareas=Lista_Enlazada()
+        self.tareasPendientes=Lista_Enlazada()
         
     def __str__(self):
         if self.fecbaja == None:
@@ -21,28 +22,40 @@ class Personal(Persona):
     def bajas(self):
         self.fechabaja = datetime.now()
 
-    def tareas(self): 
-        print(tareas_empleados)
-        opcion=input('Ingrese el número de tarea que quiere asignar: ') #chequear que la opcion sea la correcta
-        prioridad= input ('Ingrese la prioridad (1,2 o 3): ') #chequear que sea 1,2 o 3
-        
+    def realizarTareas(self):
+        if self.tareasPendientes.head:
+            print('La Tarea a realizar es: {}'.format(self.tareasPendientes.head))
+            imprimir='Desea realizar la tarea ahora? (ingrese "si" o "no"): '
+            elije=input(imprimir)
+            elije=valSiNo(elije,imprimir)
+            if elije==False:
+                print('La tarea no se ha realizado')
+            else:
+                self.tareasPendientes.eliminarPrimero() #PODEMOS GUARDAR ANTES LA CABEZA Y GUARDAR EN UNA PILA EL NODO O LA INFORMACION DEL NODO PARA QUE EL CLIENTE PUEDA VER CUAL FUE SU ULTIMA TAREA REALIZADA
+                print('La tarea ha sido realizada.')
+
+    def posicion_registro(self,u,ingresos_egresos:list()):
+        u=self.usuario
+        cont=0
+        for lista in ingresos_egresos:
+            if lista[0]==u:
+                return cont
+            cont+=1
+            
     #FALTA VERIFICAR QUE ANDEN BIEN INGRESOS Y EGRESOS Y LOS DOS METODOS DE REGISTROS
     #Falta ver si se appendean a regiastros registro.
-    def ingreso(self,nom): #ver si esta bien lo de la list de registros (preguntarle a ian!!!!)
-        self.nom=nom
+    def ingreso(self,ingresos_egresos:list()): #ver si esta bien lo de la list de registros (preguntarle a ian!!!!)
         ahora= datetime.now()
-        registro= {'tipo de registro':'ingreso', 'fecha_hora': ahora, 'nombre': self.nom} #noc lo del nombre si esta bien
-        self.registros.append(registro)
+        registro= {'tipo de registro':'ingreso', 'fecha_hora': ahora, 'usuario': self.usuario} #noc lo del nombre si esta bien
+        self.ingresos_egresos[self.posicion_registro()].append(registro)
         print('Se registró el ingreso de {} a las {}'.format(self.nombre,ahora))
         
-    def egreso(self, nom):
-        self.nom=nom
+    def egreso(self, ingresos_egresos:list()):
         ahora= datetime.now()
-        registro= {'tipo de registro': 'egreso', 'fecha_hora': ahora, 'nombre':self.nom}
-        self.registros.append(registro)
+        registro= {'tipo de registro': 'egreso', 'fecha_hora': ahora, 'usuario':self.usuario}
+        self.ingresos_egresos[self.posicion_registro()].append(registro)
         print('Se registró el egreso de {} a las {}'.format(ahora,self.nombre))
 
-   
     def mostrar_registros(self):
         for registro in self.registros:
             tipo = registro["tipo de registro"]

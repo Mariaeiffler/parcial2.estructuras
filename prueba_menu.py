@@ -190,15 +190,32 @@ def valExiUsu (usuario,dicc1:dict):
         usuario=input('Error. El nombre de usuario es inexistente. \n Ingrese el nombre de usuario: ')
     return usuario
 
-# def valOpcAsignacion(opcion,dicc1:dict,tipo,llave,imprimir):
-#     validar=False
-#     while validar==False: 
-#         val_int(opcion)==False or opcion>len(dicc1[tipo][opcion][llave])-1:
-#         for i, tareas in enumerate (dicc1[tipo][llave]):
-#             print (F"{i} - {tareas}")
-#         opcion=input(imprimir)
-#         opcion=int(opcion)
-#     return opcion 
+def valOpcAsignacion(opcion,dicc1:dict,tipo,llave,imprimir):
+    validar=False
+    while validar==False: 
+        if val_int(opcion)==False:
+            for i, tareas in enumerate (dicc1[tipo][llave]):
+                print (F"{i} - {tareas}")
+            opcion=input('Error. Ingrese un número de la lista de opciones: ')
+        opcion=int(opcion)
+        opcion+=1
+        if opcion>(len(dicc1[tipo][llave])):
+            for i, tareas in enumerate (dicc1[tipo][llave]):
+                print (F"{i} - {tareas}")
+            opcion=input('Error. Ingrese un número de la lista de opciones: ')
+        else:
+            opcion-=1
+            validar=True
+            tarea=dicc1[tipo][llave][opcion]
+    return tarea 
+
+def valSiNo(eleccion,imprimir):
+    while eleccion!='si' or eleccion!='no':
+        eleccion=input(imprimir)
+    if eleccion =='si':
+        return True
+    else:
+        return False
     
 if __name__=='__main__':
     llaves=list(tareas_empleados.keys())
@@ -208,7 +225,8 @@ if __name__=='__main__':
         print (F"{i} - {tareas}")
     imprimir1='Ingrese la tarea que desea asignar: '
     opcion=input(imprimir1)
-    opcion=valOpcAsignacion(opcion,tareas_empleados,tipo,'tareas',imprimir1)    
+    tarea=valOpcAsignacion(opcion,tareas_empleados,tipo,'tareas',imprimir1)
+    print(tarea)    
             
             
 ##################################################################################################################################################

@@ -1,3 +1,4 @@
+
 tareas_empleados = {
     'cocina': {'empleados':[],'tareas':["Lavar los platos",'Cocinar desayuno',"Cocinar merienda","Cocinar cena"]},
     'limpieza': {'empleados':[],'tareas':["Limpieza de las habitaciones 1-3","Limpieza de las habitaciones 4-6",'Limpieza de las habitaciones 7-9',"Limpieza de las habitaciones 10-12"]},
@@ -6,13 +7,17 @@ tareas_empleados = {
     'gerente': {'empleados':[],'tareas':['Asignar tareas']}
 }
     
-
+def val_int(x): #valida que sea un entero
+        try:
+            num=int(x)
+            return True
+        except Exception:
+            return False
 
 #agregar para que asignen valor de importancia 
 # generar metodo en hotel donde el servidor ppl pueda agregar mas tareas al diccionario de tareas
 
+
 if __name__ == '__main__':
-    tipo='cocina'
-    tipo=tareas_empleados.keys()
-    print (tipo)
+    print(tareas_empleados['cocina']['tareas'][3])
     
