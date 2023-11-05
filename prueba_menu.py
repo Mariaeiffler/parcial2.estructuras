@@ -385,4 +385,57 @@ def agregar_cobro(vector, cobro):
     vector = np.append(vector,[cobro])
     return vector
                     
+#############################################################################################################
+
+def crear_buffet(tupla):
+    des = []
+    almu = []
+    cena = []
+    otro = []
+    for comida in tupla:
+        if comida.tipo == 'desayuno':
+            des.append(comida)
+        elif comida.tipo == 'almuerzo':
+            almu.append(comida)
+        elif comida.tipo == 'cena':
+            cena.append(comida)
+        else:
+            otro.append(comida)
+    dic = {'desayuno':des, 'almuerzo':almu, 'cena':cena, 'otro':otro}
+    return dic
+    
+def hacer_pedido(dic:dict):
+    print('Ingrese una opción ')
+    for i, comida in enumerate (dic):
+        print (F"{i+1}. {comida}")
+    preg = input('¿Que desea pedir del buffet? ')
+    imprimir = 'Error. ¿Que desea pedir del buffet? '
+    preg = val_opc(preg, 1, 4, imprimir)
+    preg2=('Elija la comida que desea pedir ingresando el código ')
+    imp = 'Elija la comida que desea pedir ingresando el código '
+    if preg == 1:
+        for comida in dic['desayuno']:
+            print('{}.  {}'.format(comida.numero, comida))
+        preg2 = val_opc(preg2, 1, 6, imp)
+        monto, comida = obtener_precio(dic['desayuno'], preg2)
+    elif preg == 2:
+        for comida in dic['almuerzo']:
+            print('{}.  {}'.format(comida.numero, comida))
+        preg2 = val_opc(preg2, 7, 14, imp)
+        monto, comida = obtener_precio(dic['almuerzo'], preg2)
+    elif preg == 3:
+        for comida in dic['cena']:
+            print('{}.  {}'.format(comida.numero, comida))
+        preg2 = val_opc(preg2, 15, 21, imp)
+        monto, comida = obtener_precio(dic['cena'], preg2)
+    else:
+        for comida in dic['otro']:
+            print('{}.  {}'.format(comida.numero, comida))
+        preg2 = val_opc(preg2, 22, 22, imp)
+        monto, comida = obtener_precio(dic['otro'], preg2)
+    return monto, comida
+
+# def registrar_pedido(preg, array,dic:dict):
+#     for comida in di
+    
     

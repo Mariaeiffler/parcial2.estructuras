@@ -12,6 +12,7 @@ class Personal(Persona):
         self.tipo=tipo
         self.fecbaja=fecbaja
         self.tareasPendientes=Lista_Enlazada()
+        self.registro = []
         
     def __str__(self):
         if self.fecbaja == None:
@@ -41,6 +42,17 @@ class Personal(Persona):
             if lista[0]==u:
                 return cont
             cont+=1
+            
+    def registrar_ingreso(self):
+        self.registro.append([datetime.now()])
+        return
+        
+    def registrar_egreso(self):
+        if self.registro[len(self.registro)-1] == 1:
+            self.registro[len(self.registro)-1].append(datetime.now())
+        else:
+            print('Error, no registró el ingreso')
+        return
             
     #FALTA VERIFICAR QUE ANDEN BIEN INGRESOS Y EGRESOS Y LOS DOS METODOS DE REGISTROS
     #Falta ver si se appendean a regiastros registro.

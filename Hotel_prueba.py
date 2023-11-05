@@ -14,9 +14,10 @@ from datetime import *
 from Cobros import Cobro
 from nodo import NodoTarea
 from list_enlazada import Lista_Enlazada
-#from Buffet import Comida
+from Buffet import Comida
 import numpy as np
 from Estadisticas import *
+
 
 class Hotel():
     def __init__(self,nombre,contrasena_ing_personal='personal123'):
@@ -29,7 +30,7 @@ class Hotel():
         self.reservas=dict()
         self.bajasEmpleados=set()
         self.cobros = np.array([])
-        self.buffet=dict() #
+        self.buffet=crear_buffet(Comida.crear_comidas())
         self.ingresos_egresos=list() #
         
     def entrar(self):
@@ -78,33 +79,36 @@ class Hotel():
                         imprimir='Error. Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Cerrar Sesión \n'
                         pregcliente=val_opc(pregcliente,1,5,imprimir)
                         while pregcliente != 5:
-                            
+                            match pregcliente:
                             # hacer una reserva
-                            if pregcliente == 1:
-                                num_reserva,fecha_inicio,fecha_fin,habitacion=Cliente.realizar_reserva(self.clientes.get(usuario), self.habitaciones, self.reservas)
-                                reserva=Reserva(num_reserva,self.clientes.get(usuario), fecha_inicio, fecha_fin, habitacion, datetime.today())
-                                self.reservas[num_reserva]=reserva
-                                monto,objhab=obtener_precio(self.habitaciones, habitacion)
-                                cobro = Cobro(monto,self.clientes.get(usuario),objhab)
-                                self.cobros = agregar_cobro(self.cobros, cobro)
-                                Cliente.asignar_nivel(self.clientes.get(usuario), self.cobros)
-                            # hay que ver si queremos crear un diccionario o algo asi con todos los cobros
-                                print('Su reserva se realizó con exito en las fechas {} - {} y su numero de reserva es {}. \n Recuerde que el horario de check in es desde las 15:00 hs y el check out hasta las 12:00 hs'.format(fecha_inicio.strftime('%d/%m/%Y'),fecha_fin.strftime('%d/%m/%Y'),num_reserva))
+                                case 1:
+                                    num_reserva,fecha_inicio,fecha_fin,habitacion=Cliente.realizar_reserva(self.clientes.get(usuario), self.habitaciones, self.reservas)
+                                    reserva=Reserva(num_reserva,self.clientes.get(usuario), fecha_inicio, fecha_fin, habitacion, datetime.today())
+                                    self.reservas[num_reserva]=reserva
+                                    monto,objhab=obtener_precio(self.habitaciones, habitacion)
+                                    cobro = Cobro(monto,self.clientes.get(usuario),objhab)
+                                    self.cobros = agregar_cobro(self.cobros, cobro)
+                                    Cliente.asignar_nivel(self.clientes.get(usuario), self.cobros)
+                                # hay que ver si queremos crear un diccionario o algo asi con todos los cobros
+                                    print('Su reserva se realizó con exito en las fechas {} - {} y su numero de reserva es {}. \n Recuerde que el horario de check in es desde las 15:00 hs y el check out hasta las 12:00 hs'.format(fecha_inicio.strftime('%d/%m/%Y'),fecha_fin.strftime('%d/%m/%Y'),num_reserva))
+                                    
+                                # pedir algo en el buffet
+                                case 2:
+                                    monto, comida = hacer_pedido(self.buffet)
+                                    cobro = Cobro(monto, self.clientes.get(usuario), comida)
+                                    self.cobros = agregar_cobro(self.cobros, cobro)
+                                    Cliente.asignar_nivel(self.clientes.get(usuario), self.cobros)
+                                    print('Su pedido se realizó con éxito ')
+                                # FALTA HACER LO QUE HAYA Q HACER CON TAREAS
                                 
-                            # pedir algo en el buffet
-                            if pregcliente == 2:
-                                # buffet
-                                pass
-                                
-                            
-                            # modificar una reserva
-                            if pregcliente == 3:
-                                Cliente.modificar_reserva(self.clientes.get(usuario), self.reservas, self.habitaciones)
-                                
-                            #cancelar una reserva
-                            if pregcliente == 4:
-                                Cliente.cancelar_reserva(self.clientes.get(usuario),self.reservas, self.habitaciones)
-                                
+                                # modificar una reserva
+                                case 3:
+                                    Cliente.modificar_reserva(self.clientes.get(usuario), self.reservas, self.habitaciones)
+                                    
+                                #cancelar una reserva
+                                case 4:
+                                    Cliente.cancelar_reserva(self.clientes.get(usuario),self.reservas, self.habitaciones)
+                                    
                             pregcliente=input('Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Cerrar Sesión \n')
                             imprimir='Error. Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Cerrar Sesión \n'
                             pregcliente=val_opc(pregcliente,1,5,imprimir)
@@ -197,6 +201,7 @@ class Hotel():
                                     
                                     case 8:
                                         #Historial de reservas
+                                        #Hay q ver si es parte d la nomina d los clientes (preguntarle a fede)
                                         pass
                                     
                                     case 9:
@@ -204,32 +209,32 @@ class Hotel():
                                         pass
                                         
                                 pregGerente=input('Elija una de las siguientes opciones: \n 1. Crear un empleado \n 2. Dar de baja un empleado \n 3. Inventario del personal \n 4. Ver estadísticas \n 5. Nomina de Clientes \n 6. Asignar Tarea \n 7. Historial de baja de empleados \n 8. Historial de Reservas \n 9. Cerrar Sesión \n')
-                                pregGerente=val_opc(pregGerente,1,9,imprimir)    
+                                pregGerente=val_opc(pregGerente,1,9,imprimir)   
+                                
+                        #menu empleados
                         else:
-                            pregEmpleado=input('Ingrese una de las siguientes opciones: \n 1. Realizar una Tarea \n') #Agregar el resto de las cosas que debería hacer un empleado
-                            imprimir1='Error. Elija una de las siguientes opciones: \n 1. Realizar una Tarea \n'
-                            pregEmpleado=val_opc(pregEmpleado,1,4,imprimir1) #Hay que cambiar el rango a medida que agregamos las cosas que hace el empleado
-                            while pregEmpleado!=4: #tmb cambiar acá el máximo
+                            pregEmpleado=input('Ingrese una de las siguientes opciones: \n 1. Realizar una Tarea \n 2. Registrar ingreso \n 3. Registrar egreso \n') #Agregar el resto de las cosas que debería hacer un empleado
+                            imprimir1='Error. Elija una de las siguientes opciones: \n 1. Realizar una Tarea \n 2. Registrar ingreso \n 3. Registrar egreso \n''
+                            pregEmpleado=val_opc(pregEmpleado,1,3,imprimir1) #Hay que cambiar el rango a medida que agregamos las cosas que hace el empleado
+                            while pregEmpleado!=3: #tmb cambiar acá el máximo
                                 match pregEmpleado:
                                     case 1:
                                         #Realizar una tarea
                                         personal=empleados.get(usuario)
                                         personal.tareasPendientes.realizarTareas() #ver como meter las cosas viejas a una pila 
-                                        pass               
-                        # menu empleado
-                        # else:
-                        #     #cliente
-                        #     pass
-                
-    # def obtener_inventario_empleados(self):
-    #     empleado:Personal
-    #     for key, empleado in self.empleados.item():
-    #         print(key, empleado.tipo)
-            
-    # def nomina_clientes(self):
-    #     cliente: Cliente
-    #     for key, cliente in self.clientes.item():
-    #         print(key, cliente.tipo)
+                                        pass       
+                                    
+                                    case 2:
+                                        #Registar ingreso
+                                        Personal.registrar_ingreso(self.empleados.get(usuario))
+                                    
+                                    case 3:
+                                        #Registrar egreso
+                                        Personal.registrar_egreso(self.empleados.get(usuario))
+                                        
+                                pregEmpleado=input('Ingrese una de las siguientes opciones: \n 1. Realizar una Tarea \n 2. Registrar ingreso \n 3. Registrar egreso \n') #Agregar el resto de las cosas que debería hacer un empleado
+                                imprimir1='Error. Elija una de las siguientes opciones: \n 1. Realizar una Tarea \n 2. Registrar ingreso \n 3. Registrar egreso \n''
+                                pregEmpleado=val_opc(pregEmpleado,1,3,imprimir1)
 
         
         
