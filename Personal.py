@@ -26,20 +26,26 @@ class Personal(Persona):
         opcion=input('Ingrese el número de tarea que quiere asignar: ') #chequear que la opcion sea la correcta
         prioridad= input ('Ingrese la prioridad (1,2 o 3): ') #chequear que sea 1,2 o 3
         
+    def posicion_registro(self,u,ingresos_egresos:list()):
+        u=self.usuario
+        cont=0
+        for lista in ingresos_egresos:
+            if lista[0]==u:
+                return cont
+            cont+=1
+            
     #FALTA VERIFICAR QUE ANDEN BIEN INGRESOS Y EGRESOS Y LOS DOS METODOS DE REGISTROS
     #Falta ver si se appendean a regiastros registro.
-    def ingreso(self,nom): #ver si esta bien lo de la list de registros (preguntarle a ian!!!!)
-        self.nom=nom
+    def ingreso(self,ingresos_egresos:list()): #ver si esta bien lo de la list de registros (preguntarle a ian!!!!)
         ahora= datetime.now()
-        registro= {'tipo de registro':'ingreso', 'fecha_hora': ahora, 'nombre': self.nom} #noc lo del nombre si esta bien
-        self.registros.append(registro)
+        registro= {'tipo de registro':'ingreso', 'fecha_hora': ahora, 'usuario': self.usuario} #noc lo del nombre si esta bien
+        self.ingresos_egresos[self.posicion_registro()].append(registro)
         print('Se registró el ingreso de {} a las {}'.format(self.nombre,ahora))
         
-    def egreso(self, nom):
-        self.nom=nom
+    def egreso(self, ingresos_egresos:list()):
         ahora= datetime.now()
-        registro= {'tipo de registro': 'egreso', 'fecha_hora': ahora, 'nombre':self.nom}
-        self.registros.append(registro)
+        registro= {'tipo de registro': 'egreso', 'fecha_hora': ahora, 'usuario':self.usuario}
+        self.ingresos_egresos[self.posicion_registro()].append(registro)
         print('Se registró el egreso de {} a las {}'.format(ahora,self.nombre))
 
     def mostrar_registros(self):
