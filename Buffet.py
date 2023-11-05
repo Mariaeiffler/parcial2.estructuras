@@ -39,6 +39,7 @@ asado_para_2=Comida('Asado con papas fritas (para 2)', 3000, 'cena','20')
 postre_cena=Comida('Postres (flan con dulce de leche, bocha de helado, tiramisú)',500, 'cena','21')
 bebida=Comida('Bebida a elección',500,None,'22')
 
+#hay que hacer el metodo que agregue los objetos a los diccionarios
 diccionario_desayuno= [infusion,tostadas,yogur,huevos_revueltos,facturas,ensalada_frutas]
 diccionario_almuerzo= [pollo_carne,sopa,ensalada,pez,opcion_vegetariana,pastas,postres,tacos]
 diccionario_cena=[salmon,pastas_cena,opcion_vegetariana_cena,pizza,empanadas,asado_para_2,postre_cena]
