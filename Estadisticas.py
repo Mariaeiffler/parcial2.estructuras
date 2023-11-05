@@ -14,11 +14,11 @@ def val_preg(preg, lista,quiero):
         if quiero == 2:
             preg = convertirfecha_datetime(preg)
             preg = preg.date()
+            print(preg)
         else:
             preg = convertirfecha_datetime(preg)
         if preg not in lista:
             preg = input('Error. Introduzca la fecha que desea ver: ')
-            preg = convertirfecha_datetime(preg)
         else:
             val = True
     return preg
