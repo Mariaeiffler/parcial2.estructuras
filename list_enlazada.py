@@ -1,11 +1,8 @@
 from nodo import NodoTarea
 class Lista_Enlazada():
     def __init__(self):  
-        self.inicio= None
+        self.head= None
         self.len=0
-        
-    def is_empty(self):
-        return self.head is None
     
     def agregarInicio (self,nodo:NodoTarea):
         if (self.len==0): 
@@ -19,10 +16,10 @@ class Lista_Enlazada():
         nodo=self.head 
         cadena=''
         if self.len==0:
-            return "lista es vacia"
+            return "No tiene tareas por hacer"
         else:
             while (nodo!=None):
-                cadena+=str(nodo.dato)+'\t' 
+                cadena+=str(nodo.valor)+'\t' 
                 nodo=nodo.prox
             return cadena 
         
@@ -30,12 +27,25 @@ class Lista_Enlazada():
         if self.len==0:
             self.head=nodo
         else:
-            nodomov=NodoTarea()
             nodomov=self.head
             while nodomov.prox!=None: 
                 nodomov=nodomov.prox 
             nodomov.prox=nodo
         self.len+=1
+
+    def agregarNodoTarea(self, nuevoNodo: NodoTarea):
+        if self.len == 0:
+            self.head = nuevoNodo
+        elif nuevoNodo.importancia < self.head.importancia:
+            nuevoNodo.prox = self.head
+            self.head = nuevoNodo
+        else:
+            nodoMov = self.head
+            while nodoMov.prox and nuevoNodo.importancia >= nodoMov.prox.importancia:
+                nodoMov = nodoMov.prox
+            nuevoNodo.prox = nodoMov.prox
+            nodoMov.prox = nuevoNodo
+        self.len += 1
         
     def pop(self,posicion=None): 
         nodo=NodoTarea()
@@ -63,36 +73,14 @@ class Lista_Enlazada():
                 current.prox = current.prox.prox
                 return
             current = current.prox
+            
+            
+if __name__ == '__main__':
+    lista=Lista_Enlazada()
+    nodo1=NodoTarea('12',1)
+    lista.append(nodo1)
+    nodo2=NodoTarea('Las m',2)
+    lista.append(nodo2)
+    lista.agregar_nodo_tarea('hola',1)
+    print(lista.__str__())
     
-    def nodoSiguiente (self,nodo:NodoTarea):
-        if self.is_empty():
-            return 'La lista está vacía'
-        else:
-            nodoProx=nodo.prox
-            return nodoProx
-        
-    def appendDespVal (self,valor,nodo:NodoTarea): 
-        nuevoNodo=nodo
-        if self.is_empty():
-            self.head=nuevoNodo
-        else:
-            nodoAct=self.head
-            while nodoAct:
-                if self.head.dato==valor:
-                    nuevoNodo.prox=nodoAct.prox
-                    nodoAct.prox=nuevoNodo
-                    return
-                nodoAct=nodoAct.prox
-                
-    def combListas (self,lista2): #Ej 3
-            listaFinal=Lista_Enlazada()
-            nodo_act_lista1=self.head
-            nodo_act_lista2=lista2.head
-            while nodo_act_lista1 or nodo_act_lista2:
-                if nodo_act_lista1:
-                    listaFinal.append(nodo_act_lista1)
-                    nodo_act_lista1=nodo_act_lista1.prox
-                if nodo_act_lista2:
-                    listaFinal.append(nodo_act_lista2)
-                    nodo_act_lista2=nodo_act_lista2.prox
-            return listaFinal

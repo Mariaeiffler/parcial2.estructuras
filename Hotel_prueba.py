@@ -1,19 +1,20 @@
+import pickle
 from Personal import Personal
 from cliente import Cliente
 from Persona import Persona
-# from Persona import Persona
 # from validaciones import *
 from Abrir_archivo import *
 from Habitacion_Doble import *
 from Habitacion_Simple import *
 from Habitacion_Suite import *
-import pickle
 from Tareas_Empleados import tareas_empleados 
 from prueba_menu import * #despues si lo seguimos usando cambiarle el nombre
 from Reserva import Reserva
 from datetime import *
 from Cobros import Cobro
-from Buffet import Comida
+from nodo import NodoTarea
+from list_enlazada import Lista_Enlazada
+#from Buffet import Comida
 import numpy as np
 
 class Hotel():
@@ -38,7 +39,7 @@ class Hotel():
             self.habitaciones = info.habitaciones
             self.reservas = info.reservas
             self.cobros = info.cobros
-            self.buffet=info.buffet
+            #self.buffet=info.buffet
         except FileNotFoundError:
             with open ('hotel.pickle','wb') as hpickle:
                 pickle.dump(self,hpickle)
@@ -131,7 +132,7 @@ class Hotel():
                                         #Crear empleado
                                         nombre,usuario,dni,direccion,contacto,fecha_nac,mail,contrasena = infoPersonas (self.clientes,self.empleados)
                                         llaves=list(self.tareas.keys())
-                                        tipo=input('Ingrese el tipo al que pertenecera el empleado: '.format(llaves))
+                                        tipo=input('Ingrese el tipo al que pertenecera el empleado {}: \n'.format(llaves))
                                         tipo=valTipoEmpleado(tipo,self.tareas)
                                         empleado=Personal(nombre,usuario,dni,direccion,contacto,fecha_nac,mail,contrasena,tipo)
                                         self.empleados[empleado.usuario]=empleado
@@ -186,9 +187,12 @@ class Hotel():
                                         empleadoAsignar=valOpcAsignacion(empleadoAsignar,self.tareas,tipo,'empleados',imprimir2)
                                         imprimir3='Error. Ingrese como nivel de importancia 1, 2 o 3 (siendo 1 el más urgente): '
                                         pregImportancia=input('Niveles de importancia: 1,2,3 (siendo 1 el más urgente). \n Ingrese la importancia de la tarea a realizar: ')
-                                        pregImportancia=val_opc(pregImportancia,1,3,imprimir3)
-                                        
-                                        
+                                        importancia=val_opc(pregImportancia,1,3,imprimir3)
+                                        nodoNuevo=NodoTarea(opcionAsignar,importancia)
+                                        persona=self.empleados.get(empleadoAsignar)
+                                        persona.tareasPendientes.agregarNodoTarea(nodoNuevo)
+                                        print('La nueva tarea se ha asignado con éxito.')
+                                        print(persona.tareasPendientes.__str__())
                                         pass
                                     
                                     case 7:
@@ -207,9 +211,9 @@ class Hotel():
                                 pregGerente=val_opc(pregGerente,1,9,imprimir)    
                                         
                         # menu empleado
-                        else:
-                            #cliente
-                            pass
+                        # else:
+                        #     #cliente
+                        #     pass
                 
     # def obtener_inventario_empleados(self):
     #     empleado:Personal

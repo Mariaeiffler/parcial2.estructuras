@@ -197,12 +197,14 @@ def valOpcAsignacion(opcion,dicc1:dict,tipo,llave,imprimir):
             for i, tareas in enumerate (dicc1[tipo][llave]):
                 print (F"{i} - {tareas}")
             opcion=input('Error. Ingrese un número de la lista de opciones: ')
-        opcion=int(opcion)+1
+        opcion=int(opcion)
+        opcion+=1
         if opcion>(len(dicc1[tipo][llave])):
             for i, tareas in enumerate (dicc1[tipo][llave]):
                 print (F"{i} - {tareas}")
             opcion=input('Error. Ingrese un número de la lista de opciones: ')
         else:
+            opcion-=1
             validar=True
             tarea=dicc1[tipo][llave][opcion]
     return tarea 
