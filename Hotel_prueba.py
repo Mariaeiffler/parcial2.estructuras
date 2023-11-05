@@ -214,7 +214,7 @@ class Hotel():
                         #menu empleados
                         else:
                             pregEmpleado=input('Ingrese una de las siguientes opciones: \n 1. Realizar una Tarea \n 2. Registrar ingreso \n 3. Registrar egreso \n') #Agregar el resto de las cosas que debería hacer un empleado
-                            imprimir1='Error. Elija una de las siguientes opciones: \n 1. Realizar una Tarea \n 2. Registrar ingreso \n 3. Registrar egreso \n''
+                            imprimir1='Error. Elija una de las siguientes opciones: \n 1. Realizar una Tarea \n 2. Registrar ingreso \n 3. Registrar egreso \n'
                             pregEmpleado=val_opc(pregEmpleado,1,3,imprimir1) #Hay que cambiar el rango a medida que agregamos las cosas que hace el empleado
                             while pregEmpleado!=3: #tmb cambiar acá el máximo
                                 match pregEmpleado:
@@ -233,7 +233,7 @@ class Hotel():
                                         Personal.registrar_egreso(self.empleados.get(usuario))
                                         
                                 pregEmpleado=input('Ingrese una de las siguientes opciones: \n 1. Realizar una Tarea \n 2. Registrar ingreso \n 3. Registrar egreso \n') #Agregar el resto de las cosas que debería hacer un empleado
-                                imprimir1='Error. Elija una de las siguientes opciones: \n 1. Realizar una Tarea \n 2. Registrar ingreso \n 3. Registrar egreso \n''
+                                imprimir1='Error. Elija una de las siguientes opciones: \n 1. Realizar una Tarea \n 2. Registrar ingreso \n 3. Registrar egreso \n'
                                 pregEmpleado=val_opc(pregEmpleado,1,3,imprimir1)
 
         

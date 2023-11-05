@@ -32,7 +32,6 @@ def valNombre1(nombre):
             validacion = False
     return validacion
     
-
 def valNombre2 (nombre):
     validacion = valNombre1(nombre)
     while validacion == False:
@@ -40,11 +39,16 @@ def valNombre2 (nombre):
         validacion = valNombre1(nombre)
     return nombre
 
-def validaciondni(dni): #TODO: agregar tambien que no se repita --> esta no la toque
-    if str(dni).isdigit() == False or len(str(dni)) != 8:
-        dni = input('Ingrese su DNI  ')
+def validaciondni(dni,dic:dict): 
+    vali = False
+    while vali == False:
         while str(dni).isdigit() == False or len(str(dni)) != 8:
             dni = input('Ingrese su DNI  ')
+        for cliente in dic:
+            if dic.get(cliente).dni == dni:
+                dni = input('El DNI ingresado ya pertenece a otro usuario. Ingrese nuevamente su DNI  ')
+            else:
+                vali = True
     return dni
 
 def cantidad_numero(contrasena): # --> esta no la toque
@@ -120,7 +124,7 @@ def infoPersonas (dicc1:dict,dicc2:dict):
     nombre=valNombre2(nombre)
     # en esta validacion no se fija q no tenga espacios? si tiene q poner su nombre y apellido tiene q tener un espacio
     dni=input('Ingrese su DNI: ')
-    dni=validaciondni(dni)
+    dni=validaciondni(dni, dicc1)
     direccion=input('Ingrese su direccion: ') #es necesario validar la dirección?
     contacto=input('Ingrese su numero de contacto: ')
     contacto=validacioncontacto(contacto)
