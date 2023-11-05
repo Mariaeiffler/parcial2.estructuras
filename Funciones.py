@@ -43,24 +43,6 @@ def cantidad_mayusculas(contrasena):
             contador += 1
     return contador
 
-def infoPersonas (dicc1:dict,dicc2:dict):   
-    nombre=input('Introduzca su nombre y apellido: ')
-    nombre=valNombre2(nombre)
-    dni=input('Ingrese su DNI: ')
-    dni=validaciondni(dni, dicc1)
-    direccion=input('Ingrese su direccion: ')
-    contacto=input('Ingrese su numero de contacto: ')
-    contacto=validacioncontacto(contacto)
-    fecha_nac=input('Ingrese su fecha de nacimiento: (Debe ser mayor de edad para crearse un usuario) ')
-    fecha_nac=validacionfechanac (fecha_nac)
-    mail=input('Ingrese su mail: ')
-    mail=valMail(mail)
-    usuario=input('Escriba el nombre de usuario: ')
-    usuario=validacionusuario(usuario,dicc1,dicc2)
-    contrasena=input('Escriba una contrasena que contenga por lo menos una mayuscula y un numero: ')
-    contrasena=validacioncontrasena(contrasena)
-    return nombre,usuario,dni,direccion,contacto,fecha_nac,mail,contrasena
-
 def valPalabraDic (palabra,dicc:dict):
     if palabra in dicc:
         return True
