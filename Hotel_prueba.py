@@ -14,6 +14,7 @@ from Reserva import Reserva
 from datetime import *
 from Cobros import Cobro
 import numpy as np
+from Estadisticas import *
 
 class Hotel():
     def __init__(self,nombre,contrasena_ing_personal='personal123'):
@@ -41,11 +42,7 @@ class Hotel():
                 pickle.dump(self,hpickle)
         #podriamos ponerlo en una funcion (no estoy segura)
         
-        for cliente in self.clientes:
-            print(self.clientes.get(cliente))
-        print(self.cobros)
-        for i in self.cobros:
-            print(i)
+        ver_estadisticas_txt(self.habitaciones, self.cobros)
         
         seguir = True 
         gerente=Personal('milagros Argibay','miliargibay',"45074984",'obelisco','5491123484825','06/11/2003','mili@','Milia123','gerente')
@@ -158,8 +155,7 @@ class Hotel():
                                                 print(self.empleados.get(clave))
                                             
                                     case 4:
-                                        #Estadisticas 
-                                        pass
+                                        ver_estadisticas_txt(self.habitaciones, self.cobros)
                                     
                                     case 5:
                                         print('Los clientes del hotel son: ')
