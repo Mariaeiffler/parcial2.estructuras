@@ -42,7 +42,6 @@ class Personal(Persona):
         self.registros.append(registro)
         print('Se registró el egreso de {} a las {}'.format(ahora,self.nombre))
 
-   
     def mostrar_registros(self):
         for registro in self.registros:
             tipo = registro["tipo de registro"]
