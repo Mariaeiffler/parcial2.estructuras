@@ -5,7 +5,7 @@ from list_enlazada import *
 from Tareas_Empleados import tareas_empleados
 from Validaciones import *
 from Funciones import *
-# from Pilas import Pila
+from Pilas import Pila
 
 class Personal(Persona):
     def __init__(self,nombre,usuario,dni,direccion,contacto,fecha_nac,mail,contrasena,tipo,fecalta=datetime.now(),fecbaja=None):
@@ -15,7 +15,7 @@ class Personal(Persona):
         self.fecbaja=fecbaja
         self.tareasPendientes=Lista_Enlazada()
         self.registro = []
-        # self.tareasRealizadas=Pila()
+        self.tareasRealizadas=Pila()
         
     def __str__(self):
         if self.fecbaja == None:
