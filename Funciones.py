@@ -5,6 +5,26 @@ from Habitacion_Suite import *
 import numpy as np
 from Tareas_Empleados import *
 from nodo import NodoTarea
+import pickle
+
+def obtener_pickle(hotel, accion):
+    if accion == 'abrir':
+        try:
+            with open ('hotel.pickle','rb') as hpickle:
+                info = pickle.load(hpickle)
+            hotel.empledos = info.empleados
+            hotel.clientes = info.clientes
+            hotel.habitaciones = info.habitaciones
+            hotel.reservas = info.reservas
+            hotel.cobros = info.cobros
+            hotel.buffet=info.buffet 
+        except FileNotFoundError:
+            with open ('hotel.pickle','wb') as hpickle:
+                pickle.dump(hotel,hpickle)
+    else:
+        with open ('hotel.pickle','wb') as hpickle:
+            pickle.dump(hotel,hpickle)
+        return
 
 def cantidad_numero(contrasena):
     contador = 0
@@ -260,8 +280,6 @@ def asignarTarea(tareas:dict,empleados:dict):
     print('sali')
     persona.tareasPendientes.agregarNodoTarea(nodoNuevo)
     return
-        
-
 
 def val_int(x): #valida que sea un entero
         try:

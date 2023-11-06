@@ -32,21 +32,11 @@ class Hotel():
         self.buffet=crear_buffet(Comida.crear_comidas())
         
     def entrar(self):
-        try:
-            with open ('hotel.pickle','rb') as hpickle:
-                info = pickle.load(hpickle)
-            self.empledos = info.empleados
-            self.clientes = info.clientes
-            self.habitaciones = info.habitaciones
-            self.reservas = info.reservas
-            self.cobros = info.cobros
-            self.buffet=info.buffet 
-        except FileNotFoundError:
-            with open ('hotel.pickle','wb') as hpickle:
-                pickle.dump(self,hpickle)
-        #podriamos ponerlo en una funcion (no estoy segura)
+        
+        obtener_pickle(self, 'abrir')
         
         print(self.empleados)
+        print(self.clientes)
         
         seguir = True 
         gerente=Gerente('milagros Argibay','miliargibay',"45074984",'obelisco','5491123484825','06/11/2003','mili@','Milia123','gerente')
@@ -213,8 +203,8 @@ class Hotel():
                                 
                             
         print(self.empleados)
-        with open ('hotel.pickle','wb') as hpickle:
-            pickle.dump(self,hpickle)
+        
+        obtener_pickle(self, 'cerrar')
         # seguir = False #ponerlo afuera del while asi tmb se hace para el gerente, pero ver como funciona
         print('Se ha cerrado la sesión con éxito')
         
