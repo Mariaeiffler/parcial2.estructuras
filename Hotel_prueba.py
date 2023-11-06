@@ -1,6 +1,6 @@
 import pickle
 from Personal import Personal
-from cliente import Cliente
+from Cliente import Cliente
 from Persona import Persona # creo q no hace falta
 from Habitacion_Doble import *
 from Habitacion_Simple import *
@@ -10,8 +10,8 @@ from Funciones import *
 from Reserva import Reserva
 from datetime import *
 from Cobros import Cobro
-from nodo import NodoTarea
-from list_enlazada import Lista_Enlazada
+from nodo import NodoTarea # creo q no hace falta
+from list_enlazada import Lista_Enlazada # creo q no hace falta
 from Buffet import Comida
 import numpy as np
 from Estadisticas import *
