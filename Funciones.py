@@ -126,8 +126,9 @@ def hab_ocupada(fecha_inicio, fecha_fin, hab, lista):
     if val == False:
         print('En las fechas ingresadas la habitación seleccionada ya está ocupada. Acá puede ver la ocupación de la misma:')
         for habitacion in lista:
-            for res in habitacion.reservas:
-                print(res[0].strftime('%d/%m/%Y'), '-', res[1].strftime('%d/%m/%Y')) 
+            if habitacion.numero == int(hab):
+                for res in habitacion.reservas:
+                    print(res[0].strftime('%d/%m/%Y'), '-', res[1].strftime('%d/%m/%Y')) 
     return val
 
 def modi_hab(val, preg, fecha_inicio, fecha_fin, hab, lista):

@@ -15,7 +15,6 @@ def val_preg(preg, lista,quiero):
         if quiero == 2:
             preg = convertirfecha_datetime(preg)
             preg = preg.date()
-            print(preg)
         else:
             preg = convertirfecha_datetime(preg)
         if preg not in lista:
@@ -53,7 +52,7 @@ def preg_ver_estadisticas(ordenadas, imp, quiero):
     print(imp)
     for fecha in ordenadas:
         print(fecha.strftime('%d/%m/%Y'))
-    preg = input('Introduzca la fecha que desea ver: ')
+    preg = input('\n Introduzca la fecha que desea ver: ')
     fec = val_preg(preg, ordenadas,quiero)
     return fec
     
@@ -77,7 +76,7 @@ def ocupacion (lista):
     if oc == 0:
         pass
     else:
-        imp = 'Las fechas en las que hay reservas y puede ver la ocupación del hotel son las siguientes: '
+        imp = '\n Las fechas en las que hay reservas y puede ver la ocupación del hotel son las siguientes: '
         fec, desordenadas = imprimir_fec(lista, imp)
         conthab = np.count_nonzero(desordenadas == fec)
         porcentaje = (conthab / len(lista))*100
@@ -91,7 +90,7 @@ def ocupacion_tipohab(lista):
     if oc == 0:
         pass
     else:
-        imp = 'Las fechas en las que hay reservas y puede ver la ocupación por tipo de habitación del hotel son las siguientes: '
+        imp = '\n Las fechas en las que hay reservas y puede ver la ocupación por tipo de habitación del hotel son las siguientes: '
         fec,desordenas = imprimir_fec(lista, imp)
         mat = np.array([])
         t1,t2,t3 = separacion_tipohab(lista)
@@ -109,7 +108,7 @@ def rec_diaria(array):
         print('El hotel no recaudacion aún')
         return
     else:
-        imp = 'Los día que se realizaron gastos en el hotel son (Elija un dia para ver la recaudación diaria): '
+        imp = '\n Los día que se realizaron gastos en el hotel son (Elija un dia para ver la recaudación diaria): '
         fechas = []
         for cobro in array:
             fechas.append(cobro.fecha.date())
@@ -121,14 +120,3 @@ def rec_diaria(array):
                 rec += cobro.monto
         return ('La recaudacion diaria el dia {} fue de ${}'.format(dia.strftime('%d/%m/%Y'), rec))
 
-def ver_estadisticas_txt(lista, array):
-    ocupa = ocupacion (lista)
-    ocupa_th = ocupacion_tipohab(lista)
-    rec = rec_diaria(array)
-    try:
-        with open('Estadisticas.txt', "w") as archivo:
-            archivo.write(ocupa)
-            archivo.write(ocupa_th)
-            archivo.write(rec)
-    except Exception:
-        pass
