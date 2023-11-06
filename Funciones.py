@@ -4,6 +4,7 @@ from Habitacion_Simple import *
 from Habitacion_Suite import *
 import numpy as np
 from Tareas_Empleados import *
+from nodo import NodoTarea
 
 def cantidad_numero(contrasena):
     contador = 0
@@ -235,7 +236,32 @@ def nomina_clientes(dic:dict):
     else:
         print('El hotel todavía no tiene clientes')
     return
-    
+
+def asignarTarea(tareas:dict,empleados:dict):
+    llaves=list(tareas.keys())
+    tipo=input('{} \n Ingrese el tipo de personal al que le quiere asignar una tarea: '.format(llaves))
+    tipo=valTipoEmpleado(tipo,tareas)
+    for i, tarea in enumerate (tareas[tipo]['tareas']):
+        print (F"{i} - {tarea}")
+    imprimir1='Ingrese la tarea que desea asignar: '
+    opcionAsignar=input(imprimir1) 
+    opcionAsignar=valOpcAsignacion(opcionAsignar,tareas,tipo,'tareas',imprimir1)
+    for i, empleados in enumerate (tareas[tipo]['empleados']):
+        print (F"{i} - {empleados}")
+    imprimir2= 'Ingrese el número del usuario del empleados al que le desea asignar la tarea: '
+    empleadoAsignar=input(imprimir2)
+    empleadoAsignar=valOpcAsignacion(empleadoAsignar,tareas,tipo,'empleados',imprimir2)
+    imprimir3='Error. Ingrese como nivel de importancia 1, 2 o 3 (siendo 1 el más urgente): '
+    pregImportancia=input('Niveles de importancia: 1,2,3 (siendo 1 el más urgente). \n Ingrese la importancia de la tarea a realizar: ')
+    importancia=val_opc(pregImportancia,1,3,imprimir3)
+    nodoNuevo=NodoTarea(opcionAsignar,importancia)
+    persona=empleados.get(empleadoAsignar) #chequear que me dice que es un string
+    print('sali')
+    persona.tareasPendientes.agregarNodoTarea(nodoNuevo)
+    return
+        
+
+
 def val_int(x): #valida que sea un entero
         try:
             num=int(x)
