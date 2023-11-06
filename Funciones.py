@@ -12,7 +12,7 @@ def obtener_pickle(hotel, accion):
         try:
             with open ('hotel.pickle','rb') as hpickle:
                 info = pickle.load(hpickle)
-            hotel.empledos = info.empleados
+            hotel.empleados = info.empleados
             hotel.clientes = info.clientes
             hotel.habitaciones = info.habitaciones
             hotel.reservas = info.reservas

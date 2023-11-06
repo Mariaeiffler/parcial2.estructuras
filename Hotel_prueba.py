@@ -35,9 +35,6 @@ class Hotel():
         
         obtener_pickle(self, 'abrir')
         
-        print(self.empleados)
-        print(self.clientes)
-        
         seguir = True 
         gerente=Gerente('milagros Argibay','miliargibay',"45074984",'obelisco','5491123484825','06/11/2003','mili@','Milia123','gerente')
         self.empleados[gerente.usuario]=gerente
@@ -122,7 +119,6 @@ class Hotel():
                                         empleado=Personal(nombre,usuario,dni,direccion,contacto,fecha_nac,mail,contrasena,tipo)
                                         self.empleados[empleado.usuario]=empleado
                                         self.tareas[tipo]['empleados'].append(empleado.usuario)
-                                        print(self.empleados)
                                         print ('El empleado se a creado con éxito.')
                                         
                                     case 2:
@@ -178,7 +174,7 @@ class Hotel():
                                 match pregEmpleado:
                                     case 1:
                                         #Realizar una tarea
-                                        personal.tareasPendientes.realizarTareas() #hay que arreglar el string y el get
+                                        personal.tareasPendientes.realizarTareas()
                                         pass       
                                     
                                     case 2:
@@ -194,16 +190,12 @@ class Hotel():
                                         #Ver la última tarea realizada
                                         personal.tareasRealizadas.visualizarTareaAnterior()
                                         
-                                        
                                 pregEmpleado=input('Ingrese una de las siguientes opciones: \n 1. Realizar una Tarea \n 2. Registrar ingreso \n 3. Registrar egreso \n 4. Visualizar la última tarea realizada \n 5. Cerrar sesión \n') #Agregar el resto de las cosas que debería hacer un empleado
                                 imprimir1='Error. Elija una de las siguientes opciones: \n 1. Realizar una Tarea \n 2. Registrar ingreso \n 3. Registrar egreso \n 4. Visualizar la última tarea realizada \n 5. Cerrar sesión'
                                 pregEmpleado=val_opc(pregEmpleado,1,5,imprimir1)
                                 
                             seguir = False
                                 
-                            
-        print(self.empleados)
-        
         obtener_pickle(self, 'cerrar')
         # seguir = False #ponerlo afuera del while asi tmb se hace para el gerente, pero ver como funciona
         print('Se ha cerrado la sesión con éxito')
