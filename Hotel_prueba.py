@@ -94,8 +94,8 @@ class Hotel():
                                 case 4:
                                     Cliente.cancelar_reserva(self.clientes.get(usuario),self.reservas, self.habitaciones)
                                     
-                            pregcliente=input('Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Cerrar Sesión \n')
-                            imprimir='Error. Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Cerrar Sesión \n'
+                            pregcliente=input('\n Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Cerrar Sesión \n')
+                            imprimir='\n Error. Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Cerrar Sesión \n'
                             pregcliente=val_opc(pregcliente,1,5,imprimir)
                         
                         seguir = False #ponerlo afuera del while asi tmb se hace para el gerente, pero ver como funciona
@@ -134,7 +134,7 @@ class Hotel():
                                         
                                     case 3:
                                         #Inventario de personal
-                                        inv_empleados(self.empleados)
+                                        Gerente.inv_empleados(self.empleados)
                                             
                                     case 4:
                                         #Estadisticas
@@ -142,7 +142,7 @@ class Hotel():
                                     
                                     case 5:
                                         #Nomina de clientes
-                                        nomina_clientes(self.clientes)
+                                        Gerente.nomina_clientes(self.clientes)
                                     
                                     case 6:
                                         #Asignar una Tarea
@@ -158,23 +158,22 @@ class Hotel():
                                         #Hay q ver si es parte d la nomina d los clientes (preguntarle a fede)
                                         pass
                                         
-                                print(self.empleados)
-                                pregGerente=input('Elija una de las siguientes opciones: \n 1. Crear un empleado \n 2. Dar de baja un empleado \n 3. Inventario del personal \n 4. Ver estadísticas \n 5. Nomina de Clientes \n 6. Asignar Tarea \n 7. Historial de baja de empleados \n 8. Historial de Reservas \n 9. Cerrar Sesión \n')
+                                pregGerente=input('\n Elija una de las siguientes opciones: \n 1. Crear un empleado \n 2. Dar de baja un empleado \n 3. Inventario del personal \n 4. Ver estadísticas \n 5. Nomina de Clientes \n 6. Asignar Tarea \n 7. Historial de baja de empleados \n 8. Historial de Reservas \n 9. Cerrar Sesión \n')
                                 pregGerente=val_opc(pregGerente,1,9,imprimir)   
     
                             seguir = False #ponerlo afuera del while asi tmb se hace para el gerente, pero ver como funciona
                                 
                         #menu empleados
                         else:
-                            pregEmpleado=input('Ingrese una de las siguientes opciones: \n 1. Realizar una Tarea \n 2. Registrar ingreso \n 3. Registrar egreso \n 4. Cerrar sesión \n') #Agregar el resto de las cosas que debería hacer un empleado
-                            imprimir1='Error. Elija una de las siguientes opciones: \n 1. Realizar una Tarea \n 2. Registrar ingreso \n 3. Registrar egreso \n 4. Cerrar sesión \n'
-                            pregEmpleado=val_opc(pregEmpleado,1,4,imprimir1) #Hay que cambiar el rango a medida que agregamos las cosas que hace el empleado
+                            pregEmpleado=input('\n Ingrese una de las siguientes opciones: \n 1. Realizar una Tarea \n 2. Registrar ingreso \n 3. Registrar egreso \n 4. Visualizar la última tarea realizada \n 5. Cerrar sesión \n') #Agregar el resto de las cosas que debería hacer un empleado
+                            imprimir1='\n Error. Ingrese una de las siguientes opciones: \n 1. Realizar una Tarea \n 2. Registrar ingreso \n 3. Registrar egreso \n 4. Visualizar la última tarea realizada \n 5. Cerrar sesión \n'
+                            pregEmpleado=val_opc(pregEmpleado,1,5,imprimir1) #Hay que cambiar el rango a medida que agregamos las cosas que hace el empleado
                             personal=self.empleados.get(usuario)
                             while pregEmpleado!=5: #tmb cambiar acá el máximo
                                 match pregEmpleado:
                                     case 1:
                                         #Realizar una tarea
-                                        personal.tareasPendientes.realizarTareas()
+                                        Personal.tareasPendientes.realizarTareas()
                                         pass       
                                     
                                     case 2:
@@ -188,10 +187,10 @@ class Hotel():
                                     
                                     case 4:
                                         #Ver la última tarea realizada
-                                        personal.tareasRealizadas.visualizarTareaAnterior()
+                                        Personal.tareasRealizadas.visualizarTareaAnterior()
                                         
-                                pregEmpleado=input('Ingrese una de las siguientes opciones: \n 1. Realizar una Tarea \n 2. Registrar ingreso \n 3. Registrar egreso \n 4. Visualizar la última tarea realizada \n 5. Cerrar sesión \n') #Agregar el resto de las cosas que debería hacer un empleado
-                                imprimir1='Error. Elija una de las siguientes opciones: \n 1. Realizar una Tarea \n 2. Registrar ingreso \n 3. Registrar egreso \n 4. Visualizar la última tarea realizada \n 5. Cerrar sesión'
+                                pregEmpleado=input('\n Ingrese una de las siguientes opciones: \n 1. Realizar una Tarea \n 2. Registrar ingreso \n 3. Registrar egreso \n 4. Visualizar la última tarea realizada \n 5. Cerrar sesión \n') #Agregar el resto de las cosas que debería hacer un empleado
+                                imprimir1='\n Error. Elija una de las siguientes opciones: \n 1. Realizar una Tarea \n 2. Registrar ingreso \n 3. Registrar egreso \n 4. Visualizar la última tarea realizada \n 5. Cerrar sesión'
                                 pregEmpleado=val_opc(pregEmpleado,1,5,imprimir1)
                                 
                             seguir = False
