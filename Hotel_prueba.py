@@ -164,27 +164,8 @@ class Hotel():
                                     
                                     case 6:
                                         #Asignar una Tarea
-                                        llaves=list(self.tareas.keys())
-                                        tipo=input('{} \n Ingrese el tipo de personal al que le quiere asignar una tarea: '.format(llaves))
-                                        tipo=valTipoEmpleado(tipo,self.tareas)
-                                        for i, tarea in enumerate (self.tareas[tipo]['tareas']):
-                                            print (F"{i} - {tarea}")
-                                        imprimir1='Ingrese la tarea que desea asignar: '
-                                        opcionAsignar=input(imprimir1) #Chequear lo de la validacion de valopcasignacion que rompe con el rango
-                                        opcionAsignar=valOpcAsignacion(opcionAsignar,self.tareas,tipo,'tareas',imprimir1)
-                                        for i, empleados in enumerate (self.tareas[tipo]['empleados']):
-                                            print (F"{i} - {empleados}")
-                                        imprimir2= 'Ingrese el número del usuario del empleados al que le desea asignar la tarea: '
-                                        empleadoAsignar=input(imprimir2)
-                                        empleadoAsignar=valOpcAsignacion(empleadoAsignar,self.tareas,tipo,'empleados',imprimir2)
-                                        imprimir3='Error. Ingrese como nivel de importancia 1, 2 o 3 (siendo 1 el más urgente): '
-                                        pregImportancia=input('Niveles de importancia: 1,2,3 (siendo 1 el más urgente). \n Ingrese la importancia de la tarea a realizar: ')
-                                        importancia=val_opc(pregImportancia,1,3,imprimir3)
-                                        nodoNuevo=NodoTarea(opcionAsignar,importancia)
-                                        persona=self.empleados.get(empleadoAsignar)
-                                        persona.tareasPendientes.agregarNodoTarea(nodoNuevo)
-                                        print('La nueva tarea se ha asignado con éxito.') #ver el str de listas enlazadas porque está feo
-                                        pass
+                                        asignarTarea(self.tareas,self.empleados)
+                                        print('La nueva tarea se ha asignado con éxito.')
                                     
                                     case 7:
                                         #Historial de baja de un empleados
@@ -208,11 +189,12 @@ class Hotel():
                             pregEmpleado=input('Ingrese una de las siguientes opciones: \n 1. Realizar una Tarea \n 2. Registrar ingreso \n 3. Registrar egreso \n 4. Cerrar sesión \n') #Agregar el resto de las cosas que debería hacer un empleado
                             imprimir1='Error. Elija una de las siguientes opciones: \n 1. Realizar una Tarea \n 2. Registrar ingreso \n 3. Registrar egreso \n 4. Cerrar sesión \n'
                             pregEmpleado=val_opc(pregEmpleado,1,4,imprimir1) #Hay que cambiar el rango a medida que agregamos las cosas que hace el empleado
-                            while pregEmpleado!=4: #tmb cambiar acá el máximo
+                            personal=self.empleados.get(usuario)
+                            while pregEmpleado!=5: #tmb cambiar acá el máximo
                                 match pregEmpleado:
                                     case 1:
                                         #Realizar una tarea
-                                        personal.tareasPendientes.realizarTareas() 
+                                        personal.tareasPendientes.realizarTareas() #hay que arreglar el string y el get
                                         pass       
                                     
                                     case 2:
@@ -230,8 +212,8 @@ class Hotel():
                                         
                                         
                                 pregEmpleado=input('Ingrese una de las siguientes opciones: \n 1. Realizar una Tarea \n 2. Registrar ingreso \n 3. Registrar egreso \n 4. Visualizar la última tarea realizada \n 5. Cerrar sesión \n') #Agregar el resto de las cosas que debería hacer un empleado
-                                imprimir1='Error. Elija una de las siguientes opciones: \n 1. Realizar una Tarea \n 2. Registrar ingreso \n 3. Registrar egreso \n 4. Visualizar la última tarea realizada'
-                                pregEmpleado=val_opc(pregEmpleado,1,3,imprimir1)
+                                imprimir1='Error. Elija una de las siguientes opciones: \n 1. Realizar una Tarea \n 2. Registrar ingreso \n 3. Registrar egreso \n 4. Visualizar la última tarea realizada \n 5. Cerrar sesión'
+                                pregEmpleado=val_opc(pregEmpleado,1,5,imprimir1)
                                 
                             seguir = False
                                 
