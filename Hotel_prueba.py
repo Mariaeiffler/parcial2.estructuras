@@ -46,6 +46,7 @@ class Hotel():
         #podriamos ponerlo en una funcion (no estoy segura)
         
         print(self.empleados)
+        print(self.clientes)
         
         seguir = True 
         gerente=Personal('milagros Argibay','miliargibay',"45074984",'obelisco','5491123484825','06/11/2003','mili@','Milia123','gerente')
@@ -110,11 +111,11 @@ class Hotel():
                             imprimir='Error. Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Cerrar Sesión \n'
                             pregcliente=val_opc(pregcliente,1,5,imprimir)
                             
-                        # se cierra el programa y se carga todo a pickle
-                        with open ('hotel.pickle','wb') as hpickle:
-                            pickle.dump(self,hpickle)
+                        # # se cierra el programa y se carga todo a pickle
+                        # with open ('hotel.pickle','wb') as hpickle:
+                        #     pickle.dump(self,hpickle)
                         seguir = False #ponerlo afuera del while asi tmb se hace para el gerente, pero ver como funciona
-                        print('Se ha cerrado la sesión con éxito')
+                        # print('Se ha cerrado la sesión con éxito')
                         
                     else:
                         
@@ -197,10 +198,10 @@ class Hotel():
                                 pregGerente=input('Elija una de las siguientes opciones: \n 1. Crear un empleado \n 2. Dar de baja un empleado \n 3. Inventario del personal \n 4. Ver estadísticas \n 5. Nomina de Clientes \n 6. Asignar Tarea \n 7. Historial de baja de empleados \n 8. Historial de Reservas \n 9. Cerrar Sesión \n')
                                 pregGerente=val_opc(pregGerente,1,9,imprimir)   
                                 
-                            with open ('hotel.pickle','wb') as hpickle:
-                                pickle.dump(self,hpickle)
+                            # with open ('hotel.pickle','wb') as hpickle:
+                            #     pickle.dump(self,hpickle)
                             seguir = False #ponerlo afuera del while asi tmb se hace para el gerente, pero ver como funciona
-                            print('Se ha cerrado la sesión con éxito')
+                            # print('Se ha cerrado la sesión con éxito')
                                 
                         #menu empleados
                         else:
@@ -228,11 +229,16 @@ class Hotel():
                                 imprimir1='Error. Elija una de las siguientes opciones: \n 1. Realizar una Tarea \n 2. Registrar ingreso \n 3. Registrar egreso \n'
                                 pregEmpleado=val_opc(pregEmpleado,1,3,imprimir1)
                                 
-                            with open ('hotel.pickle','wb') as hpickle:
-                                pickle.dump(self,hpickle)
-                            seguir = False #ponerlo afuera del while asi tmb se hace para el gerente, pero ver como funciona
-                            print('Se ha cerrado la sesión con éxito')
+                            seguir = False
+                                
+                            
 
+        with open ('hotel.pickle','wb') as hpickle:
+            pickle.dump(self,hpickle)
+        # seguir = False #ponerlo afuera del while asi tmb se hace para el gerente, pero ver como funciona
+        print('Se ha cerrado la sesión con éxito')
+        
+        
         
         
 if __name__ == "__main__":

@@ -209,10 +209,10 @@ def inv_empleados(dic:dict):
     if len(dic)+1 != 0:
         for clave in dic:
             if dic.get(clave).fecbaja == None and dic.get(clave).tipo != 'gerente':
-                list_a.dic.get(clave)
+                list_a.append.dic.get(clave)
         for clave in dic:
             if dic.get(clave).fecbaja != None and dic.get(clave).tipo != 'gerente':
-                list_b.dic.get(clave)
+                list_b.append.dic.get(clave)
     if len(list_a) != 0:
         print('Los empleados activos son: ')
         for emp in list_a:
@@ -316,7 +316,7 @@ def valMail (mail):
 
 def validacionusuario(usuario,dic1,dic2): #TODO:chequear que no este repetido
     while len(str(usuario)) < 5 or valPalabraDic(usuario,dic1) or valPalabraDic(usuario,dic2):
-        usuario = input('Ingrese otro nombre de usuario válido (con minimo 5 dígitos): ')  
+        usuario = input('Su nombre de usuario no es válido, ingrese otro (con minimo 5 dígitos): ')  
     return usuario
 
 def validacioncontrasena(contrasena): 

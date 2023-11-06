@@ -109,7 +109,7 @@ def rec_diaria(array):
         print('El hotel no recaudacion aún')
         return
     else:
-        imp = 'Los día que se realizaron gastos en el hotel son: '
+        imp = 'Los día que se realizaron gastos en el hotel son (Elija un dia para ver la recaudación diaria): '
         fechas = []
         for cobro in array:
             fechas.append(cobro.fecha.date())
