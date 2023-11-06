@@ -216,24 +216,29 @@ class Hotel():
                             pregEmpleado=input('Ingrese una de las siguientes opciones: \n 1. Realizar una Tarea \n 2. Registrar ingreso \n 3. Registrar egreso \n') #Agregar el resto de las cosas que debería hacer un empleado
                             imprimir1='Error. Elija una de las siguientes opciones: \n 1. Realizar una Tarea \n 2. Registrar ingreso \n 3. Registrar egreso \n'
                             pregEmpleado=val_opc(pregEmpleado,1,3,imprimir1) #Hay que cambiar el rango a medida que agregamos las cosas que hace el empleado
+                            personal=self.empleados.get(usuario)
                             while pregEmpleado!=3: #tmb cambiar acá el máximo
                                 match pregEmpleado:
                                     case 1:
                                         #Realizar una tarea
-                                        personal=empleados.get(usuario)
-                                        personal.tareasPendientes.realizarTareas() #ver como meter las cosas viejas a una pila 
+                                        personal.tareasPendientes.realizarTareas() 
                                         pass       
                                     
                                     case 2:
                                         #Registar ingreso
-                                        Personal.registrar_ingreso(self.empleados.get(usuario))
+                                        Personal.registrar_ingreso(self.empleados.get(usuario)) #esta bien poner la clase.?
                                     
                                     case 3:
                                         #Registrar egreso
                                         Personal.registrar_egreso(self.empleados.get(usuario))
+                                    
+                                    case 4:
+                                        #Ver la última tarea realizada
+                                        personal.tareasRealizadas.visualizarTareaAnterior()
                                         
-                                pregEmpleado=input('Ingrese una de las siguientes opciones: \n 1. Realizar una Tarea \n 2. Registrar ingreso \n 3. Registrar egreso \n') #Agregar el resto de las cosas que debería hacer un empleado
-                                imprimir1='Error. Elija una de las siguientes opciones: \n 1. Realizar una Tarea \n 2. Registrar ingreso \n 3. Registrar egreso \n'
+                                        
+                                pregEmpleado=input('Ingrese una de las siguientes opciones: \n 1. Realizar una Tarea \n 2. Registrar ingreso \n 3. Registrar egreso \n 4. Visualizar la última tarea realizada \n 5. Cerrar sesión \n') #Agregar el resto de las cosas que debería hacer un empleado
+                                imprimir1='Error. Elija una de las siguientes opciones: \n 1. Realizar una Tarea \n 2. Registrar ingreso \n 3. Registrar egreso \n 4. Visualizar la última tarea realizada'
                                 pregEmpleado=val_opc(pregEmpleado,1,3,imprimir1)
 
         
