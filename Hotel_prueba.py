@@ -2,7 +2,6 @@ import pickle
 from Personal import Personal
 from cliente import Cliente
 from Persona import Persona # creo q no hace falta
-from Validaciones import *
 from Habitacion_Doble import *
 from Habitacion_Simple import *
 from Habitacion_Suite import *
@@ -30,7 +29,6 @@ class Hotel():
         self.bajasEmpleados=set()
         self.cobros = np.array([])
         self.buffet=crear_buffet(Comida.crear_comidas())
-        self.ingresos_egresos=list() #
         
     def entrar(self):
         try:
@@ -42,11 +40,12 @@ class Hotel():
             self.reservas = info.reservas
             self.cobros = info.cobros
             self.buffet=info.buffet 
-            #self.ingresos_egresos=info.ingresos_egresos 
         except FileNotFoundError:
             with open ('hotel.pickle','wb') as hpickle:
                 pickle.dump(self,hpickle)
         #podriamos ponerlo en una funcion (no estoy segura)
+        
+        print(self.empleados)
         
         seguir = True 
         gerente=Personal('milagros Argibay','miliargibay',"45074984",'obelisco','5491123484825','06/11/2003','mili@','Milia123','gerente')
@@ -136,8 +135,8 @@ class Hotel():
                                         empleado=Personal(nombre,usuario,dni,direccion,contacto,fecha_nac,mail,contrasena,tipo)
                                         self.empleados[empleado.usuario]=empleado
                                         self.tareas[tipo]['empleados'].append(empleado.usuario)
+                                        print(self.empleados)
                                         print ('El empleado se a creado con éxito.')
-                                        self.ingresos_egresos.append([]) #
                                         
                                     case 2:
                                         #Dar de baja un empleado
@@ -152,14 +151,7 @@ class Hotel():
                                         
                                     case 3:
                                         #Inventario de personal
-                                        print('Los empleados activos son: ')
-                                        for clave in self.empleados:
-                                            if self.empleados.get(clave).fecbaja == None:
-                                                print(self.empleados.get(clave))
-                                        print('Los empleados dados de baja son: ')
-                                        for clave in self.empleados:
-                                            if self.empleados.get(clave).fecbaja != None:
-                                                print(self.empleados.get(clave))
+                                        inv_empleados(self.empleados)
                                             
                                     case 4:
                                         #Estadisticas
@@ -167,9 +159,7 @@ class Hotel():
                                     
                                     case 5:
                                         #Nomina de clientes
-                                        print('Los clientes del hotel son: ')
-                                        for cliente in self.clientes:
-                                            print(self.clientes.get(cliente))
+                                        nomina_clientes(self.clientes)
                                     
                                     case 6:
                                         #Asignar una Tarea
@@ -203,20 +193,21 @@ class Hotel():
                                         #Historial de reservas
                                         #Hay q ver si es parte d la nomina d los clientes (preguntarle a fede)
                                         pass
-                                    
-                                    case 9:
-                                        #cerrar sesión
-                                        pass
                                         
                                 pregGerente=input('Elija una de las siguientes opciones: \n 1. Crear un empleado \n 2. Dar de baja un empleado \n 3. Inventario del personal \n 4. Ver estadísticas \n 5. Nomina de Clientes \n 6. Asignar Tarea \n 7. Historial de baja de empleados \n 8. Historial de Reservas \n 9. Cerrar Sesión \n')
                                 pregGerente=val_opc(pregGerente,1,9,imprimir)   
                                 
+                            with open ('hotel.pickle','wb') as hpickle:
+                                pickle.dump(self,hpickle)
+                            seguir = False #ponerlo afuera del while asi tmb se hace para el gerente, pero ver como funciona
+                            print('Se ha cerrado la sesión con éxito')
+                                
                         #menu empleados
                         else:
-                            pregEmpleado=input('Ingrese una de las siguientes opciones: \n 1. Realizar una Tarea \n 2. Registrar ingreso \n 3. Registrar egreso \n') #Agregar el resto de las cosas que debería hacer un empleado
-                            imprimir1='Error. Elija una de las siguientes opciones: \n 1. Realizar una Tarea \n 2. Registrar ingreso \n 3. Registrar egreso \n'
-                            pregEmpleado=val_opc(pregEmpleado,1,3,imprimir1) #Hay que cambiar el rango a medida que agregamos las cosas que hace el empleado
-                            while pregEmpleado!=3: #tmb cambiar acá el máximo
+                            pregEmpleado=input('Ingrese una de las siguientes opciones: \n 1. Realizar una Tarea \n 2. Registrar ingreso \n 3. Registrar egreso \n 4. Cerrar sesión \n') #Agregar el resto de las cosas que debería hacer un empleado
+                            imprimir1='Error. Elija una de las siguientes opciones: \n 1. Realizar una Tarea \n 2. Registrar ingreso \n 3. Registrar egreso \n 4. Cerrar sesión \n'
+                            pregEmpleado=val_opc(pregEmpleado,1,4,imprimir1) #Hay que cambiar el rango a medida que agregamos las cosas que hace el empleado
+                            while pregEmpleado!=4: #tmb cambiar acá el máximo
                                 match pregEmpleado:
                                     case 1:
                                         #Realizar una tarea
@@ -227,6 +218,7 @@ class Hotel():
                                     case 2:
                                         #Registar ingreso
                                         Personal.registrar_ingreso(self.empleados.get(usuario))
+                                        print('Su ingreso se ha registrado con exito')
                                     
                                     case 3:
                                         #Registrar egreso
@@ -235,6 +227,11 @@ class Hotel():
                                 pregEmpleado=input('Ingrese una de las siguientes opciones: \n 1. Realizar una Tarea \n 2. Registrar ingreso \n 3. Registrar egreso \n') #Agregar el resto de las cosas que debería hacer un empleado
                                 imprimir1='Error. Elija una de las siguientes opciones: \n 1. Realizar una Tarea \n 2. Registrar ingreso \n 3. Registrar egreso \n'
                                 pregEmpleado=val_opc(pregEmpleado,1,3,imprimir1)
+                                
+                            with open ('hotel.pickle','wb') as hpickle:
+                                pickle.dump(self,hpickle)
+                            seguir = False #ponerlo afuera del while asi tmb se hace para el gerente, pero ver como funciona
+                            print('Se ha cerrado la sesión con éxito')
 
         
         

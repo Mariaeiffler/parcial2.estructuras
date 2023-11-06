@@ -51,6 +51,7 @@ class Personal(Persona):
     def registrar_egreso(self):
         if self.registro[len(self.registro)-1] == 1:
             self.registro[len(self.registro)-1].append(datetime.now())
+            print('Su egreso se registró con éxito')
         else:
             print('Error, no registró el ingreso')
         return

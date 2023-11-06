@@ -1,8 +1,8 @@
-La ocupacion del hotel el dia 30/11/2023 es del 8.333333333333332% 
+La ocupacion del hotel el dia 20/11/2023 es del 16.666666666666664% 
  
-El dia 30/11/2023: 
- La ocupacion del tipo de habitacion simple es 0.0% 
+El dia 20/11/2023: 
+ La ocupacion del tipo de habitacion simple es 25.0% 
  La ocupacion del tipo de habitacion doble es 0.0% 
  La ocupacion del tipo de habitacion doble es 25.0% 
  
-La recaudacion diaria el dia 05/11/2023 fue de $65000
+La recaudacion diaria el dia 05/11/2023 fue de $56500
