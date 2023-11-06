@@ -246,8 +246,8 @@ def asignarTarea(tareas:dict,empleados:dict):
     imprimir1='Ingrese la tarea que desea asignar: '
     opcionAsignar=input(imprimir1) 
     opcionAsignar=valOpcAsignacion(opcionAsignar,tareas,tipo,'tareas',imprimir1)
-    for i, empleados in enumerate (tareas[tipo]['empleados']):
-        print (F"{i} - {empleados}")
+    for i, personal in enumerate (tareas[tipo]['empleados']):
+        print (F"{i} - {personal}")
     imprimir2= 'Ingrese el número del usuario del empleados al que le desea asignar la tarea: '
     empleadoAsignar=input(imprimir2)
     empleadoAsignar=valOpcAsignacion(empleadoAsignar,tareas,tipo,'empleados',imprimir2)
@@ -256,7 +256,6 @@ def asignarTarea(tareas:dict,empleados:dict):
     importancia=val_opc(pregImportancia,1,3,imprimir3)
     nodoNuevo=NodoTarea(opcionAsignar,importancia)
     persona=empleados.get(empleadoAsignar) #chequear que me dice que es un string
-    print('sali')
     persona.tareasPendientes.agregarNodoTarea(nodoNuevo)
     return
         
