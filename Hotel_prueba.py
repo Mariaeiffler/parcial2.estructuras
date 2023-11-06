@@ -15,6 +15,7 @@ from list_enlazada import Lista_Enlazada
 from Buffet import Comida
 import numpy as np
 from Estadisticas import *
+from Gerente import Gerente
 
 
 class Hotel():
@@ -45,8 +46,9 @@ class Hotel():
                 pickle.dump(self,hpickle)
         #podriamos ponerlo en una funcion (no estoy segura)
         
-        print(self.empleados)
-        print(self.clientes)
+        for i in self.habitaciones:
+            print(i)
+            print(i.reservas)
         
         seguir = True 
         gerente=Personal('milagros Argibay','miliargibay',"45074984",'obelisco','5491123484825','06/11/2003','mili@','Milia123','gerente')
@@ -156,6 +158,7 @@ class Hotel():
                                             
                                     case 4:
                                         #Estadisticas
+                                        Gerente.obtener_estadisticas(self, self.habitaciones, self.cobros)
                                         ver_estadisticas_txt(self.habitaciones, self.cobros)
                                     
                                     case 5:
