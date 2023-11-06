@@ -46,8 +46,10 @@ class Hotel():
                 pickle.dump(self,hpickle)
         #podriamos ponerlo en una funcion (no estoy segura)
         
+        print(self.empleados)
+        
         seguir = True 
-        gerente=Personal('milagros Argibay','miliargibay',"45074984",'obelisco','5491123484825','06/11/2003','mili@','Milia123','gerente')
+        gerente=Gerente('milagros Argibay','miliargibay',"45074984",'obelisco','5491123484825','06/11/2003','mili@','Milia123','gerente')
         self.empleados[gerente.usuario]=gerente
         self.tareas['gerente']['empleados'].append(gerente.usuario)
         
@@ -151,7 +153,6 @@ class Hotel():
                                     case 4:
                                         #Estadisticas
                                         Gerente.obtener_estadisticas(self, self.habitaciones, self.cobros)
-                                        ver_estadisticas_txt(self.habitaciones, self.cobros)
                                     
                                     case 5:
                                         #Nomina de clientes
@@ -171,6 +172,7 @@ class Hotel():
                                         #Hay q ver si es parte d la nomina d los clientes (preguntarle a fede)
                                         pass
                                         
+                                print(self.empleados)
                                 pregGerente=input('Elija una de las siguientes opciones: \n 1. Crear un empleado \n 2. Dar de baja un empleado \n 3. Inventario del personal \n 4. Ver estadísticas \n 5. Nomina de Clientes \n 6. Asignar Tarea \n 7. Historial de baja de empleados \n 8. Historial de Reservas \n 9. Cerrar Sesión \n')
                                 pregGerente=val_opc(pregGerente,1,9,imprimir)   
     
@@ -210,7 +212,7 @@ class Hotel():
                             seguir = False
                                 
                             
-
+        print(self.empleados)
         with open ('hotel.pickle','wb') as hpickle:
             pickle.dump(self,hpickle)
         # seguir = False #ponerlo afuera del while asi tmb se hace para el gerente, pero ver como funciona

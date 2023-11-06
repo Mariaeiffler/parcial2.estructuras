@@ -2,8 +2,9 @@ from Persona import Persona
 from Estadisticas import *
 
 class Gerente(Persona):
-    def __init__(self,nombre,usuario,dni,direccion,contacto,fecha_nac,mail,contrasena):
+    def __init__(self,nombre,usuario,dni,direccion,contacto,fecha_nac,mail,contrasena, tipo):
         super().__init__(nombre,usuario,dni,direccion,contacto,fecha_nac,mail,contrasena)
+        self.tipo = tipo
         
     def obtener_estadisticas(self, lista, array):
         ocupa = ocupacion (lista)
