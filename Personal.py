@@ -5,6 +5,7 @@ from list_enlazada import *
 from Tareas_Empleados import tareas_empleados
 from Validaciones import *
 from Funciones import *
+from Pilas import Pila
 
 class Personal(Persona):
     def __init__(self,nombre,usuario,dni,direccion,contacto,fecha_nac,mail,contrasena,tipo,fecalta=datetime.now(),fecbaja=None):
@@ -14,6 +15,7 @@ class Personal(Persona):
         self.fecbaja=fecbaja
         self.tareasPendientes=Lista_Enlazada()
         self.registro = []
+        self.tareasRealizadas=Pila()
         
     def __str__(self):
         if self.fecbaja == None:
@@ -30,11 +32,17 @@ class Personal(Persona):
             imprimir='Desea realizar la tarea ahora? (ingrese "si" o "no"): '
             elije=input(imprimir)
             elije=valSiNo(elije,imprimir)
-            if elije==False:
-                print('La tarea no se ha realizado')
+            if elije:
+                self.tareasRealizadas.apilar(self.tareasPendientes.head.valor)
+                self.tareasPendientes.eliminarPrimero() 
+                print('La tarea ha sido marcada como realizada.')
             else:
-                self.tareasPendientes.eliminarPrimero() #PODEMOS GUARDAR ANTES LA CABEZA Y GUARDAR EN UNA PILA EL NODO O LA INFORMACION DEL NODO PARA QUE EL CLIENTE PUEDA VER CUAL FUE SU ULTIMA TAREA REALIZADA
-                print('La tarea ha sido realizada.')
+                print('La tarea no se ha realizado')
+        return
+                
+    def visualizarTareaAnterior (self):
+        tarea=self.tareasRealizadas.obtenerUltimo()
+        print('La última tarea que realizó fue: {}'.format(tarea))
 
     def posicion_registro(self,u,ingresos_egresos:list()):
         u=self.usuario
