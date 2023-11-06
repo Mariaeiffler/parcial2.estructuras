@@ -70,46 +70,65 @@ def imprimir_fec(lista,imp):
     return fec, desordenadas
 
 def ocupacion (lista):
-    imp = 'Las fechas en las que hay reservas y puede ver la ocupación del hotel son las siguientes: '
-    fec, desordenadas = imprimir_fec(lista, imp)
-    conthab = np.count_nonzero(desordenadas == fec)
-    porcentaje = (conthab / len(lista))*100
-    return ('La ocupacion del hotel el dia {} es del {}% \n \n'.format(fec.strftime('%d/%m/%Y'), porcentaje))
+    oc = 0
+    for hab in lista:
+        if len(hab.reservas) != 0:
+            oc+=1
+    if oc == 0:
+        pass
+    else:
+        imp = 'Las fechas en las que hay reservas y puede ver la ocupación del hotel son las siguientes: '
+        fec, desordenadas = imprimir_fec(lista, imp)
+        conthab = np.count_nonzero(desordenadas == fec)
+        porcentaje = (conthab / len(lista))*100
+        return ('La ocupacion del hotel el dia {} es del {}% \n \n'.format(fec.strftime('%d/%m/%Y'), porcentaje))
 
 def ocupacion_tipohab(lista):
-    imp = 'Las fechas en las que hay reservas y puede ver la ocupación por tipo de habitación del hotel son las siguientes: '
-    fec,desordenas = imprimir_fec(lista, imp)
-    mat = np.array([])
-    t1,t2,t3 = separacion_tipohab(lista)
-    t1 = np.array(obtener_rango_fec(t1))
-    t2 = np.array(obtener_rango_fec(t2))
-    t3 = np.array(obtener_rango_fec(t3))
-    mat = np.append(mat, [1,np.count_nonzero(t1 == fec)])
-    mat = np.vstack((mat,[2,np.count_nonzero(t2 == fec)]))
-    mat = np.vstack((mat,[3,np.count_nonzero(t3 == fec)]))
-    todo = ('El dia {}: \n La ocupacion del tipo de habitacion simple es {}% \n La ocupacion del tipo de habitacion doble es {}% \n La ocupacion del tipo de habitacion doble es {}% \n \n'. format(fec.strftime('%d/%m/%Y'), ((mat[0][1])/4)*100, ((mat[1][1])/4)*100, ((mat[2][1])/4)*100))
-    return todo
+    oc = 0
+    for hab in lista:
+        if len(hab.reservas) != 0:
+            oc+=1
+    if oc == 0:
+        pass
+    else:
+        imp = 'Las fechas en las que hay reservas y puede ver la ocupación por tipo de habitación del hotel son las siguientes: '
+        fec,desordenas = imprimir_fec(lista, imp)
+        mat = np.array([])
+        t1,t2,t3 = separacion_tipohab(lista)
+        t1 = np.array(obtener_rango_fec(t1))
+        t2 = np.array(obtener_rango_fec(t2))
+        t3 = np.array(obtener_rango_fec(t3))
+        mat = np.append(mat, [1,np.count_nonzero(t1 == fec)])
+        mat = np.vstack((mat,[2,np.count_nonzero(t2 == fec)]))
+        mat = np.vstack((mat,[3,np.count_nonzero(t3 == fec)]))
+        todo = ('El dia {}: \n La ocupacion del tipo de habitacion simple es {}% \n La ocupacion del tipo de habitacion doble es {}% \n La ocupacion del tipo de habitacion doble es {}% \n \n'. format(fec.strftime('%d/%m/%Y'), ((mat[0][1])/4)*100, ((mat[1][1])/4)*100, ((mat[2][1])/4)*100))
+        return todo
 
 def rec_diaria(array):
-    imp = 'Los día que se realizaron gastos en el hotel son: '
-    fechas = []
-    for cobro in array:
-        fechas.append(cobro.fecha.date())
-    fechas = ordenar_fechas(fechas)
-    dia = preg_ver_estadisticas(fechas, imp,2)
-    rec = 0
-    for cobro in array:
-        if cobro.fecha.date() == dia:
-            rec += cobro.monto
-    return ('La recaudacion diaria el dia {} fue de ${}'.format(dia.strftime('%d/%m/%Y'), rec))
+    if len(array) == 0:
+        print('El hotel no recaudacion aún')
+        return
+    else:
+        imp = 'Los día que se realizaron gastos en el hotel son (Elija un dia para ver la recaudación diaria): '
+        fechas = []
+        for cobro in array:
+            fechas.append(cobro.fecha.date())
+        fechas = ordenar_fechas(fechas)
+        dia = preg_ver_estadisticas(fechas, imp,2)
+        rec = 0
+        for cobro in array:
+            if cobro.fecha.date() == dia:
+                rec += cobro.monto
+        return ('La recaudacion diaria el dia {} fue de ${}'.format(dia.strftime('%d/%m/%Y'), rec))
 
 def ver_estadisticas_txt(lista, array):
-        ocupa = ocupacion (lista)
-        ocupa_th = ocupacion_tipohab(lista)
-        rec = rec_diaria(array)
-    # try:
+    ocupa = ocupacion (lista)
+    ocupa_th = ocupacion_tipohab(lista)
+    rec = rec_diaria(array)
+    try:
         with open('Estadisticas.txt', "w") as archivo:
             archivo.write(ocupa)
             archivo.write(ocupa_th)
             archivo.write(rec)
-        return
+    except Exception:
+        pass

@@ -10,10 +10,13 @@ class Cliente(Persona):
         self.reservas= reservas
         
     def __str__(self):
-        res_imp = ''
-        for res in self.reservas:
-            res_imp += res[0].strftime('%d/%m/%Y') + ' - ' + res[1].strftime('%d/%m/%Y') + '   '
-        return('El cliente de nombre de nombre {} y dni {} es de {} y sus reservas son: {}'.format(self.nombre, self.dni, self.tipo, res_imp))
+        if len(self.reservas) != 0:
+            res_imp = ''
+            for res in self.reservas:
+                res_imp += res[0].strftime('%d/%m/%Y') + ' - ' + res[1].strftime('%d/%m/%Y') + '   '
+            return('El cliente de nombre {} y dni {} es de {} y sus reservas son: {}'.format(self.nombre, self.dni, self.tipo, res_imp))
+        else:
+            return('El clientes de nombre {} y dni {} no tiene reservas en el hotel'.format(self.nombre, self.dni))
     
     def realizar_reserva(self, lista, diccionario:dict):
         fecha_inicio, fecha_fin, hab = reserva()

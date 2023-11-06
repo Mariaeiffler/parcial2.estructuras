@@ -44,16 +44,28 @@ def valNombre2 (nombre):
         validacion = valNombre1(nombre)
     return nombre
 
-def validaciondni(dni,dic:dict): 
-    vali = False
-    while vali == False:
+def validaciondni(dni,dic1:dict,dic2:dict): 
+    vali1 = False
+    vali2 = False
+    while vali1 == False or vali2 == False:
         while str(dni).isdigit() == False or len(str(dni)) != 8:
             dni = input('Ingrese su DNI  ')
-        for cliente in dic:
-            if dic.get(cliente).dni == dni:
-                dni = input('El DNI ingresado ya pertenece a otro usuario. Ingrese nuevamente su DNI  ')
-            else:
-                vali = True
+        if len(dic1) != 0:
+            for cliente in dic1:
+                if dic1.get(cliente).dni == dni:
+                    dni = input('El DNI ingresado ya pertenece a otro usuario. Ingrese nuevamente su DNI  ')
+                else:
+                    vali1 = True
+        else:
+            vali1 = True
+        if len(dic2) != 0:
+            for emp in dic2:
+                if dic2.get(emp).dni == dni:
+                    dni = input('El DNI ingresado ya pertenece a otro usuario. Ingrese nuevamente su DNI  ')
+                else:
+                    vali2 = True
+        else:
+            vali2 = True
     return dni
 
 def validacioncontacto(contacto):
@@ -90,7 +102,7 @@ def infoPersonas (dicc1:dict,dicc2:dict):
     nombre=input('Introduzca su nombre y apellido: ')
     nombre=valNombre2(nombre)
     dni=input('Ingrese su DNI: ')
-    dni=validaciondni(dni, dicc1)
+    dni=validaciondni(dni, dicc1, dicc2)
     direccion=input('Ingrese su direccion: ')
     contacto=input('Ingrese su numero de contacto: ')
     contacto=validacioncontacto(contacto)
