@@ -1,13 +1,6 @@
 from Persona import Persona
-from prueba_menu import reserva
-from prueba_menu import val_numres
-from prueba_menu import val_opc
-from prueba_menu import convertirfecha_datetime
-from prueba_menu import hab_ocupada
-from prueba_menu import comparacion_fechas
-from prueba_menu import validacion_preg_hab
-from prueba_menu import modi_hab
-from prueba_menu import valPalabraDic
+from Validaciones import *
+from Funciones import *
 
 
 class Cliente(Persona):
@@ -17,12 +10,16 @@ class Cliente(Persona):
         self.reservas= reservas
         
     def __str__(self):
-        res_imp = ''
-        for res in self.reservas:
-            res_imp += res[0].strftime('%d/%m/%Y') + ' - ' + res[1].strftime('%d/%m/%Y') + '   '
-        return('El cliente de nombre de nombre {} y dni {} es de {} y sus reservas son: {}'.format(self.nombre, self.dni, self.tipo, res_imp))
+        if len(self.reservas) != 0:
+            res_imp = ''
+            for res in self.reservas:
+                res_imp += res[0].strftime('%d/%m/%Y') + ' - ' + res[1].strftime('%d/%m/%Y') + '   '
+            return('El cliente de nombre {} y dni {} es de {} y sus reservas son: {}'.format(self.nombre, self.dni, self.tipo, res_imp))
+        else:
+            return('El clientes de nombre {} y dni {} no tiene reservas en el hotel'.format(self.nombre, self.dni))
     
     def realizar_reserva(self, lista, diccionario:dict):
+        ''' Esta funcion le permite al usuario llevar a cabo la reserva. En caso de que la fecha seleccionada no este disponible se le mostraran las fechas en las cuales esta ocupada para que seleccione una opcion valida'''
         fecha_inicio, fecha_fin, hab = reserva()
         val = hab_ocupada(fecha_inicio, fecha_fin, hab, lista)
         while val==False:
@@ -41,6 +38,7 @@ class Cliente(Persona):
         return numres, fecha_inicio, fecha_fin, int(hab)
     
     def modificar_reserva(self, reservas:dict, lista):
+        ''' Esta funcion le permite al usuario poder cambiar su reserva, ya sea la modificacion de la fecha, habitacion o ambas'''
         numres = input('Ingrese su numero de reserva  ')
         numres = val_numres(numres, reservas, self.usuario)
         reserva = reservas.get(numres)
@@ -70,6 +68,7 @@ class Cliente(Persona):
         return
     
     def cancelar_reserva(self,reservas:dict, lista):
+        ''' Esta funcion le permite al usuario cancelar la reserva definitivamente'''
         numres = input('Ingrese su numero de reserva  ')
         numres = val_numres(numres, reservas, self.usuario)
         reserva = reservas.get(numres)
@@ -90,6 +89,7 @@ class Cliente(Persona):
         return
     
     def asignar_nivel(self, vector):
+        '''Esta funcion permite asignarle un nivel al cliente en funcion a los gastos hechos en la totalidad de sus estadias en el hotel'''
         gastos = 0
         for cobro in vector:
             if cobro.usuario.usuario == self.usuario:
@@ -102,24 +102,4 @@ class Cliente(Persona):
             self.tipo = 'nivel 2'
         return
                 
-                    
-            
-        
-        
-
-    
-    # def realizar_pedido():
-        
-        
-        
-    #def tipo(self):
-        #verificar que tipo de cliente es en base a sus gastos
-        
-    #def historial_reservas(self):
-    
-    #def realizar_pedido_buffet():
-    
-    #def __str__(self):
-    
-    #def tipocliente(self)
     
