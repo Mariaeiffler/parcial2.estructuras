@@ -84,17 +84,6 @@ def valPalabraDic (palabra,dicc:dict):
         return True
     else:
         return False
-    
-# if __name__=='__main__':
-#     llaves=list(tareas_empleados.keys())
-#     tipo=input('{} \n Ingrese el tipo de personal al que le quiere asignar una tarea: '.format(llaves))
-#     tipo=valTipoEmpleado(tipo,tareas_empleados)
-#     for i, tareas in enumerate (tareas_empleados[tipo]['tareas']):
-#         print (F"{i} - {tareas}")
-#     imprimir1='Ingrese la tarea que desea asignar: '
-#     opcion=input(imprimir1)
-#     tarea=valOpcAsignacion(opcion,tareas_empleados,tipo,'tareas',imprimir1)
-#     print(tarea)    
 
 def crearHab():
     '''Esta funcion crea las habitaciones del hotel'''
