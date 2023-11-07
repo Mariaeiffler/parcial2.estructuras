@@ -14,7 +14,7 @@ class Comida():
             return('{}, que vale $ {}'.format(self.descripcion, self.precio))
         
     def crear_comidas(): 
-        ''' Esta funcion crea las distintas comidas con se respectivo precio y codigo, especificando a que tipo de comida pertenece'''
+        ''' Esta funcion crea las distintas comidas con su respectivo precio y codigo, especificando a que tipo de comida pertenece'''
         infusion= Comida('Infusión (Café con leche/Té/Jugo de Naranja)', 500, 'desayuno','1')
         tostadas=Comida('Tostadas con queso y mermelada', 700, 'desayuno','2')
         yogur=Comida('Yogur con cereales', 600, 'desayuno','3')
