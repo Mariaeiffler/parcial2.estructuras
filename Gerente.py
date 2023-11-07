@@ -1,6 +1,7 @@
 from Persona import Persona
 from Estadisticas import *
 from nodo import NodoTarea
+from Personal import Personal
 
 class Gerente(Persona):
     def __init__(self,nombre,usuario,dni,direccion,contacto,fecha_nac,mail,contrasena, tipo):
@@ -94,4 +95,14 @@ class Gerente(Persona):
         with open('HistorialReservas.txt', "w") as archivo:
             for reserva in reservas:
                 archivo.write(reservas.get(reserva).__str__())
+                
+    def crearEmpleado(self,clientes:dict,empleados:dict,tareas:dict):
+        nombre,usuario,dni,contacto,fecha_nac,mail,contrasena = infoPersonas (clientes,empleados)
+        llaves=list(tareas.keys())
+        tipo=input('Ingrese el tipo al que pertenecera el empleado {}: \n'.format(llaves))
+        tipo=valTipoEmpleado(tipo,tareas)
+        empleado=Personal(nombre,usuario,dni,contacto,fecha_nac,mail,contrasena,tipo)
+        empleados[empleado.usuario]=empleado
+        tareas[tipo]['empleados'].append(empleado.usuario)
+        print ('El empleado se a creado con éxito.')
         

@@ -132,14 +132,7 @@ class Hotel():
                                 match pregGerente:
                                     case 1:
                                         #Crear empleado
-                                        nombre,usuario,dni,direccion,contacto,fecha_nac,mail,contrasena = infoPersonas (self.clientes,self.empleados)
-                                        llaves=list(self.tareas.keys())
-                                        tipo=input('Ingrese el tipo al que pertenecera el empleado {}: \n'.format(llaves))
-                                        tipo=valTipoEmpleado(tipo,self.tareas)
-                                        empleado=Personal(nombre,usuario,dni,direccion,contacto,fecha_nac,mail,contrasena,tipo)
-                                        self.empleados[empleado.usuario]=empleado
-                                        self.tareas[tipo]['empleados'].append(empleado.usuario)
-                                        print ('El empleado se a creado con éxito.')
+                                        gerente.crearEmpleado(self.clientes,self.empleados,self.tareas)
                                         
                                     case 2:
                                         #Dar de baja un empleado
