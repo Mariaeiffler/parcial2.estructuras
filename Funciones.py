@@ -29,6 +29,13 @@ def obtener_pickle(hotel, accion):
         with open ('hotel.pickle','wb') as hpickle:
             pickle.dump(hotel,hpickle)
         return
+    
+def volver_atras():
+    preg = input ('Si desea continuar si acción escriba "si", si desea volver para atras escriba "no" \n')
+    imprimir = 'Error. Si desea continuar si acción escriba "si", si desea volver para atras escriba "no" \n'
+    seguir = valSiNo(preg,imprimir)
+    return seguir
+    
 
 def cantidad_numero(contrasena):
     '''Esta funcion permite conocer la cantidad de digitos que contiene la contrasena'''
@@ -459,7 +466,7 @@ def valOpcAsignacion(opcion,dicc1:dict,tipo,llave,imprimir):
 
 def valSiNo(eleccion,imprimir):
     '''Esta funcion valida la eleccion'''
-    while eleccion!='si' or eleccion!='no':
+    while eleccion!='si' and eleccion!='no':
         eleccion=input(imprimir)
     if eleccion =='si':
         return True

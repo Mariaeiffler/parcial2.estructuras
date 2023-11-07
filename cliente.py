@@ -23,19 +23,24 @@ class Cliente(Persona):
         fecha_inicio, fecha_fin, hab = reserva()
         val = hab_ocupada(fecha_inicio, fecha_fin, hab, lista)
         while val==False:
-            preg = input('Elija una opción: \n 1. Elegir otras fechas \n 2. Elegir otra habitación \n 3. Elegir una nueva habitación y otras fechas \n')
-            imprimir = 'Error. Elija una opcion: \n 1. Elegir otras fechas \n 2. Elegir otra habitación \n 3. Elegir una nueva habitación y otras fechas \n'
-            preg = val_opc(preg, 1, 3, imprimir)
-            val, fecha_inicio, fecha_fin, hab = modi_hab(val, preg, fecha_inicio, fecha_fin, hab, lista)  
-        for habitacion in lista:
-            if habitacion.numero == int(hab):
-                habitacion.reservas.append([fecha_inicio,fecha_fin])
-                numres = len(diccionario)+1
-                while(valPalabraDic (numres,diccionario)):
-                    numres = numres+1
-                # falta lo d cobros
-                self.reservas.append([fecha_inicio,fecha_fin])
-        return numres, fecha_inicio, fecha_fin, int(hab)
+            seguir = volver_atras()
+            if seguir:
+                preg = input('Elija una opción: \n 1. Elegir otras fechas \n 2. Elegir otra habitación \n 3. Elegir una nueva habitación y otras fechas \n')
+                imprimir = 'Error. Elija una opcion: \n 1. Elegir otras fechas \n 2. Elegir otra habitación \n 3. Elegir una nueva habitación y otras fechas \n'
+                preg = val_opc(preg, 1, 3, imprimir)
+                val, fecha_inicio, fecha_fin, hab = modi_hab(val, preg, fecha_inicio, fecha_fin, hab, lista)  
+        try:
+            for habitacion in lista:
+                if habitacion.numero == int(hab):
+                    habitacion.reservas.append([fecha_inicio,fecha_fin])
+                    numres = len(diccionario)+1
+                    while(valPalabraDic (numres,diccionario)):
+                        numres = numres+1
+                    # falta lo d cobros
+                    self.reservas.append([fecha_inicio,fecha_fin])
+            return numres, fecha_inicio, fecha_fin, int(hab)
+        except Exception:
+            return None
     
     def modificar_reserva(self, reservas:dict, lista):
         ''' Esta funcion le permite al usuario poder cambiar su reserva, ya sea la modificacion de la fecha, habitacion o ambas'''

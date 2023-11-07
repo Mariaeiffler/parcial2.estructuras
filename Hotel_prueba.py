@@ -1,6 +1,6 @@
 import pickle
 from Personal import Personal
-from Cliente import Cliente
+from cliente import Cliente
 from Persona import Persona # creo q no hace falta
 from Habitacion_Doble import *
 from Habitacion_Simple import *
@@ -68,14 +68,17 @@ class Hotel():
                             match pregcliente:
                             # hacer una reserva
                                 case 1:
-                                    num_reserva,fecha_inicio,fecha_fin,habitacion=Cliente.realizar_reserva(self.clientes.get(usuario), self.habitaciones, self.reservas)
-                                    reserva=Reserva(num_reserva,self.clientes.get(usuario), fecha_inicio, fecha_fin, habitacion, datetime.today())
-                                    self.reservas[num_reserva]=reserva
-                                    monto,objhab=obtener_precio(self.habitaciones, habitacion)
-                                    cobro = Cobro(monto,self.clientes.get(usuario),objhab)
-                                    self.cobros = agregar_cobro(self.cobros, cobro)
-                                    Cliente.asignar_nivel(self.clientes.get(usuario), self.cobros)
-                                    print('Su reserva se realizó con exito en las fechas {} - {} y su numero de reserva es {}. \n Recuerde que el horario de check in es desde las 15:00 hs y el check out hasta las 12:00 hs'.format(fecha_inicio.strftime('%d/%m/%Y'),fecha_fin.strftime('%d/%m/%Y'),num_reserva))
+                                    if Cliente.realizar_reserva(self.clientes.get(usuario), self.habitaciones, self.reservas) == None:
+                                        pass
+                                    else:
+                                        num_reserva,fecha_inicio,fecha_fin,habitacion=Cliente.realizar_reserva(self.clientes.get(usuario), self.habitaciones, self.reservas)
+                                        reserva=Reserva(num_reserva,self.clientes.get(usuario), fecha_inicio, fecha_fin, habitacion, datetime.today())
+                                        self.reservas[num_reserva]=reserva
+                                        monto,objhab=obtener_precio(self.habitaciones, habitacion)
+                                        cobro = Cobro(monto,self.clientes.get(usuario),objhab)
+                                        self.cobros = agregar_cobro(self.cobros, cobro)
+                                        Cliente.asignar_nivel(self.clientes.get(usuario), self.cobros)
+                                        print('Su reserva se realizó con exito en las fechas {} - {} y su numero de reserva es {}. \n Recuerde que el horario de check in es desde las 15:00 hs y el check out hasta las 12:00 hs'.format(fecha_inicio.strftime('%d/%m/%Y'),fecha_fin.strftime('%d/%m/%Y'),num_reserva))
                                     
                                 # pedir algo en el buffet
                                 case 2:
@@ -168,12 +171,11 @@ class Hotel():
                             pregEmpleado=input('\n Ingrese una de las siguientes opciones: \n 1. Realizar una Tarea \n 2. Registrar ingreso \n 3. Registrar egreso \n 4. Visualizar la última tarea realizada \n 5. Cerrar sesión \n') #Agregar el resto de las cosas que debería hacer un empleado
                             imprimir1='\n Error. Ingrese una de las siguientes opciones: \n 1. Realizar una Tarea \n 2. Registrar ingreso \n 3. Registrar egreso \n 4. Visualizar la última tarea realizada \n 5. Cerrar sesión \n'
                             pregEmpleado=val_opc(pregEmpleado,1,5,imprimir1) #Hay que cambiar el rango a medida que agregamos las cosas que hace el empleado
-                            personal=self.empleados.get(usuario)
                             while pregEmpleado!=5: #tmb cambiar acá el máximo
                                 match pregEmpleado:
                                     case 1:
                                         #Realizar una tarea
-                                        Personal.tareasPendientes.realizarTareas()
+                                        Personal.realizarTareas(self.empleados.get(usuario))
                                         pass       
                                     
                                     case 2:
@@ -187,7 +189,7 @@ class Hotel():
                                     
                                     case 4:
                                         #Ver la última tarea realizada
-                                        Personal.tareasRealizadas.visualizarTareaAnterior()
+                                        Personal.visualizarTareaAnterior(self.empleados.get(usuario))
                                         
                                 pregEmpleado=input('\n Ingrese una de las siguientes opciones: \n 1. Realizar una Tarea \n 2. Registrar ingreso \n 3. Registrar egreso \n 4. Visualizar la última tarea realizada \n 5. Cerrar sesión \n') #Agregar el resto de las cosas que debería hacer un empleado
                                 imprimir1='\n Error. Elija una de las siguientes opciones: \n 1. Realizar una Tarea \n 2. Registrar ingreso \n 3. Registrar egreso \n 4. Visualizar la última tarea realizada \n 5. Cerrar sesión'
@@ -198,9 +200,6 @@ class Hotel():
         obtener_pickle(self, 'cerrar')
         # seguir = False #ponerlo afuera del while asi tmb se hace para el gerente, pero ver como funciona
         print('Se ha cerrado la sesión con éxito')
-        
-        
-        
         
 if __name__ == "__main__":
     hotel=Hotel('POO')
