@@ -38,12 +38,12 @@ class Hotel():
         obtener_pickle(self, 'abrir')
     
         seguir = True 
-        gerente=Gerente('milagros Argibay','miliargibay',"45074984",'obelisco','5491123484825','06/11/2003','mili@','Milia123','gerente')
+        gerente=Gerente('Fransisco','gerente',"10101010",'obelisco','5491100000000','06/11/2003','gerente@gmail.com','Gerente1','gerente')
         self.empleados[gerente.usuario]=gerente
         self.tareas['gerente']['empleados'].append(gerente.usuario)
         
         while seguir==True: #Fijarnos si queremos poner el while aca o en alguna otra parte del programa
-            pregunta=input(('Elija una de las siguientes opciones: \n 1. Sign up (si es un cliente) \n 2. Sign in \n')) #crear una opcion para cerrar programa o que lo pueda hacer solo el gerente (tipo metodo cerrar pagina del hotel y ahi se cierre el programa y se guarde el hotel?
+            pregunta=input(('Elija una de las siguientes opciones: \n 1. Sign up (si es un cliente) \n 2. Sign in \n'))
             imprimir = 'Error. Elija una de las siguientes opciones: \n 1. Sign up \n 2. Sign in \n'
             pregunta=val_opc(pregunta,1,2,imprimir)
             
@@ -59,7 +59,7 @@ class Hotel():
                 # inicio de sesion
                 case 2:
                     usuario, contrasena = valSignIn (self.clientes, self.empleados)
-                    cliente,empleado,tipo = valTipoUsuario(usuario,self.clientes,self.empleados) #para hacer el match case y probar (NO OLVIDARSE)
+                    cliente,empleado,tipo = valTipoUsuario(usuario,self.clientes,self.empleados)
                     
                     # menu cliente
                     if cliente:
@@ -89,7 +89,6 @@ class Hotel():
                                     self.cobros = agregar_cobro(self.cobros, cobro)
                                     cliente.asignar_nivel(self.cobros)
                                     print('Su pedido se realizó con éxito ')
-                                # FALTA HACER LO QUE HAYA Q HACER CON TAREAS
                                 
                                 # modificar una reserva
                                 case 3:
@@ -149,7 +148,7 @@ class Hotel():
                                         Personal.bajas(empleado)
                                         self.tareas[empleado.tipo]['empleados'].remove(empleado.usuario)
                                         self.empleados.pop(empleado.usuario)
-                                        self.bajasEmpleados.add(empleado) #chequear que se haya guardado correctamente
+                                        self.bajasEmpleados.add(empleado)
                                         print('El empleado ha sido eliminado con éxito')
                                         
                                     case 3:
@@ -175,8 +174,6 @@ class Hotel():
                                     case 8:
                                         #Historial de reservas
                                         gerente.historial_reservas(self.reservas)
-                                        # txt con reservas
-                                        pass
                                         
                                 pregGerente=input('\n Elija una de las siguientes opciones: \n 1. Crear un empleado \n 2. Dar de baja un empleado \n 3. Inventario del personal \n 4. Ver estadísticas \n 5. Nomina de Clientes \n 6. Asignar Tarea \n 7. Historial de baja de empleados \n 8. Historial de Reservas \n 9. Cerrar Sesión \n')
                                 pregGerente=val_opc(pregGerente,1,9,imprimir)   
