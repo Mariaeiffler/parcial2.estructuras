@@ -16,6 +16,7 @@ from Buffet import Comida
 import numpy as np
 from Estadisticas import *
 from Gerente import Gerente
+from Cola import Cola
 
 
 class Hotel():
@@ -30,14 +31,12 @@ class Hotel():
         self.bajasEmpleados=set()
         self.cobros = np.array([])
         self.buffet=crear_buffet(Comida.crear_comidas())
+        self.pedidosBuffet=Cola()
         
     def entrar(self):
         '''Esta funcion permite que se ejecute el programa. Dependiendo de si el usuario es un cliente, empleado o genente, se le permiten realizar distintas operaciones'''
         obtener_pickle(self, 'abrir')
-        
-        for res in self.reservas:
-            print(self.reservas.get(res))
-        
+    
         seguir = True 
         gerente=Gerente('milagros Argibay','miliargibay',"45074984",'obelisco','5491123484825','06/11/2003','mili@','Milia123','gerente')
         self.empleados[gerente.usuario]=gerente
@@ -84,9 +83,11 @@ class Hotel():
                                 # pedir algo en el buffet
                                 case 2:
                                     monto, comida = hacer_pedido(self.buffet)
-                                    cobro = Cobro(monto, self.clientes.get(usuario), comida)
+                                    tareabuffet=comida.descripcion
+                                    self.pedidosBuffet.encolar(tareabuffet)
+                                    cobro = Cobro(monto, cliente, comida)
                                     self.cobros = agregar_cobro(self.cobros, cobro)
-                                    cliente.asignar_nivel(self.clientes.get(usuario), self.cobros)
+                                    cliente.asignar_nivel(self.cobros)
                                     print('Su pedido se realizó con éxito ')
                                 # FALTA HACER LO QUE HAYA Q HACER CON TAREAS
                                 
@@ -165,7 +166,7 @@ class Hotel():
                                     
                                     case 6:
                                         #Asignar una Tarea
-                                        asignarTarea(self.tareas,self.empleados)
+                                        gerente.asignarTarea(self.tareas,self.empleados)
                                     
                                     case 7:
                                         #Historial de baja de un empleados
@@ -187,25 +188,26 @@ class Hotel():
                             pregEmpleado=input('\n Ingrese una de las siguientes opciones: \n 1. Realizar una Tarea \n 2. Registrar ingreso \n 3. Registrar egreso \n 4. Visualizar la última tarea realizada \n 5. Cerrar sesión \n') #Agregar el resto de las cosas que debería hacer un empleado
                             imprimir1='\n Error. Ingrese una de las siguientes opciones: \n 1. Realizar una Tarea \n 2. Registrar ingreso \n 3. Registrar egreso \n 4. Visualizar la última tarea realizada \n 5. Cerrar sesión \n'
                             pregEmpleado=val_opc(pregEmpleado,1,5,imprimir1) #Hay que cambiar el rango a medida que agregamos las cosas que hace el empleado
+                            personal:Personal=self.empleados.get(usuario)
                             while pregEmpleado!=5: #tmb cambiar acá el máximo
                                 match pregEmpleado:
                                     case 1:
                                         #Realizar una tarea
-                                        Personal.realizarTareas(self.empleados.get(usuario))
+                                        personal.realizarTareas(self.pedidosBuffet)
                                         pass       
                                     
                                     case 2:
                                         #Registar ingreso
-                                        Personal.registrar_ingreso(self.empleados.get(usuario))
+                                        personal.registrar_ingreso()
                                         print('Su ingreso se ha registrado con exito')
                                     
                                     case 3:
                                         #Registrar egreso
-                                        Personal.registrar_egreso(self.empleados.get(usuario))
+                                        personal.registrar_egreso()
                                     
                                     case 4:
                                         #Ver la última tarea realizada
-                                        Personal.visualizarTareaAnterior(self.empleados.get(usuario))
+                                        personal.visualizarTareaAnterior()
                                         
                                 pregEmpleado=input('\n Ingrese una de las siguientes opciones: \n 1. Realizar una Tarea \n 2. Registrar ingreso \n 3. Registrar egreso \n 4. Visualizar la última tarea realizada \n 5. Cerrar sesión \n') #Agregar el resto de las cosas que debería hacer un empleado
                                 imprimir1='\n Error. Elija una de las siguientes opciones: \n 1. Realizar una Tarea \n 2. Registrar ingreso \n 3. Registrar egreso \n 4. Visualizar la última tarea realizada \n 5. Cerrar sesión'

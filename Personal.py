@@ -6,6 +6,7 @@ from Tareas_Empleados import tareas_empleados
 from Validaciones import *
 from Funciones import *
 from Pilas import Pila
+from Cola import Cola
 
 class Personal(Persona):
     def __init__(self,nombre,usuario,dni,direccion,contacto,fecha_nac,mail,contrasena,tipo,fecalta=datetime.now(),fecbaja=None):
@@ -27,19 +28,48 @@ class Personal(Persona):
         '''Esta función permite dar de baja a un empleado''' ### ver
         self.fechabaja = datetime.now()
 
-    def realizarTareas(self):
+    def realizarTareas(self,ordenes:Cola):
         '''Esta función permite realizar las tareas pendientes'''
-        if self.tareasPendientes.head:
-            print('La Tarea a realizar es: {}'.format(self.tareasPendientes.head.__str__()))
-            imprimir='Desea realizar la tarea ahora? (ingrese "si" o "no"): '
-            elije=input(imprimir)
-            elije=valSiNo(elije,imprimir)
-            if elije:
-                self.tareasRealizadas.apilar(self.tareasPendientes.head.valor)
-                self.tareasPendientes.eliminarPrimero() 
-                print('La tarea ha sido marcada como realizada.')
-            else:
-                print('La tarea no se ha realizado')
+        if self.tipo=='cocina':
+            opcion=input('Desea: \n 1. Realizar una tarea asignada por el gerente \n 2. Realizar un pedido del buffet \n') 
+            imprimir1='\n Error. Desea: \n 1. Realizar una tarea asignada por el gerente \n 2. Realizar un pedido del buffet \n'
+            opcion=val_opc(opcion,1,2,imprimir1)
+            match opcion:
+                case 1:
+                    if self.tareasPendientes.head:
+                        print('La Tarea a realizar es: {}'.format(self.tareasPendientes.head.__str__()))
+                        imprimir='Desea realizar la tarea ahora? (ingrese "si" o "no"): '
+                        elije=input(imprimir)
+                        elije=valSiNo(elije,imprimir)
+                        if elije:
+                            self.tareasRealizadas.apilar(self.tareasPendientes.head.valor)
+                            self.tareasPendientes.eliminarPrimero() 
+                            print('La tarea ha sido marcada como realizada.')
+                    else:
+                        print('La tarea no se ha realizado')
+                   
+                case 2:
+                    print('El pedido a realizar es: {}'.format(ordenes.mostrarPrimero()))
+                    imprimir='Desea realizar el pedido ahora? (ingrese "si" o "no"): '
+                    elije=input(imprimir)
+                    elije=valSiNo(elije,imprimir)
+                    if elije:
+                        ordenes.desencolar()
+                        print('La tarea se ha realizado con éxito.')
+                    else:
+                        print ('La acción se ha cancelado')
+        else:
+            if self.tareasPendientes.head:
+                print('La Tarea a realizar es: {}'.format(self.tareasPendientes.head.__str__()))
+                imprimir='Desea realizar la tarea ahora? (ingrese "si" o "no"): '
+                elije=input(imprimir)
+                elije=valSiNo(elije,imprimir)
+                if elije:
+                    self.tareasRealizadas.apilar(self.tareasPendientes.head.valor)
+                    self.tareasPendientes.eliminarPrimero() 
+                    print('La tarea ha sido marcada como realizada.')
+                else:
+                    print('La tarea no se ha realizado')
         return
                 
     def visualizarTareaAnterior (self):
