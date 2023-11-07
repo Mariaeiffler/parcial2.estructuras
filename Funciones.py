@@ -348,7 +348,6 @@ def infoPersonas (dicc1:dict,dicc2:dict):
     nombre=valNombre2(nombre)
     dni=input('Ingrese su DNI: ')
     dni=validaciondni(dni, dicc1, dicc2)
-    direccion=input('Ingrese su direccion: ')
     contacto=input('Ingrese su numero de contacto: ')
     contacto=validacioncontacto(contacto)
     fecha_nac=input('Ingrese su fecha de nacimiento: (Debe ser mayor de edad para crearse un usuario) ')
@@ -359,7 +358,7 @@ def infoPersonas (dicc1:dict,dicc2:dict):
     usuario=validacionusuario(usuario,dicc1,dicc2)
     contrasena=input('Escriba una contrasena que contenga por lo menos una mayuscula y un numero: ')
     contrasena=validacioncontrasena(contrasena)
-    return nombre,usuario,dni,direccion,contacto,fecha_nac,mail,contrasena
+    return nombre,usuario,dni,contacto,fecha_nac,mail,contrasena
 
 def valSignIn (dicc1:dict, dicc2:dict):
     '''Esta función valida el Sign In'''
