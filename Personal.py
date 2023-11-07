@@ -75,14 +75,6 @@ class Personal(Persona):
         '''Esta función muestra la última tarea realizada'''
         tarea=self.tareasRealizadas.obtenerUltimo()
         print('La última tarea que realizó fue: {}'.format(tarea))
-
-    # def posicion_registro(self,u,ingresos_egresos:list()):
-    #     u=self.usuario
-    #     cont=0
-    #     for lista in ingresos_egresos:
-    #         if lista[0]==u:
-    #             return cont
-    #         cont+=1
             
     def registrar_ingreso(self):
         '''Esta función registra el ingreso de un empleado'''
