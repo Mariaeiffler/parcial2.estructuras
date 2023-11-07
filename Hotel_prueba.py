@@ -34,7 +34,7 @@ class Hotel():
     def entrar(self):
         '''Esta función permite que se ejecute el programa. Dependiendo de si el usuario es un cliente, empleado o genente, se le permiten realizar distintas operaciones'''
         obtener_pickle(self, 'abrir')
-        print
+        
         seguir = True 
         gerente=Gerente('milagros Argibay','miliargibay',"45074984",'obelisco','5491123484825','06/11/2003','mili@','Milia123','gerente')
         self.empleados[gerente.usuario]=gerente
@@ -68,14 +68,17 @@ class Hotel():
                             match pregcliente:
                             # hacer una reserva
                                 case 1:
-                                    num_reserva,fecha_inicio,fecha_fin,habitacion=Cliente.realizar_reserva(self.clientes.get(usuario), self.habitaciones, self.reservas)
-                                    reserva=Reserva(num_reserva,self.clientes.get(usuario), fecha_inicio, fecha_fin, habitacion, datetime.today())
-                                    self.reservas[num_reserva]=reserva
-                                    monto,objhab=obtener_precio(self.habitaciones, habitacion)
-                                    cobro = Cobro(monto,self.clientes.get(usuario),objhab)
-                                    self.cobros = agregar_cobro(self.cobros, cobro)
-                                    Cliente.asignar_nivel(self.clientes.get(usuario), self.cobros)
-                                    print('Su reserva se realizó con exito en las fechas {} - {} y su numero de reserva es {}. \n Recuerde que el horario de check in es desde las 15:00 hs y el check out hasta las 12:00 hs'.format(fecha_inicio.strftime('%d/%m/%Y'),fecha_fin.strftime('%d/%m/%Y'),num_reserva))
+                                    if Cliente.realizar_reserva(self.clientes.get(usuario), self.habitaciones, self.reservas) == None:
+                                        pass
+                                    else:
+                                        num_reserva,fecha_inicio,fecha_fin,habitacion=Cliente.realizar_reserva(self.clientes.get(usuario), self.habitaciones, self.reservas)
+                                        reserva=Reserva(num_reserva,self.clientes.get(usuario), fecha_inicio, fecha_fin, habitacion, datetime.today())
+                                        self.reservas[num_reserva]=reserva
+                                        monto,objhab=obtener_precio(self.habitaciones, habitacion)
+                                        cobro = Cobro(monto,self.clientes.get(usuario),objhab)
+                                        self.cobros = agregar_cobro(self.cobros, cobro)
+                                        Cliente.asignar_nivel(self.clientes.get(usuario), self.cobros)
+                                        print('Su reserva se realizó con exito en las fechas {} - {} y su numero de reserva es {}. \n Recuerde que el horario de check in es desde las 15:00 hs y el check out hasta las 12:00 hs'.format(fecha_inicio.strftime('%d/%m/%Y'),fecha_fin.strftime('%d/%m/%Y'),num_reserva))
                                     
                                 # pedir algo en el buffet
                                 case 2:

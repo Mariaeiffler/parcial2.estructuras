@@ -29,6 +29,13 @@ def obtener_pickle(hotel, accion):
         with open ('hotel.pickle','wb') as hpickle:
             pickle.dump(hotel,hpickle)
         return
+    
+def volver_atras():
+    preg = input ('Si desea continuar si acción escriba "si", si desea volver para atras escriba "no" \n')
+    imprimir = 'Error. Si desea continuar si acción escriba "si", si desea volver para atras escriba "no" \n'
+    seguir = valSiNo(preg,imprimir)
+    return seguir
+    
 
 def cantidad_numero(contrasena):
     '''Esta funcion permite conocer la cantidad de digitos que contiene la contrasena'''
