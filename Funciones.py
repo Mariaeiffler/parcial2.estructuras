@@ -8,7 +8,7 @@ from nodo import NodoTarea
 import pickle
 
 def obtener_pickle(hotel, accion):
-    '''Esta funcion permite crear el pickle'''
+    '''Esta función permite crear el pickle'''
     if accion == 'abrir':
         try:
             with open ('hotel.pickle','rb') as hpickle:
