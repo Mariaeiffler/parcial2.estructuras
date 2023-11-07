@@ -32,7 +32,7 @@ class Hotel():
         self.buffet=crear_buffet(Comida.crear_comidas())
         
     def entrar(self):
-        '''Esta función permite que se ejecute el programa. Dependiendo de si el usuario es un cliente, empleado o genente, se le permiten realizar distintas operaciones'''
+        #Esta funcion permite que se ejecute el programa. Dependiendo de si el usuario es un cliente, empleado o genente, se le permiten realizar distintas operaciones
         obtener_pickle(self, 'abrir')
         
         seguir = True 
