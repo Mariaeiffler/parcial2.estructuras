@@ -31,7 +31,7 @@ def obtener_pickle(hotel, accion):
         return
     
 def volver_atras():
-    '''Esta función permite volver atras en el menu'''
+    '''Esta función permite volver atras en el menu si el usuario lo desea'''
     preg = input ('Si desea continuar si acción escriba "si", si desea volver para atras escriba "no" \n')
     imprimir = 'Error. Si desea continuar si acción escriba "si", si desea volver para atras escriba "no" \n'
     seguir = valSiNo(preg,imprimir)
@@ -114,7 +114,7 @@ def comp_fecha_hoy(fecha_inicio):
    return fecha_inicio
         
 def comparacion_fechas(fecha_inicio):
-    '''Esta función verifica que la fecha de ingreso y egreso de la estadia sea válida'''
+    '''Esta función verifica que dada la fecha de ingreso y egreso de la estadia que elija el usuario, sea válida'''
     fecha_inicio = comp_fecha_hoy(fecha_inicio)
     fecha_finalizacion = input('Ingrese la fecha de finaliación de su estadia en el formato dd/mm/aaaa ')
     fecha_finalizacion = convertirfecha_datetime(fecha_finalizacion)
@@ -132,7 +132,7 @@ def comparacion_fechas(fecha_inicio):
     return fecha_inicio, fecha_finalizacion
 
 def reserva():
-    '''Esta función le pide los datos al usuario para realizar una reserva'''
+    '''Esta función le pide al usuario los datos desados para la reserva que quiere realizar'''
     habitacion=validacion_preg_hab()
     fecha_inicio = input('Ingrese la fecha de inicio de su estadía en el formato dd/mm/aaaa ')
     fecha_inicio = convertirfecha_datetime(fecha_inicio)
@@ -140,7 +140,9 @@ def reserva():
     return fecha_inicio, fecha_fin, habitacion
 
 def hab_ocupada(fecha_inicio, fecha_fin, hab, lista):
-    ''' En esta función se verifica si la habitación seleccionada por el usuario en la fecha deseada esta disponible o no. En caso de no estarlo, se le dará al usuario la posibilidad de seleccionar una opción válida, mostrandole aquellas fechas en las cuales está ocupada la misma.'''
+    ''' En esta función se verifica si la habitación seleccionada por el usuario en la fecha deseada 
+    esta disponible o no. En caso de no estarlo, se le dará al usuario la posibilidad de seleccionar 
+    una opción válida, mostrandole aquellas fechas en las cuales está ocupada la misma.'''
     val = False
     for habitacion in lista:
         if habitacion.numero == int(hab):
@@ -162,7 +164,7 @@ def hab_ocupada(fecha_inicio, fecha_fin, hab, lista):
     return val
 
 def modi_hab(val, preg, fecha_inicio, fecha_fin, hab, lista):
-    '''Esta función le permite al usuario modificar la habitación elegida en su reserva'''
+    '''Esta función le permite al usuario modificar la habitación elegida en su reserva, aclarando la duracion de la misma.'''
     while val == False:
         if preg == 1:
             fecha_inicio = input('Ingrese la fecha de inicio de su estadía en el formato dd/mm/aaaa ')
@@ -241,7 +243,8 @@ def hacer_pedido(dic:dict):
     return monto, comida
 
 def asignarTarea(tareas:dict,empleados:dict):
-    '''Esta función permite la asignación de tareas a los empleados correspondientes. Las tareas poseen un nivel de importancia para indicar la urgencia de la misma'''
+    '''Esta función permite la asignación de tareas a los empleados correspondientes. 
+    Las tareas poseen un nivel de importancia para indicar la urgencia de la misma'''
     llaves=list(tareas.keys())
     tipo=input('{} \n Ingrese el tipo de personal al que le quiere asignar una tarea: '.format(llaves))
     tipo=valTipoEmpleado(tipo,tareas)
@@ -301,7 +304,8 @@ def valNombre1(nombre):
     return validacion
     
 def valNombre2 (nombre):
-    '''Esta función permite llamar a la de validación del nombre. En caso de que el nombre ingresado no haya tenido un formato válido, se vuelve a pedir'''
+    '''Esta función llama a la validación del nombre. En caso de que el nombre ingresado
+    no haya tenido un formato válido, se vuelve a pedir'''
     validacion = valNombre1(nombre)
     while validacion == False:
         nombre = input('Ingrese su nombre y apellido: ')
@@ -357,13 +361,13 @@ def valMail (mail):
     return mail
 
 def validacionusuario(usuario,dic1,dic2): #TODO:chequear que no este repetido
-    '''Esta función valida al usuario'''
+    '''Esta función valida al usuario. El mismo, debe tener 5 caracteres.'''
     while len(str(usuario)) < 5 or valPalabraDic(usuario,dic1) or valPalabraDic(usuario,dic2):
         usuario = input('Su nombre de usuario no es válido, ingrese otro (con minimo 5 dígitos): ')  
     return usuario
 
 def validacioncontrasena(contrasena): 
-    '''Esta función valida que la contraseña contenga menos de una mayúscula y menos de un número'''
+    '''Esta función valida que la contraseña contenga al menos una mayúscula y al menos un número'''
     while cantidad_mayusculas(contrasena) < 1  or cantidad_numero(contrasena) <1:
         contrasena = input ('Ingrese una contraseña valida, que contenga una mayuscula y un numero: ')
     return contrasena
@@ -480,7 +484,7 @@ def validacion_h(pregunta1, valor1, valor2):
     return validacion
     
 def validacion_preg_hab():
-    ''' Esta función valida la habitación elegida por el usuario ''' 
+    ''' Esta función le pide al usuario que ingrese la información da la habitación que desea reservar ''' 
     pregunta = input('Elija una de las siguientes habitaciones: \n 1. Simple ($5000 - $15000) \n 2. Doble ($20000 - $30000) \n 3. Suite ($35000 - $45000) \n')
     imprimir = 'Error. Elija una de las siguientes habitaciones: \n 1. Simple ($5000 - $15000) \n 2. Doble ($20000 - $30000) \n 3. Suite ($35000 - $45000) \n'
     pregunta = val_opc(pregunta, 1, 3, imprimir)
