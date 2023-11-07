@@ -7,7 +7,8 @@ tareas_empleados = {
     'gerente': {'empleados':[],'tareas':['Asignar tareas']}
 }
     
-def val_int(x): #valida que sea un entero
+def val_int(x): 
+        '''valida que sea un entero'''
         try:
             num=int(x)
             return True

@@ -24,9 +24,11 @@ class Personal(Persona):
             return('El empleado de nombre {} y dni, de tipo {}, se dió de alta el dia {} y de baja el dia {}'.format(self.nombre, self.dni, self.fecalta, self.fecbaja))
         
     def bajas(self):
+        '''Esta función da de baja a un empleado'''
         self.fechabaja = datetime.now()
 
     def realizarTareas(self):
+        '''Esta función muestra las tareas pendientes y pregunta si desea realizarlas'''
         if self.tareasPendientes.head:
             print('La Tarea a realizar es: {}'.format(self.tareasPendientes.head))
             imprimir='Desea realizar la tarea ahora? (ingrese "si" o "no"): '
@@ -41,6 +43,7 @@ class Personal(Persona):
         return
                 
     def visualizarTareaAnterior (self):
+        '''Esta función muestra la última tarea realizada'''
         tarea=self.tareasRealizadas.obtenerUltimo()
         print('La última tarea que realizó fue: {}'.format(tarea))
 
@@ -53,10 +56,12 @@ class Personal(Persona):
     #         cont+=1
             
     def registrar_ingreso(self):
+        '''Esta función registra el ingreso de un empleado'''
         self.registro.append([datetime.now()])
         return
         
     def registrar_egreso(self):
+        '''Esta función registra el egreso de un empleado'''
         print(self.registro)
         if len(self.registro[len(self.registro)-1]) == 1:
             self.registro[len(self.registro)-1].append(datetime.now())
@@ -75,6 +80,7 @@ class Personal(Persona):
     #     print('Se registró el ingreso de {} a las {}'.format(self.nombre,ahora))
         
     def egreso(self, nom):
+        '''Esta función registra el egreso de un empleado'''
         self.nom=nom
         ahora= datetime.now()
         registro= {'tipo de registro': 'egreso', 'fecha_hora': ahora, 'nombre':self.nom}
