@@ -72,7 +72,7 @@ def cantidad_mayusculas(contrasena):
     return contador
 
 def valPalabraDic (palabra,dicc:dict):
-    ''''''
+    '''Esta función valida que la palabra ingresada este en el diccionario'''
     if palabra in dicc:
         return True
     else:
@@ -136,7 +136,7 @@ def comparacion_fechas(fecha_inicio):
     return fecha_inicio, fecha_finalizacion
 
 def reserva():
-    ''' '''
+    '''Esta función permite al usuario realizar una reserva'''
     habitacion=validacion_preg_hab()
     fecha_inicio = input('Ingrese la fecha de inicio de su estadía en el formato dd/mm/aaaa ')
     fecha_inicio = convertirfecha_datetime(fecha_inicio)
@@ -438,7 +438,7 @@ def valExiUsu (usuario,dicc1:dict):
     return usuario
 
 def valOpcAsignacion(opcion,dicc1:dict,tipo,llave,imprimir):
-    ''' '''
+    ''' Esta función valida la opcion de asignacion de tareas '''
     validar=False
     while validar==False: 
         if val_int(opcion)==False:
@@ -467,7 +467,7 @@ def valSiNo(eleccion,imprimir):
         return False
     
 def validacion_h(pregunta1, valor1, valor2):
-    '''  '''
+    ''' Esta función valida la habitación elegida por el usuario '''
     validacion = val_int(pregunta1)
     if validacion == True:
         if int(pregunta1) >= valor1 and int(pregunta1) <= valor2:
@@ -477,7 +477,7 @@ def validacion_h(pregunta1, valor1, valor2):
     return validacion
     
 def validacion_preg_hab():
-    ''' '''
+    ''' Esta función valida la habitación elegida por el usuario ''' 
     pregunta = input('Elija una de las siguientes habitaciones: \n 1. Simple ($5000 - $15000) \n 2. Doble ($20000 - $30000) \n 3. Suite ($35000 - $45000) \n')
     imprimir = 'Error. Elija una de las siguientes habitaciones: \n 1. Simple ($5000 - $15000) \n 2. Doble ($20000 - $30000) \n 3. Suite ($35000 - $45000) \n'
     pregunta = val_opc(pregunta, 1, 3, imprimir)
@@ -505,7 +505,7 @@ def validacion_preg_hab():
             return pregunta1
         
 def val_numres(numero, diccionario:dict(), nombre):
-    ''' '''
+    ''' Esta función valida el numero de reserva ingresado por el usuario'''
     validacion1=False
     validacion2=False
     while validacion1 == False or validacion2 == False:

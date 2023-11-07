@@ -62,7 +62,7 @@ def preg_ver_estadisticas(ordenadas, imp, quiero):
     return fec
     
 def imprimir_fec(lista,imp):
-    ''''''
+    '''Esta funcion permite imprimir las fechas en las que hay reservas'''
     fechas = []
     for habitacion in lista:
         if len(habitacion.reservas) != 0:
