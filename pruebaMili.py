@@ -19,10 +19,9 @@ mili=np.array([])
 list = [[1,2],[2,3],[3]]
 
 if __name__ == "__main__":
-    # mi_set = {1, 2, 3, 4, 5}
-    # for i in mi_set:
-    #     print (i)
-    print(len(list))
-    list[len(list)-1].append(4)
-    print(list)
+    mi_set = {1}
+    if mi_set:
+        print (True)
+    else:
+        print(False)
 
