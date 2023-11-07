@@ -10,5 +10,5 @@ class Reserva():
         self.fecha = fecha
         
     def __str__(self):
-        return('Su numero de reserva es {}, ha reservado la habitación numero {} en las fechas {} - {} '.format(self.numero, self.habitacion, self.fecha_inicio.strftime('%d/%m/%Y'), self.fecha_finalizacion.strftime('%d/%m/%Y')))
+        return('Su numero de reserva es {}, ha reservado la habitacion numero {} en las fechas {} - {} '.format(self.numero, self.habitacion, self.fecha_inicio.strftime('%d/%m/%Y'), self.fecha_finalizacion.strftime('%d/%m/%Y')))
     

@@ -9,8 +9,8 @@ from Pilas import Pila
 from Cola import Cola
 
 class Personal(Persona):
-    def __init__(self,nombre,usuario,dni,direccion,contacto,fecha_nac,mail,contrasena,tipo,fecalta=datetime.now(),fecbaja=None):
-        super().__init__(nombre,usuario,dni,direccion,contacto,fecha_nac,mail,contrasena)
+    def __init__(self,nombre,usuario,dni,contacto,fecha_nac,mail,contrasena,tipo,fecalta=datetime.now(),fecbaja=None):
+        super().__init__(nombre,usuario,dni,contacto,fecha_nac,mail,contrasena)
         self.fecalta = fecalta
         self.tipo=tipo
         self.fecbaja=fecbaja

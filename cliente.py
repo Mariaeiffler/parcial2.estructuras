@@ -5,8 +5,8 @@ from Cobros import Cobro
 
 
 class Cliente(Persona):
-    def __init__(self,nombre,usuario,dni,direccion,contacto,fecha_nac,mail,contrasena,tipo='nivel 1', reservas = []):
-        super().__init__(nombre,usuario,dni,direccion,contacto,fecha_nac,mail,contrasena)
+    def __init__(self,nombre,usuario,dni,contacto,fecha_nac,mail,contrasena,tipo='nivel 1', reservas = []):
+        super().__init__(nombre,usuario,dni,contacto,fecha_nac,mail,contrasena)
         self.tipo=tipo
         self.reservas= reservas
         
