@@ -1,6 +1,6 @@
 import pickle
 from Personal import Personal
-from Cliente import Cliente
+from cliente import Cliente
 from Persona import Persona # creo q no hace falta
 from Habitacion_Doble import *
 from Habitacion_Simple import *
@@ -34,7 +34,7 @@ class Hotel():
     def entrar(self):
         '''Esta función permite que se ejecute el programa. Dependiendo de si el usuario es un cliente, empleado o genente, se le permiten realizar distintas operaciones'''
         obtener_pickle(self, 'abrir')
-        
+        print
         seguir = True 
         gerente=Gerente('milagros Argibay','miliargibay',"45074984",'obelisco','5491123484825','06/11/2003','mili@','Milia123','gerente')
         self.empleados[gerente.usuario]=gerente
@@ -168,12 +168,11 @@ class Hotel():
                             pregEmpleado=input('\n Ingrese una de las siguientes opciones: \n 1. Realizar una Tarea \n 2. Registrar ingreso \n 3. Registrar egreso \n 4. Visualizar la última tarea realizada \n 5. Cerrar sesión \n') #Agregar el resto de las cosas que debería hacer un empleado
                             imprimir1='\n Error. Ingrese una de las siguientes opciones: \n 1. Realizar una Tarea \n 2. Registrar ingreso \n 3. Registrar egreso \n 4. Visualizar la última tarea realizada \n 5. Cerrar sesión \n'
                             pregEmpleado=val_opc(pregEmpleado,1,5,imprimir1) #Hay que cambiar el rango a medida que agregamos las cosas que hace el empleado
-                            personal=self.empleados.get(usuario)
                             while pregEmpleado!=5: #tmb cambiar acá el máximo
                                 match pregEmpleado:
                                     case 1:
                                         #Realizar una tarea
-                                        Personal.tareasPendientes.realizarTareas()
+                                        Personal.realizarTareas(self.empleados.get(usuario))
                                         pass       
                                     
                                     case 2:
@@ -187,7 +186,7 @@ class Hotel():
                                     
                                     case 4:
                                         #Ver la última tarea realizada
-                                        Personal.tareasRealizadas.visualizarTareaAnterior()
+                                        Personal.visualizarTareaAnterior(self.empleados.get(usuario))
                                         
                                 pregEmpleado=input('\n Ingrese una de las siguientes opciones: \n 1. Realizar una Tarea \n 2. Registrar ingreso \n 3. Registrar egreso \n 4. Visualizar la última tarea realizada \n 5. Cerrar sesión \n') #Agregar el resto de las cosas que debería hacer un empleado
                                 imprimir1='\n Error. Elija una de las siguientes opciones: \n 1. Realizar una Tarea \n 2. Registrar ingreso \n 3. Registrar egreso \n 4. Visualizar la última tarea realizada \n 5. Cerrar sesión'
@@ -198,9 +197,6 @@ class Hotel():
         obtener_pickle(self, 'cerrar')
         # seguir = False #ponerlo afuera del while asi tmb se hace para el gerente, pero ver como funciona
         print('Se ha cerrado la sesión con éxito')
-        
-        
-        
         
 if __name__ == "__main__":
     hotel=Hotel('POO')

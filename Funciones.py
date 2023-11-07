@@ -459,7 +459,7 @@ def valOpcAsignacion(opcion,dicc1:dict,tipo,llave,imprimir):
 
 def valSiNo(eleccion,imprimir):
     '''Esta funcion valida la eleccion'''
-    while eleccion!='si' or eleccion!='no':
+    while eleccion!='si' and eleccion!='no':
         eleccion=input(imprimir)
     if eleccion =='si':
         return True

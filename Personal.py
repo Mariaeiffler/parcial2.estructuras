@@ -30,7 +30,7 @@ class Personal(Persona):
     def realizarTareas(self):
         '''Esta función muestra las tareas pendientes y pregunta si desea realizarlas'''
         if self.tareasPendientes.head:
-            print('La Tarea a realizar es: {}'.format(self.tareasPendientes.head))
+            print('La Tarea a realizar es: {}'.format(self.tareasPendientes.head.__str__()))
             imprimir='Desea realizar la tarea ahora? (ingrese "si" o "no"): '
             elije=input(imprimir)
             elije=valSiNo(elije,imprimir)
