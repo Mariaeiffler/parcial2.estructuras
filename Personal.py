@@ -70,7 +70,8 @@ class Personal(Persona):
         else:
             print('Error, no registró el ingreso')
         return
-            
+
+                
     #FALTA VERIFICAR QUE ANDEN BIEN INGRESOS Y EGRESOS Y LOS DOS METODOS DE REGISTROS
     #Falta ver si se appendean a regiastros registro.
     # def ingreso(self,ingresos_egresos:list()): #ver si esta bien lo de la list de registros (preguntarle a ian!!!!)

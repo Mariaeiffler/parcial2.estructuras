@@ -53,3 +53,8 @@ class Gerente(Persona):
         else:
             print('El hotel todavía no tiene clientes')
         return
+    
+    def historialBajasEmpleados(self,bajas:set):
+        for empleado in bajas:
+            print (empleado)
+        return
