@@ -292,7 +292,7 @@ def validaciondni(dni,dic1:dict,dic2:dict):
         if len(dic1) != 0:
             for cliente in dic1:
                 if dic1.get(cliente).dni == dni:
-                    dni = input('El DNI ingresado ya pertenece a otro usuario. Ingrese nuevamente su DNI  ')
+                    dni = input('El DNI ingresado ya pertenece a otro usuario. Ingrese nuevamente su DNI (que contenga por lo menos 8 numeros): \n ')
                 else:
                     vali1 = True
         else:
