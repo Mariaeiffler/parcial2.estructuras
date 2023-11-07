@@ -1,4 +1,4 @@
-# from prueba_menu import *
+
 from Hotel_prueba import *
 import numpy as np
 
@@ -19,9 +19,6 @@ mili=np.array([])
 list = [[1,2],[2,3],[3]]
 
 if __name__ == "__main__":
-    mi_set = {1}
-    if mi_set:
-        print (True)
-    else:
-        print(False)
+    list = [1,2,3,4]
+    print(list[1])
 
