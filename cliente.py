@@ -39,33 +39,39 @@ class Cliente(Persona):
     
     def modificar_reserva(self, reservas:dict, lista):
         ''' Esta funcion le permite al usuario poder cambiar su reserva, ya sea la modificacion de la fecha, habitacion o ambas'''
-        numres = input('Ingrese su numero de reserva  ')
-        numres = val_numres(numres, reservas, self.usuario)
-        reserva = reservas.get(numres)
-        print(reserva)
-        val = False
-        while val == False:
-            preg = input('Elija una opción: \n 1. Elegir otras fechas \n 2. Elegir otra habitación \n 3. Elegir una nueva habitación y otras fechas \n')
-            imprimir = 'Error. Elija una opcion: \n 1. Elegir otras fechas \n 2. Elegir otra habitación \n 3. Elegir una nueva habitación y otras fechas \n'
-            preg = val_opc(preg, 1, 3, imprimir)
-            for habitacion in lista:
-                if int(reserva.habitacion) == int(habitacion.numero):
-                    hab_ant = habitacion
-                    self.reservas.remove([reserva.fecha_inicio, reserva.fecha_finalizacion])
-                    habitacion.reservas.remove([reserva.fecha_inicio, reserva.fecha_finalizacion])
-                    val, fecha_inicio, fecha_fin, hab = modi_hab(val, preg, reserva.fecha_inicio, reserva.fecha_finalizacion, reserva.habitacion, lista)
-                    reserva.fecha_inicio = fecha_inicio
-                    reserva.fecha_finalizacion = fecha_fin
-                    reserva.habitacion = hab
-                    self.reservas.append([reserva.fecha_inicio, reserva.fecha_finalizacion])
-                    break
-            for habitacion in lista:
-                if int(habitacion.numero) == int(hab):    
-                    habitacion.reservas.append([fecha_inicio, fecha_fin])
-                    dif_precio = habitacion.precio - hab_ant.precio
-                # ver como hacemos esto
-                    print('Su reserva se modificó con exito. {}'.format(reserva))
-        return
+        print('Recuerde que si hace una modificacion de su reserva, no se le reembolsará la diferencia de precio en caso de hacerla \n pero si se le cobrará en caso de que la seleccionada tenga un valor mayor')
+        seguir = volver_atras()
+        if seguir == False:
+            return None
+        else:
+            numres = input('Ingrese su numero de reserva  ')
+            numres = val_numres(numres, reservas, self.usuario)
+            reserva = reservas.get(numres)
+            print(reserva)
+            val = False
+            while val == False:
+                preg = input('Elija una opción: \n 1. Elegir otras fechas \n 2. Elegir otra habitación \n 3. Elegir una nueva habitación y otras fechas \n')
+                imprimir = 'Error. Elija una opcion: \n 1. Elegir otras fechas \n 2. Elegir otra habitación \n 3. Elegir una nueva habitación y otras fechas \n'
+                preg = val_opc(preg, 1, 3, imprimir)
+                for habitacion in lista:
+                    if int(reserva.habitacion) == int(habitacion.numero):
+                        hab_ant = habitacion
+                        self.reservas.remove([reserva.fecha_inicio, reserva.fecha_finalizacion])
+                        habitacion.reservas.remove([reserva.fecha_inicio, reserva.fecha_finalizacion])
+                        val, fecha_inicio, fecha_fin, hab = modi_hab(val, preg, reserva.fecha_inicio, reserva.fecha_finalizacion, reserva.habitacion, lista)
+                        reserva.fecha_inicio = fecha_inicio
+                        reserva.fecha_finalizacion = fecha_fin
+                        reserva.habitacion = hab
+                        self.reservas.append([reserva.fecha_inicio, reserva.fecha_finalizacion])
+                        break
+                for habitacion in lista:
+                    if int(habitacion.numero) == int(hab):    
+                        habitacion.reservas.append([fecha_inicio, fecha_fin])
+                        dif_precio = habitacion.precio - hab_ant.precio
+                        
+                    # ver como hacemos esto
+                        print('Su reserva se modificó con exito. {}'.format(reserva))
+            return
     
     def cancelar_reserva(self,reservas:dict, lista):
         ''' Esta funcion le permite al usuario cancelar la reserva definitivamente'''
@@ -103,5 +109,8 @@ class Cliente(Persona):
         else:
             self.tipo = 'nivel 2'
         return
+    
+ 
+        
                 
     

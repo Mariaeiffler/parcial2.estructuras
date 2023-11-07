@@ -37,7 +37,6 @@ def volver_atras():
     seguir = valSiNo(preg,imprimir)
     return seguir
     
-
 def cantidad_numero(contrasena):
     '''Esta función permite conocer la cantidad de digitos que contiene la contraseña'''
     contador = 0
@@ -259,9 +258,16 @@ def asignarTarea(tareas:dict,empleados:dict):
     imprimir3='Error. Ingrese como nivel de importancia 1, 2 o 3 (siendo 1 el más urgente): '
     pregImportancia=input('Niveles de importancia: 1,2,3 (siendo 1 el más urgente). \n Ingrese la importancia de la tarea a realizar: ')
     importancia=val_opc(pregImportancia,1,3,imprimir3)
-    nodoNuevo=NodoTarea(opcionAsignar,importancia)
-    persona=empleados.get(empleadoAsignar) #chequear que me dice que es un string
-    persona.tareasPendientes.agregarNodoTarea(nodoNuevo)
+    imprimir='Desea realizar la tarea ahora? (ingrese "si" o "no"): '
+    elije=input(imprimir)
+    elije=valSiNo(elije,imprimir)
+    if elije:
+        nodoNuevo=NodoTarea(opcionAsignar,importancia)
+        persona=empleados.get(empleadoAsignar) #chequear que me dice que es un string
+        persona.tareasPendientes.agregarNodoTarea(nodoNuevo)
+        print ('La tarea se ha generado con exito')
+    else: 
+        print ('La acción se ha cancelado')
     return
 
 def val_int(x): 
