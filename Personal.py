@@ -24,7 +24,7 @@ class Personal(Persona):
             return('El empleado de nombre {} y dni, de tipo {}, se dió de alta el dia {} y de baja el dia {}'.format(self.nombre, self.dni, self.fecalta, self.fecbaja))
         
     def bajas(self):
-        '''Esta función da de baja a un empleado'''
+        '''Esta función permite dar de baja a un empleado''' ### ver
         self.fechabaja = datetime.now()
 
     def realizarTareas(self):

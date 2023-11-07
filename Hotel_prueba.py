@@ -34,8 +34,11 @@ class Hotel():
         self.pedidosBuffet=Cola()
         
     def entrar(self):
-        #Esta funcion permite que se ejecute el programa. Dependiendo de si el usuario es un cliente, empleado o genente, se le permiten realizar distintas operaciones
+        '''Esta funcion permite que se ejecute el programa. Dependiendo de si el usuario es un cliente, empleado o genente, se le permiten realizar distintas operaciones'''
         obtener_pickle(self, 'abrir')
+        
+        for res in self.cobros:
+            print(res)
         
         seguir = True 
         gerente=Gerente('milagros Argibay','miliargibay',"45074984",'obelisco','5491123484825','06/11/2003','mili@','Milia123','gerente')
@@ -93,7 +96,13 @@ class Hotel():
                                 
                                 # modificar una reserva
                                 case 3:
-                                    if cliente.modificar_reserva(self.reservas, self.habitaciones)== None:
+                                    print('Recuerde que si hace una modificacion de su reserva, no se le reembolsará la diferencia de precio en caso de hacerla \n pero si se le cobrará en caso de que la seleccionada tenga un valor mayor')
+                                    seguir = volver_atras()
+                                    if seguir:
+                                        dif_precio, hab = cliente.modificar_reserva(self.reservas, self.habitaciones, self.cobros)
+                                        cobro = Cobro(dif_precio,cliente,hab)
+                                        self.cobros = agregar_cobro(self.cobros, cobro)
+                                    else:
                                         pass
                                     
                                 #cancelar una reserva
