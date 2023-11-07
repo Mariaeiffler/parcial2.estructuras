@@ -37,7 +37,6 @@ def volver_atras():
     seguir = valSiNo(preg,imprimir)
     return seguir
     
-
 def cantidad_numero(contrasena):
     '''Esta función permite conocer la cantidad de digitos que contiene la contraseña'''
     contador = 0

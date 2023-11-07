@@ -64,17 +64,18 @@ class Hotel():
                         pregcliente=input('Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Cerrar Sesión \n')
                         imprimir='Error. Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Cerrar Sesión \n'
                         pregcliente=val_opc(pregcliente,1,5,imprimir)
+                        cliente = self.clientes.get(usuario)
                         while pregcliente != 5:
                             match pregcliente:
                             # hacer una reserva
                                 case 1:
-                                    num_reserva,fecha_inicio,fecha_fin,habitacion=Cliente.realizar_reserva(self.clientes.get(usuario), self.habitaciones, self.reservas)
+                                    num_reserva,fecha_inicio,fecha_fin,habitacion = cliente.realizar_reserva(self.habitaciones, self.reservas)
                                     reserva=Reserva(num_reserva,self.clientes.get(usuario), fecha_inicio, fecha_fin, habitacion, datetime.today())
                                     self.reservas[num_reserva]=reserva
                                     monto,objhab=obtener_precio(self.habitaciones, habitacion)
                                     cobro = Cobro(monto,self.clientes.get(usuario),objhab)
                                     self.cobros = agregar_cobro(self.cobros, cobro)
-                                    Cliente.asignar_nivel(self.clientes.get(usuario), self.cobros)
+                                    cliente.asignar_nivel(self.cobros)
                                     print('Su reserva se realizó con exito en las fechas {} - {} y su numero de reserva es {}. \n Recuerde que el horario de check in es desde las 15:00 hs y el check out hasta las 12:00 hs'.format(fecha_inicio.strftime('%d/%m/%Y'),fecha_fin.strftime('%d/%m/%Y'),num_reserva))
                                     
                                 # pedir algo en el buffet
@@ -82,17 +83,18 @@ class Hotel():
                                     monto, comida = hacer_pedido(self.buffet)
                                     cobro = Cobro(monto, self.clientes.get(usuario), comida)
                                     self.cobros = agregar_cobro(self.cobros, cobro)
-                                    Cliente.asignar_nivel(self.clientes.get(usuario), self.cobros)
+                                    cliente.asignar_nivel(self.clientes.get(usuario), self.cobros)
                                     print('Su pedido se realizó con éxito ')
                                 # FALTA HACER LO QUE HAYA Q HACER CON TAREAS
                                 
                                 # modificar una reserva
                                 case 3:
-                                    usuario.modificar_reserva(self.clientes.get(usuario), self.reservas, self.habitaciones)
+                                    if cliente.modificar_reserva(self.reservas, self.habitaciones)== None:
+                                        pass
                                     
                                 #cancelar una reserva
                                 case 4:
-                                    if Cliente.cancelar_reserva(self.clientes.get(usuario),self.reservas, self.habitaciones) == None:
+                                    if cliente.cancelar_reserva(self.reservas, self.habitaciones) == None:
                                         pass
                                     
                             pregcliente=input('\n Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Cerrar Sesión \n')
