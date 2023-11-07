@@ -8,12 +8,12 @@ tareas_empleados = {
 }
     
 def val_int(x): 
-        '''valida que sea un entero'''
-        try:
-            num=int(x)
-            return True
-        except Exception:
-            return False
+    '''Esta función valida que sea un entero'''
+    try:
+        num=int(x)
+        return True
+    except Exception:
+        return False
 
 #agregar para que asignen valor de importancia 
 # generar metodo en hotel donde el servidor ppl pueda agregar mas tareas al diccionario de tareas
