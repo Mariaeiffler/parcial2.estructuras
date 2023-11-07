@@ -66,14 +66,14 @@ class Cliente(Persona):
                     break
             for habitacion in lista:
                 if int(habitacion.numero) == int(hab):    
-                    hab = habitacion
+                    habi = habitacion
                     habitacion.reservas.append([fecha_inicio, fecha_fin])
                     dif_precio = habitacion.precio - hab_ant.precio                        
                     if dif_precio > 0:
                         print('Su reserva se modificó con exito. {}. La diferencia de precio es {}'.format(reserva, dif_precio))
                     else:
                         print('Su reserva se modificó con exito. {}'.format(reserva, dif_precio))
-        return dif_precio, hab
+        return dif_precio, habi
                         
     
     def cancelar_reserva(self,reservas:dict, lista):
@@ -113,7 +113,32 @@ class Cliente(Persona):
             self.tipo = 'nivel 2'
         return
     
- 
+    def check_in(self):
+        res_hoy = False
+        for reserva in self.reservas:
+            if reserva[0].date() == datetime.now().date(): 
+                hora = datetime.now().hour
+                res_hoy == True
+                if hora > 14:
+                    print('Se realizó con éxito su check-in')
+                else:
+                    print('No se pudo realizar su check-in, recuerde que recién puede hacer el check-in a partir de las 15:00 hs')
+        if res_hoy == False:
+            print('No se pudo realizar su check-in. El día de hoy no tiene una reserva')
+            
+    def check_out(self, reservas:dict):
+        res_hoy = False
+        for reserva in self.reservas:
+            if reserva[1].date(): 
+                hora = datetime.now().hour
+                res_hoy == True
+            if hora < 11:
+                print('Se realizó con éxito su check-out')
+            else:
+                print('Su check-out ya se realizó automaticamente a las 12:00 hs')
+        if res_hoy == False:
+            print('No se pudo realizar su check-out. El día de hoy no termina una estadía')
         
-                
+        
+           
     

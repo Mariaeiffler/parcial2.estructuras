@@ -35,8 +35,8 @@ class Hotel():
         '''Esta funcion permite que se ejecute el programa. Dependiendo de si el usuario es un cliente, empleado o genente, se le permiten realizar distintas operaciones'''
         obtener_pickle(self, 'abrir')
         
-        for res in self.cobros:
-            print(res)
+        for res in self.reservas:
+            print(self.reservas.get(res))
         
         seguir = True 
         gerente=Gerente('milagros Argibay','miliargibay',"45074984",'obelisco','5491123484825','06/11/2003','mili@','Milia123','gerente')
@@ -64,11 +64,11 @@ class Hotel():
                     
                     # menu cliente
                     if cliente:
-                        pregcliente=input('Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Cerrar Sesión \n')
-                        imprimir='Error. Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Cerrar Sesión \n'
-                        pregcliente=val_opc(pregcliente,1,5,imprimir)
+                        pregcliente=input('Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Realizar check-in \n 6. Realizar check-out \n 7. Cerrar Sesión \n')
+                        imprimir='Error. Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Realizar check-in \n 6. Realizar check-out \n 7. Cerrar Sesión \n'
+                        pregcliente=val_opc(pregcliente,1,7,imprimir)
                         cliente = self.clientes.get(usuario)
-                        while pregcliente != 5:
+                        while pregcliente != 7:
                             match pregcliente:
                             # hacer una reserva
                                 case 1:
@@ -96,8 +96,9 @@ class Hotel():
                                     seguir = volver_atras()
                                     if seguir:
                                         dif_precio, hab = cliente.modificar_reserva(self.reservas, self.habitaciones, self.cobros)
-                                        cobro = Cobro(dif_precio,cliente,hab)
-                                        self.cobros = agregar_cobro(self.cobros, cobro)
+                                        if dif_precio > 0:
+                                            cobro = Cobro(dif_precio,cliente,hab)
+                                            self.cobros = agregar_cobro(self.cobros, cobro)
                                     else:
                                         pass
                                     
@@ -106,9 +107,15 @@ class Hotel():
                                     if cliente.cancelar_reserva(self.reservas, self.habitaciones) == None:
                                         pass
                                     
-                            pregcliente=input('\n Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Cerrar Sesión \n')
-                            imprimir='\n Error. Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Cerrar Sesión \n'
-                            pregcliente=val_opc(pregcliente,1,5,imprimir)
+                                case 5:
+                                    cliente.check_in()
+                                    
+                                case 6:
+                                    cliente.check_out()
+                                    
+                            pregcliente=input('Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Realizar check-in \n 6. Realizar check-out \n 7. Cerrar Sesión \n')
+                            imprimir='Error. Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Realizar check-in \n 6. Realizar check-out \n 7. Cerrar Sesión \n'
+                            pregcliente=val_opc(pregcliente,1,7,imprimir)
                         
                         seguir = False #ponerlo afuera del while asi tmb se hace para el gerente, pero ver como funciona
                         
@@ -166,7 +173,7 @@ class Hotel():
                                     
                                     case 8:
                                         #Historial de reservas
-                                        #Hay q ver si es parte d la nomina d los clientes (preguntarle a fede)
+                                        gerente.historial_reservas(self.reservas)
                                         # txt con reservas
                                         pass
                                         

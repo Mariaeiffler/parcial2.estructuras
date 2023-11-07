@@ -59,3 +59,9 @@ class Gerente(Persona):
         for empleado in bajas:
             print (empleado)
         return
+    
+    def historial_reservas(self, reservas:dict):
+        with open('HistorialReservas.txt', "w") as archivo:
+            for reserva in reservas:
+                archivo.write(reservas.get(reserva).__str__())
+        
