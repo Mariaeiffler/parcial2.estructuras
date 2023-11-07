@@ -28,18 +28,18 @@ class Personal(Persona):
         
     #FALTA VERIFICAR QUE ANDEN BIEN INGRESOS Y EGRESOS Y LOS DOS METODOS DE REGISTROS
     #Falta ver si se appendean a regiastros registro.
-    def ingreso(self,nom): #ver si esta bien lo de la list de registros (preguntarle a ian!!!!)
+    def ingreso(self,nom, ingresos_egresos: list()): #ver si esta bien lo de la list de registros (preguntarle a ian!!!!)
         self.nom=nom
         ahora= datetime.now()
         registro= {'tipo de registro':'ingreso', 'fecha_hora': ahora, 'nombre': self.nom} #noc lo del nombre si esta bien
-        self.registros.append(registro)
+        self.ingresos_egresos.append(registro)
         print('Se registró el ingreso de {} a las {}'.format(self.nombre,ahora))
         
     def egreso(self, nom):
         self.nom=nom
         ahora= datetime.now()
         registro= {'tipo de registro': 'egreso', 'fecha_hora': ahora, 'nombre':self.nom}
-        self.registros.append(registro)
+        self.ingreos_egresos.append(registro)
         print('Se registró el egreso de {} a las {}'.format(ahora,self.nombre))
 
     def mostrar_registros(self):
