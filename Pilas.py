@@ -1,8 +1,6 @@
-from collections import deque
-
 class Pila():
     def __init__(self):
-        self.pila=deque()
+        self.pila=list()
         
     def apilar (self,elemento): 
         '''Esta función apila un elemento al final de la pila'''
@@ -19,6 +17,9 @@ class Pila():
         '''Esta función devuelve el último elemento de la pila'''
         if len(self.pila)>0:
             return self.pila[-1]
+        else:
+            print('La pila se encuentra vacia')
+            return
         
 
         
