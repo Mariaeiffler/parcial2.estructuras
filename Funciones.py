@@ -144,7 +144,7 @@ def comparacion_fechas(fecha_inicio):
     return fecha_inicio, fecha_finalizacion
 
 def reserva():
-    '''Esta función permite al usuario realizar una reserva'''
+    '''Esta función le pide los datos al usuario para realizar una reserva'''
     habitacion=validacion_preg_hab()
     fecha_inicio = input('Ingrese la fecha de inicio de su estadía en el formato dd/mm/aaaa ')
     fecha_inicio = convertirfecha_datetime(fecha_inicio)
