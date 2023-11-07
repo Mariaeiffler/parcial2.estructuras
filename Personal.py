@@ -49,7 +49,7 @@ class Personal(Persona):
                         print('La tarea no se ha realizado')
                    
                 case 2:
-                    print('El pedido a realizar es: {}'.format(ordenes[0]))
+                    print('El pedido a realizar es: {}'.format(ordenes.mostrarPrimero()))
                     imprimir='Desea realizar el pedido ahora? (ingrese "si" o "no"): '
                     elije=input(imprimir)
                     elije=valSiNo(elije,imprimir)

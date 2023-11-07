@@ -1,16 +1,17 @@
 class Cola():
     def __init__(self):
         self.cola = []
+
     def esta_vacia(self):
-        return len(self.items) == 0
+        return len(self.cola) == 0
 
     def encolar(self, item):
-        self.items.append(item)
+        self.cola.append(item)
         return
 
     def desencolar(self):
         if not self.esta_vacia():
-            return self.items.pop(0)
+            return self.cola.pop(0)
         else:
             return None
     
@@ -18,4 +19,4 @@ class Cola():
         if self.esta_vacia():
             return None
         else:
-            primero=self.cola[1]
+            return self.cola[0]

@@ -22,6 +22,7 @@ def obtener_pickle(hotel, accion):
             hotel.tareas=info.tareas
             hotel.reservas=info.reservas
             hotel.bajasEmpleados=info.bajasEmpleados
+            hotel.pedidosBuffet = info.pedidosBuffet
         except FileNotFoundError:
             with open ('hotel.pickle','wb') as hpickle:
                 pickle.dump(hotel,hpickle)
