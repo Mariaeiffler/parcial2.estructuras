@@ -210,7 +210,7 @@ def crear_buffet(tupla):
     dic = {'desayuno':des, 'almuerzo':almu, 'cena':cena, 'otro':otro}
     return dic
     
-def hacer_pedido(dic:dict):
+def hacer_pedido(dic:dict): #tendríamos que ponerlo en cliente?
     '''Esta función le permite al usuario elegir lo que desea pedir en el buffet'''
     print('Ingrese una opción ')
     for i, comida in enumerate (dic):
@@ -242,6 +242,7 @@ def hacer_pedido(dic:dict):
         monto, comida = obtener_precio(dic['otro'], preg2)
     return monto, comida
 
+<<<<<<< HEAD
 def asignarTarea(tareas:dict,empleados:dict):
     '''Esta función permite la asignación de tareas a los empleados correspondientes. 
     Las tareas poseen un nivel de importancia para indicar la urgencia de la misma'''
@@ -273,6 +274,8 @@ def asignarTarea(tareas:dict,empleados:dict):
         print ('La acción se ha cancelado')
     return
 
+=======
+>>>>>>> 0d8726cecbf6bf462b5c3a69f8a72b1efb12a620
 def val_int(x): 
     '''Esta función valida que sea un entero'''
     try:
