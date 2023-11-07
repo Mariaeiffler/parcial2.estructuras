@@ -4,12 +4,14 @@ from datetime import *
 import numpy as np
 
 def ordenar_fechas(lista):
+    ''' Esta funcion permite ordenar las fechas'''
     fechas_set = set(lista)
     fechas_lista = list(fechas_set)
     fechas_ordenadas=sorted(fechas_lista)
     return fechas_ordenadas
 
 def val_preg(preg, lista,quiero):
+    '''Esta funcion verifica que la fecha ingresada de la cual se quieren saber las estadisticas sea valida'''
     val = False
     while val == False:
         if quiero == 2:
@@ -24,6 +26,7 @@ def val_preg(preg, lista,quiero):
     return preg
 
 def obtener_rango_fec(lista):
+    '''Esta funcion permite obtener el rango de fechas'''
     todas = []
     for rango in lista:
         fecs = [rango[0], rango[1]]
@@ -33,6 +36,7 @@ def obtener_rango_fec(lista):
     return (todas)
 
 def separacion_tipohab(lista):
+    '''Esta habitacion divide a las habitaciones en su tipo correspondiente'''
     t1=[]
     t2=[]
     t3=[]
@@ -49,6 +53,7 @@ def separacion_tipohab(lista):
     return t1, t2, t3
 
 def preg_ver_estadisticas(ordenadas, imp, quiero):
+    '''Esta funcion permite preguntarle al usuario sobre que fecha desea ver las estadisticas'''
     print(imp)
     for fecha in ordenadas:
         print(fecha.strftime('%d/%m/%Y'))
@@ -57,6 +62,7 @@ def preg_ver_estadisticas(ordenadas, imp, quiero):
     return fec
     
 def imprimir_fec(lista,imp):
+    '''Esta funcion permite imprimir las fechas en las que hay reservas'''
     fechas = []
     for habitacion in lista:
         if len(habitacion.reservas) != 0:
@@ -69,6 +75,7 @@ def imprimir_fec(lista,imp):
     return fec, desordenadas
 
 def ocupacion (lista):
+    '''Esta funcion permite obtener el porcentaje de ocupacion del hotel en un dia determinado elegido por el usuario'''
     oc = 0
     for hab in lista:
         if len(hab.reservas) != 0:
@@ -83,6 +90,7 @@ def ocupacion (lista):
         return ('La ocupacion del hotel el dia {} es del {}% \n \n'.format(fec.strftime('%d/%m/%Y'), porcentaje))
 
 def ocupacion_tipohab(lista):
+    '''Esta funcion permite obtener el porcentaje de ocupacion de cada tipo de habitacion en un determinado dia seleccionado por el usuario'''
     oc = 0
     for hab in lista:
         if len(hab.reservas) != 0:
@@ -104,6 +112,7 @@ def ocupacion_tipohab(lista):
         return todo
 
 def rec_diaria(array):
+    '''Esta funcion permite ver la recaudacion total de un dia determinado introducido por el usuario'''
     if len(array) == 0:
         print('El hotel no recaudacion aún')
         return
