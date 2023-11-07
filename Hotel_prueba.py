@@ -1,6 +1,6 @@
 import pickle
 from Personal import Personal
-from Cliente import Cliente
+from cliente import Cliente
 from Persona import Persona # creo q no hace falta
 from Habitacion_Doble import *
 from Habitacion_Simple import *
@@ -32,6 +32,7 @@ class Hotel():
         self.buffet=crear_buffet(Comida.crear_comidas())
         
     def entrar(self):
+        '''Esta funcion permite que se ejecute el programa. Dependiendo de si el usuario es un cliente, empleado o gerente se le permiten realizar distintas operaciones'''
         
         obtener_pickle(self, 'abrir')
         
