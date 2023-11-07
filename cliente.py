@@ -20,7 +20,11 @@ class Cliente(Persona):
             return('El clientes de nombre {} y dni {} no tiene reservas en el hotel'.format(self.nombre, self.dni))
     
     def realizar_reserva(self, lista, diccionario:dict):
-        ''' Esta funcion le permite al usuario llevar a cabo la reserva. En caso de que la fecha seleccionada no este disponible se le mostraran las fechas en las cuales esta ocupada para que seleccione una opcion valida'''
+        ''' Esta funcion le permite al usuario llevar a cabo la reserva. Se le pedirá al mismo las 
+        fechas en las cuales desea realizar su reserva. En caso de que la fecha seleccionada no este 
+        disponible se le mostraran las fechas en las cuales esta ocupada para que seleccione una opcion
+        valida. En caso de que ingrese una fecha de salida que no sea coherente con la de entrada, 
+        se le preguntará si desea cambiar la fecha, la habitacion o ambas'''
         fecha_inicio, fecha_fin, hab = reserva()
         val = hab_ocupada(fecha_inicio, fecha_fin, hab, lista)
         while val==False:

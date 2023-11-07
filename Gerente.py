@@ -20,7 +20,7 @@ class Gerente(Persona):
             pass
         
     def inv_empleados(dic:dict):
-        '''Esta función contiene un inventario de todos los empleados'''
+        '''Esta función crea un inventario con todos los empleados'''
         list_a = []
         list_b = []
         if len(dic)+1 != 0:
@@ -45,11 +45,17 @@ class Gerente(Persona):
         return
     
     def nomina_clientes(dic:dict):
-        '''Esta función contiene la nomina de cliente en el hotel'''
+        '''Esta función crea la nomina de cliente en el hotel'''
         if len(dic) != 0:
             print('Los clientes del hotel son: ')
             for cliente in dic:
                 print(dic.get(cliente))
         else:
             print('El hotel todavía no tiene clientes')
+        return
+    
+    def historialBajasEmpleados(self,bajas:set):
+        '''Esta función crea el historial de bajas de empleados'''
+        for empleado in bajas:
+            print (empleado)
         return
