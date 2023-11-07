@@ -4,7 +4,7 @@ from datetime import *
 import numpy as np
 
 def ordenar_fechas(lista):
-    ''' Esta funcion permite ordenar las fechas'''
+    ''' Esta funcion permite ordenar las fechas de menor a mayor'''
     fechas_set = set(lista)
     fechas_lista = list(fechas_set)
     fechas_ordenadas=sorted(fechas_lista)
@@ -36,7 +36,7 @@ def obtener_rango_fec(lista):
     return (todas)
 
 def separacion_tipohab(lista):
-    '''Esta habitacion divide a las habitaciones en su tipo correspondiente'''
+    '''Esta función divide a las habitaciones en su tipo correspondiente'''
     t1=[]
     t2=[]
     t3=[]
