@@ -28,7 +28,7 @@ class Personal(Persona):
         self.fechabaja = datetime.now()
 
     def realizarTareas(self):
-        '''Esta función muestra las tareas pendientes y pregunta si desea realizarlas'''
+        '''Esta función permite realizar las tareas pendientes'''
         if self.tareasPendientes.head:
             print('La Tarea a realizar es: {}'.format(self.tareasPendientes.head.__str__()))
             imprimir='Desea realizar la tarea ahora? (ingrese "si" o "no"): '
@@ -60,7 +60,7 @@ class Personal(Persona):
         self.registro.append([datetime.now()])
         return
         
-    def registrar_egreso(self):
+    def registrar_egreso(self): 
         '''Esta función registra el egreso de un empleado'''
         print(self.registro)
         if len(self.registro[len(self.registro)-1]) == 1:
@@ -70,18 +70,9 @@ class Personal(Persona):
         else:
             print('Error, no registró el ingreso')
         return
-
-                
-    #FALTA VERIFICAR QUE ANDEN BIEN INGRESOS Y EGRESOS Y LOS DOS METODOS DE REGISTROS
-    #Falta ver si se appendean a regiastros registro.
-    # def ingreso(self,ingresos_egresos:list()): #ver si esta bien lo de la list de registros (preguntarle a ian!!!!)
-    #     ahora= datetime.now()
-    #     registro= {'tipo de registro':'ingreso', 'fecha_hora': ahora, 'usuario': self.usuario} #noc lo del nombre si esta bien
-    #     self.ingresos_egresos[self.posicion_registro()].append(registro)
-    #     print('Se registró el ingreso de {} a las {}'.format(self.nombre,ahora))
-        
+      
     def egreso(self, nom):
-        '''Esta función registra el egreso de un empleado'''
+        '''Esta función guarda el egreso de un empleado'''
         self.nom=nom
         ahora= datetime.now()
         registro= {'tipo de registro': 'egreso', 'fecha_hora': ahora, 'nombre':self.nom}

@@ -3,11 +3,11 @@ class Pila():
         self.pila=list()
         
     def apilar (self,elemento): 
-        '''Esta función apila un elemento al final de la pila'''
+        '''Esta función agrega un elemento al final de la pila'''
         self.pila.append(elemento)
     
     def desapilar (self):
-        '''Esta función desapila el último elemento de la pila'''
+        '''Esta función saca el último elemento de la pila'''
         if len(self.pila)>0:
             return self.pila.pop()
         else:

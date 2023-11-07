@@ -23,24 +23,19 @@ class Cliente(Persona):
         fecha_inicio, fecha_fin, hab = reserva()
         val = hab_ocupada(fecha_inicio, fecha_fin, hab, lista)
         while val==False:
-            seguir = volver_atras()
-            if seguir:
-                preg = input('Elija una opción: \n 1. Elegir otras fechas \n 2. Elegir otra habitación \n 3. Elegir una nueva habitación y otras fechas \n')
-                imprimir = 'Error. Elija una opcion: \n 1. Elegir otras fechas \n 2. Elegir otra habitación \n 3. Elegir una nueva habitación y otras fechas \n'
-                preg = val_opc(preg, 1, 3, imprimir)
-                val, fecha_inicio, fecha_fin, hab = modi_hab(val, preg, fecha_inicio, fecha_fin, hab, lista)  
-        try:
-            for habitacion in lista:
-                if habitacion.numero == int(hab):
-                    habitacion.reservas.append([fecha_inicio,fecha_fin])
-                    numres = len(diccionario)+1
-                    while(valPalabraDic (numres,diccionario)):
-                        numres = numres+1
-                    # falta lo d cobros
-                    self.reservas.append([fecha_inicio,fecha_fin])
-            return numres, fecha_inicio, fecha_fin, int(hab)
-        except Exception:
-            return None
+            preg = input('Elija una opción: \n 1. Elegir otras fechas \n 2. Elegir otra habitación \n 3. Elegir una nueva habitación y otras fechas \n')
+            imprimir = 'Error. Elija una opcion: \n 1. Elegir otras fechas \n 2. Elegir otra habitación \n 3. Elegir una nueva habitación y otras fechas \n'
+            preg = val_opc(preg, 1, 3, imprimir)
+            val, fecha_inicio, fecha_fin, hab = modi_hab(val, preg, fecha_inicio, fecha_fin, hab, lista)  
+        for habitacion in lista:
+            if habitacion.numero == int(hab):
+                habitacion.reservas.append([fecha_inicio,fecha_fin])
+                numres = len(diccionario)+1
+                while(valPalabraDic (numres,diccionario)):
+                    numres = numres+1
+                # falta lo d cobros
+                self.reservas.append([fecha_inicio,fecha_fin])
+        return numres, fecha_inicio, fecha_fin, int(hab)
     
     def modificar_reserva(self, reservas:dict, lista):
         ''' Esta funcion le permite al usuario poder cambiar su reserva, ya sea la modificacion de la fecha, habitacion o ambas'''
@@ -74,11 +69,14 @@ class Cliente(Persona):
     
     def cancelar_reserva(self,reservas:dict, lista):
         ''' Esta funcion le permite al usuario cancelar la reserva definitivamente'''
-        numres = input('Ingrese su numero de reserva  ')
-        numres = val_numres(numres, reservas, self.usuario)
+        numres = input('Ingrese su numero de reserva o escriba "volver" si desea volver al menú principal \n')
+        if numres == 'volver':
+            return None
+        else:
+            numres = val_numres(numres, reservas, self.usuario)
         reserva = reservas.get(numres)
         print(reserva)
-        preg = input('¿Desea cancelar su reserva definitivamente? \n 1. Si \2. No \n')
+        preg = input('¿Desea cancelar su reserva definitivamente? \n 1. Si \n 2. No \n')
         imprimir = 'Error. ¿Desea cancelar su reserva definitivamente? \n 1. Si \n 2. No \n'
         preg = val_opc(preg, 1, 2, imprimir)
         if preg == 1:
@@ -90,7 +88,6 @@ class Cliente(Persona):
                     print('Su reserva se ha cancelado con exito ')
         else:
             print('Se ha cancelado la cancelación de su reserva')
-        # hace falta borrar el objeto?
         return
     
     def asignar_nivel(self, vector):
