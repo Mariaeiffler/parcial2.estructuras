@@ -6,6 +6,7 @@ from Tareas_Empleados import tareas_empleados
 from Validaciones import *
 from Funciones import *
 from Pilas import Pila
+from Cola import Cola
 
 class Personal(Persona):
     def __init__(self,nombre,usuario,dni,direccion,contacto,fecha_nac,mail,contrasena,tipo,fecalta=datetime.now(),fecbaja=None):
@@ -24,22 +25,51 @@ class Personal(Persona):
             return('El empleado de nombre {} y dni, de tipo {}, se dió de alta el dia {} y de baja el dia {}'.format(self.nombre, self.dni, self.fecalta, self.fecbaja))
         
     def bajas(self):
-        '''Esta función da de baja a un empleado'''
+        '''Esta función permite dar de baja a un empleado''' ### ver
         self.fechabaja = datetime.now()
 
-    def realizarTareas(self):
-        '''Esta función muestra las tareas pendientes y pregunta si desea realizarlas'''
-        if self.tareasPendientes.head:
-            print('La Tarea a realizar es: {}'.format(self.tareasPendientes.head))
-            imprimir='Desea realizar la tarea ahora? (ingrese "si" o "no"): '
-            elije=input(imprimir)
-            elije=valSiNo(elije,imprimir)
-            if elije:
-                self.tareasRealizadas.apilar(self.tareasPendientes.head.valor)
-                self.tareasPendientes.eliminarPrimero() 
-                print('La tarea ha sido marcada como realizada.')
-            else:
-                print('La tarea no se ha realizado')
+    def realizarTareas(self,ordenes:Cola):
+        '''Esta función permite realizar las tareas pendientes'''
+        if self.tipo=='cocina':
+            opcion=input('Desea: \n 1. Realizar una tarea asignada por el gerente \n 2. Realizar un pedido del buffet \n') 
+            imprimir1='\n Error. Desea: \n 1. Realizar una tarea asignada por el gerente \n 2. Realizar un pedido del buffet \n'
+            opcion=val_opc(opcion,1,2,imprimir1)
+            match opcion:
+                case 1:
+                    if self.tareasPendientes.head:
+                        print('La Tarea a realizar es: {}'.format(self.tareasPendientes.head.__str__()))
+                        imprimir='Desea realizar la tarea ahora? (ingrese "si" o "no"): '
+                        elije=input(imprimir)
+                        elije=valSiNo(elije,imprimir)
+                        if elije:
+                            self.tareasRealizadas.apilar(self.tareasPendientes.head.valor)
+                            self.tareasPendientes.eliminarPrimero() 
+                            print('La tarea ha sido marcada como realizada.')
+                    else:
+                        print('La tarea no se ha realizado')
+                   
+                case 2:
+                    print('El pedido a realizar es: {}'.format(ordenes[0]))
+                    imprimir='Desea realizar el pedido ahora? (ingrese "si" o "no"): '
+                    elije=input(imprimir)
+                    elije=valSiNo(elije,imprimir)
+                    if elije:
+                        ordenes.desencolar()
+                        print('La tarea se ha realizado con éxito.')
+                    else:
+                        print ('La acción se ha cancelado')
+        else:
+            if self.tareasPendientes.head:
+                print('La Tarea a realizar es: {}'.format(self.tareasPendientes.head.__str__()))
+                imprimir='Desea realizar la tarea ahora? (ingrese "si" o "no"): '
+                elije=input(imprimir)
+                elije=valSiNo(elije,imprimir)
+                if elije:
+                    self.tareasRealizadas.apilar(self.tareasPendientes.head.valor)
+                    self.tareasPendientes.eliminarPrimero() 
+                    print('La tarea ha sido marcada como realizada.')
+                else:
+                    print('La tarea no se ha realizado')
         return
                 
     def visualizarTareaAnterior (self):
@@ -60,7 +90,7 @@ class Personal(Persona):
         self.registro.append([datetime.now()])
         return
         
-    def registrar_egreso(self):
+    def registrar_egreso(self): 
         '''Esta función registra el egreso de un empleado'''
         print(self.registro)
         if len(self.registro[len(self.registro)-1]) == 1:
@@ -70,17 +100,9 @@ class Personal(Persona):
         else:
             print('Error, no registró el ingreso')
         return
-            
-    #FALTA VERIFICAR QUE ANDEN BIEN INGRESOS Y EGRESOS Y LOS DOS METODOS DE REGISTROS
-    #Falta ver si se appendean a regiastros registro.
-    # def ingreso(self,ingresos_egresos:list()): #ver si esta bien lo de la list de registros (preguntarle a ian!!!!)
-    #     ahora= datetime.now()
-    #     registro= {'tipo de registro':'ingreso', 'fecha_hora': ahora, 'usuario': self.usuario} #noc lo del nombre si esta bien
-    #     self.ingresos_egresos[self.posicion_registro()].append(registro)
-    #     print('Se registró el ingreso de {} a las {}'.format(self.nombre,ahora))
-        
+      
     def egreso(self, nom):
-        '''Esta función registra el egreso de un empleado'''
+        '''Esta función guarda el egreso de un empleado'''
         self.nom=nom
         ahora= datetime.now()
         registro= {'tipo de registro': 'egreso', 'fecha_hora': ahora, 'nombre':self.nom}

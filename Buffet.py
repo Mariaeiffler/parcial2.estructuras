@@ -14,7 +14,7 @@ class Comida():
             return('{}, que vale $ {}'.format(self.descripcion, self.precio))
         
     def crear_comidas(): 
-        ''' Esta funcion crea las distintas comidas con se respectivo precio y codigo, especificando a que tipo de comida pertenece'''
+        ''' Esta funcion crea las distintas comidas con su respectivo precio y codigo, especificando a que tipo de comida pertenece'''
         infusion= Comida('Infusión (Café con leche/Té/Jugo de Naranja)', 500, 'desayuno','1')
         tostadas=Comida('Tostadas con queso y mermelada', 700, 'desayuno','2')
         yogur=Comida('Yogur con cereales', 600, 'desayuno','3')
@@ -39,35 +39,7 @@ class Comida():
         bebida=Comida('Bebida a elección',500,None,'22')
         return infusion,tostadas,yogur,huevos_revueltos,facturas,ensalada_frutas,pollo_carne,sopa,ensalada,pez,opcion_vegetariana,pastas,postres,tacos,salmon,pastas_cena,opcion_vegetariana_cena,pizza,empanadas,asado_para_2,postre_cena,bebida
         
-    # def hacer_pedido(self, dic:dict):
-    #     for i, comida in enumerate (dic):
-    #         print (F"{i} - {comida}")
+      
         
-        
-                
-        
-        
-
-# #hay que hacer el metodo que agregue los objetos a los diccionarios
-# diccionario_desayuno= [infusion,tostadas,yogur,huevos_revueltos,facturas,ensalada_frutas]
-# diccionario_almuerzo= [pollo_carne,sopa,ensalada,pez,opcion_vegetariana,pastas,postres,tacos]
-# diccionario_cena=[salmon,pastas_cena,opcion_vegetariana_cena,pizza,empanadas,asado_para_2,postre_cena]
-# buffet_dicc={'desayuno':diccionario_desayuno, 'almuerzo': diccionario_almuerzo, 'cena': diccionario_cena,'bebida':bebida}
-
-# d=buffet_dicc.get('desayuno')
-# for objeto in d:
-#     print(objeto.codigo,objeto.descripcion,objeto.precio)
-# a=buffet_dicc.get('almuerzo')
-# for objeto in a:
-#     print(objeto.codigo,objeto.descripcion,objeto.precio)
-# c=buffet_dicc.get('cena')
-# for objeto in c:
-#     print(objeto.codigo,objeto.descripcion,objeto.precio)
-# b=buffet_dicc.get('bebida')
-# print(bebida.codigo,bebida.descripcion,bebida.precio)
-
-# #pedido=input('Introduzca el codigo de lo que desea pedir:
-# infusion.armar_buffet()
-
 if __name__ == '__main__':
     print(type(Comida.crear_comidas()))
