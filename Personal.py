@@ -74,11 +74,12 @@ class Personal(Persona):
     #     self.ingresos_egresos[self.posicion_registro()].append(registro)
     #     print('Se registró el ingreso de {} a las {}'.format(self.nombre,ahora))
         
-    # def egreso(self, ingresos_egresos:list()):
-    #     ahora= datetime.now()
-    #     registro= {'tipo de registro': 'egreso', 'fecha_hora': ahora, 'usuario':self.usuario}
-    #     self.ingresos_egresos[self.posicion_registro()].append(registro)
-    #     print('Se registró el egreso de {} a las {}'.format(ahora,self.nombre))
+    def egreso(self, nom):
+        self.nom=nom
+        ahora= datetime.now()
+        registro= {'tipo de registro': 'egreso', 'fecha_hora': ahora, 'nombre':self.nom}
+        self.registros.append(registro)
+        print('Se registró el egreso de {} a las {}'.format(ahora,self.nombre))
 
     # def mostrar_registros(self):
     #     for registro in self.registros:
