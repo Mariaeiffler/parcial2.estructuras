@@ -54,23 +54,24 @@ class Gerente(Persona):
         except Exception:
             pass
         
-    def inv_empleados(dic:dict):
+    def inv_empleados(self, dic:dict, bajasEmpleados:set):
         '''Esta función crea un inventario con todos los empleados'''
         list_a = []
         list_b = []
         if len(dic)+1 != 0:
             for clave in dic:
                 if dic.get(clave).tipo != 'gerente':
-                    if dic.get(clave).fecbaja == None:
-                        list_a.append(dic.get(clave))
-                    if dic.get(clave).fecbaja != None:
-                        list_b.append(dic.get(clave))
+                    print(clave)
+                    list_a.append(dic.get(clave))
         if len(list_a) != 0:
             print('Los empleados activos son: ')
             for emp in list_a:
-                print(emp)
+                print(emp, '\n')
         else:
             print('No hay empleados activos')
+        if len(bajasEmpleados)+1 != 0:
+            for emp in bajasEmpleados:
+                list_b.append(emp)
         if len(list_b) != 0:
             print('Los empleados dados de baja son: ')
             for emp in list_b:
@@ -113,7 +114,7 @@ class Gerente(Persona):
     def bajaEmpleado(self,empleados:dict,tareas:dict,bajasEmpleados:dict):
         usuarioBaja=input('Ingrese el usuario del empleado que desea dar de baja: ')
         usuarioBaja=valExiUsu(usuarioBaja,empleados)
-        imprimir='Desea realizar la tarea ahora? (ingrese "si" o "no"): '
+        imprimir='¿Desea dar de baja definitivamente al empleado? (ingrese "si" o "no"): '
         elije=input(imprimir)
         elije=valSiNo(elije,imprimir)
         if elije:

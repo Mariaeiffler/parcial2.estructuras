@@ -37,6 +37,13 @@ class Hotel():
         '''Esta funcion permite que se ejecute el programa. Dependiendo de si el usuario es un cliente, empleado o genente, se le permiten realizar distintas operaciones'''
         obtener_pickle(self, 'abrir')
     
+        print(self.reservas)
+        for hab in self.habitaciones:
+            print(hab.numero, hab.reservas)
+        for cli in self.clientes:
+            print(cli)
+            print(self.clientes.get(cli).reservas)
+    
         seguir = True 
         gerente=Gerente('Fransisco','gerente',"10101010",'5491100000000','06/11/2003','gerente@gmail.com','Gerente1','gerente')
         self.empleados[gerente.usuario]=gerente
@@ -71,14 +78,7 @@ class Hotel():
                             match pregcliente:
                             # hacer una reserva
                                 case 1:
-                                    num_reserva,fecha_inicio,fecha_fin,habitacion = cliente.realizar_reserva(self.habitaciones, self.reservas)
-                                    reserva=Reserva(num_reserva,self.clientes.get(usuario), fecha_inicio, fecha_fin, habitacion, datetime.today())
-                                    self.reservas[num_reserva]=reserva
-                                    monto,objhab=obtener_precio(self.habitaciones, habitacion)
-                                    cobro = Cobro(monto,self.clientes.get(usuario),objhab)
-                                    self.cobros = agregar_cobro(self.cobros, cobro)
-                                    cliente.asignar_nivel(self.cobros)
-                                    print('Su reserva se realizó con exito en las fechas {} - {} y su numero de reserva es {}. \n Recuerde que el horario de check in es desde las 15:00 hs y el check out hasta las 12:00 hs'.format(fecha_inicio.strftime('%d/%m/%Y'),fecha_fin.strftime('%d/%m/%Y'),num_reserva))
+                                    cliente.realizar_reserva(self.habitaciones, self.reservas, self.cobros)
                                     
                                 # pedir algo en el buffet
                                 case 2:
@@ -92,15 +92,7 @@ class Hotel():
                                 
                                 # modificar una reserva
                                 case 3:
-                                    print('Recuerde que si hace una modificacion de su reserva, no se le reembolsará la diferencia de precio en caso de hacerla \n pero si se le cobrará en caso de que la seleccionada tenga un valor mayor')
-                                    seguir = volver_atras()
-                                    if seguir:
-                                        dif_precio, hab = cliente.modificar_reserva(self.reservas, self.habitaciones, self.cobros)
-                                        if dif_precio > 0:
-                                            cobro = Cobro(dif_precio,cliente,hab)
-                                            self.cobros = agregar_cobro(self.cobros, cobro)
-                                    else:
-                                        pass
+                                    cliente.modificar_reserva(self.reservas, self.habitaciones, self.cobros)
                                     
                                 #cancelar una reserva
                                 case 4:
@@ -139,7 +131,7 @@ class Hotel():
                                         
                                     case 3:
                                         #Inventario de personal
-                                        gerente.inv_empleados(self.empleados)
+                                        gerente.inv_empleados(self.empleados, self.bajasEmpleados)
                                             
                                     case 4:
                                         #Estadisticas
