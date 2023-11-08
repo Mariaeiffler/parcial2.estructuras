@@ -38,7 +38,7 @@ class Hotel():
         obtener_pickle(self, 'abrir')
     
         seguir = True 
-        gerente=Gerente('Fransisco','gerente',"10101010",'obelisco','5491100000000','06/11/2003','gerente@gmail.com','Gerente1','gerente')
+        gerente=Gerente('Fransisco','gerente',"10101010",'5491100000000','06/11/2003','gerente@gmail.com','Gerente1','gerente')
         self.empleados[gerente.usuario]=gerente
         self.tareas['gerente']['empleados'].append(gerente.usuario)
         
@@ -66,7 +66,7 @@ class Hotel():
                         pregcliente=input('Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Realizar check-in \n 6. Realizar check-out \n 7. Cerrar Sesión \n')
                         imprimir='Error. Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Realizar check-in \n 6. Realizar check-out \n 7. Cerrar Sesión \n'
                         pregcliente=val_opc(pregcliente,1,7,imprimir)
-                        cliente = self.clientes.get(usuario)
+                        cliente:Cliente = self.clientes.get(usuario)
                         while pregcliente != 7:
                             match pregcliente:
                             # hacer una reserva

@@ -277,8 +277,8 @@ def valNombre2 (nombre):
     '''Esta función llama a la validación del nombre. En caso de que el nombre ingresado
     no haya tenido un formato válido, se vuelve a pedir'''
     validacion = valNombre1(nombre)
-    while validacion == False:
-        nombre = input('Ingrese su nombre y apellido: ')
+    while validacion == False or nombre.count(' ')<1:
+        nombre = input('Error. Ingrese su nombre y apellido : ')
         validacion = valNombre1(nombre)
     return nombre
 

@@ -18,26 +18,29 @@ class Gerente(Persona):
         imprimir1='Ingrese la tarea que desea asignar: '
         opcionAsignar=input(imprimir1) 
         opcionAsignar=valOpcAsignacion(opcionAsignar,tareas,tipo,'tareas',imprimir1)
-        for i, personal in enumerate (tareas[tipo]['empleados']):
-            print (F"{i} - {personal}")
-        imprimir2= 'Ingrese el número del usuario del empleados al que le desea asignar la tarea: '
-        empleadoAsignar=input(imprimir2)
-        empleadoAsignar=valOpcAsignacion(empleadoAsignar,tareas,tipo,'empleados',imprimir2)
-        imprimir3='Error. Ingrese como nivel de importancia 1, 2 o 3 (siendo 1 el más urgente): '
-        pregImportancia=input('Niveles de importancia: 1,2,3 (siendo 1 el más urgente). \n Ingrese la importancia de la tarea a realizar: ')
-        importancia=val_opc(pregImportancia,1,3,imprimir3)
-        imprimir='Desea realizar la tarea ahora? (ingrese "si" o "no"): '
-        elije=input(imprimir)
-        elije=valSiNo(elije,imprimir)
-        if elije:
-            nodoNuevo=NodoTarea(opcionAsignar,importancia)
-            persona=empleados.get(empleadoAsignar) #chequear que me dice que es un string
-            persona.tareasPendientes.agregarNodoTarea(nodoNuevo)
-            print ('La tarea se ha generado con exito')
-        else: 
-            print ('La acción se ha cancelado')
+        if len(tareas[tipo]['empleados'])==0:
+            print('No hay empleados disponibles para realizar estas tareas')
+        else:
+            for i, personal in enumerate (tareas[tipo]['empleados']):
+                print (F"{i} - {personal}")
+            imprimir2= 'Ingrese el número del usuario del empleados al que le desea asignar la tarea: '
+            empleadoAsignar=input(imprimir2)
+            empleadoAsignar=valOpcAsignacion(empleadoAsignar,tareas,tipo,'empleados',imprimir2)
+            imprimir3='Error. Ingrese como nivel de importancia 1, 2 o 3 (siendo 1 el más urgente): '
+            pregImportancia=input('Niveles de importancia: 1,2,3 (siendo 1 el más urgente). \n Ingrese la importancia de la tarea a realizar: ')
+            importancia=val_opc(pregImportancia,1,3,imprimir3)
+            imprimir='Desea realizar la tarea ahora? (ingrese "si" o "no"): '
+            elije=input(imprimir)
+            elije=valSiNo(elije,imprimir)
+            if elije:
+                nodoNuevo=NodoTarea(opcionAsignar,importancia)
+                persona=empleados.get(empleadoAsignar) #chequear que me dice que es un string
+                persona.tareasPendientes.agregarNodoTarea(nodoNuevo)
+                print ('La tarea se ha generado con exito')
+            else: 
+                print ('La acción se ha cancelado')
         return
-    
+        
     def obtener_estadisticas(self, lista, array):
         '''Esta función permite almacenar las estadisticas en el archivo de texto'''
         ocupa = ocupacion (lista)
@@ -110,10 +113,16 @@ class Gerente(Persona):
     def bajaEmpleado(self,empleados:dict,tareas:dict,bajasEmpleados:dict):
         usuarioBaja=input('Ingrese el usuario del empleado que desea dar de baja: ')
         usuarioBaja=valExiUsu(usuarioBaja,empleados)
-        empleado=empleados.get(usuarioBaja)
-        empleado.bajas()
-        tareas[empleado.tipo]['empleados'].remove(empleado.usuario)
-        empleados.pop(empleado.usuario)
-        bajasEmpleados.add(empleado)
-        print('El empleado ha sido eliminado con éxito')
+        imprimir='Desea realizar la tarea ahora? (ingrese "si" o "no"): '
+        elije=input(imprimir)
+        elije=valSiNo(elije,imprimir)
+        if elije:
+            empleado=empleados.get(usuarioBaja)
+            empleado.bajas()
+            tareas[empleado.tipo]['empleados'].remove(empleado.usuario)
+            empleados.pop(empleado.usuario)
+            bajasEmpleados.add(empleado)
+            print('El empleado ha sido eliminado con éxito')
+        else:
+            print('La acción se ha cancelado.')
         

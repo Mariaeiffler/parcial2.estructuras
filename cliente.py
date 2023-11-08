@@ -1,7 +1,6 @@
 from Persona import Persona
-from Validaciones import *
 from Funciones import *
-from Cobros import Cobro
+from Cobros import Cobro #creo que no hace falta
 
 
 class Cliente(Persona):
