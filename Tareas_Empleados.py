@@ -6,19 +6,11 @@ tareas_empleados = {
     'administrativo': {'empleados':[],'tareas':['Atender la recepcion','Mandar a lavar las toallas y la ropa de cama','Ayudar a los huespedes con sus preguntas','Ayudar a los huespedes a seleccionar actividades para realizar','Atender las quejas y preocupaciones de los clientes', 'Organizacion de eventos para huespedes','Coordinar servicios de transporte para los huespedes']},
     'gerente': {'empleados':[],'tareas':['Asignar tareas']}
 }
-    
-def val_int(x): 
-    '''Esta función valida que sea un entero'''
-    try:
-        num=int(x)
-        return True
-    except Exception:
-        return False
-
-#agregar para que asignen valor de importancia 
-# generar metodo en hotel donde el servidor ppl pueda agregar mas tareas al diccionario de tareas
 
 
 if __name__ == '__main__':
-    print(tareas_empleados['cocina']['tareas'][3])
+    if len(tareas_empleados['limpieza']['empleados'])==0:
+        print(False)
+    else:
+        print(True)
     
