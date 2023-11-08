@@ -107,3 +107,13 @@ class Gerente(Persona):
         tareas[tipo]['empleados'].append(empleado.usuario)
         print ('El empleado se a creado con éxito.')
         
+    def bajaEmpleado(self,empleados:dict,tareas:dict,bajasEmpleados:dict):
+        usuarioBaja=input('Ingrese el usuario del empleado que desea dar de baja: ')
+        usuarioBaja=valExiUsu(usuarioBaja,empleados)
+        empleado=empleados.get(usuarioBaja)
+        empleado.bajas()
+        tareas[empleado.tipo]['empleados'].remove(empleado.usuario)
+        empleados.pop(empleado.usuario)
+        bajasEmpleados.add(empleado)
+        print('El empleado ha sido eliminado con éxito')
+        

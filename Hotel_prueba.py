@@ -126,7 +126,7 @@ class Hotel():
                             pregGerente=input('Elija una de las siguientes opciones: \n 1. Crear un empleado \n 2. Dar de baja un empleado \n 3. Inventario del personal \n 4. Ver estadísticas \n 5. Nomina de Clientes \n 6. Asignación de Tareas \n 7. Historial de baja de empleados \n 8. Historial de Reservas \n 9. Cerrar Sesión \n')
                             imprimir='Error. Elija una de las siguientes opciones: \n 1. Crear un empleado \n 2. Dar de baja un empleado \n 3. Inventario del personal \n 4. Ver estadísticas \n 5. Nomina de Clientes \n 6. Asignación de Tareas \n 7. Historial de baja de empleados \n 8. Historial de Reservas \n 9. Cerrar Sesión \n '
                             pregGerente=val_opc(pregGerente,1,9,imprimir)
-                            gerente=self.empleados.get(usuario)
+                            gerente:Gerente=self.empleados.get(usuario)
                             while pregGerente!=9:
                                 match pregGerente:
                                     case 1:
@@ -135,14 +135,7 @@ class Hotel():
                                         
                                     case 2:
                                         #Dar de baja un empleado
-                                        usuarioBaja=input('Ingrese el usuario del empleado que desea dar de baja: ')
-                                        usuarioBaja=valExiUsu(usuarioBaja,self.empleados)
-                                        empleado=self.empleados.get(usuarioBaja)
-                                        Personal.bajas(empleado)
-                                        self.tareas[empleado.tipo]['empleados'].remove(empleado.usuario)
-                                        self.empleados.pop(empleado.usuario)
-                                        self.bajasEmpleados.add(empleado)
-                                        print('El empleado ha sido eliminado con éxito')
+                                        gerente.bajaEmpleado(self.empleados,self.tareas,self.bajasEmpleados)
                                         
                                     case 3:
                                         #Inventario de personal
