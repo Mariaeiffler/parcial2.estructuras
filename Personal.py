@@ -83,7 +83,6 @@ class Personal(Persona):
         
     def registrar_egreso(self): 
         '''Esta función registra el egreso de un empleado'''
-        print(self.registro)
         if len(self.registro[len(self.registro)-1]) == 1:
             self.registro[len(self.registro)-1].append(datetime.now())
             print('Su egreso se registró con éxito')

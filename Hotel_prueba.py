@@ -37,13 +37,6 @@ class Hotel():
         '''Esta funcion permite que se ejecute el programa. Dependiendo de si el usuario es un cliente, empleado o genente, se le permiten realizar distintas operaciones'''
         obtener_pickle(self, 'abrir')
     
-        print(self.reservas)
-        for hab in self.habitaciones:
-            print(hab.numero, hab.reservas)
-        for cli in self.clientes:
-            print(cli)
-            print(self.clientes.get(cli).reservas)
-    
         seguir = True 
         gerente=Gerente('Fransisco','gerente',"10101010",'5491100000000','06/11/2003','gerente@gmail.com','Gerente1','gerente')
         self.empleados[gerente.usuario]=gerente
@@ -78,7 +71,7 @@ class Hotel():
                             match pregcliente:
                             # hacer una reserva
                                 case 1:
-                                    cliente.realizar_reserva(self.habitaciones, self.reservas, self.cobros)
+                                    self.cobros = cliente.realizar_reserva(self.habitaciones, self.reservas, self.cobros)
                                     
                                 # pedir algo en el buffet
                                 case 2:
@@ -92,7 +85,7 @@ class Hotel():
                                 
                                 # modificar una reserva
                                 case 3:
-                                    cliente.modificar_reserva(self.reservas, self.habitaciones, self.cobros)
+                                    self.cobros = cliente.modificar_reserva(self.reservas, self.habitaciones, self.cobros)
                                     
                                 #cancelar una reserva
                                 case 4:

@@ -45,15 +45,17 @@ class Cliente(Persona):
         reservas[numres]=reserva1
         monto,objhab=obtener_precio(habitaciones, int(hab))
         cobro = Cobro(monto,self,objhab)
+        print(cobro)
         cobros = agregar_cobro(cobros, cobro)
+        print(cobros)
         self.asignar_nivel(cobros)
         
         print('Su reserva se realizó con exito en las fechas {} - {} y su numero de reserva es {}. \n Recuerde que el horario de check in es desde las 15:00 hs y el check out hasta las 12:00 hs'.format(fecha_inicio.strftime('%d/%m/%Y'),fecha_fin.strftime('%d/%m/%Y'),numres))
-        return
+        return cobros
     
-    def modificar_reserva(self, reservas:dict, lista, cobros:dict):
+    def modificar_reserva(self, reservas:dict, lista, cobros):
         ''' Esta funcion le permite al usuario poder cambiar su reserva, ya sea la modificacion de la fecha, habitacion o ambas'''
-        print('Recuerde que si hace una modificacion de su reserva, no se le reembolsará la diferencia de precio en caso de hacerla \n pero si se le cobrará en caso de que la seleccionada tenga un valor mayor')
+        print('Recuerde que si hace una modificacion de su reserva, no se le reembolsará la diferencia de precio en caso de haberla \n pero si se le cobrará en caso de que la seleccionada tenga un valor mayor')
         seguir = volver_atras()
         if seguir:
             numres = input('Ingrese su numero de reserva  ')
@@ -89,9 +91,9 @@ class Cliente(Persona):
                 cobro = Cobro(dif_precio,self,hab)
                 cobros = agregar_cobro(cobros, cobro)
         else:
-            pass
-        return
-                        
+            pass      
+        return cobros 
+                     
     
     def cancelar_reserva(self,reservas:dict, lista):
         ''' Esta funcion le permite al usuario cancelar la reserva definitivamente'''

@@ -61,7 +61,6 @@ class Gerente(Persona):
         if len(dic)+1 != 0:
             for clave in dic:
                 if dic.get(clave).tipo != 'gerente':
-                    print(clave)
                     list_a.append(dic.get(clave))
         if len(list_a) != 0:
             print('Los empleados activos son: ')
@@ -80,7 +79,7 @@ class Gerente(Persona):
             print('No hay empleados dados de baja ')
         return
     
-    def nomina_clientes(dic:dict):
+    def nomina_clientes(self, dic:dict):
         '''Esta función crea la nomina de cliente en el hotel'''
         if len(dic) != 0:
             print('Los clientes del hotel son: ')
