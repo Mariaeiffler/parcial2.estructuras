@@ -91,6 +91,11 @@ class Hotel():
                             imprimir='Error. Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Realizar check-in \n 6. Realizar check-out \n 7. Cerrar Sesión \n'
                             pregcliente=val_opc(pregcliente,1,7,imprimir)
                         
+                        if pregcliente == 7:
+                            pregunta=input(('Elija una de las siguientes opciones: \n 1. Sign up (si es un cliente) \n 2. Sign in \n 3. Abandonar la página \n'))
+                            imprimir = 'Error. Elija una de las siguientes opciones: \n 1. Sign up \n 2. Sign in \n 3. Abandonar la página \n'
+                            pregunta=val_opc(pregunta,1,3,imprimir)
+                        
                         seguir = False 
                         
                     else:
@@ -149,6 +154,11 @@ class Hotel():
                                         
                                 pregGerente=input('\n Elija una de las siguientes opciones: \n 1. Crear un empleado \n 2. Dar de baja un empleado \n 3. Inventario del personal \n 4. Ver estadísticas \n 5. Nomina de Clientes \n 6. Asignar Tarea \n 7. Historial de baja de empleados \n 8. Historial de Reservas \n 9. Realizar una Tarea \n 10. Visualizar la última tarea realizada \n 11. Cerrar Sesión \n')
                                 pregGerente=val_opc(pregGerente,1,11,imprimir)   
+                                
+                            if pregGerente == 11:
+                                pregunta=input(('Elija una de las siguientes opciones: \n 1. Sign up (si es un cliente) \n 2. Sign in \n 3. Abandonar la página \n'))
+                                imprimir = 'Error. Elija una de las siguientes opciones: \n 1. Sign up \n 2. Sign in \n 3. Abandonar la página \n'
+                                pregunta=val_opc(pregunta,1,3,imprimir)
     
                             seguir = False 
                                 
@@ -181,6 +191,11 @@ class Hotel():
                                 pregEmpleado=input('\n Ingrese una de las siguientes opciones: \n 1. Realizar una Tarea \n 2. Registrar ingreso \n 3. Registrar egreso \n 4. Visualizar la última tarea realizada \n 5. Cerrar sesión \n') #Agregar el resto de las cosas que debería hacer un empleado
                                 imprimir1='\n Error. Elija una de las siguientes opciones: \n 1. Realizar una Tarea \n 2. Registrar ingreso \n 3. Registrar egreso \n 4. Visualizar la última tarea realizada \n 5. Cerrar sesión'
                                 pregEmpleado=val_opc(pregEmpleado,1,5,imprimir1)
+                                
+                            if pregEmpleado == 5:
+                                pregunta=input(('Elija una de las siguientes opciones: \n 1. Sign up (si es un cliente) \n 2. Sign in \n 3. Abandonar la página \n'))
+                                imprimir = 'Error. Elija una de las siguientes opciones: \n 1. Sign up \n 2. Sign in \n 3. Abandonar la página \n'
+                                pregunta=val_opc(pregunta,1,3,imprimir)
                                 
                             seguir = False
                             
