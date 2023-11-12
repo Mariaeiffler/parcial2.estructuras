@@ -350,7 +350,7 @@ def infoPersonas (dicc1:dict,dicc2:dict):
     dni=validaciondni(dni, dicc1, dicc2)
     contacto=input('Ingrese su numero de contacto: ')
     contacto=validacioncontacto(contacto)
-    fecha_nac=input('Ingrese su fecha de nacimiento: (Debe ser mayor de edad para crearse un usuario) ')
+    fecha_nac=input('Ingrese su fecha de nacimiento en el formato dd/mm/aaaa (Debe ser mayor de edad para crearse un usuario): ')
     fecha_nac=validacionfechanac (fecha_nac)
     mail=input('Ingrese su mail: ')
     mail=valMail(mail)
