@@ -46,7 +46,7 @@ class Personal(Persona):
                         else:
                             print('La tarea no se ha realizado')
                     else:
-                        print('No hay tareas pendientes')
+                        print('No hay pedidos pendientes')
                    
                 case 2:
                     if ordenes.esta_vacia() == False:
