@@ -25,7 +25,7 @@ class Personal(Persona):
         
     def bajas(self):
         '''Esta función permite dar de baja a un empleado''' ### ver
-        self.fechabaja = datetime.now()
+        self.fecbaja = datetime.now()
 
     def realizarTareas(self,ordenes:Cola):
         '''Esta función permite realizar las tareas pendientes'''
