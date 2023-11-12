@@ -50,15 +50,18 @@ class Personal(Persona):
                         print('No hay tareas pendientes')
                    
                 case 2:
-                    print('El pedido a realizar es: {}'.format(ordenes.mostrarPrimero()))
-                    imprimir='Desea realizar el pedido ahora? (ingrese "si" o "no"): '
-                    elije=input(imprimir)
-                    elije=valSiNo(elije,imprimir)
-                    if elije:
-                        ordenes.desencolar()
-                        print('La tarea se ha realizado con éxito.')
+                    if ordenes.esta_vacia() == False:
+                        print('El pedido a realizar es: {}'.format(ordenes.mostrarPrimero()))
+                        imprimir='Desea realizar el pedido ahora? (ingrese "si" o "no"): '
+                        elije=input(imprimir)
+                        elije=valSiNo(elije,imprimir)
+                        if elije:
+                            ordenes.desencolar()
+                            print('La tarea se ha realizado con éxito.')
+                        else:
+                            print ('La acción se ha cancelado')
                     else:
-                        print ('La acción se ha cancelado')
+                        print('No hay tareas pendientes')
         else:
             if self.tareasPendientes.head:
                 print('La Tarea a realizar es: {}'.format(self.tareasPendientes.head.__str__()))
