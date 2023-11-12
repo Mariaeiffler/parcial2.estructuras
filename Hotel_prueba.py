@@ -33,7 +33,7 @@ class Hotel():
         obtener_pickle(self, 'abrir')
     
         seguir = True 
-        gerente=Gerente('Fransisco','gerente',"10101010",'5491100000000','06/11/2003','gerente@gmail.com','Gerente1','gerente')
+        gerente=Gerente('Lionel Messi','gerente',"10101010",'5491100000000','24/06/1987','liomessi@gmail.com','Gerente1','gerente')
         self.empleados[gerente.usuario]=gerente
         self.tareas['gerente']['empleados'].append(gerente.usuario)
         
@@ -69,15 +69,8 @@ class Hotel():
                                     
                                 # pedir algo en el buffet
                                 case 2:
-                                    monto, comida = hacer_pedido(self.buffet)
-                                    tareabuffet=comida.descripcion
-                                    self.pedidosBuffet.encolar(tareabuffet)
-                                    cobro = Cobro(monto, cliente, comida)
-                                    self.cobros = agregar_cobro(self.cobros, cobro)
-                                    cliente.asignar_nivel(self.cobros)
-                                    print('Su pedido se realizó con éxito ')
-                                
-                                # modificar una reserva
+                                    self.cobros=cliente.realizarPedidoBuffet (self.pedidosBuffet,self.buffet,self.cobros)
+                                    
                                 case 3:
                                     self.cobros = cliente.modificar_reserva(self.reservas, self.habitaciones, self.cobros)
                                     

@@ -2,6 +2,7 @@ from Persona import Persona
 from Funciones import *
 from Cobros import Cobro
 from Reserva import Reserva
+from Cola import Cola
 
 
 class Cliente(Persona):
@@ -157,6 +158,16 @@ class Cliente(Persona):
                     print('Su check-out ya se realizó automaticamente a las 12:00 hs')
         if res_hoy == False:
             print('No se pudo realizar su check-out. El día de hoy no termina una estadía')
+            
+    def realizarPedidoBuffet (cliente,cola:Cola,buffet,cobros):
+        monto, comida = hacer_pedido(buffet)
+        tareabuffet=comida.descripcion
+        cola.encolar(tareabuffet)
+        cobro = Cobro(monto, cliente, comida)
+        cobros = agregar_cobro(cobros, cobro)
+        cliente.asignar_nivel(cobros)
+        print('Su pedido se realizó con éxito ')
+        return cobros
         
         
            
