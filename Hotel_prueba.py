@@ -38,9 +38,9 @@ class Hotel():
         self.tareas['gerente']['empleados'].append(gerente.usuario)
         
         while seguir==True: 
-            pregunta=input(('Elija una de las siguientes opciones: \n 1. Sign up (si es un cliente) \n 2. Sign in \n'))
-            imprimir = 'Error. Elija una de las siguientes opciones: \n 1. Sign up \n 2. Sign in \n'
-            pregunta=val_opc(pregunta,1,2,imprimir)
+            pregunta=input(('Elija una de las siguientes opciones: \n 1. Sign up (si es un cliente) \n 2. Sign in \n 3. Abandonar la página \n'))
+            imprimir = 'Error. Elija una de las siguientes opciones: \n 1. Sign up \n 2. Sign in \n 3. Abandonar la página \n'
+            pregunta=val_opc(pregunta,1,3,imprimir)
             
             match pregunta:
                 # registro del cliente:
@@ -113,14 +113,17 @@ class Hotel():
                                     case 3:
                                         #Inventario de personal
                                         gerente.inv_empleados(self.empleados, self.bajasEmpleados)
+                                        print('Puede ver el inventario de los empleados en un archivo de texto.')
                                             
                                     case 4:
                                         #Estadisticas
                                         gerente.obtener_estadisticas(self.habitaciones, self.cobros)
+                                        print('Puede ver las estadísticas del hotel en un archivo de texto.')
                                     
                                     case 5:
                                         #Nomina de clientes
                                         gerente.nomina_clientes(self.clientes)
+                                        print('Puede ver la nómina de los clientes en un archivo de texto.')
                                     
                                     case 6:
                                         #Asignar una Tarea
@@ -129,10 +132,12 @@ class Hotel():
                                     case 7:
                                         #Historial de baja de un empleados
                                         gerente.historialBajasEmpleados(self.bajasEmpleados)
+                                        print('Puede ver el historial de bajas de empleados en un archivo de texto')
                                     
                                     case 8:
                                         #Historial de reservas
                                         gerente.historial_reservas(self.reservas)
+                                        print('Puede ver el historial de reservas en un archivo de texto.')
                                         
                                     case 9:
                                         #Realizar una Tarea
@@ -178,6 +183,9 @@ class Hotel():
                                 pregEmpleado=val_opc(pregEmpleado,1,5,imprimir1)
                                 
                             seguir = False
+                            
+                case 3:
+                    seguir = False
                                 
         obtener_pickle(self, 'cerrar')
         print('Se ha cerrado la sesión con éxito')

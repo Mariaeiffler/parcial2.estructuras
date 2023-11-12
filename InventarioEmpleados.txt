@@ -1,0 +1,5 @@
+Los empleados activos son:
+El empleado de nombre lara e y dni, de tipo 12345677, se dio de alta el dia 11/11/2023 y sigue vigente
+
+Los empleados dados de baja son:
+El empleado de nombre rolfi e y dni, de tipo 22823366, se dio de alta el dia 11/11/2023 y sigue vigente
