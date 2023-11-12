@@ -42,7 +42,7 @@ class Hotel():
         self.empleados[gerente.usuario]=gerente
         self.tareas['gerente']['empleados'].append(gerente.usuario)
         
-        while seguir==True: #Fijarnos si queremos poner el while aca o en alguna otra parte del programa
+        while seguir==True: 
             pregunta=input(('Elija una de las siguientes opciones: \n 1. Sign up (si es un cliente) \n 2. Sign in \n'))
             imprimir = 'Error. Elija una de las siguientes opciones: \n 1. Sign up \n 2. Sign in \n'
             pregunta=val_opc(pregunta,1,2,imprimir)
@@ -91,10 +91,12 @@ class Hotel():
                                 case 4:
                                     if cliente.cancelar_reserva(self.reservas, self.habitaciones) == None:
                                         pass
-                                    
+                                
+                                #check in cliente    
                                 case 5:
                                     cliente.check_in()
-                                    
+                                
+                                #check out cliente    
                                 case 6:
                                     cliente.check_out()
                                     
@@ -102,17 +104,16 @@ class Hotel():
                             imprimir='Error. Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Realizar check-in \n 6. Realizar check-out \n 7. Cerrar Sesión \n'
                             pregcliente=val_opc(pregcliente,1,7,imprimir)
                         
-                        seguir = False #ponerlo afuera del while asi tmb se hace para el gerente, pero ver como funciona
+                        seguir = False 
                         
                     else:
-                        
                         # menu gerente
-                        if tipo=='gerente': #si cambiamos algo del menu del gerente cambiar el rango de las validaciones y los dos str.
-                            pregGerente=input('\n Elija una de las siguientes opciones: \n 1. Crear un empleado \n 2. Dar de baja un empleado \n 3. Inventario del personal \n 4. Ver estadísticas \n 5. Nomina de Clientes \n 6. Asignar Tarea \n 7. Historial de baja de empleados \n 8. Historial de Reservas \n 9. Realizar una Tarea \n 10. Registrar Ingreso \n 11. Registrar Egreso \n 12. Visualizar la última tarea realizada \n 13. Cerrar Sesión \n')
-                            imprimir='Error. Elija una de las siguientes opciones: \n 1. Crear un empleado \n 2. Dar de baja un empleado \n 3. Inventario del personal \n 4. Ver estadísticas \n 5. Nomina de Clientes \n 6. Asignar Tarea \n 7. Historial de baja de empleados \n 8. Historial de Reservas \n 9. Realizar una Tarea \n 10. Registrar Ingreso \n 11. Registrar Egreso \n 12. Visualizar la última tarea realizada \n 13. Cerrar Sesión \n'
-                            pregGerente=val_opc(pregGerente,1,9,imprimir)
+                        if tipo=='gerente': 
+                            pregGerente=input('\n Elija una de las siguientes opciones: \n 1. Crear un empleado \n 2. Dar de baja un empleado \n 3. Inventario del personal \n 4. Ver estadísticas \n 5. Nomina de Clientes \n 6. Asignar Tarea \n 7. Historial de baja de empleados \n 8. Historial de Reservas \n 9. Realizar una Tarea \n 11. Visualizar la última tarea realizada \n 13. Cerrar Sesión \n')
+                            imprimir='Error. Elija una de las siguientes opciones: \n 1. Crear un empleado \n 2. Dar de baja un empleado \n 3. Inventario del personal \n 4. Ver estadísticas \n 5. Nomina de Clientes \n 6. Asignar Tarea \n 7. Historial de baja de empleados \n 8. Historial de Reservas \n 9. Realizar una Tarea \n 10. Visualizar la última tarea realizada \n 11. Cerrar Sesión \n'
+                            pregGerente=val_opc(pregGerente,1,11,imprimir)
                             gerente:Gerente=self.empleados.get(usuario)
-                            while pregGerente!=13:
+                            while pregGerente!=11:
                                 match pregGerente:
                                     case 1:
                                         #Crear empleado
@@ -151,30 +152,21 @@ class Hotel():
                                         gerente.realizarTareas(self.pedidosBuffet)
                                     
                                     case 10:
-                                        #Registrar Ingreso
-                                        gerente.registrar_ingreso()
-                                        print('Su ingreso se ha realizado con éxito')
-                                        
-                                    case 11:
-                                        #Registrar Egreso
-                                        personal.registrar_egreso()
-                                    
-                                    case 12:
                                         #Ver la última tarea realizada
                                         gerente.visualizarTareaAnterior()
                                         
-                                pregGerente=input('\n Elija una de las siguientes opciones: \n 1. Crear un empleado \n 2. Dar de baja un empleado \n 3. Inventario del personal \n 4. Ver estadísticas \n 5. Nomina de Clientes \n 6. Asignar Tarea \n 7. Historial de baja de empleados \n 8. Historial de Reservas \n 9. Realizar una Tarea \n 10. Registrar Ingreso \n 11. Registrar Egreso \n 12. Visualizar la última tarea realizada \n 13. Cerrar Sesión \n')
-                                pregGerente=val_opc(pregGerente,1,13,imprimir)   
+                                pregGerente=input('\n Elija una de las siguientes opciones: \n 1. Crear un empleado \n 2. Dar de baja un empleado \n 3. Inventario del personal \n 4. Ver estadísticas \n 5. Nomina de Clientes \n 6. Asignar Tarea \n 7. Historial de baja de empleados \n 8. Historial de Reservas \n 9. Realizar una Tarea \n 10. Visualizar la última tarea realizada \n 11. Cerrar Sesión \n')
+                                pregGerente=val_opc(pregGerente,1,11,imprimir)   
     
-                            seguir = False #ponerlo afuera del while asi tmb se hace para el gerente, pero ver como funciona
+                            seguir = False 
                                 
                         #menu empleados
                         else:
                             pregEmpleado=input('\n Ingrese una de las siguientes opciones: \n 1. Realizar una Tarea \n 2. Registrar ingreso \n 3. Registrar egreso \n 4. Visualizar la última tarea realizada \n 5. Cerrar sesión \n') #Agregar el resto de las cosas que debería hacer un empleado
                             imprimir1='\n Error. Ingrese una de las siguientes opciones: \n 1. Realizar una Tarea \n 2. Registrar ingreso \n 3. Registrar egreso \n 4. Visualizar la última tarea realizada \n 5. Cerrar sesión \n'
-                            pregEmpleado=val_opc(pregEmpleado,1,5,imprimir1) #Hay que cambiar el rango a medida que agregamos las cosas que hace el empleado
+                            pregEmpleado=val_opc(pregEmpleado,1,5,imprimir1) 
                             personal:Personal=self.empleados.get(usuario)
-                            while pregEmpleado!=5: #tmb cambiar acá el máximo
+                            while pregEmpleado!=5: 
                                 match pregEmpleado:
                                     case 1:
                                         #Realizar una tarea
@@ -201,7 +193,6 @@ class Hotel():
                             seguir = False
                                 
         obtener_pickle(self, 'cerrar')
-        # seguir = False #ponerlo afuera del while asi tmb se hace para el gerente, pero ver como funciona
         print('Se ha cerrado la sesión con éxito')
         
 if __name__ == "__main__":
