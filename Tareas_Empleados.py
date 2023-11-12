@@ -8,9 +8,5 @@ tareas_empleados = {
 }
 
 
-if __name__ == '__main__':
-    if len(tareas_empleados['limpieza']['empleados'])==0:
-        print(False)
-    else:
-        print(True)
+
     
