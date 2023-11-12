@@ -36,9 +36,9 @@ class Hotel():
         gerente=Gerente('Lionel Messi','gerente',"10101010",'5491100000000','24/06/1987','liomessi@gmail.com','Gerente1','gerente')
         self.empleados[gerente.usuario]=gerente
         self.tareas['gerente']['empleados'].append(gerente.usuario)
+        pregunta=menuPPL()
         
         while seguir==True: 
-            pregunta=menuPPL()
         
             match pregunta:
                 # registro del cliente:
@@ -90,14 +90,12 @@ class Hotel():
                             pregcliente=val_opc(pregcliente,1,7,imprimir)
                         
                         if pregcliente == 7:
-                            pregunta=menuPPL()
-                        
-                        seguir = False 
+                            pregunta=menuPPL() 
                         
                     else:
                         # menu gerente
                         if tipo=='gerente': 
-                            pregGerente=input('\n Elija una de las siguientes opciones: \n 1. Crear un empleado \n 2. Dar de baja un empleado \n 3. Inventario del personal \n 4. Ver estadísticas \n 5. Nomina de Clientes \n 6. Asignar Tarea \n 7. Historial de baja de empleados \n 8. Historial de Reservas \n 9. Realizar una Tarea \n 11. Visualizar la última tarea realizada \n 13. Cerrar Sesión \n')
+                            pregGerente=input('\n Elija una de las siguientes opciones: \n 1. Crear un empleado \n 2. Dar de baja un empleado \n 3. Inventario del personal \n 4. Ver estadísticas \n 5. Nomina de Clientes \n 6. Asignar Tarea \n 7. Historial de baja de empleados \n 8. Historial de Reservas \n 9. Realizar una Tarea \n 10. Visualizar la última tarea realizada \n 11. Cerrar Sesión \n')
                             imprimir='Error. Elija una de las siguientes opciones: \n 1. Crear un empleado \n 2. Dar de baja un empleado \n 3. Inventario del personal \n 4. Ver estadísticas \n 5. Nomina de Clientes \n 6. Asignar Tarea \n 7. Historial de baja de empleados \n 8. Historial de Reservas \n 9. Realizar una Tarea \n 10. Visualizar la última tarea realizada \n 11. Cerrar Sesión \n'
                             pregGerente=val_opc(pregGerente,1,11,imprimir)
                             gerente:Gerente=self.empleados.get(usuario)
@@ -153,8 +151,7 @@ class Hotel():
                                 
                             if pregGerente == 11:
                                 pregunta=menuPPL()
-    
-                            seguir = False 
+     
                                 
                         #menu empleados
                         else:
@@ -189,7 +186,6 @@ class Hotel():
                             if pregEmpleado == 5:
                                 pregunta=menuPPL()
                                 
-                            seguir = False
                             
                 case 3:
                     seguir = False
