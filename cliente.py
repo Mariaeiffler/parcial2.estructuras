@@ -159,13 +159,13 @@ class Cliente(Persona):
         if res_hoy == False:
             print('No se pudo realizar su check-out. El día de hoy no termina una estadía')
             
-    def realizarPedidoBuffet (cliente,cola:Cola,buffet,cobros):
+    def realizarPedidoBuffet (self,cola:Cola,buffet,cobros):
         monto, comida = hacer_pedido(buffet)
         tareabuffet=comida.descripcion
         cola.encolar(tareabuffet)
-        cobro = Cobro(monto, cliente, comida)
+        cobro = Cobro(monto, self, comida)
         cobros = agregar_cobro(cobros, cobro)
-        cliente.asignar_nivel(cobros)
+        self.asignar_nivel(cobros)
         print('Su pedido se realizó con éxito ')
         return cobros
         
