@@ -1,12 +1,10 @@
-from Persona import Persona
 from Estadisticas import *
 from nodo import NodoTarea
 from Personal import Personal
 
-class Gerente(Persona):
-    def __init__(self,nombre,usuario,dni,contacto,fecha_nac,mail,contrasena, tipo):
-        super().__init__(nombre,usuario,dni,contacto,fecha_nac,mail,contrasena)
-        self.tipo = tipo
+class Gerente(Personal):
+    def __init__(self,nombre,usuario,dni,contacto,fecha_nac,mail,contrasena, tipo,fecalta=datetime.now(),fecbaja=None):
+        super().__init__(nombre,usuario,dni,contacto,fecha_nac,mail,contrasena,tipo,fecalta,fecbaja)
     
     def asignarTarea(self,tareas:dict,empleados:dict):
         '''Esta función permite la asignación de tareas a los empleados correspondientes. Las tareas poseen un nivel de importancia para indicar la urgencia de la misma'''
@@ -34,7 +32,7 @@ class Gerente(Persona):
             elije=valSiNo(elije,imprimir)
             if elije:
                 nodoNuevo=NodoTarea(opcionAsignar,importancia)
-                persona=empleados.get(empleadoAsignar) #chequear que me dice que es un string
+                persona=empleados.get(empleadoAsignar) 
                 persona.tareasPendientes.agregarNodoTarea(nodoNuevo)
                 print ('La tarea se ha generado con exito')
             else: 

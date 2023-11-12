@@ -108,11 +108,11 @@ class Hotel():
                         
                         # menu gerente
                         if tipo=='gerente': #si cambiamos algo del menu del gerente cambiar el rango de las validaciones y los dos str.
-                            pregGerente=input('Elija una de las siguientes opciones: \n 1. Crear un empleado \n 2. Dar de baja un empleado \n 3. Inventario del personal \n 4. Ver estadísticas \n 5. Nomina de Clientes \n 6. Asignación de Tareas \n 7. Historial de baja de empleados \n 8. Historial de Reservas \n 9. Cerrar Sesión \n')
-                            imprimir='Error. Elija una de las siguientes opciones: \n 1. Crear un empleado \n 2. Dar de baja un empleado \n 3. Inventario del personal \n 4. Ver estadísticas \n 5. Nomina de Clientes \n 6. Asignación de Tareas \n 7. Historial de baja de empleados \n 8. Historial de Reservas \n 9. Cerrar Sesión \n '
+                            pregGerente=input('\n Elija una de las siguientes opciones: \n 1. Crear un empleado \n 2. Dar de baja un empleado \n 3. Inventario del personal \n 4. Ver estadísticas \n 5. Nomina de Clientes \n 6. Asignar Tarea \n 7. Historial de baja de empleados \n 8. Historial de Reservas \n 9. Realizar una Tarea \n 10. Registrar Ingreso \n 11. Registrar Egreso \n 12. Visualizar la última tarea realizada \n 13. Cerrar Sesión \n')
+                            imprimir='Error. Elija una de las siguientes opciones: \n 1. Crear un empleado \n 2. Dar de baja un empleado \n 3. Inventario del personal \n 4. Ver estadísticas \n 5. Nomina de Clientes \n 6. Asignar Tarea \n 7. Historial de baja de empleados \n 8. Historial de Reservas \n 9. Realizar una Tarea \n 10. Registrar Ingreso \n 11. Registrar Egreso \n 12. Visualizar la última tarea realizada \n 13. Cerrar Sesión \n'
                             pregGerente=val_opc(pregGerente,1,9,imprimir)
                             gerente:Gerente=self.empleados.get(usuario)
-                            while pregGerente!=9:
+                            while pregGerente!=13:
                                 match pregGerente:
                                     case 1:
                                         #Crear empleado
@@ -146,8 +146,25 @@ class Hotel():
                                         #Historial de reservas
                                         gerente.historial_reservas(self.reservas)
                                         
-                                pregGerente=input('\n Elija una de las siguientes opciones: \n 1. Crear un empleado \n 2. Dar de baja un empleado \n 3. Inventario del personal \n 4. Ver estadísticas \n 5. Nomina de Clientes \n 6. Asignar Tarea \n 7. Historial de baja de empleados \n 8. Historial de Reservas \n 9. Cerrar Sesión \n')
-                                pregGerente=val_opc(pregGerente,1,9,imprimir)   
+                                    case 9:
+                                        #Realizar una Tarea
+                                        gerente.realizarTareas(self.pedidosBuffet)
+                                    
+                                    case 10:
+                                        #Registrar Ingreso
+                                        gerente.registrar_ingreso()
+                                        print('Su ingreso se ha realizado con éxito')
+                                        
+                                    case 11:
+                                        #Registrar Egreso
+                                        personal.registrar_egreso()
+                                    
+                                    case 12:
+                                        #Ver la última tarea realizada
+                                        gerente.visualizarTareaAnterior()
+                                        
+                                pregGerente=input('\n Elija una de las siguientes opciones: \n 1. Crear un empleado \n 2. Dar de baja un empleado \n 3. Inventario del personal \n 4. Ver estadísticas \n 5. Nomina de Clientes \n 6. Asignar Tarea \n 7. Historial de baja de empleados \n 8. Historial de Reservas \n 9. Realizar una Tarea \n 10. Registrar Ingreso \n 11. Registrar Egreso \n 12. Visualizar la última tarea realizada \n 13. Cerrar Sesión \n')
+                                pregGerente=val_opc(pregGerente,1,13,imprimir)   
     
                             seguir = False #ponerlo afuera del while asi tmb se hace para el gerente, pero ver como funciona
                                 
@@ -167,7 +184,7 @@ class Hotel():
                                     case 2:
                                         #Registar ingreso
                                         personal.registrar_ingreso()
-                                        print('Su ingreso se ha registrado con exito')
+                                        print('Su ingreso se ha registrado con éxito')
                                     
                                     case 3:
                                         #Registrar egreso
