@@ -120,14 +120,17 @@ class Hotel():
                                     case 3:
                                         #Inventario de personal
                                         gerente.inv_empleados(self.empleados, self.bajasEmpleados)
+                                        print('Puede ver el inventario de los empleados en un archivo de texto.')
                                             
                                     case 4:
                                         #Estadisticas
                                         gerente.obtener_estadisticas(self.habitaciones, self.cobros)
+                                        print('Puede ver las estadísticas del hotel en un archivo de texto.')
                                     
                                     case 5:
                                         #Nomina de clientes
                                         gerente.nomina_clientes(self.clientes)
+                                        print('Puede ver la nómina de los clientes en un archivo de texto.')
                                     
                                     case 6:
                                         #Asignar una Tarea
@@ -136,10 +139,12 @@ class Hotel():
                                     case 7:
                                         #Historial de baja de un empleados
                                         gerente.historialBajasEmpleados(self.bajasEmpleados)
+                                        print('Puede ver el historial de bajas de empleados en un archivo de texto')
                                     
                                     case 8:
                                         #Historial de reservas
                                         gerente.historial_reservas(self.reservas)
+                                        print('Puede ver el historial de reservas en un archivo de texto.')
                                         
                                     case 9:
                                         #Realizar una Tarea
