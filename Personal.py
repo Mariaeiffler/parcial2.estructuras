@@ -1,6 +1,5 @@
 from datetime import datetime
 from Persona import Persona
-from nodo import NodoTarea
 from list_enlazada import *
 from Tareas_Empleados import tareas_empleados
 from Funciones import *
