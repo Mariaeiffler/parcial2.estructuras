@@ -36,7 +36,6 @@ class Hotel():
         gerente=Gerente('Lionel Messi','gerente',"10101010",'5491100000000','24/06/1987','liomessi@gmail.com','Gerente1','gerente')
         self.empleados[gerente.usuario]=gerente
         self.tareas['gerente']['empleados'].append(gerente.usuario)
-        
         while seguir==True: 
             pregunta=input(('Elija una de las siguientes opciones: \n 1. Sign up (si es un cliente) \n 2. Sign in \n 3. Abandonar la página \n'))
             imprimir = 'Error. Elija una de las siguientes opciones: \n 1. Sign up \n 2. Sign in \n 3. Abandonar la página \n'
