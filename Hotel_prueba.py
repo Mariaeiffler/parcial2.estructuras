@@ -38,9 +38,9 @@ class Hotel():
         self.tareas['gerente']['empleados'].append(gerente.usuario)
         
         while seguir==True: 
-            pregunta=input(('Elija una de las siguientes opciones: \n 1. Sign up (si es un cliente) \n 2. Sign in \n'))
-            imprimir = 'Error. Elija una de las siguientes opciones: \n 1. Sign up \n 2. Sign in \n'
-            pregunta=val_opc(pregunta,1,2,imprimir)
+            pregunta=input(('Elija una de las siguientes opciones: \n 1. Sign up (si es un cliente) \n 2. Sign in \n 3. Abandonar la página \n'))
+            imprimir = 'Error. Elija una de las siguientes opciones: \n 1. Sign up \n 2. Sign in \n 3. Abandonar la página \n'
+            pregunta=val_opc(pregunta,1,3,imprimir)
             
             match pregunta:
                 # registro del cliente:
@@ -190,6 +190,9 @@ class Hotel():
                                 pregEmpleado=val_opc(pregEmpleado,1,5,imprimir1)
                                 
                             seguir = False
+                            
+                case 3:
+                    seguir = False
                                 
         obtener_pickle(self, 'cerrar')
         print('Se ha cerrado la sesión con éxito')
