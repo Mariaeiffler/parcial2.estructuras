@@ -19,9 +19,9 @@ class Personal(Persona):
         
     def __str__(self):
         if self.fecbaja == None:
-            return ('El empleado de nombre {} y dni, de tipo {}, se dió de alta el dia {} y sigue vigente'.format(self.nombre, self.dni, self.fecalta.strftime('%d/%m/%Y')))
+            return ('El empleado de nombre {} y dni, de tipo {}, se dio de alta el dia {} y sigue vigente'.format(self.nombre, self.dni, self.fecalta.strftime('%d/%m/%Y')))
         else:
-            return('El empleado de nombre {} y dni, de tipo {}, se dió de alta el dia {} y de baja el dia {}'.format(self.nombre, self.dni, self.fecalta.strftime('%d/%m/%Y'), self.fecbaja.strftime('%d/%m/%Y')))
+            return('El empleado de nombre {} y dni, de tipo {}, se dio de alta el dia {} y de baja el dia {}'.format(self.nombre, self.dni, self.fecalta.strftime('%d/%m/%Y'), self.fecbaja.strftime('%d/%m/%Y')))
         
     def bajas(self):
         '''Esta función permite dar de baja a un empleado''' ### ver

@@ -60,31 +60,46 @@ class Gerente(Personal):
             for clave in dic:
                 if dic.get(clave).tipo != 'gerente':
                     list_a.append(dic.get(clave))
-        if len(list_a) != 0:
-            print('Los empleados activos son: ')
-            for emp in list_a:
-                print(emp, '\n')
-        else:
-            print('No hay empleados activos')
         if len(bajasEmpleados)+1 != 0:
             for emp in bajasEmpleados:
                 list_b.append(emp)
-        if len(list_b) != 0:
-            print('Los empleados dados de baja son: ')
-            for emp in list_b:
-                print(emp)
-        else:
-            print('No hay empleados dados de baja ')
+        try:
+            with open('InventarioEmpleados.txt', "w") as archivo:
+                if len(list_a) != 0:
+                    archivo.write('Los empleados activos son:')
+                    archivo.write('\n')
+                    for emp in list_a:
+                        archivo.write(emp.__str__())
+                        archivo.write('\n')
+                else:
+                    archivo.write('No hay empleados activos')
+                if len(list_b) != 0:
+                    archivo.write('\n')
+                    archivo.write('Los empleados dados de baja son:')
+                    archivo.write('\n')
+                    for emp in list_b:
+                        archivo.write(emp.__str__())
+                        archivo.write('\n')
+                else:
+                    archivo.write('No hay empleados dados de baja')
+        except Exception:
+            pass          
         return
     
     def nomina_clientes(self, dic:dict):
         '''Esta función crea la nomina de cliente en el hotel'''
-        if len(dic) != 0:
-            print('Los clientes del hotel son: ')
-            for cliente in dic:
-                print(dic.get(cliente))
-        else:
-            print('El hotel todavía no tiene clientes')
+        try:
+            with open('NominaClientes.txt', "w") as archivo:
+                if len(dic) != 0:
+                    archivo.write('Los clientes del hotel son: ')
+                    archivo.write('\n')
+                    for cliente in dic:
+                        archivo.write(dic.get(cliente).__str__())
+                        archivo.write('\n')
+                else:
+                    archivo.write('El hotel todavía no tiene clientes')
+        except Exception:
+            pass
         return
     
     def historialBajasEmpleados(self,bajas:set):
