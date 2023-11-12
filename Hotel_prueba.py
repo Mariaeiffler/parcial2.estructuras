@@ -32,10 +32,6 @@ class Hotel():
         '''Esta funcion permite que se ejecute el programa. Dependiendo de si el usuario es un cliente, empleado o genente, se le permiten realizar distintas operaciones'''
         obtener_pickle(self, 'abrir')
     
-        print(self.cobros)
-        for i in self.cobros:
-            print(i)
-    
         seguir = True 
         gerente=Gerente('Lionel Messi','gerente',"10101010",'5491100000000','24/06/1987','liomessi@gmail.com','Gerente1','gerente')
         self.empleados[gerente.usuario]=gerente
