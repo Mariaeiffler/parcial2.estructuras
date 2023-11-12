@@ -20,13 +20,3 @@ class Pila():
         else:
             print('La pila se encuentra vacia')
             return
-        
-
-        
-if __name__ == "__main__":
-    pila=Pila()
-    pila.apilar('hola')
-    pila.apilar('chau')
-    pila.apilar('agus')
-    pila.apilar('ampi')
-    print(pila.obtenerUltimo())

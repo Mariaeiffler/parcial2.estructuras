@@ -4,7 +4,6 @@ from Habitacion_Simple import *
 from Habitacion_Suite import *
 import numpy as np
 from Tareas_Empleados import *
-from nodo import NodoTarea
 import pickle
 
 def obtener_pickle(hotel, accion):

@@ -64,10 +64,4 @@ class Lista_Enlazada():
             return True
         else:
             return False
-
-            
-            
-if __name__ == '__main__':
-    lista=Lista_Enlazada()
-    print(lista.esVacia())
     

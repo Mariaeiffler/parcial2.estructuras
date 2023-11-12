@@ -38,8 +38,3 @@ class Comida():
         postre_cena=Comida('Postres (flan con dulce de leche, bocha de helado, tiramisú)',500, 'cena','21')
         bebida=Comida('Bebida a elección',500,None,'22')
         return infusion,tostadas,yogur,huevos_revueltos,facturas,ensalada_frutas,pollo_carne,sopa,ensalada,pez,opcion_vegetariana,pastas,postres,tacos,salmon,pastas_cena,opcion_vegetariana_cena,pizza,empanadas,asado_para_2,postre_cena,bebida
-        
-      
-        
-if __name__ == '__main__':
-    print(type(Comida.crear_comidas()))

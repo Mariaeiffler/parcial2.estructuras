@@ -1,6 +1,6 @@
 from Persona import Persona
 from Funciones import *
-from Cobros import Cobro #creo que no hace falta
+from Cobros import Cobro
 from Reserva import Reserva
 
 
