@@ -5,7 +5,6 @@ from Habitacion_Simple import *
 from Habitacion_Suite import *
 from Tareas_Empleados import tareas_empleados 
 from Funciones import *
-from Reserva import Reserva
 from datetime import *
 from Cobros import Cobro
 from Buffet import Comida
@@ -50,7 +49,6 @@ class Hotel():
                     cliente=Cliente(nombre,usuario,dni,contacto,fecha_nac,mail,contrasena,'nivel 1',[])
                     self.clientes[usuario]=cliente
                     print('Su usuario se ha creado con exito. Si desea seguir en el programa ingrese sesión. ')
-                    #agregar q tambien pueda salir
                 
                 # inicio de sesion
                 case 2:
