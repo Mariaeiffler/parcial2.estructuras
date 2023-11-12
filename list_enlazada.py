@@ -57,17 +57,17 @@ class Lista_Enlazada():
             self.head = self.head.prox
         else:
             print("La lista está vacía. No hay elementos para eliminar.")
+        self.len-=1
+    
+    def esVacia(self):
+        if self.len==0:
+            return True
+        else:
+            return False
 
             
             
 if __name__ == '__main__':
     lista=Lista_Enlazada()
-    nodo1=NodoTarea('12',1)
-    lista.append(nodo1)
-    nodo2=NodoTarea('Las m',2)
-    lista.append(nodo2)
-    nodo3=NodoTarea('hola',1)
-    lista.agregarNodoTarea(nodo3)
-    lista.eliminarPrimero()
-    print(lista.__str__())
+    print(lista.esVacia())
     

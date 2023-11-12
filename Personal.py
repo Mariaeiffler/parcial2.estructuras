@@ -44,8 +44,10 @@ class Personal(Persona):
                             self.tareasRealizadas.apilar(self.tareasPendientes.head.valor)
                             self.tareasPendientes.eliminarPrimero() 
                             print('La tarea ha sido marcada como realizada.')
+                        else:
+                            print('La tarea no se ha realizado')
                     else:
-                        print('La tarea no se ha realizado')
+                        print('No hay tareas pendientes')
                    
                 case 2:
                     print('El pedido a realizar es: {}'.format(ordenes.mostrarPrimero()))
@@ -99,37 +101,6 @@ class Personal(Persona):
         self.registros.append(registro)
         print('Se registró el egreso de {} a las {}'.format(ahora,self.nombre))
 
-    # def mostrar_registros(self):
-    #     for registro in self.registros:
-    #         tipo = registro["tipo de registro"]
-    #         fecha_hora = registro["fecha_hora"]
-    #         nombre = registro["nombre"]
-    #         print('Se registró el {} de {} a las {}'.format(tipo,nombre,fecha_hora))
-
-    # def menu_registros(self):
-    #     while True:
-    #         print('Control de Ingreso y Egreso de Personal de Hotel')
-    #         print("1. Registrar Ingreso")
-    #         print("2. Registrar Egreso")
-    #         print("3. Mostrar Registros")
-    #         print("4. Salir")
-            
-    #         opcion = input("Selecciona una opción: ")
-            
-    #         if opcion == "1":
-    #             nombre_personal = input("Ingresa el nombre del personal que ingresa: ")
-    #             self.ingreso(nombre_personal)
-    #         elif opcion == "2":
-    #             nombre_personal = input("Ingresa el nombre del personal que egresa: ")
-    #             self.egreso(nombre_personal)
-    #         elif opcion == "3":
-    #             self.mostrar_registros()
-    #         elif opcion == "4":
-    #             break
-    #         else:
-    #             print("Opción no válida. Por favor, selecciona una opción válida.")
-                
-        # def agregarTarea (self):
         
 
 
