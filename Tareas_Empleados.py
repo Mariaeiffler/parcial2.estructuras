@@ -1,5 +1,5 @@
-'''El diccionario tareas_empleado esta ordenado por el tipo de empleado y almacena los empleados que pertenecen a cada tipo y 
-    las opciones de tareas que se le pueden almacenar a los mismos.'''
+'''El diccionario tareas_empleado esta ordenado por el tipo de empleado y almacena a los empleados que pertenecen a cada tipo y 
+    las opciones de tareas que se le pueden asignar a los mismos.'''
     
 tareas_empleados = {
     'cocina': {'empleados':[],'tareas':["Lavar los platos",'Cocinar desayuno',"Cocinar merienda","Cocinar cena"]},

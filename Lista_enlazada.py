@@ -1,4 +1,4 @@
-from Nodo import NodoTarea
+from nodo import NodoTarea
 
 class Lista_Enlazada():
     def __init__(self):  

@@ -1,5 +1,5 @@
 from Personal import Personal
-from Cliente import Cliente
+from cliente import Cliente
 from Habitacion_Doble import *
 from Habitacion_Simple import *
 from Habitacion_Suite import *
