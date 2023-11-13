@@ -16,7 +16,7 @@ class Gerente(Personal):
             print (F"{i} - {tarea}")
         imprimir1='Ingrese la tarea que desea asignar: '
         opcionAsignar=input(imprimir1) 
-        opcionAsignar=valOpcAsignacion(opcionAsignar,tareas,tipo,'tareas',imprimir1)
+        opcionAsignar=valOpcAsignacion(opcionAsignar,tareas,tipo,'tareas')
         if len(tareas[tipo]['empleados'])==0:
             print('No hay empleados disponibles para realizar estas tareas.')
         else:
@@ -24,7 +24,7 @@ class Gerente(Personal):
                 print (F"{i} - {personal}")
             imprimir2= 'Ingrese el número del usuario del empleados al que le desea asignar la tarea: '
             empleadoAsignar=input(imprimir2)
-            empleadoAsignar=valOpcAsignacion(empleadoAsignar,tareas,tipo,'empleados',imprimir2)
+            empleadoAsignar=valOpcAsignacion(empleadoAsignar,tareas,tipo,'empleados')
             imprimir3='Error. Ingrese como nivel de importancia 1, 2 o 3 (siendo 1 el más urgente): '
             pregImportancia=input('Niveles de importancia: 1,2,3 (siendo 1 el más urgente). \n Ingrese la importancia de la tarea a realizar: ')
             importancia=val_opc(pregImportancia,1,3,imprimir3)

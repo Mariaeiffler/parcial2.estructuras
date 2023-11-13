@@ -24,11 +24,11 @@ class Personal(Persona):
         
     def bajas(self):
         '''Esta función permite dar de baja a un empleado'''
-        
         self.fecbaja = datetime.now()
 
     def realizarTareas(self,ordenes:Cola):
         '''Esta función permite que el empleado realice las tareas que tiene pendientes.'''
+        
         if self.tipo=='cocina':
             opcion=input('Desea: \n 1. Realizar una tarea asignada por el gerente \n 2. Realizar un pedido del buffet \n') 
             imprimir1='\n Error. Desea: \n 1. Realizar una tarea asignada por el gerente \n 2. Realizar un pedido del buffet \n'

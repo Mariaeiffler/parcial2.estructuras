@@ -18,7 +18,7 @@ class Cliente(Persona):
                 res_imp += res[0].strftime('%d/%m/%Y') + ' - ' + res[1].strftime('%d/%m/%Y') + '   '
             return('El cliente de nombre {} y dni {} es de {} y sus reservas son: {}'.format(self.nombre, self.dni, self.tipo, res_imp))
         else:
-            return('El clientes de nombre {} y dni {} no tiene reservas en el hotel'.format(self.nombre, self.dni))
+            return('El cliente de nombre {} y dni {} no tiene reservas en el hotel'.format(self.nombre, self.dni))
     
     def realizar_reserva(self, habitaciones, reservas:dict, cobros):
         ''' Esta funcion hace la reserva de un usuario. Se le pide las 

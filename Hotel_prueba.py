@@ -29,7 +29,11 @@ perteneciente a cada empleado del hotel. Al asignar la tarea, el gerente le inse
 Los empleados del tipo cocina tienen además la opcion de realizar las ordenes del buffet (las cuales están almacenadas en una cola, así el
 empleado puede realizar las ordenes en el orden que fueron realizadas).
 
-Si se inicia sesión con el usuario de un empleado, el usuario podrá realizar
+Si se inicia sesión con el usuario de un empleado, el empleado podrá realizar las tareas que tiene asignadas, registrar su ingreso y egreso 
+(una vez que llega y se retira del trabajo) o visualizar la última tarea que realizo. 
+
+Una vez que el empleado haya realizado una tarea, se guarda el título de esta tarea en una pila, para que no se pierdan las tareas realizadas
+y además para que el empleado pueda ver cual fue la última tarea que realizó.  
   
 '''
 
