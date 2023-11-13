@@ -7,6 +7,7 @@ class Lista_Enlazada():
     
     def agregarInicio (self,nodo:NodoTarea):
         '''Esta función agrega un nodo al inicio de la lista'''
+        
         if (self.len==0): 
             self.head=nodo
         else:
@@ -27,6 +28,7 @@ class Lista_Enlazada():
         
     def append (self,nodo:NodoTarea): 
         '''Esta función agrega un nodo al final de la lista'''
+        
         if self.len==0:
             self.head=nodo
         else:
@@ -38,6 +40,7 @@ class Lista_Enlazada():
 
     def agregarNodoTarea(self, nuevoNodo: NodoTarea):
         '''Esta función agrega un nodo a la lista de forma ordenada'''
+        
         if self.len == 0:
             self.head = nuevoNodo
         elif nuevoNodo.importancia < self.head.importancia:
@@ -53,6 +56,7 @@ class Lista_Enlazada():
         
     def eliminarPrimero(self):
         '''Esta función elimina el primer nodo de la lista'''
+        
         if self.head:
             self.head = self.head.prox
         else:
