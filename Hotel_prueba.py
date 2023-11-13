@@ -66,6 +66,7 @@ class Hotel():
                     cliente=Cliente(nombre,usuario,dni,contacto,fecha_nac,mail,contrasena,'nivel 1',[])
                     self.clientes[usuario]=cliente
                     print('Su usuario se ha creado con exito. Si desea seguir en el programa ingrese sesión. ')
+                    pregunta=menuPPL()
                 
                 # inicio de sesion
                 case 2:
@@ -208,7 +209,8 @@ class Hotel():
                             
                 case 3:
                     seguir = False
-                                
+                    break
+                                   
         obtener_pickle(self, 'cerrar')
         print('Se ha cerrado la sesión con éxito.')
         
