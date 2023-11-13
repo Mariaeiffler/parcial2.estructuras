@@ -44,7 +44,7 @@ class Cliente(Persona):
                 self.reservas.append([fecha_inicio,fecha_fin])
         reserva1=Reserva(numres,self, fecha_inicio, fecha_fin, int(hab), datetime.today())
         reservas[numres]=reserva1
-        monto,objhab=obtener_precio(habitaciones, int(hab))
+        monto,objhab=obtener_precio(habitaciones, int(hab),reserva1)
         cobro = Cobro(monto,self,objhab)
         cobros = agregar_cobro(cobros, cobro)
         self.asignar_nivel(cobros)
