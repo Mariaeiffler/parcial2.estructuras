@@ -28,7 +28,7 @@ class Personal(Persona):
         self.fecbaja = datetime.now()
 
     def realizarTareas(self,ordenes:Cola):
-        '''Esta función permite realizar las tareas pendientes'''
+        '''Esta función permite que el empleado realice las tareas que tiene pendientes.'''
         if self.tipo=='cocina':
             opcion=input('Desea: \n 1. Realizar una tarea asignada por el gerente \n 2. Realizar un pedido del buffet \n') 
             imprimir1='\n Error. Desea: \n 1. Realizar una tarea asignada por el gerente \n 2. Realizar un pedido del buffet \n'
@@ -77,32 +77,24 @@ class Personal(Persona):
         return
                 
     def visualizarTareaAnterior (self):
-        '''Esta función muestra la última tarea realizada'''
+        '''Esta función muestra la última tarea realizada por el empleado, utilizando el metodo obtenerUltimo de la clase pila'''
         tarea=self.tareasRealizadas.obtenerUltimo()
         print('La última tarea que realizó fue: {}'.format(tarea))
             
     def registrar_ingreso(self):
-        '''Esta función registra el ingreso de un empleado'''
+        '''Esta función registra el ingreso de un empleado, almacenando la fecha y hora en una lista conteniendo todas las fechas de ingreso y egreso del empleado.'''
         self.registro.append([datetime.now()])
         return
         
     def registrar_egreso(self): 
-        '''Esta función registra el egreso de un empleado'''
+        '''Esta función registra el egreso de un empleado y es almacenado en una lista'''
         if len(self.registro[len(self.registro)-1]) == 1:
             self.registro[len(self.registro)-1].append(datetime.now())
-            print('Su egreso se registró con éxito')
+            print('Su egreso se registró con éxito.')
             print(self.registro)
         else:
-            print('Error, no registró el ingreso')
+            print('Error, no registró el egreso.')
         return
-      
-    def egreso(self, nom):
-        '''Esta función guarda el egreso de un empleado'''
-        self.nom=nom
-        ahora= datetime.now()
-        registro= {'tipo de registro': 'egreso', 'fecha_hora': ahora, 'nombre':self.nom}
-        self.registros.append(registro)
-        print('Se registró el egreso de {} a las {}'.format(ahora,self.nombre))
 
         
 
