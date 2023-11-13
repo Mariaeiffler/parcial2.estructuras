@@ -40,17 +40,19 @@ class Gerente(Personal):
                 print ('La acción se ha cancelado.')
         return
         
-    def obtener_estadisticas(self, lista, array):
+    def obtener_estadisticas(self, lista, array, clientes:dict):
         '''Esta función permite almacenar las estadisticas en el archivo de texto para su lectura'''
         
         ocupa = ocupacion (lista)
         ocupa_th = ocupacion_tipohab(lista)
         rec = rec_diaria(array)
+        cli = cant_clientes_tipo(clientes)
         try:
             with open('Estadisticas.txt', "w") as archivo:
                 archivo.write(ocupa)
                 archivo.write(ocupa_th)
                 archivo.write(rec)
+                archivo.write(cli)
         except Exception:
             pass
         

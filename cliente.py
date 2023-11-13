@@ -46,9 +46,7 @@ class Cliente(Persona):
         reservas[numres]=reserva1
         monto,objhab=obtener_precio(habitaciones, int(hab))
         cobro = Cobro(monto,self,objhab)
-        print(cobro)
         cobros = agregar_cobro(cobros, cobro)
-        print(cobros)
         self.asignar_nivel(cobros)
         print('Su reserva se realizó con exito en las fechas {} - {} y su numero de reserva es {}. \n Recuerde que el horario de check in es desde las 15:00 hs y el check out hasta las 12:00 hs.'.format(fecha_inicio.strftime('%d/%m/%Y'),fecha_fin.strftime('%d/%m/%Y'),numres))
         return cobros
