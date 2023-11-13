@@ -28,7 +28,7 @@ class Gerente(Personal):
             imprimir3='Error. Ingrese como nivel de importancia 1, 2 o 3 (siendo 1 el más urgente): '
             pregImportancia=input('Niveles de importancia: 1,2,3 (siendo 1 el más urgente). \n Ingrese la importancia de la tarea a realizar: ')
             importancia=val_opc(pregImportancia,1,3,imprimir3)
-            imprimir='Desea realizar la tarea ahora? (ingrese "si" o "no"): '
+            imprimir='Desea asignar la tarea ahora? (ingrese "si" o "no"): '
             elije=input(imprimir)
             elije=valSiNo(elije,imprimir)
             if elije:
