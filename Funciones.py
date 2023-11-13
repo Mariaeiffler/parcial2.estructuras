@@ -270,6 +270,8 @@ def valNombre1(nombre):
     for digito in nombre:
         if digito.isalpha() == False and digito.isspace() == False:
             validacion = False
+    if nombre.isspace():
+        validacion=False
     return validacion
     
 def valNombre2 (nombre):
@@ -288,7 +290,7 @@ def validaciondni(dni,dic1:dict,dic2:dict):
     vali2 = False
     while vali1 == False or vali2 == False:
         while str(dni).isdigit() == False or len(str(dni)) != 8:
-            dni = input('Error. Ingrese su DNI (debe tener 8 dígitos)  ')
+            dni = input('Error. Ingrese su DNI (debe tener 8 números):  ')
         if len(dic1) != 0:
             for cliente in dic1:
                 if dic1.get(cliente).dni == dni:
@@ -300,7 +302,7 @@ def validaciondni(dni,dic1:dict,dic2:dict):
         if len(dic2) != 0:
             for emp in dic2:
                 if dic2.get(emp).dni == dni:
-                    dni = input('El DNI ingresado ya pertenece a otro usuario. Ingrese nuevamente su DNI  ')
+                    dni = input('El DNI ingresado ya pertenece a otro usuario. Ingrese nuevamente su DNI:  ')
                 else:
                     vali2 = True
         else:
