@@ -7,7 +7,7 @@ from Tareas_Empleados import *
 import pickle
 
 def obtener_pickle(hotel, accion):
-    '''Esta función permite crear el pickle'''
+    '''Esta función crea el pickle par aguardar todos los datos'''
     if accion == 'abrir':
         try:
             with open ('hotel.pickle','rb') as hpickle:
@@ -38,7 +38,7 @@ def volver_atras():
     return seguir
     
 def cantidad_numero(contrasena):
-    '''Esta función permite conocer la cantidad de digitos que contiene la contraseña'''
+    '''Esta función permite conocer la cantidad de numeros que contiene un str'''
     contador = 0
     for digito in contrasena:
         if digito.isdigit() == True:
@@ -71,7 +71,7 @@ def mayoredad (fecha):
         return False
 
 def cantidad_mayusculas(contrasena):
-    '''Esta función verifica la cantidad de mayúsculas que posee la contraseña'''
+    '''Esta función verifica la cantidad de mayúsculas que tiene un str'''
     contador = 0
     for digito in contrasena:
         if digito.isupper() == True:
@@ -102,11 +102,11 @@ def crearHab():
     return (h1,h2,h3,h4,h5,h6,h7,h8,h9,h10,h11,h12)
         
 def comp_fecha_hoy(fecha_inicio):
-   '''Esta función verifica que la fecha de inicio de la estadia sea valida'''
+   '''Esta función verifica que la fecha de inicio de la estadia sea valida (comparandola con el dia de ejecución)'''
    validacion = False
    while validacion == False:
        if (fecha_inicio > datetime.today())==False:
-           print('Su fecha de inicio de la estadía no es valida ')
+           print('Su fecha de inicio de la estadía no es valida. ')
            fecha_inicio = input('Ingrese la fecha de inicio de su estadía en el formato dd/mm/aaaa ')
            fecha_inicio = convertirfecha_datetime(fecha_inicio)
        else:
@@ -132,7 +132,7 @@ def comparacion_fechas(fecha_inicio):
     return fecha_inicio, fecha_finalizacion
 
 def reserva():
-    '''Esta función le pide al usuario los datos desados para la reserva que quiere realizar'''
+    '''Esta función le pide al usuario los datos para la reserva que quiere realizar'''
     habitacion=validacion_preg_hab()
     fecha_inicio = input('Ingrese la fecha de inicio de su estadía en el formato dd/mm/aaaa ')
     fecha_inicio = convertirfecha_datetime(fecha_inicio)
@@ -140,7 +140,7 @@ def reserva():
     return fecha_inicio, fecha_fin, habitacion
 
 def hab_ocupada(fecha_inicio, fecha_fin, hab, lista):
-    ''' En esta función se verifica si la habitación seleccionada por el usuario en la fecha deseada 
+    ''' En esta función verifica si la habitación seleccionada por el usuario en la fecha deseada 
     esta disponible o no. En caso de no estarlo, se le dará al usuario la posibilidad de seleccionar 
     una opción válida, mostrandole aquellas fechas en las cuales está ocupada la misma.'''
     val = False
@@ -164,7 +164,7 @@ def hab_ocupada(fecha_inicio, fecha_fin, hab, lista):
     return val
 
 def modi_hab(val, preg, fecha_inicio, fecha_fin, hab, lista):
-    '''Esta función le permite al usuario modificar la habitación elegida en su reserva, aclarando la duracion de la misma.'''
+    '''Esta función le permite al usuario modificar la habitación elegida en su reserva, aclarando la duracion de la misma'''
     while val == False:
         if preg == 1:
             fecha_inicio = input('Ingrese la fecha de inicio de su estadía en el formato dd/mm/aaaa ')
@@ -180,7 +180,7 @@ def modi_hab(val, preg, fecha_inicio, fecha_fin, hab, lista):
     return val, fecha_inicio, fecha_fin, hab
 
 def obtener_precio(lista, habitacion):
-    '''Con esta función se obtiene el precio para una determinada habitación'''
+    '''Con esta función se obtiene el precio para una determinada habitación para almacenarlo en un objeto cobro'''
     for hab in lista:
         if int(hab.numero) == int(habitacion):
             monto=hab.precio
@@ -188,12 +188,12 @@ def obtener_precio(lista, habitacion):
     return monto, objeto
 
 def agregar_cobro(vector, cobro):
-    '''Esta función permite agregar el cobro al vector correspondiente'''
+    '''Esta función permite agregar el cobro al vector cobros'''
     vector = np.append(vector,[cobro])
     return vector
 
 def crear_buffet(tupla):
-    '''Esta función crea el buffet del hotel, dividido en categorias (desayuno, almuerzo, cena u otro) según corresponda'''
+    '''Esta función crea el buffet del hotel (en un diccionario), dividido en categorias (desayuno, almuerzo, cena u otro) según corresponda'''
     des = []
     almu = []
     cena = []
@@ -210,8 +210,8 @@ def crear_buffet(tupla):
     dic = {'desayuno':des, 'almuerzo':almu, 'cena':cena, 'otro':otro}
     return dic
     
-def hacer_pedido(dic:dict): #tendríamos que ponerlo en cliente?
-    '''Esta función le permite al usuario elegir lo que desea pedir en el buffet'''
+def hacer_pedido(dic:dict):
+    '''Esta función le permite al usuario elegir lo que desea pedir en el buffet. El diccionario que entra en la función es el diccionario del buffet'''
     print('Ingrese una opción ')
     for i, comida in enumerate (dic):
         print (F"{i+1}. {comida}")
@@ -282,7 +282,8 @@ def valNombre2 (nombre):
     return nombre
 
 def validaciondni(dni,dic1:dict,dic2:dict): 
-    '''Esta función valida el DNI, teniendo en cuenta que debe tener 8 caracteres numéricos y que no se repita con otro usuario'''
+    '''Esta función valida el DNI, teniendo en cuenta que debe tener 8 caracteres numéricos y que no se repita con otro usuario.
+    Los diccionarios que entran en la fución son el de empleados y el de clientes'''
     vali1 = False
     vali2 = False
     while vali1 == False or vali2 == False:
@@ -307,13 +308,13 @@ def validaciondni(dni,dic1:dict,dic2:dict):
     return dni
 
 def validacioncontacto(contacto):
-    '''Esta función valida que el numero de contacto tenga el formato adecuado'''
+    '''Esta función valida que el numero de contacto tenga el formato adecuado. Debe tener 13 digitos'''
     while cantidad_numero(contacto) != len(str(contacto)) or cantidad_numero(contacto) != 13:
         contacto = input('Ingrese su numero de telefono con el formato 54911... ')
     return contacto
 
-def validacionfechanac (fecha): # --> no la toque 
-    '''Esta función valida la fecha de nacimiento'''
+def validacionfechanac (fecha):
+    '''Esta función valida la fecha de nacimiento (debe ser mayor de edad para crearse un usuario)'''
     fecha_datetime = convertirfecha_datetime(fecha)
     if mayoredad(fecha_datetime) == False:
         fecha = input('Ingrese la fecha en el formato dd/mm/yyyy: ')
@@ -329,7 +330,7 @@ def valMail (mail):
         mail=input('Error. Ingrese su mail (tiene que contener por lo menos un . y un @):')
     return mail
 
-def validacionusuario(usuario,dic1,dic2): #TODO:chequear que no este repetido
+def validacionusuario(usuario,dic1:dict,dic2:dict):
     '''Esta función valida al usuario. El mismo, debe tener 5 caracteres.'''
     while len(str(usuario)) < 5 or valPalabraDic(usuario,dic1) or valPalabraDic(usuario,dic2):
         usuario = input('Su nombre de usuario no es válido, ingrese otro (con minimo 5 dígitos): ')  
@@ -342,7 +343,7 @@ def validacioncontrasena(contrasena):
     return contrasena
 
 def infoPersonas (dicc1:dict,dicc2:dict):   
-    '''Esta función recopila los datos del usuario'''
+    '''Esta función pide y valida todos los datos del usuario'''
     nombre=input('Introduzca su nombre y apellido: ')
     nombre=valNombre2(nombre)
     dni=input('Ingrese su DNI: ')
@@ -360,7 +361,7 @@ def infoPersonas (dicc1:dict,dicc2:dict):
     return nombre,usuario,dni,contacto,fecha_nac,mail,contrasena
 
 def valSignIn (dicc1:dict, dicc2:dict):
-    '''Esta función valida el Sign In'''
+    '''Esta función valida el Sign In (fijandose si el usuario realmente existe)'''
     validacion=True
     usuario=input('Ingrese su nombre de usuario: ')
     contrasena=input('Ingrese su contrasena: ')
@@ -370,7 +371,7 @@ def valSignIn (dicc1:dict, dicc2:dict):
             if cliente.contrasena == contrasena:
                 validacion = False
             else:
-                print('El nombre de usuario o su contraseña son incorrectos')
+                print('El nombre de usuario o su contraseña son incorrectos.')
                 usuario=input('Ingrese su nombre de usuario: ')
                 contrasena=input('Ingrese su contrasena: ')
         elif valPalabraDic(usuario,dicc2):
@@ -378,17 +379,17 @@ def valSignIn (dicc1:dict, dicc2:dict):
             if cliente.contrasena==contrasena:
                 validacion=False
             else:
-                print('El nombre de usuario o su contraseña son incorrectos')
+                print('El nombre de usuario o su contraseña son incorrectos.')
                 usuario=input('Ingrese su nombre de usuario: ')
                 contrasena=input('Ingrese su contrasena: ')
         else:
-            print('El nombre de usuario o su contraseña son incorrectos')
+            print('El nombre de usuario o su contraseña son incorrectos.')
             usuario=input('Ingrese su nombre de usuario: ')
             contrasena=input('Ingrese su contrasena: ')
     return usuario, contrasena
 
 def valTipoUsuario (usuario,dicc1:dict,dicc2:dict):
-    '''Esta función valida el tipo de usuario'''
+    '''Esta función valida el tipo de usuario (si es un empleado o un cliente)'''
     if valPalabraDic (usuario,dicc1):
         cliente=True
         empleado=False
@@ -412,7 +413,7 @@ def valExiUsu (usuario,dicc1:dict):
         usuario=input('Error. El nombre de usuario es inexistente. \n Ingrese el nombre de usuario: ')
     return usuario
 
-def valOpcAsignacion(opcion,dicc1:dict,tipo,llave,imprimir):
+def valOpcAsignacion(opcion,dicc1:dict,tipo,llave):
     ''' Esta función valida la opción de asignacion de tareas '''
     validar=False
     while validar==False: 
@@ -442,7 +443,7 @@ def valSiNo(eleccion,imprimir):
         return False
     
 def validacion_h(pregunta1, valor1, valor2):
-    ''' Esta función valida la habitación elegida por el usuario '''
+    ''' Esta función valida la habitación elegida por el usuario. Los valores 1 y 2 '''
     validacion = val_int(pregunta1)
     if validacion == True:
         if int(pregunta1) >= valor1 and int(pregunta1) <= valor2:
