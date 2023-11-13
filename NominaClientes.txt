@@ -1,3 +1,4 @@
 Los clientes del hotel son: 
-El cliente de nombre maria e y dni 12345678 es de nivel 2 y sus reservas son: 12/11/2023 - 13/11/2023   
-El cliente de nombre Fabiana Gonzales y dni 22083308 es de nivel 1 y sus reservas son: 16/11/2023 - 20/11/2023   
+El cliente de nombre maria y dni 12345678 es de nivel 1 y sus reservas son: 12/11/2023 - 14/11/2023   
+El clientes de nombre qwertgh y dni 12345677 no tiene reservas en el hotel
+El cliente de nombre Milena Maceri y dni 46026600 es de nivel 1 y sus reservas son: 12/12/2023 - 01/01/2024   12/12/2024 - 03/01/2025   
