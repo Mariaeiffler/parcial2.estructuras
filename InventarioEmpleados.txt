@@ -3,5 +3,5 @@ El empleado de nombre sdfgh y dni, de tipo 12345676, se dio de alta el dia 06/11
 El empleado de nombre milena y dni, de tipo 12345623, se dio de alta el dia 07/11/2023 y sigue vigente.
 
 Los empleados dados de baja son:
-El empleado de nombre sdfg y dni, de tipo 12345674, se dio de alta el dia 06/11/2023 y sigue vigente.
 El empleado de nombre Milena Maceri y dni, de tipo 45123432, se dio de alta el dia 13/11/2023 y de baja el dia 13/11/2023.
+El empleado de nombre sdfg y dni, de tipo 12345674, se dio de alta el dia 06/11/2023 y sigue vigente.

@@ -64,6 +64,7 @@ class Lista_Enlazada():
         self.len-=1
     
     def esVacia(self):
+        '''Esta funcion devuelve True si la lista esta vacia, sino devuelve False'''
         if self.len==0:
             return True
         else:
