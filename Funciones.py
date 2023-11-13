@@ -443,7 +443,7 @@ def valSiNo(eleccion,imprimir):
         return False
     
 def validacion_h(pregunta1, valor1, valor2):
-    ''' Esta función valida la habitación elegida por el usuario. Los valores 1 y 2 '''
+    ''' Esta función valida la habitación elegida por el usuario. Los valores 1 y 2 son el rango de valores para el tipo de habitación'''
     validacion = val_int(pregunta1)
     if validacion == True:
         if int(pregunta1) >= valor1 and int(pregunta1) <= valor2:
@@ -453,7 +453,7 @@ def validacion_h(pregunta1, valor1, valor2):
     return validacion
     
 def validacion_preg_hab():
-    ''' Esta función le pide al usuario que ingrese la información da la habitación que desea reservar ''' 
+    ''' Esta función le pide al usuario que ingrese la información de la habitación que desea reservar ''' 
     pregunta = input('Elija una de las siguientes habitaciones: \n 1. Simple ($5000 - $15000) \n 2. Doble ($20000 - $30000) \n 3. Suite ($35000 - $45000) \n')
     imprimir = 'Error. Elija una de las siguientes habitaciones: \n 1. Simple ($5000 - $15000) \n 2. Doble ($20000 - $30000) \n 3. Suite ($35000 - $45000) \n'
     pregunta = val_opc(pregunta, 1, 3, imprimir)
@@ -481,7 +481,7 @@ def validacion_preg_hab():
             return pregunta1
         
 def val_numres(numero, diccionario:dict(), nombre):
-    ''' Esta función valida la existencia del número de reserva ingresado por el usuario''' 
+    ''' Esta función valida la existencia del número de reserva ingresado por el usuario. EL diccionario que entra en la función es el de reservas''' 
     validacion1=False
     validacion2=False
     while validacion1 == False or validacion2 == False:
@@ -494,10 +494,10 @@ def val_numres(numero, diccionario:dict(), nombre):
                 if nombre == persona.usuario:
                     validacion2=True
                 else:
-                    print('Su numero de reserva es incorrecto')
+                    print('Su numero de reserva es incorrecto.')
                     numero = input('Ingrese su numero de reserva:  ')
             else:
-                    print('Su numero de reserva es incorrecto')
+                    print('Su numero de reserva es incorrecto.')
                     numero = input('Ingrese su numero de reserva:  ')
         else: 
             numero = input('Error. Ingrese su numero de reserva:  ')
