@@ -367,6 +367,7 @@ def valSignIn (dicc1:dict, dicc2:dict):
     validacion=True
     usuario=input('Ingrese su nombre de usuario: ')
     contrasena=input('Ingrese su contrasena: ')
+    # volver = True
     while validacion:
         if valPalabraDic(usuario,dicc1):
             cliente = dicc1.get(usuario)
@@ -388,6 +389,15 @@ def valSignIn (dicc1:dict, dicc2:dict):
             print('El nombre de usuario o su contraseña son incorrectos.')
             usuario=input('Ingrese su nombre de usuario: ')
             contrasena=input('Ingrese su contrasena: ')
+    #     volver = input('¿Desea seguir intentando? Escriba "si" o "no" ')
+    #     imprimir = 'Error. ¿Desea seguir intentando? Escriba "si" o "no" '
+    #     volver = valSiNo(volver,imprimir)
+    #     if volver == False:
+    #         validacion = False
+    # if volver == False:
+    #     pregunta=menuPPL()
+    #     return pregunta
+    # else:
     return usuario, contrasena
 
 def valTipoUsuario (usuario,dicc1:dict,dicc2:dict):
