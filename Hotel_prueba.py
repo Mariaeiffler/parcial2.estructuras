@@ -29,6 +29,7 @@ perteneciente a cada empleado del hotel. Al asignar la tarea, el gerente le inse
 Los empleados del tipo cocina tienen además la opcion de realizar las ordenes del buffet (las cuales están almacenadas en una cola, así el
 empleado puede realizar las ordenes en el orden que fueron realizadas).
 
+Si se inicia sesión con el usuario de un empleado, el usuario podrá realizar
   
 '''
 
@@ -173,7 +174,7 @@ class Hotel():
                                 
                         #menu empleados
                         else:
-                            pregEmpleado=input('\n Ingrese una de las siguientes opciones: \n 1. Realizar una Tarea \n 2. Registrar ingreso \n 3. Registrar egreso \n 4. Visualizar la última tarea realizada \n 5. Cerrar sesión \n') #Agregar el resto de las cosas que debería hacer un empleado
+                            pregEmpleado=input('\n Ingrese una de las siguientes opciones: \n 1. Realizar una Tarea \n 2. Registrar ingreso \n 3. Registrar egreso \n 4. Visualizar la última tarea realizada \n 5. Cerrar sesión \n')
                             imprimir1='\n Error. Ingrese una de las siguientes opciones: \n 1. Realizar una Tarea \n 2. Registrar ingreso \n 3. Registrar egreso \n 4. Visualizar la última tarea realizada \n 5. Cerrar sesión \n'
                             pregEmpleado=val_opc(pregEmpleado,1,5,imprimir1) 
                             personal:Personal=self.empleados.get(usuario)
