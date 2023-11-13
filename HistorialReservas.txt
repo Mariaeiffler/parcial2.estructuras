@@ -1,2 +1,0 @@
-Su numero de reserva es 1, ha reservado la habitacion numero 12 en las fechas 12/11/2023 - 14/11/2023 
-Su numero de reserva es 2, ha reservado la habitacion numero 12 en las fechas 12/12/2024 - 03/01/2025 

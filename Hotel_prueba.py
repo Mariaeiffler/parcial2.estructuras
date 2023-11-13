@@ -42,7 +42,7 @@ Una vez que el empleado haya realizado una tarea asignada por el gerente, se gua
 pierdan las tareas realizadas y además para que el empleado pueda ver cual fue la última tarea que realizó.  
   
 Una vez que el usuario selecciona la opcion 'Abandonar la página' del menu principal (despues de haber cerrado sesión) , toda la infomarción
-que se ingreso al programa es guardada en el pickle.
+que se ingreso al programa es guardada en el pickle. 
 '''
 
 class Hotel():
@@ -58,14 +58,16 @@ class Hotel():
         self.buffet=crear_buffet(Comida.crear_comidas())
         self.pedidosBuffet=Cola()
         
-    def entrar(self):
-        '''Esta funcion permite que se ejecute el programa. Dependiendo de si el usuario es un cliente, empleado o genente, se le permiten realizar distintas operaciones'''
-        obtener_pickle(self, 'abrir')
-    
-        seguir = True 
         gerente=Gerente('Lionel Messi','gerente',"10101010",'5491100000000','24/06/1987','liomessi@gmail.com','Gerente1','gerente')
         self.empleados[gerente.usuario]=gerente
         self.tareas['gerente']['empleados'].append(gerente.usuario)
+        
+    def entrar(self):
+        '''Esta funcion permite que se ejecute el programa. Dependiendo de si el usuario es un cliente, empleado o genente, se le permiten realizar distintas operaciones'''
+        obtener_pickle(self, 'abrir')
+        
+        seguir = True
+        
         pregunta=menuPPL()
         
         while seguir==True: 
