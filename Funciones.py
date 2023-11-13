@@ -480,7 +480,7 @@ def validacion_preg_hab():
             return pregunta1
         
 def val_numres(numero, diccionario:dict(), nombre):
-    ''' Esta función valida la existencia del número de reserva ingresado por el usuario'''
+    ''' Esta función valida la existencia del número de reserva ingresado por el usuario''' 
     validacion1=False
     validacion2=False
     while validacion1 == False or validacion2 == False:
@@ -494,15 +494,16 @@ def val_numres(numero, diccionario:dict(), nombre):
                     validacion2=True
                 else:
                     print('Su numero de reserva es incorrecto')
-                    numero = input('Ingrese su numero de reserva  ')
+                    numero = input('Ingrese su numero de reserva:  ')
             else:
                     print('Su numero de reserva es incorrecto')
-                    numero = input('Ingrese su numero de reserva  ')
+                    numero = input('Ingrese su numero de reserva:  ')
         else: 
-            numero = input('Error. Ingrese su numero de reserva  ')
+            numero = input('Error. Ingrese su numero de reserva:  ')
     return numero
 
 def menuPPL():
+    '''Función que permite al usuario entrar o salir de la pagina principal del hotel'''
     pregunta=input(('Elija una de las siguientes opciones: \n 1. Sign up (si es un cliente) \n 2. Sign in \n 3. Abandonar la página \n'))
     imprimir = 'Error. Elija una de las siguientes opciones: \n 1. Sign up \n 2. Sign in \n 3. Abandonar la página \n'
     pregunta=val_opc(pregunta,1,3,imprimir)
