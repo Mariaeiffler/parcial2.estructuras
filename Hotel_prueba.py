@@ -147,7 +147,7 @@ class Hotel():
                                             
                                     case 4:
                                         #Estadisticas
-                                        gerente.obtener_estadisticas(self.habitaciones, self.cobros)
+                                        gerente.obtener_estadisticas(self.habitaciones, self.cobros, self.clientes)
                                         print('Puede ver las estadísticas del hotel en un archivo de texto.')
                                     
                                     case 5:

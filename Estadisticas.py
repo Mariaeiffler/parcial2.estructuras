@@ -139,3 +139,15 @@ def rec_diaria(array):
                 rec += cobro.monto
         return ('La recaudacion diaria el dia {} fue de ${}.'.format(dia.strftime('%d/%m/%Y'), rec))
 
+def cant_clientes_tipo(clientes:dict):
+    n1 = 0
+    n2 = 0
+    n3 = 0
+    for cliente in clientes:
+        if clientes.get(cliente).tipo == 'nivel 1':
+            n1+=1
+        elif clientes.get(cliente).tipo == 'nivel 2':
+            n2+=1
+        else:
+            n3+=1
+    return (' \n \n La cantidad de clientes de nivel 1 es {}. \n La cantidad de clientes de nivel 2 es {}. \n La cantidad de clientes de nivel 3 es {}.'.format(n1,n2,n3))
