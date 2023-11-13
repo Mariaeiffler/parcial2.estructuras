@@ -16,7 +16,13 @@ from Cola import Cola
 Al entrar al programa se podra elegir iniciar sesión, crear un usuario o abandonar la página.
 
 Si se crea un usuario desde el menu principal, el usuario sera de tipo cliente. Al iniciar sesión, 
-podrá hacer el check in o check out del hotel, realizar, modificar o eliminar una reserva, realizar un pedido al buffet.     
+podrá hacer el check in o check out del hotel, realizar, modificar o eliminar una reserva, realizar un pedido al buffet. 
+
+Las reservas de los clientes se almacenan en un diccionario llamado reservas y a su vez, los clientes tienen una lista de listas
+con las estadías. Además las habitaciones también tienen una lista de listas con las fechas en las que están ocupadas. La política de 
+cobro del hotel no permite realizar reembolsos en caso de una cancelación o una modificación de habitación mas barata.
+El horario de check-in es desde las 15:00 hs y el de check-out hasta las 12:00 hs. En caso de querer hacer el check-out y que la hora
+de ejecución sea mas tarde de las 12:00 el mismo se realizará automaticamente.
 
 Hay un gerente preestablecido en el sistema, que se crea la primera vez que se corre el programa. El nombre de usuario es 'gerente' 
 y su contrasena es 'Gerente1'. Ingresando con este usuario, se podran realizar todas las acciones que puede realizar un gerente. Ya sea
@@ -34,11 +40,10 @@ Si se inicia sesión con el usuario de un empleado, el usuario podrá realizar
 '''
 
 class Hotel():
-    def __init__(self,nombre,contrasena_ing_personal='personal123'):
+    def __init__(self,nombre):
         self.nombre=nombre
         self.empleados=dict()
         self.clientes=dict()
-        self.contrasena_ing_personal=contrasena_ing_personal
         self.tareas=tareas_empleados 
         self.habitaciones = [habitacion for habitacion in crearHab()]
         self.reservas=dict()
