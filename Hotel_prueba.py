@@ -15,31 +15,31 @@ from Cola import Cola
 '''El Hotel Patagonia Oasis y Ocio es un objeto de clase Hotel inicializado por el metodo 'entrar'. 
 Al entrar al programa se podra elegir iniciar sesión, crear un usuario o abandonar la página.
 
-Si se crea un usuario desde el menu principal, el usuario sera de tipo cliente. Al iniciar sesión, 
-podrá hacer el check in o check out del hotel, realizar, modificar o eliminar una reserva, realizar un pedido al buffet. 
+Si se crea un usuario desde el menu principal, el usuario sera del tipo cliente. Al iniciar sesión, 
+podrá hacer el check in o check out del hotel, realizar, modificar o eliminar una reserva, o realizar un pedido al buffet. 
 
 Las reservas de los clientes se almacenan en un diccionario llamado reservas y a su vez, los clientes tienen una lista de listas
 con las estadías. Además las habitaciones también tienen una lista de listas con las fechas en las que están ocupadas. La política de 
-cobro del hotel no permite realizar reembolsos en caso de una cancelación o una modificación de habitación mas barata.
+cobro del hotel no permite realizar reembolsos en caso de una cancelación o una modificación de habitación más barata.
 El horario de check-in es desde las 15:00 hs y el de check-out hasta las 12:00 hs. En caso de querer hacer el check-out y que la hora
-de ejecución sea mas tarde de las 12:00 el mismo se realizará automaticamente.
+de ejecución sea más tarde de las 12:00 el mismo se realizará automaticamente.
 
-Hay un gerente preestablecido en el sistema, que se crea la primera vez que se corre el programa. El nombre de usuario es 'gerente' 
-y su contrasena es 'Gerente1'. Ingresando con este usuario, se podran realizar todas las acciones que puede realizar un gerente. Ya sea
-dar de alta o de baja un empleado, obtener estadísticas, ver distintos historiales, inventarios y la nomina de clientes, asignar tareas,
-realizar tareas y visualizar las tareas que realizo previamente. 
+Hay un gerente preestablecido en el sistema, que se crea la primera vez que se corre el programa. El nombre de usuario del gerente es 
+'gerente' y su contrasena es 'Gerente1'. Ingresando con este usuario, se podran realizar todas las acciones que puede realizar un gerente. 
+Ya sea dar de alta o de baja un empleado, obtener estadísticas, ver distintos historiales e inventarios, ver la nomina de clientes, asignar 
+tareas, realizar tareas y visualizar las tareas que realizo previamente. 
 
-El gerente puede asignar tareas a otros empleados u autoasignarse a él mismo. Estas tareas son registradas y almacenadas en una lista enlazada
-perteneciente a cada empleado del hotel. Al asignar la tarea, el gerente le inserta un valor importancia a la tarea (eligiendo un numero del 
-1 al 3), el cual permite que las mismas se ordenen en la lista y el empleado tenga que realizar la tarea con más importancia. 
+El gerente puede asignar tareas a otros empleados o autoasignarse tareas a él mismo. Estas tareas son registradas y almacenadas en una lista 
+enlazada perteneciente a cada empleado del hotel. Al asignar la tarea, el gerente le inserta un valor importancia a la tarea (eligiendo un 
+numero del 1 al 3), el cual permite que las mismas se ordenen en la lista y el empleado tenga que realizar la tarea con más importancia. 
 Los empleados del tipo cocina tienen además la opcion de realizar las ordenes del buffet (las cuales están almacenadas en una cola, así el
 empleado puede realizar las ordenes en el orden que fueron realizadas).
 
 Si se inicia sesión con el usuario de un empleado, el empleado podrá realizar las tareas que tiene asignadas, registrar su ingreso y egreso 
 (una vez que llega y se retira del trabajo) o visualizar la última tarea que realizo. 
 
-Una vez que el empleado haya realizado una tarea, se guarda el título de esta tarea en una pila, para que no se pierdan las tareas realizadas
-y además para que el empleado pueda ver cual fue la última tarea que realizó.  
+Una vez que el empleado haya realizado una tarea asignada por el gerente, se guarda el título de esta tarea en una pila, para que no se 
+pierdan las tareas realizadas y además para que el empleado pueda ver cual fue la última tarea que realizó.  
   
 Una vez que el usuario selecciona la opcion 'Abandonar la página' del menu principal (despues de haber cerrado sesión) , toda la infomarción
 que se ingreso al programa es guardada en el pickle.
