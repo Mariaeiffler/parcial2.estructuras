@@ -35,6 +35,8 @@ Si se inicia sesión con el usuario de un empleado, el empleado podrá realizar 
 Una vez que el empleado haya realizado una tarea, se guarda el título de esta tarea en una pila, para que no se pierdan las tareas realizadas
 y además para que el empleado pueda ver cual fue la última tarea que realizó.  
   
+Una vez que el usuario selecciona la opcion 'Abandonar la página' del menu principal (despues de haber cerrado sesión) , toda la infomarción
+que se ingreso al programa es guardada en el pickle.
 '''
 
 class Hotel():
