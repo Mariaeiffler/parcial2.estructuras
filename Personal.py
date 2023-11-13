@@ -74,6 +74,8 @@ class Personal(Persona):
                     print('La tarea ha sido marcada como realizada.')
                 else:
                     print('La tarea no se ha realizado')
+            else:
+                print('No tiene tareas pendientes')
         return
                 
     def visualizarTareaAnterior (self):
