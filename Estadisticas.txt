@@ -5,4 +5,4 @@ El dia 13/11/2023:
  La ocupacion del tipo de habitacion doble es 0.0% 
  La ocupacion del tipo de habitacion doble es 25.0% 
  
-La recaudacion diaria el dia 06/11/2023 fue de $10000
+La recaudacion diaria el dia 11/11/2023 fue de $85000

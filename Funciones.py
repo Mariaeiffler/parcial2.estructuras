@@ -4,11 +4,10 @@ from Habitacion_Simple import *
 from Habitacion_Suite import *
 import numpy as np
 from Tareas_Empleados import *
-from nodo import NodoTarea
 import pickle
 
 def obtener_pickle(hotel, accion):
-    '''Esta funcion permite crear el pickle'''
+    '''Esta función permite crear el pickle'''
     if accion == 'abrir':
         try:
             with open ('hotel.pickle','rb') as hpickle:
@@ -22,6 +21,7 @@ def obtener_pickle(hotel, accion):
             hotel.tareas=info.tareas
             hotel.reservas=info.reservas
             hotel.bajasEmpleados=info.bajasEmpleados
+            hotel.pedidosBuffet = info.pedidosBuffet
         except FileNotFoundError:
             with open ('hotel.pickle','wb') as hpickle:
                 pickle.dump(hotel,hpickle)
@@ -276,8 +276,8 @@ def valNombre2 (nombre):
     '''Esta función llama a la validación del nombre. En caso de que el nombre ingresado
     no haya tenido un formato válido, se vuelve a pedir'''
     validacion = valNombre1(nombre)
-    while validacion == False:
-        nombre = input('Ingrese su nombre y apellido: ')
+    while validacion == False or nombre.count(' ')<1:
+        nombre = input('Error. Ingrese su nombre y apellido : ')
         validacion = valNombre1(nombre)
     return nombre
 
@@ -287,11 +287,11 @@ def validaciondni(dni,dic1:dict,dic2:dict):
     vali2 = False
     while vali1 == False or vali2 == False:
         while str(dni).isdigit() == False or len(str(dni)) != 8:
-            dni = input('Ingrese su DNI  ')
+            dni = input('Ingrese su DNI (debe tener 8 dígitos)  ')
         if len(dic1) != 0:
             for cliente in dic1:
                 if dic1.get(cliente).dni == dni:
-                    dni = input('El DNI ingresado ya pertenece a otro usuario. Ingrese nuevamente su DNI  ')
+                    dni = input('El DNI ingresado ya pertenece a otro usuario. Ingrese nuevamente su DNI (que contenga por lo menos 8 numeros): \n ')
                 else:
                     vali1 = True
         else:
@@ -347,10 +347,9 @@ def infoPersonas (dicc1:dict,dicc2:dict):
     nombre=valNombre2(nombre)
     dni=input('Ingrese su DNI: ')
     dni=validaciondni(dni, dicc1, dicc2)
-    direccion=input('Ingrese su direccion: ')
     contacto=input('Ingrese su numero de contacto: ')
     contacto=validacioncontacto(contacto)
-    fecha_nac=input('Ingrese su fecha de nacimiento: (Debe ser mayor de edad para crearse un usuario) ')
+    fecha_nac=input('Ingrese su fecha de nacimiento en el formato dd/mm/aaaa (Debe ser mayor de edad para crearse un usuario): ')
     fecha_nac=validacionfechanac (fecha_nac)
     mail=input('Ingrese su mail: ')
     mail=valMail(mail)
@@ -358,7 +357,7 @@ def infoPersonas (dicc1:dict,dicc2:dict):
     usuario=validacionusuario(usuario,dicc1,dicc2)
     contrasena=input('Escriba una contrasena que contenga por lo menos una mayuscula y un numero: ')
     contrasena=validacioncontrasena(contrasena)
-    return nombre,usuario,dni,direccion,contacto,fecha_nac,mail,contrasena
+    return nombre,usuario,dni,contacto,fecha_nac,mail,contrasena
 
 def valSignIn (dicc1:dict, dicc2:dict):
     '''Esta función valida el Sign In'''
@@ -481,7 +480,7 @@ def validacion_preg_hab():
             return pregunta1
         
 def val_numres(numero, diccionario:dict(), nombre):
-    ''' Esta función valida la existencia del número de reserva ingresado por el usuario'''
+    ''' Esta función valida la existencia del número de reserva ingresado por el usuario''' 
     validacion1=False
     validacion2=False
     while validacion1 == False or validacion2 == False:
@@ -495,10 +494,17 @@ def val_numres(numero, diccionario:dict(), nombre):
                     validacion2=True
                 else:
                     print('Su numero de reserva es incorrecto')
-                    numero = input('Ingrese su numero de reserva  ')
+                    numero = input('Ingrese su numero de reserva:  ')
             else:
                     print('Su numero de reserva es incorrecto')
-                    numero = input('Ingrese su numero de reserva  ')
+                    numero = input('Ingrese su numero de reserva:  ')
         else: 
-            numero = input('Error. Ingrese su numero de reserva  ')
+            numero = input('Error. Ingrese su numero de reserva:  ')
     return numero
+
+def menuPPL():
+    '''Función que permite al usuario entrar o salir de la pagina principal del hotel'''
+    pregunta=input(('Elija una de las siguientes opciones: \n 1. Sign up (si es un cliente) \n 2. Sign in \n 3. Abandonar la página \n'))
+    imprimir = 'Error. Elija una de las siguientes opciones: \n 1. Sign up \n 2. Sign in \n 3. Abandonar la página \n'
+    pregunta=val_opc(pregunta,1,3,imprimir)
+    return pregunta
