@@ -6,13 +6,31 @@ from Habitacion_Suite import *
 from Tareas_Empleados import tareas_empleados 
 from Funciones import *
 from datetime import *
-from Cobros import Cobro
 from Buffet import Comida
 import numpy as np
 from Estadisticas import *
 from Gerente import Gerente
 from Cola import Cola
 
+'''El Hotel Patagonia Oasis y Ocio es un objeto de clase Hotel inicializado por el metodo 'entrar'. 
+Al entrar al programa se podra elegir iniciar sesión, crear un usuario o abandonar la página.
+
+Si se crea un usuario desde el menu principal, el usuario sera de tipo cliente. Al iniciar sesión, 
+podrá hacer el check in o check out del hotel, realizar, modificar o eliminar una reserva, realizar un pedido al buffet.     
+
+Hay un gerente preestablecido en el sistema, que se crea la primera vez que se corre el programa. El nombre de usuario es 'gerente' 
+y su contrasena es 'Gerente1'. Ingresando con este usuario, se podran realizar todas las acciones que puede realizar un gerente. Ya sea
+dar de alta o de baja un empleado, obtener estadísticas, ver distintos historiales, inventarios y la nomina de clientes, asignar tareas,
+realizar tareas y visualizar las tareas que realizo previamente. 
+
+El gerente puede asignar tareas a otros empleados u autoasignarse a él mismo. Estas tareas son registradas y almacenadas en una lista enlazada
+perteneciente a cada empleado del hotel. Al asignar la tarea, el gerente le inserta un valor importancia a la tarea (eligiendo un numero del 
+1 al 3), el cual permite que las mismas se ordenen en la lista y el empleado tenga que realizar la tarea con más importancia. 
+Los empleados del tipo cocina tienen además la opcion de realizar las ordenes del buffet (las cuales están almacenadas en una cola, así el
+empleado puede realizar las ordenes en el orden que fueron realizadas).
+
+  
+'''
 
 class Hotel():
     def __init__(self,nombre,contrasena_ing_personal='personal123'):
@@ -179,7 +197,7 @@ class Hotel():
                                         #Ver la última tarea realizada
                                         personal.visualizarTareaAnterior()
                                         
-                                pregEmpleado=input('\n Ingrese una de las siguientes opciones: \n 1. Realizar una Tarea \n 2. Registrar ingreso \n 3. Registrar egreso \n 4. Visualizar la última tarea realizada \n 5. Cerrar sesión \n') #Agregar el resto de las cosas que debería hacer un empleado
+                                pregEmpleado=input('\n Ingrese una de las siguientes opciones: \n 1. Realizar una Tarea \n 2. Registrar ingreso \n 3. Registrar egreso \n 4. Visualizar la última tarea realizada \n 5. Cerrar sesión \n') 
                                 imprimir1='\n Error. Elija una de las siguientes opciones: \n 1. Realizar una Tarea \n 2. Registrar ingreso \n 3. Registrar egreso \n 4. Visualizar la última tarea realizada \n 5. Cerrar sesión'
                                 pregEmpleado=val_opc(pregEmpleado,1,5,imprimir1)
                                 
@@ -191,7 +209,7 @@ class Hotel():
                     seguir = False
                                 
         obtener_pickle(self, 'cerrar')
-        print('Se ha cerrado la sesión con éxito')
+        print('Se ha cerrado la sesión con éxito.')
         
 if __name__ == "__main__":
     hotel=Hotel('POO')
