@@ -179,7 +179,7 @@ def modi_hab(val, preg, fecha_inicio, fecha_fin, hab, lista):
             val = hab_ocupada(fecha_inicio, fecha_fin, hab, lista)
     return val, fecha_inicio, fecha_fin, hab
 
-def obtener_precio(lista, habitacion, reserva):
+def obtener_precio(lista, habitacion):
     '''Con esta función se obtiene el precio para una determinada habitación para almacenarlo en un objeto cobro'''
     for hab in lista:
         if int(hab.numero) == int(habitacion):
