@@ -1,4 +1,3 @@
-
 class Persona():
     def __init__(self,nombre,usuario,dni,contacto,fecha_nac,mail,contrasena):
         self.nombre=nombre

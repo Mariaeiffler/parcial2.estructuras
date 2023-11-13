@@ -1,7 +1,6 @@
 from datetime import datetime
 from Persona import Persona
 from Lista_enlazada import *
-from Tareas_Empleados import tareas_empleados
 from Funciones import *
 from Pilas import Pila
 from Cola import Cola

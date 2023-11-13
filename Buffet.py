@@ -1,5 +1,3 @@
-
-
 class Comida():
     def __init__(self, descripcion, precio, tipo, numero):
         self.descripcion = descripcion
