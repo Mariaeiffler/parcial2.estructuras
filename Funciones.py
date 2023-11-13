@@ -288,7 +288,7 @@ def validaciondni(dni,dic1:dict,dic2:dict):
     vali2 = False
     while vali1 == False or vali2 == False:
         while str(dni).isdigit() == False or len(str(dni)) != 8:
-            dni = input('Ingrese su DNI (debe tener 8 dígitos)  ')
+            dni = input('Error. Ingrese su DNI (debe tener 8 dígitos)  ')
         if len(dic1) != 0:
             for cliente in dic1:
                 if dic1.get(cliente).dni == dni:
