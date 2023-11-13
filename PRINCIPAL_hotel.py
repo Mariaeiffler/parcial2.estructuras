@@ -30,7 +30,7 @@ Ya sea dar de alta o de baja un empleado, obtener estadísticas, ver distintos h
 tareas, realizar tareas y visualizar las tareas que realizo previamente. 
 
 El gerente puede asignar tareas a otros empleados o autoasignarse tareas a él mismo. Estas tareas son registradas y almacenadas en una lista 
-enlazada perteneciente a cada empleado del hotel. Al asignar la tarea, el gerente le inserta un valor importancia a la tarea (eligiendo un 
+enlazada perteneciente a cada empleado del hotel. Al asignar la tarea, el gerente le inserta un valor de importancia a la tarea (eligiendo un 
 numero del 1 al 3), el cual permite que las mismas se ordenen en la lista y el empleado tenga que realizar la tarea con más importancia. 
 Los empleados del tipo cocina tienen además la opcion de realizar las ordenes del buffet (las cuales están almacenadas en una cola, así el
 empleado puede realizar las ordenes en el orden que fueron realizadas).
@@ -41,7 +41,7 @@ Si se inicia sesión con el usuario de un empleado, el empleado podrá realizar 
 Una vez que el empleado haya realizado una tarea asignada por el gerente, se guarda el título de esta tarea en una pila, para que no se 
 pierdan las tareas realizadas y además para que el empleado pueda ver cual fue la última tarea que realizó. 
   
-Una vez que el usuario selecciona la opcion 'Abandonar la página' del menu principal (despues de haber cerrado sesión) , toda la infomarción
+Una vez que el usuario selecciona la opcion 'Abandonar la página' del menu principal (despues de haber cerrado sesión), toda la informarción
 que se ingreso al programa es guardada en el pickle. 
 '''
 
