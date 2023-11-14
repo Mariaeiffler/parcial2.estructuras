@@ -46,7 +46,7 @@ class Personal(Persona):
                         else:
                             print('La tarea no se ha realizado')
                     else:
-                        print('No hay pedidos pendientes')
+                        print('No hay tareas pendientes')
                    
                 case 2:
                     if ordenes.esta_vacia() == False:
@@ -60,7 +60,7 @@ class Personal(Persona):
                         else:
                             print ('La acción se ha cancelado')
                     else:
-                        print('No hay tareas pendientes')
+                        print('No tiene tareas pendientes')
         else:
             if self.tareasPendientes.head:
                 print('La Tarea a realizar es: {}'.format(self.tareasPendientes.head.__str__()))
@@ -79,8 +79,11 @@ class Personal(Persona):
                 
     def visualizarTareaAnterior (self):
         '''Esta función muestra la última tarea realizada por el empleado, utilizando el metodo obtenerUltimo de la clase pila'''
-        tarea=self.tareasRealizadas.obtenerUltimo()
-        print('La última tarea que realizó fue: {}'.format(tarea))
+        if self.tareasRealizadas == None:
+            tarea=self.tareasRealizadas.obtenerUltimo()
+            print('La última tarea que realizó fue: {}'.format(tarea))
+        else:
+            print('No ha realizado ninguna tarea todavía')
             
     def registrar_ingreso(self):
         '''Esta función registra el ingreso de un empleado, almacenando la fecha y hora en una lista conteniendo todas las fechas de ingreso y egreso del empleado.'''
