@@ -217,8 +217,7 @@ class Hotel():
                                 pregEmpleado=val_opc(pregEmpleado,1,5,imprimir1)
                                 
                             if pregEmpleado == 5:
-                                pregunta=menuPPL()
-                                
+                                pregunta=menuPPL()    
                             
                 case 3:
                     seguir = False
