@@ -1,5 +1,5 @@
 from Estadisticas import *
-from Nodo import NodoTarea
+from nodo import NodoTarea
 from Personal import Personal
 
 class Gerente(Personal):
