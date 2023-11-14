@@ -138,7 +138,10 @@ class Gerente(Personal):
         llaves=list(tareas.keys())
         tipo=input('Ingrese el tipo al que pertenecera el empleado {}: \n'.format(llaves))
         tipo=valTipoEmpleado(tipo,tareas)
-        empleado=Personal(nombre,usuario,dni,contacto,fecha_nac,mail,contrasena,tipo)
+        if tipo == 'gerente':
+            empleado=Gerente(nombre,usuario,dni,contacto,fecha_nac,mail,contrasena,tipo)
+        else:
+            empleado=Personal(nombre,usuario,dni,contacto,fecha_nac,mail,contrasena,tipo)
         empleados[empleado.usuario]=empleado
         tareas[tipo]['empleados'].append(empleado.usuario)
         print ('El empleado se a creado con éxito.')
