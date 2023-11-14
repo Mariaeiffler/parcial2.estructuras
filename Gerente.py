@@ -77,7 +77,7 @@ class Gerente(Personal):
                         archivo.write(emp.__str__())
                         archivo.write('\n')
                 else:
-                    archivo.write('No hay empleados activos')
+                    archivo.write('No hay empleados activos \n')
                 if len(list_b) != 0:
                     archivo.write('\n')
                     archivo.write('Los empleados dados de baja son:')
@@ -103,7 +103,7 @@ class Gerente(Personal):
                         archivo.write(dic.get(cliente).__str__())
                         archivo.write('\n')
                 else:
-                    archivo.write('El hotel todavía no tiene clientes')
+                    archivo.write('El hotel todavia no tiene clientes')
         except Exception:
             pass
         return

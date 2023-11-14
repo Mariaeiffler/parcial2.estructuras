@@ -6,7 +6,7 @@ from Habitacion_Suite import *
 from Tareas_Empleados import tareas_empleados 
 from Funciones import *
 from datetime import *
-from Buffet import Comida
+# from Buffet import Comida
 import numpy as np
 from Estadisticas import *
 from Gerente import Gerente
@@ -55,7 +55,7 @@ class Hotel():
         self.reservas=dict()
         self.bajasEmpleados=set()
         self.cobros = np.array([])
-        self.buffet=crear_buffet(Comida.crear_comidas())
+        self.buffet=crear_buffet(crear_comidas())
         self.pedidosBuffet=Cola()
         
         gerente=Gerente('Lionel Messi','gerente',"10101010",'5491100000000','24/06/1987','liomessi@gmail.com','Gerente1','gerente')
