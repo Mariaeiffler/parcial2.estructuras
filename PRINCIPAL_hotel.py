@@ -1,14 +1,9 @@
 from Personal import Personal
 from Cliente import Cliente
-from Habitacion_Doble import *
-from Habitacion_Simple import *
-from Habitacion_Suite import *
 from Tareas_Empleados import tareas_empleados 
 from Funciones import *
 from datetime import *
-# from Buffet import Comida
 import numpy as np
-from Estadisticas import *
 from Gerente import Gerente
 from Cola import Cola
 
@@ -73,16 +68,17 @@ class Hotel():
         while seguir==True: 
         
             match pregunta:
-                # registro del cliente:
+                
                 case 1:
+                    '''Registro de cliente'''
                     nombre,usuario,dni,contacto,fecha_nac,mail,contrasena = infoPersonas (self.clientes,self.empleados)
                     cliente=Cliente(nombre,usuario,dni,contacto,fecha_nac,mail,contrasena,'nivel 1',[])
                     self.clientes[usuario]=cliente
                     print('Su usuario se ha creado con exito. Si desea seguir en el programa ingrese sesión. ')
                     pregunta=menuPPL()
                 
-                # inicio de sesion
                 case 2:
+                    '''Inicio de sesion'''
                     entrar=input('Tiene usted un usuario creado? Ingrese si en caso de tenerlo, y no en lo contrario: ')
                     imprimir='Error. Ingrese "si" si ya tiene un usuario creado y "no" de lo contrario: '
                     entrar=valSiNo(entrar,imprimir)
@@ -90,7 +86,7 @@ class Hotel():
                         usuario, contrasena = valSignIn (self.clientes, self.empleados)
                         cliente,empleado,tipo = valTipoUsuario(usuario,self.clientes,self.empleados)
                     
-                    # menu cliente
+                        '''Menu del cliente'''
                         if cliente:
                             pregcliente=input('Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Realizar check-in \n 6. Realizar check-out \n 7. Cerrar Sesión \n')
                             imprimir='Error. Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Realizar check-in \n 6. Realizar check-out \n 7. Cerrar Sesión \n'
@@ -98,28 +94,30 @@ class Hotel():
                             cliente:Cliente = self.clientes.get(usuario)
                             while pregcliente != 7:
                                 match pregcliente:
-                                # hacer una reserva
+
                                     case 1:
+                                        '''Hacer una reserva'''
                                         self.cobros = cliente.realizar_reserva(self.habitaciones, self.reservas, self.cobros)
                                         
-                                    # pedir algo en el buffet
                                     case 2:
+                                        '''Pedir algo de buffet'''
                                         self.cobros=cliente.realizarPedidoBuffet (self.pedidosBuffet,self.buffet,self.cobros)
                                         
                                     case 3:
+                                        '''Modificar una reserva'''
                                         self.cobros = cliente.modificar_reserva(self.reservas, self.habitaciones, self.cobros)
                                         
-                                    #cancelar una reserva
                                     case 4:
+                                        '''Cancelar una reserva'''
                                         if cliente.cancelar_reserva(self.reservas, self.habitaciones) == None:
                                             pass
-                                    
-                                    #check in cliente    
+                      
                                     case 5:
+                                        '''Check-in'''
                                         cliente.check_in()
-                                    
-                                    #check out cliente    
+                                       
                                     case 6:
+                                        '''Check-out'''
                                         cliente.check_out()
                                         
                                 pregcliente=input('Elija una de las siguientes opciones: \n 1. Hacer una reserva \n 2. Hacer un pedido en el buffet \n 3. Modificar una reserva \n 4. Cancelar una reserva \n 5. Realizar check-in \n 6. Realizar check-out \n 7. Cerrar Sesión \n')
@@ -130,7 +128,7 @@ class Hotel():
                                 pregunta=menuPPL() 
                             
                         else:
-                            # menu gerente
+                            '''Menu gerente'''
                             if tipo=='gerente': 
                                 pregGerente=input('\n Elija una de las siguientes opciones: \n 1. Crear un empleado \n 2. Dar de baja un empleado \n 3. Inventario del personal \n 4. Ver estadísticas \n 5. Nomina de Clientes \n 6. Asignar Tarea \n 7. Historial de baja de empleados \n 8. Historial de Reservas \n 9. Realizar una Tarea \n 10. Visualizar la última tarea realizada \n 11. Cerrar Sesión \n')
                                 imprimir='Error. Elija una de las siguientes opciones: \n 1. Crear un empleado \n 2. Dar de baja un empleado \n 3. Inventario del personal \n 4. Ver estadísticas \n 5. Nomina de Clientes \n 6. Asignar Tarea \n 7. Historial de baja de empleados \n 8. Historial de Reservas \n 9. Realizar una Tarea \n 10. Visualizar la última tarea realizada \n 11. Cerrar Sesión \n'
@@ -139,48 +137,48 @@ class Hotel():
                                 while pregGerente!=11:
                                     match pregGerente:
                                         case 1:
-                                            #Crear empleado
+                                            '''Crear empleado'''
                                             gerente.crearEmpleado(self.clientes,self.empleados,self.tareas)
                                             
                                         case 2:
-                                            #Dar de baja un empleado
+                                            '''Dar de baja a un empleado'''
                                             gerente.bajaEmpleado(self.empleados,self.tareas,self.bajasEmpleados)
                                             
                                         case 3:
-                                            #Inventario de personal
+                                            '''Inventario de personal'''
                                             gerente.inv_empleados(self.empleados, self.bajasEmpleados)
                                             print('Puede ver el inventario de los empleados en un archivo de texto.')
                                                 
                                         case 4:
-                                            #Estadisticas
+                                            '''Estadisticas'''
                                             gerente.obtener_estadisticas(self.habitaciones, self.cobros, self.clientes)
                                             print('Puede ver las estadísticas del hotel en un archivo de texto.')
                                         
                                         case 5:
-                                            #Nomina de clientes
+                                            '''Nomina de clientes'''
                                             gerente.nomina_clientes(self.clientes)
                                             print('Puede ver la nómina de los clientes en un archivo de texto.')
                                         
                                         case 6:
-                                            #Asignar una Tarea
+                                            '''Asignar una Tarea'''
                                             gerente.asignarTarea(self.tareas,self.empleados)
                                         
                                         case 7:
-                                            #Historial de baja de un empleados
+                                            '''Historial de baja de un empleados'''
                                             gerente.historialBajasEmpleados(self.bajasEmpleados)
                                             print('Puede ver el historial de bajas de empleados en un archivo de texto')
                                         
                                         case 8:
-                                            #Historial de reservas
+                                            '''Historial de reservas'''
                                             gerente.historial_reservas(self.reservas)
                                             print('Puede ver el historial de reservas en un archivo de texto.')
                                             
                                         case 9:
-                                            #Realizar una Tarea
+                                            '''Realizar una Tarea'''
                                             gerente.realizarTareas(self.pedidosBuffet)
                                         
                                         case 10:
-                                            #Ver la última tarea realizada
+                                            '''Ver la última tarea realizada'''
                                             gerente.visualizarTareaAnterior()
                                             
                                     pregGerente=input('\n Elija una de las siguientes opciones: \n 1. Crear un empleado \n 2. Dar de baja un empleado \n 3. Inventario del personal \n 4. Ver estadísticas \n 5. Nomina de Clientes \n 6. Asignar Tarea \n 7. Historial de baja de empleados \n 8. Historial de Reservas \n 9. Realizar una Tarea \n 10. Visualizar la última tarea realizada \n 11. Cerrar Sesión \n')
@@ -189,9 +187,8 @@ class Hotel():
                                 if pregGerente == 11:
                                     pregunta=menuPPL()
         
-                                    
-                            #menu empleados
                             else:
+                                '''Menu empleados'''
                                 pregEmpleado=input('\n Ingrese una de las siguientes opciones: \n 1. Realizar una Tarea \n 2. Registrar ingreso \n 3. Registrar egreso \n 4. Visualizar la última tarea realizada \n 5. Cerrar sesión \n')
                                 imprimir1='\n Error. Ingrese una de las siguientes opciones: \n 1. Realizar una Tarea \n 2. Registrar ingreso \n 3. Registrar egreso \n 4. Visualizar la última tarea realizada \n 5. Cerrar sesión \n'
                                 pregEmpleado=val_opc(pregEmpleado,1,5,imprimir1) 
@@ -199,21 +196,21 @@ class Hotel():
                                 while pregEmpleado!=5: 
                                     match pregEmpleado:
                                         case 1:
-                                            #Realizar una tarea
+                                            '''Realizar una tarea'''
                                             personal.realizarTareas(self.pedidosBuffet)
                                             pass       
                                         
                                         case 2:
-                                            #Registar ingreso
+                                            '''Registar ingreso'''
                                             personal.registrar_ingreso()
                                             print('Su ingreso se ha registrado con éxito')
                                         
                                         case 3:
-                                            #Registrar egreso
+                                            '''Registrar egreso'''
                                             personal.registrar_egreso()
                                         
                                         case 4:
-                                            #Ver la última tarea realizada
+                                            '''Ver la última tarea realizada'''
                                             personal.visualizarTareaAnterior()
                                             
                                     pregEmpleado=input('\n Ingrese una de las siguientes opciones: \n 1. Realizar una Tarea \n 2. Registrar ingreso \n 3. Registrar egreso \n 4. Visualizar la última tarea realizada \n 5. Cerrar sesión \n') 

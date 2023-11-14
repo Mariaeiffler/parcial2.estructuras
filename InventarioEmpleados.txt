@@ -1,1 +1,2 @@
-No hay empleados activosNo hay empleados dados de baja
+No hay empleados activos 
+No hay empleados dados de baja

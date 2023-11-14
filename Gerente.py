@@ -113,9 +113,12 @@ class Gerente(Personal):
         
         try:
             with open('HistorialBajasEmpleados.txt', "w") as archivo:
-                for empleado in bajas:
-                    archivo.write(empleado.__str__())
-                    archivo.write('\n')
+                if len(bajas)==0:
+                    archivo.write('No hay empleados dados de baja aun')
+                else:
+                    for empleado in bajas:
+                        archivo.write(empleado.__str__())
+                        archivo.write('\n')
         except Exception:
             pass
         return

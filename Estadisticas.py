@@ -88,7 +88,7 @@ def ocupacion (lista):
         if len(hab.reservas) != 0:
             oc+=1
     if oc == 0:
-        pass
+        return('No hubo reservas en el hotel')
     else:
         imp = '\n Las fechas en las que hay reservas y puede ver la ocupación del hotel son las siguientes: '
         fec, desordenadas = imprimir_fec(lista, imp)
