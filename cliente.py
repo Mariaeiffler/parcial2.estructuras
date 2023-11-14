@@ -48,14 +48,14 @@ class Cliente(Persona):
         cobro = Cobro(monto,self,objhab)
         cobros = agregar_cobro(cobros, cobro)
         self.asignar_nivel(cobros)
-        print('Su reserva se realizó con exito en las fechas {} - {} y su numero de reserva es {}. \n Recuerde que el horario de check in es desde las 15:00 hs y el check out hasta las 12:00 hs.'.format(fecha_inicio.strftime('%d/%m/%Y'),fecha_fin.strftime('%d/%m/%Y'),numres))
+        print('\n Su reserva se realizó con exito en las fechas {} - {} y su numero de reserva es {}. \n Recuerde que el horario de check in es desde las 15:00 hs y el check out hasta las 12:00 hs.\n'.format(fecha_inicio.strftime('%d/%m/%Y'),fecha_fin.strftime('%d/%m/%Y'),numres))
         return cobros
     
     def modificar_reserva(self, reservas:dict, lista, cobros):
         ''' Esta funcion le permite al usuario poder cambiar su reserva, ya sea la modificacion de la fecha, habitacion o ambas.
         Si la habitación seleccionada tiene menor precio no se le reembolsará la diferencia pero si es mas cara si se le cobrará'''
         
-        print('Recuerde que si hace una modificacion de su reserva, no se le reembolsará la diferencia de precio en caso de haberla \n pero si se le cobrará en caso de que la seleccionada tenga un valor mayor.')
+        print('Recuerde que si hace una modificacion de su reserva, no se le reembolsará la diferencia de precio en caso de haberla, \n pero si se le cobrará en caso de que la seleccionada tenga un valor mayor.')
         seguir = volver_atras()
         if seguir:
             numres = input('Ingrese su numero de reserva:  ')

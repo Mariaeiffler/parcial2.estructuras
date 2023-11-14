@@ -32,8 +32,8 @@ def obtener_pickle(hotel, accion):
     
 def volver_atras():
     '''Esta función permite volver atras en el menu si el usuario lo desea'''
-    preg = input ('Si desea continuar si acción escriba "si", si desea volver para atras escriba "no" \n')
-    imprimir = 'Error. Si desea continuar si acción escriba "si", si desea volver para atras escriba "no" \n'
+    preg = input ('Si desea continuar la acción escriba "si", si desea volver para atras escriba "no" \n')
+    imprimir = 'Error. Si desea continuar la acción escriba "si", si desea volver para atras escriba "no" \n'
     seguir = valSiNo(preg,imprimir)
     return seguir
     
