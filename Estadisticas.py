@@ -88,7 +88,7 @@ def ocupacion (lista):
         if len(hab.reservas) != 0:
             oc+=1
     if oc == 0:
-        return('No hubo reservas en el hotel')
+        return('No hubo reservas en el hotel \n')
     else:
         imp = '\n Las fechas en las que hay reservas y puede ver la ocupación del hotel son las siguientes: '
         fec, desordenadas = imprimir_fec(lista, imp)
@@ -104,7 +104,7 @@ def ocupacion_tipohab(lista):
         if len(hab.reservas) != 0:
             oc+=1
     if oc == 0:
-        pass
+        return('\n')
     else:
         imp = '\n Las fechas en las que hay reservas y puede ver la ocupación por tipo de habitación del hotel son las siguientes: '
         fec,desordenas = imprimir_fec(lista, imp)
