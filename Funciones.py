@@ -335,7 +335,7 @@ def valMail (mail):
 def validacionusuario(usuario,dic1:dict,dic2:dict):
     '''Esta función valida al usuario. El mismo, debe tener 5 caracteres.'''
     while len(str(usuario)) < 5 or valPalabraDic(usuario,dic1) or valPalabraDic(usuario,dic2):
-        usuario = input('Su nombre de usuario no es válido, ingrese otro (con minimo 5 dígitos): ')  
+        usuario = input('Su nombre de usuario no es válido, ingrese otro (con minimo 5 caracteres): ')  
     return usuario
 
 def validacioncontrasena(contrasena): 
@@ -356,7 +356,7 @@ def infoPersonas (dicc1:dict,dicc2:dict):
     fecha_nac=validacionfechanac (fecha_nac)
     mail=input('Ingrese su mail: ')
     mail=valMail(mail)
-    usuario=input('Escriba el nombre de usuario (debe tener por lo menos 5 dígitos): ')
+    usuario=input('Escriba el nombre de usuario (debe tener por lo menos 5 caracteres): ')
     usuario=validacionusuario(usuario,dicc1,dicc2)
     contrasena=input('Escriba una contrasena que contenga por lo menos una mayúscula y un número: ')
     contrasena=validacioncontrasena(contrasena)
