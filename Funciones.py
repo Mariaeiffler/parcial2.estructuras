@@ -5,6 +5,7 @@ from Habitacion_Suite import *
 import numpy as np
 from Tareas_Empleados import *
 import pickle
+from Buffet import Comida
 
 def obtener_pickle(hotel, accion):
     '''Esta función crea el pickle par aguardar todos los datos'''
@@ -367,7 +368,6 @@ def valSignIn (dicc1:dict, dicc2:dict):
     validacion=True
     usuario=input('Ingrese su nombre de usuario: ')
     contrasena=input('Ingrese su contrasena: ')
-    # volver = True
     while validacion:
         if valPalabraDic(usuario,dicc1):
             cliente = dicc1.get(usuario)
@@ -389,15 +389,6 @@ def valSignIn (dicc1:dict, dicc2:dict):
             print('El nombre de usuario o su contraseña son incorrectos.')
             usuario=input('Ingrese su nombre de usuario: ')
             contrasena=input('Ingrese su contrasena: ')
-    #     volver = input('¿Desea seguir intentando? Escriba "si" o "no" ')
-    #     imprimir = 'Error. ¿Desea seguir intentando? Escriba "si" o "no" '
-    #     volver = valSiNo(volver,imprimir)
-    #     if volver == False:
-    #         validacion = False
-    # if volver == False:
-    #     pregunta=menuPPL()
-    #     return pregunta
-    # else:
     return usuario, contrasena
 
 def valTipoUsuario (usuario,dicc1:dict,dicc2:dict):
@@ -521,3 +512,29 @@ def menuPPL():
     imprimir = 'Error. Elija una de las siguientes opciones: \n 1. Sign up \n 2. Sign in \n 3. Abandonar la página \n'
     pregunta=val_opc(pregunta,1,3,imprimir)
     return pregunta
+
+def crear_comidas(): 
+    ''' Esta funcion crea las comidas con su respectivo precio y codigo, especificando a que tipo de comida pertenece'''
+    infusion= Comida('Infusión (Café con leche/Té/Jugo de Naranja)', 500, 'desayuno','1')
+    tostadas=Comida('Tostadas con queso y mermelada', 700, 'desayuno','2')
+    yogur=Comida('Yogur con cereales', 600, 'desayuno','3')
+    huevos_revueltos=Comida('Huevos revueltos', 800, 'desayuno','4')
+    facturas=Comida('Facturas',600, 'desayuno','5')
+    ensalada_frutas= Comida('Ensalada de frutas',750, 'desayuno','6')
+    pollo_carne=Comida('Pollo/Carne con guarnición', 2000, 'almuerzo','7')
+    sopa=Comida('Sopa del día', 1500, 'almuerzo','8')
+    ensalada=Comida('Ensalada 4 toppings', 1000, 'almuerzo','9')
+    pez=Comida('Pesca del dia', 3000, 'almuerzo','10')
+    opcion_vegetariana=Comida('Opción vegetariana (hamburguesa de lentejas con papas fritas)',1500, 'almuerzo','11')
+    pastas=Comida('Pastas (ravioles, ñoquis, sorrentinos)', 1500,'almuerzo','12')
+    postres=Comida('Postres (flan con dulce de leche, bocha de helado, tiramisú)',500,'almuerzo','13')
+    tacos=Comida('Tacos varios (3 unidades)', 3000, 'almuerzo','14')
+    salmon=Comida('Salmón a la parrilla con puré de papas',4000,'cena','15')
+    pastas_cena= Comida('Pastas (ravioles, ñoquis, sorrentinos)',1500, 'cena','16')
+    opcion_vegetariana_cena=Comida('Opción vegetariana (falafel)',1500,'cena','17')
+    pizza=Comida('Pizza (muzzarella, napolitana, fugazzeta, calabresa)',2000, 'cena','18')
+    empanadas=Comida('Empanadas (carne, pollo, jamón y queso, verdura)',600,'cena','19')
+    asado_para_2=Comida('Asado con papas fritas (para 2)', 3000, 'cena','20')
+    postre_cena=Comida('Postres (flan con dulce de leche, bocha de helado, tiramisú)',500, 'cena','21')
+    bebida=Comida('Bebida a elección',500,None,'22')
+    return infusion,tostadas,yogur,huevos_revueltos,facturas,ensalada_frutas,pollo_carne,sopa,ensalada,pez,opcion_vegetariana,pastas,postres,tacos,salmon,pastas_cena,opcion_vegetariana_cena,pizza,empanadas,asado_para_2,postre_cena,bebida

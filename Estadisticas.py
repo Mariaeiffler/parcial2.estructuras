@@ -124,8 +124,7 @@ def rec_diaria(array):
     almacena todos los cobros realizados por el hotel'''
     
     if len(array) == 0:
-        print('El hotel no tiene recaudacion aún.')
-        return
+        return('El hotel no tiene recaudacion aún.')
     else:
         imp = '\n Los día que se realizaron gastos en el hotel son (Elija un dia para ver la recaudación diaria): '
         fechas = []

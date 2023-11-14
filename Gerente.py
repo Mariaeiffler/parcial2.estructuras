@@ -77,7 +77,7 @@ class Gerente(Personal):
                         archivo.write(emp.__str__())
                         archivo.write('\n')
                 else:
-                    archivo.write('No hay empleados activos')
+                    archivo.write('No hay empleados activos \n')
                 if len(list_b) != 0:
                     archivo.write('\n')
                     archivo.write('Los empleados dados de baja son:')
@@ -103,7 +103,7 @@ class Gerente(Personal):
                         archivo.write(dic.get(cliente).__str__())
                         archivo.write('\n')
                 else:
-                    archivo.write('El hotel todavía no tiene clientes')
+                    archivo.write('El hotel todavia no tiene clientes')
         except Exception:
             pass
         return
@@ -138,7 +138,10 @@ class Gerente(Personal):
         llaves=list(tareas.keys())
         tipo=input('Ingrese el tipo al que pertenecera el empleado {}: \n'.format(llaves))
         tipo=valTipoEmpleado(tipo,tareas)
-        empleado=Personal(nombre,usuario,dni,contacto,fecha_nac,mail,contrasena,tipo)
+        if tipo == 'gerente':
+            empleado=Gerente(nombre,usuario,dni,contacto,fecha_nac,mail,contrasena,tipo)
+        else:
+            empleado=Personal(nombre,usuario,dni,contacto,fecha_nac,mail,contrasena,tipo)
         empleados[empleado.usuario]=empleado
         tareas[tipo]['empleados'].append(empleado.usuario)
         print ('El empleado se a creado con éxito.')
