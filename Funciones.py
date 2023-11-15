@@ -538,3 +538,22 @@ def crear_comidas():
     postre_cena=Comida('Postres (flan con dulce de leche, bocha de helado, tiramisú)',500, 'cena','21')
     bebida=Comida('Bebida a elección',500,None,'22')
     return infusion,tostadas,yogur,huevos_revueltos,facturas,ensalada_frutas,pollo_carne,sopa,ensalada,pez,opcion_vegetariana,pastas,postres,tacos,salmon,pastas_cena,opcion_vegetariana_cena,pizza,empanadas,asado_para_2,postre_cena,bebida
+
+def usuarioEnReservas(usuario,reservas:dict,imprimir):
+    if len(reservas)==0:
+        print(imprimir)
+        return False
+    else:
+        for res in reservas:
+            cont = 0
+            lisres=[]
+            if reservas.get(res).usuario != usuario:
+                cont+=1
+            else:
+                lisres.append(res)
+        if cont == len(reservas):
+            print(imprimir)
+            return False
+        else:
+            return True
+        

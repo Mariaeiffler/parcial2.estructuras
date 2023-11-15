@@ -128,9 +128,12 @@ class Gerente(Personal):
         
         try:
             with open('HistorialReservas.txt', "w") as archivo:
-                for reserva in reservas:
-                    archivo.write(reservas.get(reserva).__str__())
-                    archivo.write('\n')
+                if len(reservas) == 0:
+                    archivo.write('No se hicieron reservas aun')
+                else:
+                    for reserva in reservas:
+                        archivo.write(reservas.get(reserva).__str__())
+                        archivo.write('\n')
         except Exception:
             pass
                 

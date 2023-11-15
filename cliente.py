@@ -98,25 +98,31 @@ class Cliente(Persona):
     def cancelar_reserva(self,reservas:dict, lista):
         ''' Esta funcion le permite al usuario cancelar la reserva definitivamente'''
         
-        numres = input('Recuerde si cancela una reserva no se reembolsará el valor de la misma. \n Ingrese su numero de reserva o escriba "volver" si desea volver al menú principal \n')
-        if numres == 'volver':
-            return None
-        else:
-            numres = val_numres(numres, reservas, self.usuario)
-        reserva = reservas.get(numres)
-        print(reserva)
-        preg = input('¿Desea cancelar su reserva definitivamente? (Seleccione el numero de la opción) \n 1. Si \n 2. No \n')
-        imprimir = 'Error. ¿Desea cancelar su reserva definitivamente? (Seleccione el numero de la opción) \n 1. Si \n 2. No \n'
-        preg = val_opc(preg, 1, 2, imprimir)
-        if preg == 1:
-            reservas.pop(numres)
-            self.reservas.remove([reserva.fecha_inicio, reserva.fecha_finalizacion])
-            for habitacion in lista:
-                if int(reserva.habitacion) == int(habitacion.numero):
-                    habitacion.reservas.remove([reserva.fecha_inicio, reserva.fecha_finalizacion])
-                    print('Su reserva se ha cancelado con exito. ')
-        else:
-            print('Se ha cancelado la cancelación de su reserva.')
+        imprimir = 'Usted no tiene reservas'
+        if usuarioEnReservas(self,reservas,imprimir):
+            print('Sus reservas son las siguientes: ')
+            for reserva in reservas:
+                if reservas.get(reserva).usuario == self:
+                    print(reservas.get(reserva))
+            numres = input('Recuerde si cancela una reserva no se reembolsará el valor de la misma. \n Ingrese su numero de reserva o escriba "volver" si desea volver al menú principal \n')
+            if numres == 'volver':
+                return None
+            else:
+                numres = val_numres(numres, reservas, self.usuario)
+            reserva = reservas.get(numres)
+            print(reserva)
+            preg = input('¿Desea cancelar su reserva definitivamente? (Seleccione el numero de la opción) \n 1. Si \n 2. No \n')
+            imprimir = 'Error. ¿Desea cancelar su reserva definitivamente? (Seleccione el numero de la opción) \n 1. Si \n 2. No \n'
+            preg = val_opc(preg, 1, 2, imprimir)
+            if preg == 1:
+                reservas.pop(numres)
+                self.reservas.remove([reserva.fecha_inicio, reserva.fecha_finalizacion])
+                for habitacion in lista:
+                    if int(reserva.habitacion) == int(habitacion.numero):
+                        habitacion.reservas.remove([reserva.fecha_inicio, reserva.fecha_finalizacion])
+                        print('Su reserva se ha cancelado con exito. ')
+            else:
+                print('Se ha cancelado la cancelación de su reserva.')
         return
     
     def asignar_nivel(self, vector):
@@ -167,7 +173,7 @@ class Cliente(Persona):
         if res_hoy == False:
             print('No se pudo realizar su check-out. El día de hoy no termina una estadía.')
             
-    def realizarPedidoBuffet (self,cola:Cola,buffet,cobros):
+    def realizarPedidoBuffet (self,cola:Cola,buffet,cobros, reservas:dict):
         '''Esta función hace el pedido del buffet. Cuando se hace un pedido se registra y se crea un objeto 'cobro' que se almacena
         en un array (en la clase hotel) a su vez tambíen se le reasigna el nivel al cliente en caso de que sea necesario. Los pedidos 
         también se almacenan en una cola para que los empleados de cocina lo hagan'''

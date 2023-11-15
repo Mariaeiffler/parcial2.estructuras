@@ -22,7 +22,7 @@ de ejecución sea más tarde de las 12:00 el mismo se realizará automaticamente
 Hay un gerente preestablecido en el sistema, que se crea la primera vez que se corre el programa. El nombre de usuario del gerente es 
 'gerente' y su contrasena es 'Gerente1'. Ingresando con este usuario, se podran realizar todas las acciones que puede realizar un gerente. 
 Ya sea dar de alta o de baja un empleado, obtener estadísticas, ver distintos historiales e inventarios, ver la nomina de clientes, asignar 
-tareas, realizar tareas y visualizar las tareas que realizo previamente. 
+tareas, realizar tareas y visualizar las tareas que realizo previamente. En el historial de reservas no figuran reservas canceladas.
 
 El gerente puede asignar tareas a otros empleados o autoasignarse tareas a él mismo. Estas tareas son registradas y almacenadas en una lista 
 enlazada perteneciente a cada empleado del hotel. Al asignar la tarea, el gerente le inserta un valor de importancia a la tarea (eligiendo un 
@@ -63,6 +63,8 @@ class Hotel():
         
         seguir = True
         
+        print(self.reservas)
+        
         pregunta=menuPPL()
         
         while seguir==True: 
@@ -101,11 +103,15 @@ class Hotel():
                                         
                                     case 2:
                                         '''Pedir algo de buffet'''
-                                        self.cobros=cliente.realizarPedidoBuffet (self.pedidosBuffet,self.buffet,self.cobros)
+                                        imprimir = 'Usted no tiene una reserva asi que no puede hacer un pedido en el buffet'
+                                        if usuarioEnReservas(cliente,self.reservas,imprimir):
+                                            self.cobros=cliente.realizarPedidoBuffet (self.pedidosBuffet,self.buffet,self.cobros,self.reservas)
                                         
                                     case 3:
                                         '''Modificar una reserva'''
-                                        self.cobros = cliente.modificar_reserva(self.reservas, self.habitaciones, self.cobros)
+                                        imprimir = 'Usted no tiene una reserva'
+                                        if usuarioEnReservas(cliente,self.reservas,imprimir):
+                                            self.cobros = cliente.modificar_reserva(self.reservas, self.habitaciones, self.cobros)
                                         
                                     case 4:
                                         '''Cancelar una reserva'''
